@@ -7,3 +7,4 @@ kc/work/
 *.gcode
 *.tmp
 /tmp/
+kc/wheel/out/
