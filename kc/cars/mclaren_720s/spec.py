@@ -29,6 +29,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(
 import geom
 
 SHOW_BADGE = True
+if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):   # badge-free export, no edit
+    SHOW_BADGE = False
 
 CX, YB, XL = 800, 806, 380
 XR = 2 * CX - XL

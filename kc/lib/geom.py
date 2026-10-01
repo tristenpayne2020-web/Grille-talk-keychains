@@ -14,12 +14,20 @@ SPEC FORMAT (python dict `SPEC` in cars/<id>/spec.py) - see cars/README_SPEC.md
 Coordinates are in reference-photo pixels (units='px') or millimetres (units='mm').
 Primitives are painted in order (painter's algorithm): later primitives paint over earlier ones.
 """
-import math, copy
+import math, copy, os
 import numpy as np
 import shapely
 from shapely.geometry import Polygon, MultiPolygon, LineString, Point, box, GeometryCollection
 from shapely.ops import unary_union
 from shapely import affinity
+
+# Global logo switch. Badge-free is the default (user decision 2026-09-30, trademark reasons); KC_BADGE=1 turns
+# badges back on. Specs with a custom SHOW_BADGE read the same variable, so it is set here before any spec loads.
+os.environ.setdefault('KC_BADGE', '0')
+
+
+def badges_on():
+    return os.environ.get('KC_BADGE', '0').strip().lower() in ('1', 'true', 'yes', 'on')
 
 BODY_W = 80.5          # mm, car body width (G80 reference)
 T = 3.0                # keychain thickness
@@ -359,7 +367,7 @@ def build_maps(spec, verbose=False):
         else:
             raise ValueError(col)
     # badge
-    if spec.get('badge') and spec.get('badge_on', True):
+    if spec.get('badge') and spec.get('badge_on', True) and badges_on():
         b = dict(spec['badge'])
         if 'c' in b:
             b['c_mm'] = place(Point(F.pt(b['c']))).coords[0]

@@ -52,7 +52,7 @@ Each build is delivered as STL, STEP, a single 3MF and a full-plate 3MF (260×26
   - on approval, restore from that snapshot and lock it as `spec_APPROVED_by_user.py`;
   - running revise agents have overwritten approved designs before, so stop the workflow first.
 - **Slicer settings:** ONE master preset, never per-car settings (see section 2).
-- **NO LOGOS on any car.** The user decided this on 2026-09-30, for trademark reasons. It has not been implemented yet; see section 5.
+- **NO LOGOS on any car.** The user decided this on 2026-09-30, for trademark reasons. DONE 2026-10-01: see section 5, step 1.
 
 ---
 
@@ -216,7 +216,15 @@ python finalize.py
 
 ## 5. Next steps, in order, once the user says "continue"
 
-1. **No-logo versions of everything:**
+1. **No-logo versions of everything: DONE 2026-10-01 (cloud session).**
+   - Switch: `geom.py` sets `KC_BADGE=0` by default; `build_maps` skips `spec['badge']` unless `KC_BADGE=1`. Specs with
+     `SHOW_BADGE` / `BADGE_ON` read the same variable (env checks added to mclaren_720s, c7_z06, lambo_urus, amg_gt,
+     svj_aventador, c8_corvette; the AMG GT hood emblem now sits behind `BADGE_ON` too).
+   - All 28 cars rebuilt with `--no-slice` in the cloud (all build types, 0 design errors), checked by eye.
+     Previews: `previews/no_logo/`. Still to run on the PC: `python kc/rebuild_all.py` (slice checks + finalize).
+   - Queue briefs (6, 7, 8), `README_SPEC.md` and the workflow prompts all carry the no-logo rule.
+   - Cloud renders need a display: start `Xvfb :99` and set `DISPLAY=:99`.
+   Original plan for reference:
    - Add one global switch (e.g. in `geom.badge_geoms` / `build_maps`, or an env/flag read by `export.py`) that drops every badge: the built-in types (roundel, star, rings, shield, flags, pony, bar) and the custom `SHOW_BADGE` badges.
    - Make it the default.
    - Run `python rebuild_all.py` (all 28 cars, about 2.5 min each), check that every car rebuilt and the logos are gone, then confirm finalize ran.

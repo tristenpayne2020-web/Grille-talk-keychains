@@ -49,9 +49,11 @@ TASK - produce an excellent, faithful, printable keychain design for this car.
    and licence of the chosen one. If the best photo is slightly tilted, level it (trace_tools.py rotate) and trace the
    levelled copy. Confirm (by looking at it) that it really is the right generation/facelift.
 2. STUDY. View the photo at full size and zoomed crops. Write down the car's signature front elements (headlight
-   outline + DRL graphic, grille shape + texture, intakes, splitter, vents, creases/shut lines, badge) and decide, the
+   outline + DRL graphic, grille shape + texture, intakes, splitter, vents, creases/shut lines) and decide, the
    way the user did for the G80, what becomes black, what stays white, what becomes a white DRL stroke, where relief
    patterns and engraved lines go, and where the keyring tab sits (viewer's left, on a white area of the fender).
+   NO LOGOS (user rule): no badge, emblem, crest or brand lettering anywhere; badge=None, no SHOW_BADGE prims, leave
+   that spot as plain body or plain grille.
 3. TRACE. Use kc/lib/trace_tools.py (grid / edges / points, with --crop and --scale to zoom; labels are original
    photo pixels) to read precise coordinates. Write ${KC}/cars/${car.id}/spec.py. Iterate many times with
      python kc/lib/export.py kc/cars/${car.id}/spec.py kc/cars/${car.id}/out --design-only
@@ -140,7 +142,7 @@ ${filesFor(car, r)}
 Check, comparing against the photo (overlay.png shows the design edges drawn on it) and your knowledge of the car:
 silhouette proportions (width:height, hood/fender line, bumper corners), headlight outline size/angle/position, the
 DRL light signature shape (most important), grille shape/size/position and its texture pattern, intake shapes, splitter,
-vents, badge placement, missing signature elements, wrong generation cues, asymmetry or misalignment with the photo.
+vents, any logo (there must be NONE: no badge, emblem, crest or brand lettering - user rule), missing signature elements, wrong generation cues, asymmetry or misalignment with the photo.
 Each issue needs a concrete fix (which primitive, which direction, approx px or mm). Score 1-10 for likeness.
 pass = score >= 8 and no 'high' issues. Do not edit any files.`
 }

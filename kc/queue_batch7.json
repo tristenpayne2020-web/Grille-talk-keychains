@@ -1,71 +1,71 @@
 {
- "note": "QUEUED after queue_batch6. BMW briefs carry the one-tow-hook-cover rule. | trackhawk REMOVED by the user 2026-09-30 (trade dress).",
+ "note": "QUEUED after queue_batch6. BMW briefs carry the one-tow-hook-cover rule. | trackhawk REMOVED by the user 2026-09-30 (trade dress). All badge-free (user decision 2026-09-30).",
  "cars": [
   {
    "id": "g20_330i",
    "folder": "BMW_330i_G20",
    "name": "BMW 330i M Sport (G20, 2019-2022 pre-LCI)",
-   "brief": "Pre-LCI G20 330i M Sport (2019-2022) - deliberately the pre-facelift so it differs from the M340i LCI already in the line. Signature: headlights with the notched 'L' LED DRL (two elements with the characteristic notch at the top edge, white strokes), classic twin kidneys with horizontal/vertical bars, the M Sport bumper with the big outer intakes and the trapezoid centre intake, hood creases, roundel (badge type 'roundel'). BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Pre-LCI G20 330i M Sport (2019-2022) - deliberately the pre-facelift so it differs from the M340i LCI already in the line. Signature: headlights with the notched 'L' LED DRL (two elements with the characteristic notch at the top edge, white strokes), classic twin kidneys with horizontal/vertical bars, the M Sport bumper with the big outer intakes and the trapezoid centre intake, hood creases, roundel (badge type 'roundel'). BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair."
   },
   {
    "id": "lexus_lc500",
    "folder": "Lexus_LC500",
    "name": "Lexus LC 500 (2018+)",
-   "brief": "Lexus LC 500 coupe. Signature: the huge spindle grille (hourglass outline) with the LC's gradient 'mesh' (relief diamond/hex), the triple-projector headlights with the arrowhead / check-mark LED DRL that sweeps below the lamp (white strokes), the sculpted low hood, the Lexus L-in-oval badge (simplified, behind SHOW_BADGE). Low, wide coupe - clearly different from the IS 350 in the line."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Lexus LC 500 coupe. Signature: the huge spindle grille (hourglass outline) with the LC's gradient 'mesh' (relief diamond/hex), the triple-projector headlights with the arrowhead / check-mark LED DRL that sweeps below the lamp (white strokes), the sculpted low hood, the Lexus L-in-oval badge (simplified, behind SHOW_BADGE). Low, wide coupe - clearly different from the IS 350 in the line."
   },
   {
    "id": "g30_m550i",
    "folder": "BMW_M550i_G30",
    "name": "BMW M550i xDrive (G30 LCI, 2021-2023)",
-   "brief": "G30 5 Series LCI M550i. Signature: the larger single-frame twin kidneys with the vertical bars, slim LCI headlights with the L-shaped / double-L laser DRL (white strokes), the M Sport bumper with the tall trapezoid outer intakes and wide lower opening, hood creases, roundel (badge type 'roundel'). Must differ from the M5 F90 and G90 in the queue (softer M Sport bumper). BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. G30 5 Series LCI M550i. Signature: the larger single-frame twin kidneys with the vertical bars, slim LCI headlights with the L-shaped / double-L laser DRL (white strokes), the M Sport bumper with the tall trapezoid outer intakes and wide lower opening, hood creases, roundel (badge type 'roundel'). Must differ from the M5 F90 and G90 in the queue (softer M Sport bumper). BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair."
   },
   {
    "id": "kia_stinger",
    "folder": "Kia_Stinger_GT",
    "name": "Kia Stinger GT (2022+ facelift)",
-   "brief": "Kia Stinger GT facelift (2022-2023). Signature: the 'tiger nose' grille (black mesh, relief hex) with the new Kia logo (simplified KIA letterforms behind SHOW_BADGE), full-LED headlights with the 3-segment DRL (white strokes), the lower bumper with the side intakes and vertical DRL/fog blades, hood with the two vents/creases. Sleek fastback sedan proportions."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Kia Stinger GT facelift (2022-2023). Signature: the 'tiger nose' grille (black mesh, relief hex) with the new Kia logo (simplified KIA letterforms behind SHOW_BADGE), full-LED headlights with the 3-segment DRL (white strokes), the lower bumper with the side intakes and vertical DRL/fog blades, hood with the two vents/creases. Sleek fastback sedan proportions."
   },
   {
    "id": "s550_mustang",
    "folder": "Mustang_GT_S550",
    "name": "Ford Mustang GT (S550 facelift, 2018-2023)",
-   "brief": "S550 Mustang GT, 2018-2023 facelift. Signature: the tri-bar LED DRL that sits BELOW the headlight as three short slanted bars (white strokes), the trapezoid upper grille (black mesh, relief hex) with the running-pony badge (draw a simplified pony behind SHOW_BADGE - the silhouette must read as a horse: head high, neck up, legs, tail; if it cannot be legible at size, omit it), the GT hood with the two heat extractor vents, the lower intake and splitter. Must differ from the Shelby GT500 already in the line (smaller grille, pony badge, softer bumper)."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. S550 Mustang GT, 2018-2023 facelift. Signature: the tri-bar LED DRL that sits BELOW the headlight as three short slanted bars (white strokes), the trapezoid upper grille (black mesh, relief hex) with the running-pony badge (draw a simplified pony behind SHOW_BADGE - the silhouette must read as a horse: head high, neck up, legs, tail; if it cannot be legible at size, omit it), the GT hood with the two heat extractor vents, the lower intake and splitter. Must differ from the Shelby GT500 already in the line (smaller grille, pony badge, softer bumper)."
   },
   {
    "id": "s650_mustang",
    "folder": "Mustang_GT_S650",
    "name": "Ford Mustang GT (S650, 2024+)",
-   "brief": "S650 Mustang GT (2024+). A previous design exists in your folder (kc/cars/s650_mustang: spec.py, ref/, out/) - reuse the reference photo and the good parts, but fix what its critics flagged: the running-pony badge must read as a HORSE at print scale (or omit it via SHOW_BADGE=False if it cannot), the gloss-black fang blades must be visible, the grille honeycomb must use the line's cell size (pitch ~2.4, rib 0.8), and the tri-bar LED DRL inside each headlamp must read as three vertical bars. Must differ from the S550 and the GT500 in the line."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. S650 Mustang GT (2024+). A previous design exists in your folder (kc/cars/s650_mustang: spec.py, ref/, out/) - reuse the reference photo and the good parts, but fix what its critics flagged: the running-pony badge must read as a HORSE at print scale (or omit it via SHOW_BADGE=False if it cannot), the gloss-black fang blades must be visible, the grille honeycomb must use the line's cell size (pitch ~2.4, rib 0.8), and the tri-bar LED DRL inside each headlamp must read as three vertical bars. Must differ from the S550 and the GT500 in the line."
   },
   {
    "id": "audi_rs5",
    "folder": "Audi_RS5",
    "name": "Audi RS 5 (B9.5, 2021+)",
-   "brief": "Audi RS 5 (B9.5 facelift, 2021+). Signature: the wide, flat single-frame grille with gloss-black honeycomb (relief hex) and the four rings (badge type 'rings', light rings on the black grille), the three slim horizontal slots under the hood edge (Sport quattro homage), the Matrix LED headlights with the segmented DRL (white strokes), the large outer intakes with the vertical blade, the wide splitter. Must differ from the R8 in the line (sedan/coupe proportions, flat wide grille)."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Audi RS 5 (B9.5 facelift, 2021+). Signature: the wide, flat single-frame grille with gloss-black honeycomb (relief hex) and the four rings (badge type 'rings', light rings on the black grille), the three slim horizontal slots under the hood edge (Sport quattro homage), the Matrix LED headlights with the segmented DRL (white strokes), the large outer intakes with the vertical blade, the wide splitter. Must differ from the R8 in the line (sedan/coupe proportions, flat wide grille)."
   },
   {
    "id": "audi_rs7",
    "folder": "Audi_RS7",
    "name": "Audi RS 7 Sportback (C8, 2020+)",
-   "brief": "Audi RS 7 (C8, 2020+). Signature: the very wide, low single-frame grille in gloss black with honeycomb (relief hex), no chrome frame, the four rings on the grille (badge type 'rings'), the slim HD Matrix laser headlights with the stepped DRL signature (white strokes), the huge outer intakes with the vertical blades, the wide flat hood with creases. Must differ from the RS 5 in the same batch (wider, lower, flatter grille; different lamp graphic)."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Audi RS 7 (C8, 2020+). Signature: the very wide, low single-frame grille in gloss black with honeycomb (relief hex), no chrome frame, the four rings on the grille (badge type 'rings'), the slim HD Matrix laser headlights with the stepped DRL signature (white strokes), the huge outer intakes with the vertical blades, the wide flat hood with creases. Must differ from the RS 5 in the same batch (wider, lower, flatter grille; different lamp graphic)."
   },
   {
    "id": "nd_miata",
    "folder": "Mazda_MX5_Miata_ND",
    "name": "Mazda MX-5 Miata (ND, 2016+)",
-   "brief": "ND MX-5 Miata. Signature: the smiling low grille (trapezoid 'mouth' with mesh, relief hex/grid) with the Mazda wing badge (simplified wing-in-oval behind SHOW_BADGE), the slim squinting LED headlights with the ring/arc DRL (white strokes), the long low hood with the fender peaks rising above it, the small side intakes. Small, friendly roadster proportions."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. ND MX-5 Miata. Signature: the smiling low grille (trapezoid 'mouth' with mesh, relief hex/grid) with the Mazda wing badge (simplified wing-in-oval behind SHOW_BADGE), the slim squinting LED headlights with the ring/arc DRL (white strokes), the long low hood with the fender peaks rising above it, the small side intakes. Small, friendly roadster proportions."
   },
   {
    "id": "camaro_1ss",
    "folder": "Chevrolet_Camaro_1SS",
    "name": "Chevrolet Camaro 1SS (6th gen, 2020+ front)",
-   "brief": "6th-gen Camaro SS (1SS), 2020+ front (the revised SS fascia, not the 2019 'flowtie' one, not the ZL1). Signature: the upper grille with the gold/black bowtie (simplified bowtie behind SHOW_BADGE), slim angry headlights with the LED DRL signature (white strokes), the large lower grille with mesh (relief hex) and the SS-specific side intakes, the hood with the extractor vent insert. Must differ clearly from the Camaro ZL1 in the line."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. 6th-gen Camaro SS (1SS), 2020+ front (the revised SS fascia, not the 2019 'flowtie' one, not the ZL1). Signature: the upper grille with the gold/black bowtie (simplified bowtie behind SHOW_BADGE), slim angry headlights with the LED DRL signature (white strokes), the large lower grille with mesh (relief hex) and the SS-specific side intakes, the hood with the extractor vent insert. Must differ clearly from the Camaro ZL1 in the line."
   },
   {
    "id": "ram_trx",
    "folder": "Ram_1500_TRX",
    "name": "Ram 1500 TRX (2021+)",
-   "brief": "Ram 1500 TRX. Signature: the huge black grille with the giant R-A-M block lettering (draw bold simplified RAM letters in white behind SHOW_BADGE - legible at size, strokes >= 0.8 mm), the C-shaped LED headlights (white strokes), the amber marker lights on top of the grille (draw as small white bars), the hood scoop, the tall bumper with the tow hooks and skid plate. Truck proportions - taller keychain is correct."
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Ram 1500 TRX. Signature: the huge black grille with the giant R-A-M block lettering (draw bold simplified RAM letters in white behind SHOW_BADGE - legible at size, strokes >= 0.8 mm), the C-shaped LED headlights (white strokes), the amber marker lights on top of the grille (draw as small white bars), the hood scoop, the tall bumper with the tow hooks and skid plate. Truck proportions - taller keychain is correct."
   }
  ]
 }

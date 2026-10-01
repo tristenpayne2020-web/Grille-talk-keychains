@@ -27,6 +27,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 import geom as _geom                 # read-only use of the pipeline's own clean-up (regularize) for the custom ribs
 
 BADGE_ON = True
+if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):   # badge-free export, no edit
+    BADGE_ON = False
 
 CX = 639.5
 PL, PR = 328, 2 * CX - 328          # widest body points (front fender sides)
