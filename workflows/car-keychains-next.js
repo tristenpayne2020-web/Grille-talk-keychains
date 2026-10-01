@@ -18,7 +18,9 @@ const NOSLICE = args.cloud ? ' --no-slice' : ''
 const CLOUD_NOTE = args.cloud ? `
 - CLOUD RUN: there is no slicer here. Every FULL build is \`DISPLAY=:99 python kc/lib/export.py <spec> <out> --no-slice\`
   (the 3D renders need DISPLAY=:99). build_report.json then has no slicecheck: report slicecheck_all_ok = true when the
-  full build finishes with 0 design errors; the user re-checks on their PC with the real slicer.` : ''
+  full build finishes with 0 design errors; the user re-checks on their PC with the real slicer.
+- Wikimedia (commons API + upload.wikimedia.org) needs a descriptive User-Agent, e.g.
+  'GrilleTalkKeychains/1.0 (https://github.com/tristenpayne2020-web/Grille-talk-keychains)'; on HTTP 429 wait 10-30 s and retry.` : ''
 
 const COMMON = `
 WORKING CONTEXT
