@@ -1,0 +1,8 @@
+front.jpg (traced) = caricos_44.jpg
+  Official FCA/Stellantis press photo "2021 Ram 1500 TRX Launch Edition - Front" (image 44 of the press gallery),
+  downloaded from https://images.caricos.com/d/dodge/2021_ram_1500_trx/images/2560x1440/2021_ram_1500_trx_44_2560x1440.jpg
+  (page https://www.caricos.com/cars/d/dodge/2021_ram_1500_trx/images/44.html). 2560x1440, straight-on, level, no rotation needed.
+  Licence: manufacturer press/media image (editorial use; (c) FCA US LLC / Stellantis), used only as a private tracing reference.
+caricos_22.jpg, caricos_33.jpg: other front press shots from the same gallery (backup references).
+front_raw.jpg: Wikimedia Commons "File:Ram 1500 TRX, BAS 24, Brussels (P1170524).jpg" (CC BY-SA 4.0), 3840 px thumb;
+  rejected: ~30 deg three-quarter view.

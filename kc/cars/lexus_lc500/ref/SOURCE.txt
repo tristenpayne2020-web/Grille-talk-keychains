@@ -1,0 +1,9 @@
+Traced photo: sao9314.jpg
+  Wikimedia Commons "File:Lexus LC 500h SAO 2016 9314.jpg"
+  https://commons.wikimedia.org/wiki/File:Lexus_LC_500h_SAO_2016_9314.jpg
+  Author: Mario Roberto Duran Ortiz (User:Mariordo), licence CC BY-SA 4.0. Downloaded as the 1920 px Wikimedia thumbnail.
+  (LC 500h and LC 500 share the same front fascia.)
+front_enh.jpg = CLAHE contrast copy (tracing), front.jpg = same with the hood rows squeezed (overlay), both from make_ref.py.
+Cross-check photo (lamp/wedge/fang details, lights off): geneva1211.jpg
+  Wikimedia Commons "File:2017-03-07 Geneva Motor Show 1211.JPG", Norbert Aepli (User:Noebu), CC BY 4.0
+  https://commons.wikimedia.org/wiki/File:2017-03-07_Geneva_Motor_Show_1211.JPG

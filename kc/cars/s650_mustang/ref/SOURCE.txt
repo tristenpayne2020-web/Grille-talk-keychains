@@ -3,3 +3,4 @@ Source: Car and Driver 2024 Mustang GT gallery, https://hips.hearstapps.com/hmg-
 Licence: (c) Hearst Autos / Car and Driver, editorial photo - used only as a private tracing reference, not redistributed.
 Cross-checks: cs_00022.jpg / cs_00019.jpg (Ford press photos via carscoops.com, (c) Ford Motor Co.), cd_143_grille.jpg,
 cd_147_light.jpg (Car and Driver detail shots). Level check: headlights/grille corners at equal y left/right, no rotation needed.
+r7 (2026-10-01): re-checked Wikimedia Commons S650 candidates (Dark Horse Denver show CC0, Flickr CC BY 2.0 GT shots) - none straight-on/level enough; front.jpg kept.

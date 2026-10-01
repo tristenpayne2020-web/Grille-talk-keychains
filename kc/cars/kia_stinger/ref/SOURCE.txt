@@ -1,0 +1,6 @@
+front.png = crop (290,330)-(1090,720) of kiamedia_17181_low.jpg
+Source: Kia America media site (kiamedia.com), photo id 17181, "2022 Stinger Scorpion Special Edition"
+Page: https://www.kiamedia.com/us/en/media/photos/17181/2022-stinger-scorpion-special-edition-5
+Image: https://www.kiamedia.com/image/low/17181/1/2?v=3  (1350x900; the 9504x6336 'high' file is 29 MB, over the 8 MB limit, not kept)
+Licence: Kia America press/media image (editorial use; copyright Kia America, photographer Oskar Bakke). Used only as a tracing reference.
+Model: 2022 Kia Stinger (CK facelift) - new Kia logo, facelift LED headlights with DRL hooks.

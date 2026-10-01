@@ -1,0 +1,15 @@
+Reference photo for the Chevrolet Camaro SS / 1SS (6th gen, 2020-2024 revised SS front) keychain
+File: ref/front.jpg = crop (x 300..3460, y 400..2200) of ref/cand_cleveland.jpg, then scaled x0.5 (1580x900). No rotation
+      (splitter and grille edges level).
+ref/cand_cleveland.jpg = the 3840 px Wikimedia thumbnail of:
+Source: https://commons.wikimedia.org/wiki/File:2023_Cleveland_Auto_Show_(52790072809).jpg
+Direct: https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/2023_Cleveland_Auto_Show_%2852790072809%29.jpg/3840px-2023_Cleveland_Auto_Show_%2852790072809%29.jpg
+Author: Erik Drost (Flickr), 2023 Cleveland Auto Show
+Licence: CC BY 2.0 (https://creativecommons.org/licenses/by/2.0)
+Generation check: 2020+ SS fascia (bowtie on the black upper grille, body-colour bar between upper and lower grille,
+SS corner intakes with horizontal LED bar, hood extractor insert) - not the 2019 "flowtie" and not the ZL1.
+The car wears the accessory ground-effects splitter with small end plates.
+DRL shape cross-checked on https://commons.wikimedia.org/wiki/File:2019_Chevrolet_Camaro_SS_front_NYIAS_2019.jpg
+(Kevauto, CC BY-SA 4.0; DRLs lit; same SS headlamp 2019-2024).
+Other candidate: ref/cand_black.jpg = https://commons.wikimedia.org/wiki/File:Chevrolet_Camaro_SS_6.2L_Alpha_FL_Tuxedo_Black_(1).jpg
+(Damian B Oh, CC BY-SA 4.0) - near-frontal but black paint, low contrast.

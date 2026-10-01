@@ -1,0 +1,6 @@
+front.jpg = crop (1150,1050)-(3800,2700) of the 4961x3307 HighRes original, scaled 0.55 -> 1457x907 px.
+Original: BMW Group PressClub photo P90332472 "The all-new BMW 330i, Model M Sport, Portimao blue metallic, Rim 19" Styling 791 M (12/2018)" (pre-LCI G20, straight front, level, centred)
+Page:     https://www.press.bmwgroup.com/global/photo/detail/P90332472
+Download: https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?dokNo=P90332472&attachment=1&actEvent=image
+Licence:  (c) BMW AG - BMW Group PressClub press/editorial image (used only as a private tracing reference, not redistributed)
+Local copy of the original: cand/P90332472_hires.jpg
