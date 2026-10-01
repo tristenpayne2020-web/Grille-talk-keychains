@@ -16,9 +16,13 @@ from geom import polys, clean
 SIZE = float(sys.argv[sys.argv.index('--size') + 1]) if '--size' in sys.argv else 60.0   # mm, wheel height
 PAD_T = 1.2          # mm, paddle thickness after thickening (0.66 mm at scale is too fragile)
 PERF_D, PERF_P, PERF_DEPTH = 0.9, 1.6, 0.6       # mm, dimple diameter / spacing along a row / depth
-PERF_ROWS = (0.32, 0.68)                          # row positions across the rim width (0 = outer edge), staggered
+PERF_ROW = 1.35                                   # mm between staggered rows; rows fill the whole grip width
+PERF_EDGE = 0.55                                  # mm of plain surface kept along every grip edge
 STRIPE_W, STRIPE_T = 1.2, 0.6                                     # mm, 12 o'clock stripe width / inlay depth
-LEATHER = [(56, 139), (-139, -56)]   # deg, grip sectors (atan2(z, x) in the STEP frame), from the modelled notches
+# leather grips: between the carbon/leather joints the user modelled as notches in the rim outline, measured in the
+# keychain frame (angle from +X, wheel centre): upper joints at +-22.8 deg from horizontal, lower ones at -53.3 deg
+LEATHER = [(-53.3, 22.8), (157.2, 233.3)]
+GRIP_W = 5.5         # mm in from the outer edge: the whole grip width, stopping short of the spokes
 OUT = os.path.join(HERE, 'out')
 os.makedirs(OUT, exist_ok=True)
 
@@ -85,30 +89,32 @@ rim = clean(outer.difference(outer.buffer(-rim_w * 0.98)).intersection(top))
 
 
 def sector(a0, a1, r=200):
-    # angles in the STEP frame atan2(z, x) -> keychain frame (X = z, Y = x)
-    return Polygon([(0, 0)] + [(r * math.sin(math.radians(a)), r * math.cos(math.radians(a))) for a in np.linspace(a0, a1, 64)])
+    return Polygon([(0, 0)] + [(r * math.cos(math.radians(a)), r * math.sin(math.radians(a))) for a in np.linspace(a0, a1, 64)])
 
 
-leather = clean(unary_union([rim.intersection(sector(a, b)) for a, b in LEATHER]))
-# two staggered rows that follow the rim, each a fixed fraction of the rim width in from the outer edge
+grip = clean(top.intersection(outer.difference(outer.buffer(-GRIP_W)))
+             .intersection(unary_union([sector(a, b) for a, b in LEATHER])))
+zone = grip.buffer(-PERF_EDGE - PERF_D / 2)
+# staggered rows parallel to the outer edge, from just inside the edge across the whole grip
 centres = []
-for k, f in enumerate(PERF_ROWS):
-    ring = outer.buffer(-rim_w * f).exterior
-    for seg in polys(leather.buffer(-0.05)):
-        part = ring.intersection(seg.buffer(-PERF_D * 0.6, join_style=2))
-        for line in getattr(part, 'geoms', [part]):
-            if line.is_empty or line.length < PERF_D:
-                continue
-            for d in np.arange(PERF_P / 2 + (PERF_P / 2 if k % 2 else 0), line.length - PERF_D / 2, PERF_P):
-                pt = line.interpolate(d)
-                centres.append((pt.x, pt.y))
+k = 0
+while PERF_EDGE + PERF_D / 2 + k * PERF_ROW < GRIP_W:
+    ring = outer.buffer(-(PERF_EDGE + PERF_D / 2 + k * PERF_ROW)).exterior
+    part = ring.intersection(zone)
+    for line in getattr(part, 'geoms', [part]):
+        if line.is_empty or line.geom_type != 'LineString' or line.length < PERF_D:
+            continue
+        for d in np.arange((PERF_P / 2 if k % 2 else 0) + PERF_D / 2, line.length - PERF_D / 2 + 1e-6, PERF_P):
+            pt = line.interpolate(d)
+            centres.append((pt.x, pt.y))
+    k += 1
 from scipy.spatial import cKDTree
 V = body.vertices
 kd = cKDTree(V[:, :2])
 dimples = []
 for x, y in centres:
-    near = kd.query_ball_point([x, y], PERF_D)      # local rim top = highest surface point around the dimple
-    zt = V[near, 2].max() if near else ztop
+    near = kd.query_ball_point([x, y], PERF_D / 2)  # local top surface under the dimple (the grip is domed)
+    zt = np.median(V[near, 2]) if near else ztop
     dimples.append(trimesh.creation.cylinder(radius=PERF_D / 2, height=PERF_DEPTH + 2, sections=24)
                    .apply_translation([x, y, zt - PERF_DEPTH + (PERF_DEPTH + 2) / 2]))
 if dimples:
