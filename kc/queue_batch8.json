@@ -1,0 +1,83 @@
+{
+ "note": "QUEUED 2026-09-30 by the user, after queue_batch7. Do not start until the user says continue. All badge-free.",
+ "cars": [
+  {
+   "id": "dodge_viper",
+   "folder": "Dodge_Viper_ACR",
+   "name": "Dodge Viper (5th gen VX, 2013-2017)",
+   "brief": "Signature: very long low hood with the big central power bulge and the two large hood vents, the snake-eye headlights (slim, angled lamps with the LED DRL strip), the wide mouth grille with mesh (relief hex), the side intakes and splitter. Very wide, low, long-nose. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "civic_type_r_fl5",
+   "folder": "Honda_Civic_Type_R_FL5",
+   "name": "Honda Civic Type R (FL5, 2023+)",
+   "brief": "Signature: the FL5 Type R bumper - wide honeycomb lower grille (relief hex), the upper grille slot, the big corner intakes with the vertical fins, the hood vent/bulge, slim LED headlights with the Civic DRL line. Must be clearly different from the regular 11th-gen Civic already in the line (much more aggressive bumper, hood scoop). NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "f150",
+   "folder": "Ford_F150",
+   "name": "Ford F-150 (14th gen, 2021+)",
+   "brief": "Signature: the big upright grille with the horizontal bars (relief hbars), the C-clamp LED headlight signature that wraps around the lamp (white strokes), the tall squared hood with the power dome, the tall bumper with the fog pockets. Truck proportions - taller keychain is correct. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "mini_cooper_s",
+   "folder": "Mini_Cooper_S",
+   "name": "Mini Cooper S (F56 hatch, 2014-2024)",
+   "brief": "Signature: the round headlights with the ring LED DRL (white rings), the hexagonal grille with mesh (relief hex) and the S bumper intakes, the rounded short hood with the Cooper S hood scoop, the small round fog lamps. Cute, short, round proportions. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "elantra_n",
+   "folder": "Hyundai_Elantra_N",
+   "name": "Hyundai Elantra N (2022-2023)",
+   "brief": "Signature: the wide parametric-jewel grille with the N diamond mesh (relief diamond), the sharp slim headlights with the DRL line, the angular N bumper with the side intakes and red-lip splitter (draw the lip as a black band), the creased hood. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "silverado",
+   "folder": "Chevrolet_Silverado",
+   "name": "Chevrolet Silverado 1500 (2022+ refresh)",
+   "brief": "Signature: the tall grille with the thick horizontal bar across the middle (bowtie position left plain), the slim headlights with the stacked C-shaped LED DRL (white strokes) set high, the tall hood with creases, the big bumper. Truck proportions - taller keychain is correct. Must differ clearly from the F-150. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "escalade",
+   "folder": "Cadillac_Escalade",
+   "name": "Cadillac Escalade (5th gen, 2021+)",
+   "brief": "Signature: the huge shield-shaped grille with the fine mesh/vertical pattern (relief), the slim horizontal headlights plus the tall vertical LED light blades at the outer edges (white strokes - the key Escalade signature), the tall flat hood, the SUV bumper. Tall luxury SUV proportions. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "x5m",
+   "folder": "BMW_X5M_F95",
+   "name": "BMW X5 M Competition (F95 LCI, 2024+)",
+   "brief": "Signature: the large single-frame kidney grille with the double horizontal/vertical M bars (relief), slim LCI headlights with the angled L-shaped DRL (white strokes), the M bumper with the huge outer intakes and wide centre intake, the tall hood with creases. SUV proportions. BMW rule from the user: exactly ONE front tow-hook cover (single ring, mirror=False) on the viewer's left, only if visible - never a mirrored pair. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "x4m",
+   "folder": "BMW_X4M_F98",
+   "name": "BMW X4 M Competition (F98 LCI, 2022+)",
+   "brief": "Signature: the wide kidney grille with the double M slats (relief vbars), slim LCI headlights with the L-shaped DRL (white strokes), the M bumper with the big outer intakes, the lower sportier SUV-coupe nose. Must differ clearly from the X5 M (lower, lamp graphic, grille shape). BMW rule from the user: exactly ONE front tow-hook cover (single ring, mirror=False) on the viewer's left, only if visible - never a mirrored pair. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "macan",
+   "folder": "Porsche_Macan",
+   "name": "Porsche Macan GTS (95B.2, 2022-2024)",
+   "brief": "Signature: the four-point LED DRL in each headlight (four small white dots/bars), the rounded Porsche hood with the raised fenders, the three large lower intakes with the horizontal slats (relief hbars), the SUV-sport proportions. Must differ from the Cayenne and from the 911 GT3 RS in the line. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "cayenne",
+   "folder": "Porsche_Cayenne",
+   "name": "Porsche Cayenne (E3.2, 2024+)",
+   "brief": "Signature: the Matrix LED headlights with the four-point DRL in a wider, flatter lamp (white), the tall rounded hood with the fender peaks, the big three-part lower intakes with the horizontal slat, the taller SUV nose. Must differ clearly from the Macan (taller, wider, flatter lamps). NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "jeep_wrangler",
+   "folder": "Jeep_Wrangler",
+   "name": "Jeep Wrangler (JL, 2018+)",
+   "brief": "Signature: round headlights with the LED ring (white rings), the flat upright front with the fenders, the flat hood with the vents, the steel bumper with tow hooks. NOTE: the seven-slot grille is a registered Jeep trademark (same reason the user removed the Trackhawk) - ask the user before designing this one. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  },
+  {
+   "id": "nissan_350z",
+   "folder": "Nissan_350Z",
+   "name": "Nissan 350Z (Z33, 2006-2009 facelift)",
+   "brief": "Nissan 350Z coupe (Z33). Signature: the tall swept-back headlights running up the fenders (lamp outline with the projector rings, white), the wide low mouth grille with the horizontal bar (relief hbars/mesh), the round fog lamps in the bumper corners, the long low hood with the fender peaks. Must differ clearly from the GT-R R35 in the line. NO LOGOS: user decision - do not draw any badge/emblem (SHOW_BADGE=False, no built-in badge type)."
+  }
+ ]
+}

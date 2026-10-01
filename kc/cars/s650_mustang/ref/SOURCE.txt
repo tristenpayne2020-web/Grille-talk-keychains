@@ -1,0 +1,5 @@
+front.jpg (= cd_155.jpg), 2250x1500: 2024 Ford Mustang GT (S650) convertible, Race Red, straight-on front at headlight height.
+Source: Car and Driver 2024 Mustang GT gallery, https://hips.hearstapps.com/hmg-prod/images/2024-ford-mustang-gt-155-64b982586091f.jpg
+Licence: (c) Hearst Autos / Car and Driver, editorial photo - used only as a private tracing reference, not redistributed.
+Cross-checks: cs_00022.jpg / cs_00019.jpg (Ford press photos via carscoops.com, (c) Ford Motor Co.), cd_143_grille.jpg,
+cd_147_light.jpg (Car and Driver detail shots). Level check: headlights/grille corners at equal y left/right, no rotation needed.

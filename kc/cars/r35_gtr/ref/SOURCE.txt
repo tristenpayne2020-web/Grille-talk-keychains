@@ -1,0 +1,16 @@
+Reference photo used for tracing: front.jpg (identical copy: front_my17.jpg)
+  Title:    File:Nissan GT-R MY2017 (2).jpg  (Nissan GT-R, 2017 model year facelift, R35, straight-on front view)
+  Page:     https://commons.wikimedia.org/wiki/File:Nissan_GT-R_MY2017_(2).jpg
+  Original: https://upload.wikimedia.org/wikipedia/commons/a/ab/Nissan_GT-R_MY2017_%282%29.jpg (2554 x 1912)
+  Downloaded rendition: 1920 px wide Wikimedia thumbnail
+            https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Nissan_GT-R_MY2017_%282%29.jpg/1920px-Nissan_GT-R_MY2017_%282%29.jpg
+            (the original-size URL was rate-limited, HTTP 429, at download time)
+  Author:   Tokumeigakarinoao (Wikimedia Commons user)
+  Licence:  CC BY-SA 4.0
+  Checks:   MY2017+ facelift confirmed (V-motion chrome grille frame, "lightning bolt" LED DRL, LED lamps on top of the
+            corner intakes, hood vents). Photo is level and symmetric about x = 995 px (left half vs mirrored right
+            half blend lines up), so no rotation was applied.
+Other candidates (thumbnails only, all 3/4 views or less straight): cand/t*.jpg, metadata cand/info.json
+Derived QA image: front_hood085.jpg = front.jpg with the rows above the hood front line (y 645 px) compressed
+            vertically by 0.85 (work/warp_ref.py), matching the spec's HOOD_K so overlay.png lines up with the design.
+            Same licence (CC BY-SA 4.0, Tokumeigakarinoao); used only for the overlay preview.

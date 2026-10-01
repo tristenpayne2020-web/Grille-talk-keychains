@@ -1,0 +1,7 @@
+Reference photo for the Dodge Challenger SRT Hellcat (2019+ dual-snorkel hood, SRT Hellcat grille badge) keychain.
+File:  "White Dodge Challenger SRT front view.jpg"  by Renée Kools, 2024-06-04, own work
+Page:  https://commons.wikimedia.org/wiki/File:White_Dodge_Challenger_SRT_front_view.jpg
+Image: https://upload.wikimedia.org/wikipedia/commons/9/91/White_Dodge_Challenger_SRT_front_view.jpg (original 2861x2336)
+       downloaded as the 1280 px Commons thumbnail (full-res fetch was rate-limited) -> ref/front_raw.jpg (1280x1045)
+Licence: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+ref/front.jpg = front_raw.jpg levelled by -0.4 deg (trace_tools rotate); all spec coordinates are pixels of front.jpg.

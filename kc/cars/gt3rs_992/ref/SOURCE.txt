@@ -1,0 +1,7 @@
+front.jpg (traced reference) = 1920 px rendition of
+  "Porsche 911 GT3 RS (992.1) Washington DC Metro Area, USA (1.1).jpg" by OWS Photography, CC BY 4.0
+  https://commons.wikimedia.org/wiki/File:Porsche_911_GT3_RS_(992.1)_Washington_DC_Metro_Area,_USA_(1.1).jpg
+  (downloaded via the Wikimedia thumbnail service, 1920x1536; original 2700x2160). Level, no rotation needed.
+drl_adelaide.jpg (DRL light-signature reference only, lights on) =
+  "Porsche Rennsport at the 2026 Adelaide Motorsport Festival (028A6782).jpg" by Yu Chu Chin, CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Porsche_Rennsport_at_the_2026_Adelaide_Motorsport_Festival_(028A6782).jpg

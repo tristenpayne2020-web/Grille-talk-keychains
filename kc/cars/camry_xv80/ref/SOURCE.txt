@@ -1,0 +1,7 @@
+Reference photo: ref/front_raw.jpg (4000 x 2667)
+Source: Toyota USA Newsroom, "2025 Toyota Camry" vehicle page high-resolution images
+  page:  https://pressroom.toyota.com/vehicle/2025-toyota-camry/
+  image: https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2024/04/2025_Camry_SE_AWD_SupersonicRed_012.jpg
+Subject: 2025 Toyota Camry SE AWD (XV80, 9th gen, hybrid-only), Supersonic Red, straight-on front, camera ~headlight height.
+Licence: Toyota press/media image, provided by Toyota for editorial/media use (copyright Toyota Motor North America).
+         Used here only as a private tracing reference; not redistributed.

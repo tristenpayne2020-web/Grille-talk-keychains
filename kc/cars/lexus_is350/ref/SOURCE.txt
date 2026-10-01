@@ -1,0 +1,10 @@
+ref/front.jpg (identical to ref/front_raw.jpg and ref/cand/2021-Lexus-IS-F-SPORT-013-scaled.jpg; no rotation needed - level)
+Source: Lexus USA pressroom (pressroom.lexus.com), 2021 IS F SPORT press gallery, image "2021-Lexus-IS-F-SPORT-013",
+  https://lexus-cms-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2020/05/2021-Lexus-IS-F-SPORT-013-scaled.jpg
+  (downloaded 2026-09-28 by the earlier attempt; the bucket now answers 403, the 600x400 thumbnail of the same image is in
+  ref/cand/press/2021-Lexus-IS-F-SPORT-013.jpg; the press gallery URL list is ref/cand/press_urls.txt)
+Licence: manufacturer press/media image (c) Toyota Motor North America / Lexus, provided for editorial use.
+  Used here only as a private tracing reference; not redistributed.
+Model check: XE30 facelift (2021+) IS F SPORT - one-piece spindle with F Sport mesh, slim lamps with the single-line
+  arrowhead DRL, vertical corner intakes with fins (pre-2021 cars have the separate "check-mark" DRL under the lamp).
+Detail views used for the DRL: ref/cand/det_F-SPORT-011.jpg (same gallery).

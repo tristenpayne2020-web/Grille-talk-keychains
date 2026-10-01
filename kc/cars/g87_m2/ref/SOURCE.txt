@@ -1,0 +1,10 @@
+Reference photo used for tracing
+  file:    ref/front_orig.jpg (1920 px copy served by Wikimedia's thumbnail server)
+  title:   Front vom BMW M2 Coupe in der BMW Welt Bild 2 2024-08-03.jpg
+  page:    https://commons.wikimedia.org/wiki/File:Front_vom_BMW_M2_Coupe_in_der_BMW_Welt_Bild_2_2024-08-03.jpg
+  author:  Strubbl (Wikimedia Commons)
+  licence: CC BY-SA 4.0
+Derived files: front_bright.png (gamma 0.6 to open the shadows), front.png (= front_bright), front_warped.png
+(hood / fender-top foreshortening correction, ref/make_warped.py, Y0=515 F=0.62) - used by overlay.png.
+Secondary check photo (not traced): The frontview of BMW M2 (G87) with M Performance Parts.jpg,
+  https://commons.wikimedia.org/wiki/File:The_frontview_of_BMW_M2_(G87)_with_M_Performance_Parts.jpg, CC BY-SA 4.0

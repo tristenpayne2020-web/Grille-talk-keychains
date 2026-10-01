@@ -1,0 +1,6 @@
+front.jpg = crop (1000,1200)-(3950,2900) of the 4961x3309 HighRes original, scaled 0.5 -> 1475x850 px.
+Original: BMW Group PressClub photo P90479608 "The new BMW M340i xDrive (09/2022)" (Skyscraper Grey, straight front)
+Page:     https://www.press.bmwgroup.com/global/photo/detail/P90479608
+Download: https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?dokNo=P90479608&attachment=1&actEvent=image
+Licence:  (c) BMW AG - BMW Group PressClub press/editorial image (used only as a private tracing reference, not redistributed)
+Local copy of the original: cand/P90479608_hires.jpg

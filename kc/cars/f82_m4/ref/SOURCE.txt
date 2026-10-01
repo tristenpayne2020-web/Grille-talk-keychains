@@ -1,0 +1,8 @@
+Reference photo used for tracing (ref/front.jpg = crop x550..2950, y380..1850 of P90244968_full.jpg, gamma 0.55 brightened)
+  BMW Group PressClub photo P90244968 "BMW M4 Cabrio (01/2017)" - F83 M4 LCI, straight-on studio front view
+  page:  https://www.press.bmwgroup.com/deutschland/photo/detail/P90244968
+  image: https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?dokNo=P90244968&attachment=1&actEvent=image
+  licence: (c) BMW AG, BMW Group PressClub press material (editorial use); used only as a private tracing reference.
+  Note: the F83 convertible shares the F82 coupe's complete front end (bumper, hood, headlights, kidneys, fenders);
+  only the windshield/roof differ, and those are outside the keychain outline.
+Headlight detail reference: bmwpress_P90244963_small.jpg = PressClub P90244963 "BMW M4 Coupe (01/2017)" (F82 LCI headlight close-up)

@@ -1,0 +1,12 @@
+numpy
+scipy
+shapely>=2.0
+trimesh
+manifold3d
+cadquery==2.7.0
+cadquery-ocp
+vtk==9.3.1
+pillow
+opencv-python-headless
+scikit-image
+openpyxl

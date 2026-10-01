@@ -1,0 +1,254 @@
+[
+ {
+  "id": "g80_m3",
+  "folder": "BMW_M3_G80_yours",
+  "name": "BMW M3 (G80) - your design, printability-fixed",
+  "spec": "cars/g80_m3/spec_from_step.pkl",
+  "out": "cars/g80_m3/out",
+  "ref_url": "your own STEP",
+  "ref_license": "-"
+ },
+ {
+  "id": "g87_m2",
+  "folder": "BMW_M2_G87",
+  "name": "BMW M2 (G87)",
+  "spec": "cars/g87_m2/spec.py",
+  "out": "cars/g87_m2/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:Front_vom_BMW_M2_Coupe_in_der_BMW_Welt_Bild_2_2024-08-03.jpg",
+  "ref_license": "CC BY-SA 4.0 (Strubbl, Wikimedia Commons)"
+ },
+ {
+  "id": "f82_m4",
+  "folder": "BMW_M4_F82",
+  "name": "BMW M4 (F82)",
+  "spec": "cars/f82_m4/spec.py",
+  "out": "cars/f82_m4/out",
+  "ref_url": null,
+  "ref_license": "BMW Group PressClub press photo P90244968 (M4 LCI, straight front), press/editorial use; used only as a tracing reference, not redistributed"
+ },
+ {
+  "id": "gt3rs_992",
+  "folder": "Porsche_911_GT3RS_992",
+  "name": "Porsche 911 GT3 RS (992)",
+  "spec": "cars/gt3rs_992/spec.py",
+  "out": "cars/gt3rs_992/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:Porsche_911_GT3_RS_(992.1)_Washington_DC_Metro_Area,_USA_(1.1).jpg",
+  "ref_license": "CC BY 4.0"
+ },
+ {
+  "id": "c8_corvette",
+  "folder": "Corvette_C8",
+  "name": "Chevrolet Corvette C8",
+  "spec": "cars/c8_corvette/spec.py",
+  "out": "cars/c8_corvette/out",
+  "ref_url": "https://www.netcarshow.com/Chevrolet-Corvette_C8_Stingray-2020-1280-7d0d8d0f95757b6db419e12484a2449949.jpg",
+  "ref_license": "(c) General Motors press/media image, republished by NetCarShow. Not a free licence: used only as a private tracing reference; do not redistribute the photo."
+ },
+ {
+  "id": "gt500_mustang",
+  "folder": "Mustang_Shelby_GT500",
+  "name": "Ford Mustang Shelby GT500 (2020-22)",
+  "spec": "cars/gt500_mustang/spec.py",
+  "out": "cars/gt500_mustang/out",
+  "ref_url": "https://hips.hearstapps.com/hmg-prod/images/2022-ford-mustang-shelby-gt500-22-1636735311.jpg",
+  "ref_license": "(c) Hearst Autos / Car and Driver editorial gallery photo - private tracing reference only, not redistributed"
+ },
+ {
+  "id": "r8_audi",
+  "folder": "Audi_R8",
+  "name": "Audi R8 V10 (4S)",
+  "spec": "cars/r8_audi/spec.py",
+  "out": "cars/r8_audi/out",
+  "ref_url": "Audi MediaCenter press photo A1812863 (R8 production, Boellinger Hoefe, 2018); DRL signature from A1812864 (ref/cand/audi69455.jpg)",
+  "ref_license": "Audi AG press image (Audi MediaCenter), editorial/press use; used here only as a tracing reference"
+ },
+ {
+  "id": "svj_aventador",
+  "folder": "Lamborghini_SVJ",
+  "name": "Lamborghini Aventador SVJ",
+  "spec": "cars/svj_aventador/spec.py",
+  "out": "cars/svj_aventador/out",
+  "ref_url": "https://www.lambocars.com/wp-content/uploads/2020/11/aventador_svj_8.jpg",
+  "ref_license": "Automobili Lamborghini press image (editorial/press use), used only as a private tracing reference; cross-check photos by Alexander Migl, CC BY-SA 4.0 (Wikimedia Commons)"
+ },
+ {
+  "id": "amg_gt",
+  "folder": "Mercedes_AMG_GT",
+  "name": "Mercedes-AMG GT (C190)",
+  "spec": "cars/amg_gt/spec.py",
+  "out": "cars/amg_gt/out",
+  "ref_url": "https://wallpaper.caricos.com/2020-Mercedes-AMG-GT-R-(Color-Green-Hell-Magno)---Front-183840-2560x1440.jpg",
+  "ref_license": "Mercedes-Benz / Daimler AG press photo (via caricos.com gallery); used only as a private tracing reference, not redistributed"
+ },
+ {
+  "id": "r35_gtr",
+  "folder": "Nissan_GTR_R35",
+  "name": "Nissan GT-R (R35, 2017+)",
+  "spec": "cars/r35_gtr/spec.py",
+  "out": "cars/r35_gtr/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:Nissan_GT-R_MY2017_(2).jpg",
+  "ref_license": "CC BY-SA 4.0 (Tokumeigakarinoao, Wikimedia Commons)"
+ },
+ {
+  "id": "g20_m340i_lci",
+  "folder": "BMW_M340i_G20_LCI",
+  "name": "BMW M340i (G20 LCI, 2023+)",
+  "spec": "cars/g20_m340i_lci/spec.py",
+  "out": "cars/g20_m340i_lci/out",
+  "ref_url": "https://www.press.bmwgroup.com/global/photo/detail/P90479608",
+  "ref_license": "(c) BMW AG - BMW Group PressClub press/editorial image; used only as a private tracing reference, not redistributed"
+ },
+ {
+  "id": "camaro_zl1",
+  "folder": "Chevrolet_Camaro_ZL1",
+  "name": "Chevrolet Camaro ZL1 (6th gen)",
+  "spec": "cars/camaro_zl1/spec.py",
+  "out": "cars/camaro_zl1/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:2017_Camaro_ZL1.jpg",
+  "ref_license": "CC BY 2.0 (Yahya S., Flickr, 2017 auto show)"
+ },
+ {
+  "id": "mclaren_720s",
+  "folder": "McLaren_720S",
+  "name": "McLaren 720S",
+  "spec": "cars/mclaren_720s/spec.py",
+  "out": "cars/mclaren_720s/out",
+  "ref_url": "https://www.supercars.net/blog/wp-content/uploads/2017/06/McLaren-720S-10.jpg",
+  "ref_license": "Copyright McLaren Automotive. This is a manufacturer press photo for editorial use, used only as a private tracing reference and not redistributed. No CC-licensed straight-on 720S photo could be found. Speedmark contour: Wikimedia Commons File:McLaren_Speedmark.svg, public domain."
+ },
+ {
+  "id": "ct5v_blackwing",
+  "folder": "Cadillac_CT5V_Blackwing",
+  "name": "Cadillac CT5-V Blackwing",
+  "spec": "cars/ct5v_blackwing/spec.py",
+  "out": "cars/ct5v_blackwing/out",
+  "ref_url": "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/1111000/600/1111655.jpg",
+  "ref_license": "(c) CarBuzz / Valnet editorial photo, all rights reserved. Used only as a private tracing reference; not redistributed and not part of the product."
+ },
+ {
+  "id": "charger_srt",
+  "folder": "Dodge_Charger_SRT_Hellcat",
+  "name": "Dodge Charger SRT Hellcat (widebody)",
+  "spec": "cars/charger_srt/spec.py",
+  "out": "cars/charger_srt/out",
+  "ref_url": "https://moparinsiders.com/wp-content/uploads/2019/10/DG020_186CHqir1thdp7fu4b8tg26u0q6empb.jpg",
+  "ref_license": "FCA US LLC / Stellantis press photo DG020_186CH (editorial media use, all rights reserved; not CC). Used only as a private tracing reference. Source details are in ref/SOURCE.txt."
+ },
+ {
+  "id": "mk5_supra",
+  "folder": "Toyota_GR_Supra_MK5",
+  "name": "Toyota GR Supra (A90 / MK5)",
+  "spec": "cars/mk5_supra/spec.py",
+  "out": "cars/mk5_supra/out",
+  "ref_url": "https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2019/05/2020_GR_Supra_Launch_Edition_Absolute_Zero_019_44DE4C39466DD08954B103DC24C848F0D288DE51.jpg",
+  "ref_license": "Toyota press/media image from the Toyota USA Newsroom (pressroom.toyota.com, 2020 GR Supra gallery, (c) Toyota Motor North America). It is licensed for editorial/media use and is used here only as a private tracing reference. The photo is not redistributed with the keychain. Source and licence are recorded in ref/SOURCE.txt."
+ },
+ {
+  "id": "challenger_hellcat",
+  "folder": "Dodge_Challenger_SRT_Hellcat",
+  "name": "Dodge Challenger SRT Hellcat",
+  "spec": "cars/challenger_hellcat/spec.py",
+  "out": "cars/challenger_hellcat/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:White_Dodge_Challenger_SRT_front_view.jpg",
+  "ref_license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)"
+ },
+ {
+  "id": "f92_m8",
+  "folder": "BMW_M8_F92",
+  "name": "BMW M8 Competition (F92)",
+  "spec": "cars/f92_m8/spec.py",
+  "out": "cars/f92_m8/out",
+  "ref_url": "n/a",
+  "ref_license": "n/a"
+ },
+ {
+  "id": "e30_m3",
+  "folder": "BMW_M3_E30",
+  "name": "BMW M3 (E30)",
+  "spec": "cars/e30_m3/spec.py",
+  "out": "cars/e30_m3/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:BMW_M3_E30_Evolution_Front_2025-06-28.jpg",
+  "ref_license": "see ref/SOURCE.txt"
+ },
+ {
+  "id": "f87_m2",
+  "folder": "BMW_M2_F87",
+  "name": "BMW M2 Competition (F87)",
+  "spec": "cars/f87_m2/spec.py",
+  "out": "cars/f87_m2/out",
+  "ref_url": "https://www.press.bmwgroup.com/global/photo/compilation/T0279885EN/the-new-bmw-m2-competition",
+  "ref_license": "see ref/SOURCE.txt"
+ },
+ {
+  "id": "amg_gt63_4door",
+  "folder": "Mercedes_AMG_GT63_4door",
+  "name": "Mercedes-AMG GT 63 S 4-Door",
+  "spec": "cars/amg_gt63_4door/spec.py",
+  "out": "cars/amg_gt63_4door/out",
+  "ref_url": "https://wallpaper.caricos.com/2019-Mercedes-AMG-GT-63-S-4MATIC+-4-Door-Coupe-(Color-Brilliant-Blue-Magno)---Front-165713-2560x1440.jpg",
+  "ref_license": "see ref/SOURCE.txt"
+ },
+ {
+  "id": "c7_z06",
+  "folder": "Corvette_C7_Z06",
+  "name": "Chevrolet Corvette C7 Z06",
+  "spec": "cars/c7_z06/spec.py",
+  "out": "cars/c7_z06/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:2015_Chevy_Corvette_Stingray_Z06_Debut_at_Detroit_Auto_Show_10.jpg",
+  "ref_license": "see ref/SOURCE.txt"
+ },
+ {
+  "id": "g42_m240i_lci",
+  "folder": "BMW_M240i_G42",
+  "name": "BMW M240i (G42)",
+  "spec": "cars/g42_m240i_lci/spec.py",
+  "out": "cars/g42_m240i_lci/out",
+  "ref_url": "n/a",
+  "ref_license": "n/a"
+ },
+ {
+  "id": "lexus_is350",
+  "folder": "Lexus_IS350_FSport",
+  "name": "Lexus IS 350 F Sport",
+  "spec": "cars/lexus_is350/spec.py",
+  "out": "cars/lexus_is350/out",
+  "ref_url": "https://lexus-cms-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2020/05/2021-Lexus-IS-F-SPORT-013-scaled.jpg",
+  "ref_license": "manufacturer press/media image (c) Toyota Motor North America / Lexus, provided for editorial use."
+ },
+ {
+  "id": "civic_11th",
+  "folder": "Honda_Civic_11th_gen",
+  "name": "Honda Civic (11th gen)",
+  "spec": "cars/civic_11th/spec.py",
+  "out": "cars/civic_11th/out",
+  "ref_url": "https://www.motor1.com/reviews/576960/2022-honda-civic-si-review/",
+  "ref_license": "see ref/SOURCE.txt"
+ },
+ {
+  "id": "camry_xv80",
+  "folder": "Toyota_Camry_XV80",
+  "name": "Toyota Camry (2025+)",
+  "spec": "cars/camry_xv80/spec.py",
+  "out": "cars/camry_xv80/out",
+  "ref_url": "https://pressroom.toyota.com/vehicle/2025-toyota-camry/",
+  "ref_license": "Toyota press/media image, provided by Toyota for editorial/media use (copyright Toyota Motor North America)."
+ },
+ {
+  "id": "bugatti_chiron",
+  "folder": "Bugatti_Chiron",
+  "name": "Bugatti Chiron (2016-2022)",
+  "spec": "cars/bugatti_chiron/spec.py",
+  "out": "cars/bugatti_chiron/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:2018_Bugatti_Chiron_3.jpg",
+  "ref_license": "see ref/SOURCE.txt"
+ },
+ {
+  "id": "lambo_urus",
+  "folder": "Lamborghini_Urus",
+  "name": "Lamborghini Urus (2018+)",
+  "spec": "cars/lambo_urus/spec.py",
+  "out": "cars/lambo_urus/out",
+  "ref_url": "n/a",
+  "ref_license": "n/a"
+ }
+]

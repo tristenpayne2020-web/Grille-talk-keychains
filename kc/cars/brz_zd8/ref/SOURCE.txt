@@ -1,0 +1,19 @@
+Reference photo for the Subaru BRZ (ZD8) keychain
+=================================================
+front_raw.jpg  = "2024_Subaru_BRZ_tS_14.jpg", 8010 x 5343 px, 3.48 MB
+  URL:     https://s3.amazonaws.com/subarumedia.iconicweb.com/mediasite/libraryImages/2024_Subaru_BRZ_tS_14.jpg
+  Gallery: Subaru U.S. Media Center, "2024 Subaru BRZ tS"  https://media.subaru.com/image-gallery.do?method=view&imageGalleryId=496&mid=1
+  Licence: Subaru of America press/media image (editorial media use). Used here only as a private tracing reference;
+           the photo itself is not redistributed with the keychain.
+  Content: studio shot, straight-on front, camera at about headlight height, level, DRLs lit. The tS trim shares the
+           standard ZD8 front bumper, grille, headlights and vents (only the small "BRZ tS" grille badge differs,
+           which the keychain drops). Verified as 2nd-gen ZD8 (2022+): hexagonal slatted grille, C-shaped DRL light
+           guide, slim vertical corner vents with the horizontal blade, Subaru six-star oval on the nose.
+front.jpg      = front_raw.jpg cropped to (1700,1300)-(6300,4500) and scaled 0.5 (2300 x 1600). Already level (headlight
+                 tips / outer lamp edges / badge agree on centreline x = 1146 within 1 px). This is the traced image.
+front_bright.jpg = front.jpg with CLAHE + gamma (tracing aid for the dark blue paint only).
+
+Other candidates looked at (not used):
+  Wikimedia Commons "File:2024 Cleveland Auto Show (53572948749).jpg" (Erik Drost, CC BY 2.0) - straight-on silver
+    BRZ, but the camera is high (hood strongly foreshortened) and a placard covers the plate area.
+  Subaru media 2024_Subaru_BRZ_tS_13.jpg (higher camera), 24MY_BRZ_-9.jpg (only 800 px available < 8 MB).

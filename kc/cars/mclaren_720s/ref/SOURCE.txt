@@ -1,0 +1,16 @@
+front.jpg  (traced reference, 1600 x 1062, used as-is: level, centred, no rotation needed)
+  McLaren Automotive official studio press photo of the McLaren 720S coupe (silver, dihedral doors up, straight-on,
+  camera at headlight height). Copyright McLaren Automotive - manufacturer press/media image (editorial use).
+  Used only as a private tracing reference for the keychain artwork; not redistributed.
+  Downloaded from: https://www.supercars.net/blog/wp-content/uploads/2017/06/McLaren-720S-10.jpg
+  Gallery page:    https://www.supercars.net/blog/mclaren-720s-photo-gallery/
+  Generation check: 2017-2023 720S (not 765LT/750S): 720S door badges, single-blade DRL eye sockets, twin hood
+  nostrils, lower mouth with two curved fins, standard splitter.
+
+cand/  other candidates looked at (not traced):
+  sc12.jpg  same McLaren press set - headlamp close-up (used to understand the socket: lens / carbon blade / DRL / duct)
+  sc46.jpg, sc45.jpg, sc19.jpg, sc100.jpg  same press set, front views from above / on track (intake layout check)
+  c00-c11.jpg  Wikimedia Commons 720S photos (all 3/4 views or high angles; CC BY-SA / CC BY) - rejected
+
+Badge outline: Wikimedia Commons "File:McLaren Speedmark.svg" (Public domain),
+  https://commons.wikimedia.org/wiki/File:McLaren_Speedmark.svg  (rendered to ../work/speedmark.png, contour traced)

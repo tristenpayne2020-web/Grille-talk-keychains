@@ -1,0 +1,49 @@
+{
+ "sp": "<REPO_ROOT>",
+ "pool": 2,
+ "max_rounds": 2,
+ "others": [
+  "<REPO_ROOT>/kc/cars/g87_m2/spec.py",
+  "<REPO_ROOT>/kc/cars/f82_m4/spec.py",
+  "<REPO_ROOT>/kc/cars/gt3rs_992/spec.py",
+  "<REPO_ROOT>/kc/cars/c8_corvette/spec.py",
+  "<REPO_ROOT>/kc/cars/gt500_mustang/spec.py",
+  "<REPO_ROOT>/kc/cars/r8_audi/spec.py",
+  "<REPO_ROOT>/kc/cars/svj_aventador/spec.py",
+  "<REPO_ROOT>/kc/cars/amg_gt/spec.py",
+  "<REPO_ROOT>/kc/cars/r35_gtr/spec.py",
+  "<REPO_ROOT>/kc/cars/g20_m340i_lci/spec.py",
+  "<REPO_ROOT>/kc/cars/camaro_zl1/spec.py",
+  "<REPO_ROOT>/kc/cars/mclaren_720s/spec.py",
+  "<REPO_ROOT>/kc/cars/ct5v_blackwing/spec.py",
+  "<REPO_ROOT>/kc/cars/charger_srt/spec.py",
+  "<REPO_ROOT>/kc/cars/mk5_supra/spec.py",
+  "<REPO_ROOT>/kc/cars/challenger_hellcat/spec.py",
+  "<REPO_ROOT>/kc/cars/f92_m8/spec.py",
+  "<REPO_ROOT>/kc/cars/e30_m3/spec.py",
+  "<REPO_ROOT>/kc/cars/f87_m2/spec.py",
+  "<REPO_ROOT>/kc/cars/amg_gt63_4door/spec.py",
+  "<REPO_ROOT>/kc/cars/c7_z06/spec.py",
+  "<REPO_ROOT>/kc/cars/g42_m240i_lci/spec.py",
+  "<REPO_ROOT>/kc/cars/lexus_is350/spec.py",
+  "<REPO_ROOT>/kc/cars/civic_11th/spec.py",
+  "<REPO_ROOT>/kc/cars/camry_xv80/spec.py",
+  "<REPO_ROOT>/kc/cars/bugatti_chiron/spec.py",
+  "<REPO_ROOT>/kc/cars/lambo_urus/spec.py"
+ ],
+ "prev_done": [],
+ "cars": [
+  {
+   "id": "gr86",
+   "name": "Toyota GR86 (2022+, ZN8)",
+   "brief": "Second-gen Toyota GR86 (2022+). Signature: the large trapezoid lower grille with mesh (relief hex/grid) and the functional corner 'fangs' / side vents, slim headlights with the L-shaped LED DRL (white strokes), the GR86-specific front bumper (no Toyota logo on the grille; small Toyota badge on the nose - simplified three-oval behind SHOW_BADGE), low hood with two creases. Must be clearly different from the BRZ in the same batch (different bumper, lamp graphics).",
+   "prev": null
+  },
+  {
+   "id": "brz_zd8",
+   "name": "Subaru BRZ (2022+, ZD8)",
+   "brief": "Second-gen Subaru BRZ (2022+). Signature: the hexagonal upper grille with the Subaru star-cluster oval badge (simplified oval with small stars behind SHOW_BADGE), headlights with the C-shaped / hawk-eye LED DRL (white strokes), the lower bumper with the wide intake and corner vents, low hood. Must be clearly different from the GR86 in the same batch.",
+   "prev": null
+  }
+ ]
+}

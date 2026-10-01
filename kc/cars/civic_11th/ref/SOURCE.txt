@@ -1,0 +1,9 @@
+Reference photo used for tracing: ref/front.jpg (1920 x 1080)
+  2022 Honda Civic Si sedan (11th gen FE, pre-facelift), Blazing Orange Pearl, straight-on front, camera ~hood height.
+  Source page: https://www.motor1.com/reviews/576960/2022-honda-civic-si-review/
+  Image URL:   https://cdn.motor1.com/images/mgl/zxg2R0/s1/2022-honda-civic-si-exterior-review.jpg
+  Licence: editorial review photo (c) Motor1.com, all rights reserved - used only as a private tracing reference,
+           not redistributed.
+Backup (not traced): ref/hondanews_si_front_928.jpg = American Honda press photo "08-2022-honda-civic-si" preview
+  (928 px), https://hondanews.com/en-US/honda-automobiles/releases/release-9cc3a6ebff00753bc08baae86a063b18-all-new-2022-honda-civic-si-gets-set-to-defend-affordable-performance-crown
+  (c) American Honda Motor Co., press/editorial use. Full-res download requires a media login (not used).

@@ -1,0 +1,2011 @@
+{
+ "research": [
+  {
+   "key": "market",
+   "r": {
+    "summary": "Market research, checked live on 2026-09-27 on Etsy, eBay, Amazon, TikTok Shop and seller sites. Unless noted, prices are single-unit US retail.\n\n(1) Other 3D-printed plastic car keychains cluster at $10\u201315. On Etsy and seller sites the examples are AltezzaCustoms at $12 + $5.50 shipping, KeyCharmCustoms at $12.65 shipped free, GreanlandOffroad at $10.95 shipped free for a multi-colour PETG piece, a Honda Del Sol keychain at $15 + $5.58, Race Ready Designs at $10 and CarChains3D at $15 stock or $25 custom. Full-colour custom replicas cost $44.99\u201370.\n\n(2) eBay is the cheap end: $1.99\u201314.99 plus about $5.38\u20138.60 shipping. Unit counts are low. Examples: 10\u201339 sold at $9.99\u201312 + $6.07 from one seller, and 54 sold at $1.99 + $5.50 from another.\n\n(3) The closest direct competitor is enamel/metal car-front keychains, which are the same concept. They sell at $12.99\u2013$25 on Etsy, usually with free shipping or free shipping over $35. Examples: SupraCharms BMW M3 G80 at $17.99 and GT3 RS at $15.99, InjectedDesigns E92 M3 at $18.95, DriftPins Mustang S550 at $12.99 + $5.50, CarPinCollection C8 at $15.95 + $6.07, and a Lamborghini Revuelto at $25. These shops have the strongest demand signals: 6.6k\u201314.8k shop sales, up to 291 reviews on one item, and 17\u201320+ shoppers with the item in their cart.\n\n(4) Officially licensed keychains run $7.49\u2013$29.99 on Amazon and Etsy. The Ford oval enamel keychain shows 500+ bought per month, and a licensed C8 die-cut is $24.99. Car-maker shop keyrings run about \u20ac45\u2013$177.\n\n(5) TikTok Shop and Amazon car keychains are mostly mass-market zinc, leather or PVC at $1.33\u2013$14.99. The volume leaders show 1.3K sold at $10.39 and 105 sold at $14.99. No publicly visible 3D-printed car-front listings turned up on TikTok Shop.\n\n(6) Upcharges seen:\n- Colour: +$1\u20132 for non-black colours, \"custom colours\" +$0\u20133 in one guide.\n- Glow headlights: +$6.\n- Custom headlights or multi-colour paint: +$10 ($15 to $25 at CarChains3D).\n- Gift box: +$8\u20139.\n- Personalisation: +$2\u20135.\n\n(7) Bundles seen:\n- Craft-fair guide ladder: 1 for $7, 2 for $12, 3 for $15.\n- 35% off 4 items at one Etsy shop.\n- Free shipping at $35+ at DriftPins and CarPinCollection.\n- \"Save up to 20%\" multi-buy on eBay.\n\n(8) Wholesale and events. Standard wholesale (\"keystone\") pricing is 50% of retail; consignment pays the maker 50\u201370% of retail after the item sells. Craft-fair and vendor guides put keychains at $5\u201315, with \"$8 keychains\" as a sign example. I found no car-meet-specific price data because Reddit and TikTok pages were blocked, so car-meet pricing is my estimate only.\n\n(9) The market is crowded: Etsy lists 5,000+ items under \"3d printed car keychains\". Plastic 3D-printed specific-model listings are scarce. Two of the three I found by search were unavailable when opened. Several sellers use \"Keychain FOR BMW\" / \"Fits Porsche\" wording.\n\nDerived estimate (low confidence): list at $12\u201315 plus about $5.50 shipping, or about $15\u201318 with free shipping. At car meets, about $10 each or 3 for $25. Custom body colour +$2\u20133; wholesale about $6\u20137.50.\n\nAnything not confirmed on a live page is marked low or medium confidence.",
+    "findings": [
+     {
+      "item": "Etsy - 3D-printed custom car keychain, PLA, about 3in x 2in, made from a customer photo (AltezzaCustoms)",
+      "value": "$12.00 + $5.50 shipping. Listed Aug 2026, no item reviews yet. Shop: 4.9 stars (147 reviews), 1.4k sales, 9 yrs, Star Seller.",
+      "unit": "USD per keychain",
+      "typical": 12,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4553647592/custom-car-3d-printed-keychains",
+        "note": "Viewed 2026-09-27; the seller notes 1-3 day processing and that visible layer lines are normal"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Etsy - personalized 3D-printed car keychain with license-plate text (KeyCharmCustoms)",
+      "value": "$12.65 with free shipping. Shop: 5.0 stars (10), 52 sales in 5 months.",
+      "unit": "USD per keychain, shipped",
+      "typical": 12.65,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4568085477/custom-car-keychain-with-personalized",
+        "note": "Viewed 2026-09-27"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Etsy - 3D-printed 1:64 Honda Del Sol keychain with choice of car colour and clasp colour (RoseAndPearCreations)",
+      "value": "$15.00 + $5.58 shipping. 10 item reviews (4.9), 'Only 5 left and in 2 carts'. Shop: 238 sales. One 4-star review said 'It's plastic, not hand crafted or special', a perceived-value risk.",
+      "unit": "USD per keychain",
+      "typical": 15,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4320727788/honda-del-sol-car-keychain",
+        "note": "Viewed 2026-09-27"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Etsy - multi-colour 3D-printed (PETG) Ford keychain in 12 colour combos, same price for every combo (GreanlandOffroad)",
+      "value": "$10.95 with free shipping, keyring included, 4.125in long. Shop: 4.7 stars (100), 815 sales.",
+      "unit": "USD per keychain, shipped",
+      "typical": 10.95,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4579431756/ford-keychain-3d-printed-truck-keychain",
+        "note": "Viewed 2026-09-27; a logo keychain rather than a car front, but the same 2-3 colour printed format"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Independent sites - 3D-printed car-front keychains",
+      "value": "Race Ready Designs 'Keychain 3D Car Flip Art' (car front silhouette, 3in, 11 single colours): $10.00. CarChains3D LLC custom car keychain (front, side or rear, about 3in wide, PLA): $15 stock, $25 custom (custom headlights, taillights or multi-colour paint). Shipping calculated at checkout; up to 14 days to make.",
+      "unit": "USD per keychain, before shipping",
+      "low": 10,
+      "high": 25,
+      "typical": 15,
+      "sources": [
+       {
+        "url": "https://racereadydesigns.com/product/keychain-3d-car-flip-art-copy/",
+        "note": "$10, 1 review"
+       },
+       {
+        "url": "https://carchains3d.com/products/car-key-chains",
+        "note": "Stock $15; the 'Custom' variant showed $25"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Premium tier - full-colour custom 3D-printed car replica keychains",
+      "value": "2ScaleReplicas: $44.99 with free shipping, 2in, digitally sculpted from photos (shop 4.9 stars/314, 1k sales). HAPMiniMachines 'Custom Car Replica Keychain': $70.00. The same shop sells full 3D-printed car models at $199.99.",
+      "unit": "USD per keychain",
+      "low": 44.99,
+      "high": 70,
+      "typical": 45,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4476433403/custom-car-keychain",
+        "note": "$44.99, free shipping"
+       },
+       {
+        "url": "https://www.etsy.com/search?q=custom+car+keychain+2scalereplicas",
+        "note": "Search card showed HAPMiniMachines listing 4297191820 at $70"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "eBay - 3D-printed car/vehicle keychains (Buy It Now)",
+      "value": "Item price $1.99-$14.99, most $5-12. Shipping usually extra: $1.36-$8.60, commonly $5.38-$6.07. Some sellers ship free at $5-10. Sold counts are modest: 88-98specialties OBS truck $9.99 + $6.07 (10 sold); 'Heartbeat of America' $11.99 + $6.07 (39 sold); another $12.00 + $6.07 (21 sold); PrintWerx 'Keychain for BMW' $1.99 + $5.50 (54 sold, 'Buy 2 for $1.89 each'); Miata/Evo/TSX $5.99 + $8.60; 2-pack GTR keychain $10 + $5.58. 194 results for '3d printed car keychain'.",
+      "unit": "USD per keychain, before shipping",
+      "low": 1.99,
+      "high": 14.99,
+      "typical": 8,
+      "sources": [
+       {
+        "url": "https://www.ebay.com/sch/i.html?_nkw=3d+printed+car+keychain&_sop=12",
+        "note": "Search viewed 2026-09-27"
+       },
+       {
+        "url": "https://www.ebay.com/itm/227361317630",
+        "note": "$9.99 + $6.07, 10 sold"
+       },
+       {
+        "url": "https://www.ebay.com/itm/227138787110",
+        "note": "$11.99, 39 sold"
+       },
+       {
+        "url": "https://www.ebay.com/itm/317638593352",
+        "note": "$1.99 + $5.50, 54 sold, multi-buy tiers"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Etsy - enamel/metal car-FRONT keychains of specific models (closest competing format): BMW M3/M2, Porsche GT3 RS, Corvette C8, Mustang",
+      "value": "SupraCharms BMW M3 G80: $17.99, free shipping, 18 carts, 6 reviews (5.0), 97 favorites, metal, 21x55mm. SupraCharms Porsche 911 GT3 RS: $15.99, free shipping, 5 carts. InjectedDesigns E92 M3 double-sided enamel: $18.95 free shipping ($24.95 with glow headlights), 17 reviews, 153 favorites; shop 8.1k sales. DriftPins Mustang S550: $12.99 + $5.50 (free over $35), 74 reviews, 17 carts; shop 14.8k sales. CarPinCollection Corvette C8: $15.95 + $6.07 (free over $35), 40 reviews; shop 12.7k sales. KeyGarage molded-metal C8/Mustang/Camaro: $15.99. Tracekeys acrylic BMW G87 M2: $17.99 + $5.50. Corsakeys Lamborghini Revuelto enamel: $25, free shipping.",
+      "unit": "USD per keychain",
+      "low": 12.99,
+      "high": 25,
+      "typical": 16,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/1856834075/bmw-m3-g80-keychain",
+        "note": "$17.99; gift box $26.99"
+       },
+       {
+        "url": "https://www.etsy.com/listing/4333461814/porsche-911-gt3-rs-keychain",
+        "note": "$15.99; gift box $23.99"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1749585104/keychain-for-bmw-e92-m3-2007-2013-double",
+        "note": "$18.95 / $24.95 glow"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1526926229/s550-keychains",
+        "note": "$12.99 + $5.50"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1098670814/c8-corvette-enamel-on-metal-keychains",
+        "note": "$15.95 + $6.07"
+       },
+       {
+        "url": "https://www.etsy.com/listing/4581432557/bmw-g87-m2-keychain",
+        "note": "$17.99 acrylic"
+       },
+       {
+        "url": "https://www.etsy.com/search?q=lamborghini+keychain+3d+printed",
+        "note": "Corsakeys Revuelto $25 in search results"
+       },
+       {
+        "url": "https://www.etsy.com/search?q=corvette+c8+keychain",
+        "note": "KeyGarage C8 molded metal $15.99"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Etsy - enamel metal Toyota Tacoma truck-front keychain (FourWheelBeast), the strongest demand signal found",
+      "value": "$13.99 (black or lime) up to $15.99 (most other colours), free shipping. 291 item reviews (5.0), 'In 20+ carts'. Shop: 6.6k sales, 1.3k reviews.",
+      "unit": "USD per keychain, shipped",
+      "low": 13.99,
+      "high": 15.99,
+      "typical": 15.99,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/1356544330/toyota-tacoma-accessories-keychain-3rd",
+        "note": "Viewed 2026-09-27; 2in x 1.5in metal and enamel"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Officially licensed or branded car keychains (Etsy, Amazon)",
+      "value": "iPickImage 'Official Licensed' Corvette C8 die-cut metal: $24.99 free shipping (shop 18.8k sales). Other iPickImage licensed C8/Mustang keychains: $22.99-$34.99. Amazon Plasticolor Ford oval enamel keychain: $7.49, 1.2K ratings, 500+ bought in past month. Graphics & More Mustang leather: $10.99, 1K ratings, 300+/month. Licensed Shelby stainless or carbon keychains: $19.99-$29.99. AU-TOMOTIVE GOLD licensed Mustang/Cobra: $15.95-$18.45.",
+      "unit": "USD per keychain",
+      "low": 7.49,
+      "high": 34.99,
+      "typical": 19.99,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4468188898/ipick-image-for-chevrolet-corvette-c8",
+        "note": "$24.99 licensed"
+       },
+       {
+        "url": "https://www.amazon.com/s?k=shelby+gt500+keychain",
+        "note": "Amazon search viewed 2026-09-27 (Plasticolor, Graphics & More, Shelby, AU-TOMOTIVE GOLD)"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Car-maker official shop keyrings (upper anchor)",
+      "value": "Porsche Shop 'Keyring loop - Porsche 911 GT3 S/C': $162. Porsche Shop keyrings range about $45-$177 (search-result summary). BMW Lifestyle 'BMW M Series Keyring' (stainless): EUR 45.",
+      "unit": "USD or EUR per keyring",
+      "low": 45,
+      "high": 177,
+      "sources": [
+       {
+        "url": "https://shop.porsche.com/us/en-US/p/keyring-loop-porsche-911-gt3-s-c-P-WAP0503580T0TS/WAP0503580T0TS",
+        "note": "$162 per search snippet; page not opened"
+       },
+       {
+        "url": "https://shop.porsche.com/us/en-US/c/porsche-keychains",
+        "note": "$45-177 range per search summary"
+       },
+       {
+        "url": "https://lifestyle.bmw.com/en/bmw-m-series-keyring/701224277-stainlesssteel.html",
+        "note": "EUR 45 per search snippet"
+       }
+      ],
+      "confidence": "medium"
+     },
+     {
+      "item": "Amazon - enthusiast car-front keychain and mass-market car keychains",
+      "value": "SR1 Performance GT3 RS keychain: $14.95, 1.9 stars (2 ratings), BSR #3,381 in Keychains, so weak sales. Mass-market mini car-model keychain (povtii Mini Cooper): $5.89 (199 ratings). '10 Pcs car keychains' set: $16.99 ($1.70 each), 100+ bought in past month. Almost no 3D-printed car-front keychains appear on Amazon.",
+      "unit": "USD",
+      "low": 1.7,
+      "high": 14.95,
+      "sources": [
+       {
+        "url": "https://www.amazon.com/SR1-Performance-Porsche-911-Keychain/dp/B0D7QPF5ZW",
+        "note": "Viewed 2026-09-27"
+       },
+       {
+        "url": "https://www.amazon.com/s?k=3d+printed+car+keychain",
+        "note": "Search viewed 2026-09-27"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "TikTok Shop - car and enthusiast keychains",
+      "value": "Mostly mass-produced zinc, leather or nylon at $1.33-$14.99, often free shipping and heavy discounts. Examples: 'Car Enthusiast Key Chain Collection' (zinc) $14.99, 105 sold. Turbo/brake-disc metal keychain $10.39 (was $13.49), 1.3K sold. 10mm wrench keychain $6.90, 791 sold. JDM lanyard $1.39, 651 sold. 'Creative car model keychains' $14.99, 5 sold. No 3D-printed car-front listings were found; individual product pages hit a security check, so this could not be verified.",
+      "unit": "USD per item",
+      "low": 1.33,
+      "high": 14.99,
+      "typical": 10,
+      "sources": [
+       {
+        "url": "https://shop.tiktok.com/us/k/car-enthusiast-keychain",
+        "note": "Viewed 2026-09-27"
+       },
+       {
+        "url": "https://shop.tiktok.com/us/k/keychains-cars",
+        "note": "Viewed 2026-09-27"
+       }
+      ],
+      "confidence": "medium"
+     },
+     {
+      "item": "Etsy - diecast / Hot Wheels car keychains (substitute gift at a similar price)",
+      "value": "Hot Wheels or diecast conversions of GT500, C8, Lamborghini etc.: $9.99-$29.99. TinyAutos metal mini models with free gift box: $24.95-$39.95, free shipping. PocketExotics Mustang Shelby GT500 in gift box: $22.46 (sale from $29.95). EnzzoCollectibles BMW M3 or GT500: $59-$89.",
+      "unit": "USD per keychain",
+      "low": 9.99,
+      "high": 89,
+      "typical": 20,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/search?q=mustang+gt500+keychain",
+        "note": "Search viewed 2026-09-27"
+       },
+       {
+        "url": "https://www.etsy.com/search?q=corvette+c8+keychain",
+        "note": "Search viewed 2026-09-27"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Photo/acrylic custom car keychains (large competing Etsy segment)",
+      "value": "$7.59-$20. CartoonishByMckenna: $10 for the photo version, $20 for the cartoon version, + $5.58 shipping; 9 carts; shop 1.2k sales. KoolKoolCustomDesign: $15.95 (shop 4.9k reviews). SqAcrylicPrinting: $20. Many sit at $9.90-$16.84 after 25-60% 'sales'.",
+      "unit": "USD per keychain",
+      "low": 7.59,
+      "high": 20,
+      "typical": 12,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4402387830/custom-car-keychain-vehicle-bag-charm",
+        "note": "$10/$20; 'Save 35% when you buy 4 items'"
+       },
+       {
+        "url": "https://www.etsy.com/market/3d_print_car_keychain",
+        "note": "Market page viewed 2026-09-27"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Custom colour / option upcharges seen",
+      "value": "Colour upcharge: +$1-2 (FourWheelBeast black $13.99 vs most other colours $15.99). Glow-in-the-dark headlights: +$6 (InjectedDesigns $18.95 to $24.95). Custom headlights or multi-colour paint: +$10 (CarChains3D $15 to $25). Cartoon vs photo: +$10. Guide figures: 'Custom Colors +$0-$3', name/initial +$2-5, personalisation +$2-5 over the stock price. An Etsy search snippet showed '+$12 for multicolor printing' on M/L/XL sizes, but that listing was unavailable when opened.",
+      "unit": "USD added per keychain",
+      "low": 0,
+      "high": 12,
+      "typical": 2,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/1356544330/toyota-tacoma-accessories-keychain-3rd",
+        "note": "Colour-priced variants"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1749585104/keychain-for-bmw-e92-m3-2007-2013-double",
+        "note": "Glow option +$6"
+       },
+       {
+        "url": "https://carchains3d.com/products/car-key-chains",
+        "note": "Stock $15 / custom $25"
+       },
+       {
+        "url": "https://www.insightagent.app/guides/sell-keychains-on-etsy",
+        "note": "Personalisation premium table (2026 guide)"
+       },
+       {
+        "url": "https://www.thecraftmap.com/blog/how-to-sell-keychains-at-craft-fairs",
+        "note": "+$2-5 personalisation premium"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1873061941/custom-3d-printed-car-keychain",
+        "note": "+$12 multicolour per search snippet only; listing unavailable (low confidence)"
+       }
+      ],
+      "confidence": "medium"
+     },
+     {
+      "item": "Gift box / packaging upcharge",
+      "value": "SupraCharms: standard $17.99 vs gift box $26.99 (+$9); GT3 RS $15.99 vs $23.99 (+$8). TinyAutos includes a 'Free Gift Box' at $24.95-$39.95.",
+      "unit": "USD added per keychain",
+      "low": 8,
+      "high": 9,
+      "typical": 8,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/1856834075/bmw-m3-g80-keychain",
+        "note": "+$9 gift box"
+       },
+       {
+        "url": "https://www.etsy.com/listing/4333461814/porsche-911-gt3-rs-keychain",
+        "note": "+$8 gift box"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Bundle / multi-buy pricing",
+      "value": "Craft-fair guide ladder: '1 for $7 / 2 for $12 / 3 for $15'; bundle pricing lifts average sale from about $7 to $11+. Etsy: 'Save 35% when you buy 4 items' (CartoonishByMckenna). DriftPins and CarPinCollection: free US shipping at $35+ (about 3 keychains) and 'Buy together, get free shipping - add 3 items'. eBay: 'Save up to 20% when you buy more' (88-98specialties); PrintWerx 'Buy 2 for $1.89 each' vs $1.99. Amazon: 10-piece car keychain set $16.99 ($1.70 each).",
+      "unit": "USD / % discount",
+      "sources": [
+       {
+        "url": "https://www.thecraftmap.com/blog/how-to-sell-keychains-at-craft-fairs",
+        "note": "Bundle ladder and average-sale lift"
+       },
+       {
+        "url": "https://www.etsy.com/listing/4402387830/custom-car-keychain-vehicle-bag-charm",
+        "note": "35% off 4 items"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1526926229/s550-keychains",
+        "note": "Free shipping at $35+"
+       },
+       {
+        "url": "https://www.ebay.com/itm/317638593352",
+        "note": "Multi-buy tier"
+       }
+      ],
+      "confidence": "medium"
+     },
+     {
+      "item": "In-person pricing (craft fair / vendor booth; car-meet-specific data NOT found)",
+      "value": "Guides put keychains at $5-15 at booths. A sign example reads '$8 keychains, $12 tags, $18 fidgets' (Post Craft, May 23 2026). TheCraftMap: 'don't price below $5'; $300-$1,000 per show; gross margins often over 75%. Reddit and TikTok car-meet anecdotes could not be accessed (blocked), so any car-meet price is an estimate: about $10 each or 3 for about $25-27, consistent with the $12-15 online price before shipping.",
+      "unit": "USD per keychain",
+      "low": 5,
+      "high": 15,
+      "typical": 10,
+      "sources": [
+       {
+        "url": "https://postcraft.shop/blog/3d-printing-flea-market-vendor-booth-setup",
+        "note": "'$8 keychains' sign example"
+       },
+       {
+        "url": "https://www.thecraftmap.com/blog/how-to-sell-keychains-at-craft-fairs",
+        "note": "$5-15 keychain booth range"
+       }
+      ],
+      "confidence": "low"
+     },
+     {
+      "item": "Wholesale / consignment (shops, car-parts stores, detailers)",
+      "value": "Standard keystone pricing: wholesale = 50% of retail (costs x 2 = wholesale, costs x 4 = retail). Consignment typically pays the maker 50-70% of retail after the item sells. At a $12-15 retail price that implies about $6-7.50 wholesale (derived). Faire wholesale prices are hidden behind a login and challenge page and were not viewed.",
+      "unit": "% of retail",
+      "low": 50,
+      "high": 70,
+      "typical": 50,
+      "sources": [
+       {
+        "url": "https://craftybase.com/blog/pricing-handmade-products-wholesale",
+        "note": "Keystone formula and consignment 50-70% (via search summary)"
+       }
+      ],
+      "confidence": "medium"
+     },
+     {
+      "item": "General 3D-printed keychain price guides (blog level, not car-specific)",
+      "value": "eufymake (updated May 7 2026): material $0.20-$1, retail $3-$12, 80-90% margin. insightagent (2026): 3D-printed keychains $5-$25. printquotepro (2026): single keychain about $10 at shop minimum charge, material about $0.31, about 0.3 h print. TheCraftMap: most handmade keychains $5-$25; formula materials x 4 + labour.",
+      "unit": "USD per keychain",
+      "low": 3,
+      "high": 25,
+      "typical": 10,
+      "sources": [
+       {
+        "url": "https://www.eufymake.com/blogs/business-ideas/best-3d-print-sell-profitable-items",
+        "note": "Updated 2026-05-07"
+       },
+       {
+        "url": "https://www.insightagent.app/guides/sell-keychains-on-etsy",
+        "note": "2026 guide"
+       },
+       {
+        "url": "https://www.printquotepro.net/cost-to-3d-print/keychain/",
+        "note": "2026"
+       }
+      ],
+      "confidence": "medium"
+     },
+     {
+      "item": "Demand and competition signals",
+      "value": "Etsy '3d Printed Car Keychains' market page: '5,000+ items', dominated by logo/promo keychains and ads. Proven demand sits in car-front enamel keychains: DriftPins 14.8k shop sales, CarPinCollection 12.7k, InjectedDesigns 8.1k, FourWheelBeast 6.6k (291 reviews on one Tacoma listing). Etsy cart counts: 20+ (Tacoma), 18 (BMW M3 G80), 17 (Mustang S550), 9 (acrylic custom car), 5 (GT3 RS). 3D-printed plastic sellers are smaller: AltezzaCustoms 1.4k shop sales, 2ScaleReplicas 1k, GreanlandOffroad 815, RoseAndPear 238, KeyCharmCustoms 52 in 5 months. eBay 3D-printed car keychains sell in single or double digits per listing (10-54 sold). Amazon licensed Ford oval: 500+/month; Mustang leather: 300+/month.",
+      "unit": "sales / reviews / carts",
+      "sources": [
+       {
+        "url": "https://www.etsy.com/market/3d_printed_car_keychains",
+        "note": "5,000+ items"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1356544330/toyota-tacoma-accessories-keychain-3rd",
+        "note": "291 reviews, 20+ carts"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1526926229/s550-keychains",
+        "note": "17 carts, shop 14.8k sales"
+       },
+       {
+        "url": "https://www.ebay.com/itm/227138787110",
+        "note": "39 sold"
+       },
+       {
+        "url": "https://www.amazon.com/s?k=shelby+gt500+keychain",
+        "note": "'bought in past month' badges"
+       }
+      ],
+      "confidence": "high"
+     },
+     {
+      "item": "Observation - specific-model 3D-printed listings are scarce and some disappear (possible trademark/IP factor)",
+      "value": "Two of three model-specific 3D-printed Etsy listings found by search were 'unavailable' when opened: 'Custom 3D Printed Car Keychain: Personalized BMW M3' (1873061941) and 'Shelby Mustang GT500 Eleanor 3D Printed Double-sided Keychain' (1884667051). Enamel sellers often word titles 'Keychain FOR BMW...' or 'Fits Porsche...'. The cause of removal is unknown; this is an observation only.",
+      "unit": "n/a",
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/1873061941/custom-3d-printed-car-keychain",
+        "note": "Unavailable 2026-09-27"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1884667051/shelby-mustang-gt500-eleanor-3d-printed",
+        "note": "Unavailable 2026-09-27"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1749585104/keychain-for-bmw-e92-m3-2007-2013-double",
+        "note": "'Keychain FOR BMW' title wording"
+       }
+      ],
+      "confidence": "low"
+     },
+     {
+      "item": "DERIVED price bands for a 2-colour PLA car-front keychain (analyst estimate from the listings above, not a quoted figure)",
+      "value": "Online (Etsy): about $12-15 + about $5.50 shipping, or about $15-18 with free shipping (between plastic 3D-printed comps at $10.95-15 and enamel/metal car-front comps at $12.99-18.95). eBay: about $8-10 + shipping to compete. In person (car meet): about $10 each, 3 for about $25. Custom body colour: +$0-3. Gift box: +$5-8. Wholesale: about 50% of retail ($6-7.50).",
+      "unit": "USD per keychain",
+      "low": 10,
+      "high": 18,
+      "typical": 13,
+      "sources": [
+       {
+        "url": "https://www.etsy.com/listing/4553647592/custom-car-3d-printed-keychains",
+        "note": "Plastic comp $12 + ship"
+       },
+       {
+        "url": "https://www.etsy.com/listing/4579431756/ford-keychain-3d-printed-truck-keychain",
+        "note": "Plastic multi-colour comp $10.95 shipped"
+       },
+       {
+        "url": "https://www.etsy.com/listing/1856834075/bmw-m3-g80-keychain",
+        "note": "Metal comp $17.99 shipped"
+       },
+       {
+        "url": "https://www.thecraftmap.com/blog/how-to-sell-keychains-at-craft-fairs",
+        "note": "Bundle and in-person norms"
+       }
+      ],
+      "confidence": "low"
+     }
+    ]
+   }
+  },
+  {
+   "key": "costs",
+   "r": {
+    "summary": "Research on production costs for 2-colour PLA car keychains printed on a Creality K2 Combo, US pricing as of late September 2026.\n\n**Filament**\n- Creality Hyper PLA costs $19.99/kg for a single spool (sale price; $32.99 list).\n- Buying in bulk brings it down to $13.25\u201315.99/kg:\n  - store tiers: 5 spools at $16.99 each, 10 at $15.99, 20 at $14.99\n  - 4 kg pack for $62.99\n  - 12 kg pack for $159\n- Other good PLA:\n  - Bambu PLA Basic refill: about $19.99/kg\n  - Elegoo: about $12.59/kg single spool, about $10/kg in bundles\n  - Sunlu: $13.99/kg single, about $9.75/kg in 4 kg bundles\n  - Polymaker Panchroma: $12.49\u201316.66/kg\n- The average across 6,508 tracked PLA listings is $20.68/kg.\n- At 8 g per keychain, filament is roughly $0.11\u20130.16 before purge waste.\n\n**Machine**\n- Creality store prices: K2 $399, K2 Combo with CFS $549 (Best Buy also $549; one Amazon deal was $584).\n- I found no K2-specific figure for useful life. General guides give 3,000\u201310,000 print hours, with about 5,000 h a common assumption. Depreciation on the $549 combo:\n  - about $0.055\u20130.18 per printer-hour, $0.11 at 5,000 h\n  - about $0.02\u20130.08 per keychain at 20\u201330 printer-minutes\n\n**Power**\n- I found no measured watt reading for the base K2. The closest data points:\n  - K1: measured about 100 W while printing, 370 W peak while heating, 20 W idle\n  - Bambu P1S: 0.1 kWh per hour on PLA\n  - K2 Plus: 220 W average, a spec-derived figure for a bigger machine with an active chamber heater\n- Estimate for the K2 on PLA: about 100\u2013150 W (low confidence).\n- US residential electricity: EIA average was 18.31\u00a2/kWh in July 2026 (17.45\u00a2 in July 2025). By state it runs from about 13\u00a2 (Nevada) to about 53\u00a2 (Hawaii).\n- Electricity is only about $0.01 per keychain, which is negligible.\n\n**Consumables and failures**\n- K2 Unicorn quick-swap 0.4 mm nozzle: $9.98 each, or $37.92 for a 4-nozzle kit. With PLA, brass nozzles last about 3\u20136 months or 400\u2013600 h; hardened steel lasts a year or more.\n- K2 PEI double-sided plate: $17.99 (volume discounts down to $13.99 each). Users report 1,250\u20135,000+ printing hours per plate.\n- I found no K2 OEM belt price.\n- Real consumable wear works out to about $0.01\u20130.03 per printer-hour. One generic guide uses $0.10\u20130.40/h for all maintenance, which is much more conservative.\n- Failure rates:\n  - print farms: 2\u20135%\n  - experienced users: 3\u20138%\n  - intermediate users: 8\u201315%\n  - beginners: 15\u201325%\n  - Prusa's own multi-material testing: 7%\n- The stock K2 CFS firmware does a fixed purge of about 100 mm (about 0.3 g, my calculation) on every filament change, plus 5 nozzle wipes. For black-and-white parts that change colour many times, this waste can matter.\n\n**Key rings and packaging, per unit in bulk**\n| Item | Per unit |\n|---|---|\n| 25 mm split ring | $0.042 (at 1,000) to $0.18 (at 100) |\n| Ring with chain and jump ring | about $0.10\u20130.17 |\n| 2x3 in zip bag, 2 mil | $0.0045\u20130.015 |\n| Kraft keychain backing card | about $0.12\u20130.18 |\n| Printed thank-you card | about $0.048\u20130.058 |\n| 6x9 poly mailer | $0.029 (per 1,000) to $0.17 (per 100) |\n| 4x8 #000 bubble mailer | about $0.10\u20130.11 |\n\n**Caveats**\n- Several store pages could not be fetched or showed sale pricing, and Creality's \"sale\" prices appear to be the everyday price.\n- I found no price for 3x4 bags.\n- Derived per-keychain costs and the K2 wattage are my estimates, marked low confidence.",
+    "findings": [
+     {
+      "item": "Creality Hyper PLA 1 kg single spool (US Creality store)",
+      "value": "$19.99 sale price; $32.99 list price",
+      "unit": "USD per 1 kg spool",
+      "low": 18.79,
+      "high": 32.99,
+      "typical": 19.99,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/hyper-series-pla-3d-printing-filament-1kg",
+        "note": "Sale $19.99, regular $32.99. Also a 'Live exclusive' listing at $18.79 (from search result)."
+       },
+       {
+        "url": "https://store.creality.com/products/live-hyper-series-pla-3d-printing-filament-1kg",
+        "note": "Live-exclusive listing at $18.79"
+       }
+      ]
+     },
+     {
+      "item": "Creality Hyper PLA multi-buy / bulk pricing",
+      "value": "5 spools $16.99 each; 10 spools $15.99 each; 20 spools $14.99 each; 4 kg pack (2 white + 2 black) $62.99 = $15.75/kg; 12 kg pack $159 = $13.25/kg; Amazon 12-pack RFID $169.99 = about $14.17/kg",
+      "unit": "USD per kg",
+      "low": 13.25,
+      "high": 16.99,
+      "typical": 14.99,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/hyper-series-pla-3d-printing-filament-1kg",
+        "note": "Tiered volume discounts; W2+B2 combo $62.99"
+       },
+       {
+        "url": "https://store.creality.com/products/hyper-series-pla-bulk-purchse-1kg-20kg",
+        "note": "4 kg $62.99, 12 kg $159.00"
+       },
+       {
+        "url": "https://filamentpricetracker.com/brand/creality/pla",
+        "note": "Amazon Hyper RFID PLA 12 kg 12-pack $169.99. The tracker's $7.08/kg figure appears wrong; $169.99/12 kg = $14.17/kg."
+       }
+      ]
+     },
+     {
+      "item": "Bambu Lab PLA Basic 1 kg (US)",
+      "value": "about $19.99/kg (refill, at retailers and on the price tracker). A search snippet cited the Bambu store at $15.99 refill / $18.99 with spool, but the Bambu store page could not be fetched (HTTP 402) to verify.",
+      "unit": "USD per kg",
+      "low": 15.99,
+      "high": 19.99,
+      "typical": 19.99,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://shop3duniverse.com/products/bambu-lab-pla-basic-1-75mm-1kg-refill",
+        "note": "$19.99 per 1 kg refill, all colours"
+       },
+       {
+        "url": "https://filamentpricetracker.com/brand/bambu-lab/pla",
+        "note": "Lowest PLA Basic refills $19.99/kg; market average PLA $20.68/kg across 6,508 listings"
+       },
+       {
+        "url": "https://us.store.bambulab.com/products/pla-basic-filament",
+        "note": "Official store (blocked for fetch); bulk mix-and-match discounts for 2+ rolls"
+       }
+      ]
+     },
+     {
+      "item": "Elegoo PLA (US)",
+      "value": "1 kg spool typical $12.59/kg (low $11.00); 4 kg bundles about $9.66-11/kg; 10 kg bundle $119.99 = $11.99/kg",
+      "unit": "USD per kg",
+      "low": 9.66,
+      "high": 17.99,
+      "typical": 12.59,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://filamentpricetracker.com/brand/elegoo/pla",
+        "note": "Single spool typical $12.59/kg, low $11.00; 4 kg bundle $38.66 ($9.66/kg)"
+       },
+       {
+        "url": "https://us.elegoo.com/products/elegoo-10kg-pla-filament-1-75mm-fdm-3d-printer-filament-1",
+        "note": "10 kg bundle $119.99 (per search result); 1 kg list $17.99"
+       }
+      ]
+     },
+     {
+      "item": "Sunlu PLA (US)",
+      "value": "1 kg spool lowest $13.99/kg; 4 kg bundle $38.99 = $9.75/kg; 10 kg recycled PLA bundle $129.99. Store lists 1 kg at $18.99 regular, $10.29 sale (search result).",
+      "unit": "USD per kg",
+      "low": 9.75,
+      "high": 18.99,
+      "typical": 13.99,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://filamentpricetracker.com/brand/sunlu/pla",
+        "note": "1 kg $13.99/kg lowest; 4 kg bundle $38.99"
+       },
+       {
+        "url": "https://store.sunlu.com/products/over-10kg-bundle-sales-1-75mm-sunlu-recycled-filament-pla-petg-abs-3d-printer-filament-1kg-roll",
+        "note": "10 kg recycled PLA bundle $129.99"
+       }
+      ]
+     },
+     {
+      "item": "Polymaker PLA (Panchroma / PolyTerra / PolyLite) US",
+      "value": "$12.49-16.66/kg on the tracker (lowest 1 kg $13.49, bulk $12.49); PolyTerra gradient at a specialty retailer $30.99. Spoolhound puts PolyLite Pro / Elegoo PLA+ at $13-18/kg.",
+      "unit": "USD per kg",
+      "low": 12.49,
+      "high": 18,
+      "typical": 15,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://filamentpricetracker.com/brand/polymaker/pla",
+        "note": "Range $12.49-16.66/kg"
+       },
+       {
+        "url": "https://spoolhound.com/best-pla-deals",
+        "note": "Budget PLA (Elegoo/Sunlu) $10-14/kg; Bambu PLA Basic about $25/kg; PolyLite Pro $13-18/kg (updated 2026-09-27)"
+       },
+       {
+        "url": "https://hartsmartproducts.com/products/polymaker-polyterra-gradient-matte-pla",
+        "note": "PolyTerra gradient $30.99 sale"
+       }
+      ]
+     },
+     {
+      "item": "Filament cost per keychain (derived)",
+      "value": "7-9 g x $13.25-19.99/kg = about $0.09-0.18 before purge/prime-tower waste; typical 8 g x $15/kg = $0.12",
+      "unit": "USD per keychain",
+      "low": 0.09,
+      "high": 0.18,
+      "typical": 0.12,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/hyper-series-pla-3d-printing-filament-1kg",
+        "note": "Price basis; the per-keychain figure is my calculation"
+       }
+      ]
+     },
+     {
+      "item": "Creality K2 printer price (base, without CFS)",
+      "value": "$399",
+      "unit": "USD",
+      "low": 399,
+      "high": 399,
+      "typical": 399,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/k2-combo-3d-printer",
+        "note": "K2 (without CFS) $399.00; 1-year warranty"
+       }
+      ]
+     },
+     {
+      "item": "Creality K2 Combo (with CFS) price",
+      "value": "$549 at the Creality store and Best Buy; Amazon deal $584-585 (list $649)",
+      "unit": "USD",
+      "low": 549,
+      "high": 649,
+      "typical": 549,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/k2-combo-3d-printer",
+        "note": "K2 Combo $549.00"
+       },
+       {
+        "url": "https://www.bestbuy.com/product/creality-k2-combo-k2-3d-printer-w-cfs-beginner-friendly-3d-printer/CZW3K3Q4RR",
+        "note": "Best Buy $549 (per search result)"
+       },
+       {
+        "url": "https://www.techradar.com/pro/crealitys-16-color-k2-combo-3d-printer-drops-to-usd584-at-amazon",
+        "note": "Amazon deal $584"
+       }
+      ]
+     },
+     {
+      "item": "Desktop FDM printer useful life (no K2-specific figure found)",
+      "value": "3,000-10,000 print hours; about 5,000 h common estimate; 6,000 h suggested for well-maintained hobby machines. Creality gives a 1-year warranty.",
+      "unit": "print hours",
+      "low": 3000,
+      "high": 10000,
+      "typical": 5000,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://printpal.io/tools/3d-print-cost-calculator",
+        "note": "3,000-10,000 print hours"
+       },
+       {
+        "url": "https://www.snapmaker.com/blog/how-to-calculate-your-3d-printing-costs/",
+        "note": "About 5,000 h for a well-maintained printer; example $800/5,000 h = $0.16/h"
+       },
+       {
+        "url": "https://sigmafilament.com/3d-print-cost-estimator-guide/",
+        "note": "6,000 h starting point; maintenance $0.10-0.40/h"
+       },
+       {
+        "url": "https://blog.prusa3d.com/how-to-calculate-printing-costs_38650/",
+        "note": "Prusa depreciation examples $0.10-0.36/h, recovering cost over 4,392 h"
+       }
+      ]
+     },
+     {
+      "item": "K2 Combo depreciation (derived)",
+      "value": "$549 / 3,000-10,000 h = $0.055-0.18 per printer-hour (typical $0.11 at 5,000 h), i.e. about $0.02-0.09 per keychain at 20-30 printer-minutes (typical about $0.046 at 25 min)",
+      "unit": "USD per printer-hour",
+      "low": 0.055,
+      "high": 0.18,
+      "typical": 0.11,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/k2-combo-3d-printer",
+        "note": "Price basis"
+       },
+       {
+        "url": "https://printpal.io/tools/3d-print-cost-calculator",
+        "note": "Lifespan basis; the calculation is mine"
+       }
+      ]
+     },
+     {
+      "item": "K2 power draw while printing PLA (bed about 55-60 C)",
+      "value": "No measured base-K2 figure found. Base K2 has no chamber heater, max bed 100-110 C, hotend 70-100 W rated. Comparables: K1 measured about 100 W while printing (spikes 45-295 W, 370 W peak heating, 20 W idle); Bambu P1S 0.1 kWh/h on PLA; K2 Plus 220 W average (spec-derived, larger bed plus 60 C active chamber heater). Estimate for K2 on PLA: about 100-150 W.",
+      "unit": "watts (average while printing)",
+      "low": 80,
+      "high": 220,
+      "typical": 120,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://3dprintbeginner.com/creality-k1-review-corexy-for-tinkerers/",
+        "note": "K1 smart-plug measurement: about 100 W printing, 370 W max heating, 20 W idle"
+       },
+       {
+        "url": "https://www.call-3d.com/blogs/upgrades/bambu-lab-power-consumption-review",
+        "note": "P1S 0.1 kWh/h, A1 0.07 kWh/h on PLA"
+       },
+       {
+        "url": "https://spoolmath.com/printer/creality-k2-plus/",
+        "note": "K2 Plus 220 W average, 1000 W peak (from Creality specs)"
+       },
+       {
+        "url": "https://www.creality.com/products/k2-series-3d-printer",
+        "note": "K2: no chamber heater, 100 C bed, 70 W hotend (3DJake lists 100 W hotend, 110 C bed)"
+       },
+       {
+        "url": "https://www.3djake.com/creality-3d-printers-spare-parts/k2-combo",
+        "note": "K2 Combo: 100 W hotend, 110 C bed, hardened steel nozzle"
+       }
+      ]
+     },
+     {
+      "item": "US average residential electricity price",
+      "value": "18.31 cents/kWh (EIA, July 2026; 17.45 in July 2025); 18.34 cents/kWh (ElectricChoice, Sept 2026); states range from 13.11 (NV) to 52.72 (HI)",
+      "unit": "USD per kWh",
+      "low": 0.1311,
+      "high": 0.5272,
+      "typical": 0.1831,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a",
+        "note": "EIA Electric Power Monthly Table 5.6.A, July 2026 data, released 2026-09-24"
+       },
+       {
+        "url": "https://www.electricchoice.com/electricity-prices-by-state/",
+        "note": "18.34 cents/kWh US average, Sept 2026; NV 13.11, HI 52.72"
+       }
+      ]
+     },
+     {
+      "item": "Electricity cost per keychain (derived)",
+      "value": "0.08-0.22 kW x (20-30 min) x $0.183/kWh = about $0.005-0.02; typical 0.12 kW x 25 min = about $0.009",
+      "unit": "USD per keychain",
+      "low": 0.005,
+      "high": 0.02,
+      "typical": 0.009,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a",
+        "note": "Rate basis; the calculation is mine"
+       }
+      ]
+     },
+     {
+      "item": "K2 replacement nozzle (Unicorn quick-swap, hardened steel tip)",
+      "value": "Single 0.4 mm $9.98 sale ($11.09 list); kit (0.4x2, 0.6, 0.8) $37.92 ($42.13 list); 15-30% off at 2+/4+/6+ units; 3DJake kit $48.75",
+      "unit": "USD",
+      "low": 9.98,
+      "high": 48.75,
+      "typical": 9.98,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/unicorn-k2-plus-quick-swap-nozzle-kit",
+        "note": "Compatible with K2/K2 Plus/Creality Hi"
+       },
+       {
+        "url": "https://www.3djake.com/creality-3d-printers-spare-parts/unicorn-k2p-quick-swap-nozzle-kit",
+        "note": "$48.75 kit"
+       }
+      ]
+     },
+     {
+      "item": "Nozzle life with PLA",
+      "value": "Brass with PLA/PETG: about 400-600 h, or 3-6 months of regular use. Hardened steel: about a year or more even at high volume. Replace when cleaning no longer helps, not on a calendar.",
+      "unit": "print hours",
+      "low": 400,
+      "high": 2000,
+      "typical": 600,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://3dsolved.com/3d-printing-how-often-should-you-replace-the-nozzle/",
+        "note": "Brass 3-6 months at 1-2 uses/week; hardened steel about a year at high volume"
+       },
+       {
+        "url": "https://qidi3d.com/blogs/news/3d-printer-nozzle-replacement-signs",
+        "note": "Replacement signs (from search)"
+       },
+       {
+        "url": "https://forum.bambulab.com/t/0-4mm-hs-nozzles-only-lasting-a-few-hundred-hours/55001",
+        "note": "Counter-example: some users report only a few hundred hours"
+       }
+      ]
+     },
+     {
+      "item": "K2 PEI double-sided frosted build plate (270x293 mm)",
+      "value": "$17.99 sale ($19.99 list); $16.99 each at 2, $15.99 at 4, $13.99 at 6",
+      "unit": "USD per plate",
+      "low": 13.99,
+      "high": 19.99,
+      "typical": 17.99,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/k2-pei-double-sided-frosted-build-plate",
+        "note": "Official Creality store"
+       }
+      ]
+     },
+     {
+      "item": "Textured PEI plate life",
+      "value": "Users report 500 h 'like new', 1,250+ h, about 3,000 h (K1 Max), up to 5,000 h on the original plate. Hobby use: 12-36 months. Heavy daily ABS/PETG: 1,000-5,000 prints. Double-sided plates can be flipped.",
+      "unit": "print hours",
+      "low": 1000,
+      "high": 5000,
+      "typical": 2500,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://forum.bambulab.com/t/lifespan-of-the-textured-pei-plate/66717",
+        "note": "User-reported hours"
+       },
+       {
+        "url": "https://weprinty.com/how-long-does-a-pei-build-plate-last/",
+        "note": "12-36 months hobby use"
+       }
+      ]
+     },
+     {
+      "item": "Belts (K2)",
+      "value": "No official Creality K2 base belt price found. Only third-party K2 Plus XY belt kits on Amazon/eBay/3DJake, and a K2 Pro Z-axis ring belt on the Creality store (price not retrieved). Treat belts as a small, infrequent cost.",
+      "unit": "USD",
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://store.creality.com/products/k2-pro-z-axis-ring-belt",
+        "note": "Creality K2 Pro Z belt listing"
+       },
+       {
+        "url": "https://www.amazon.com/creality-Plus-Printer-Replacement-Parts/dp/B0H5HGZDKM",
+        "note": "Third-party K2 Plus XY belt kit"
+       }
+      ]
+     },
+     {
+      "item": "Wear/maintenance cost per printer-hour (derived vs generic guide)",
+      "value": "Actual consumables: nozzle $9.98 over about 600-2,000 h plus plate $17.99 over about 1,250-5,000 h = about $0.01-0.03/h. A generic cost guide suggests $0.10-0.40/h for all maintenance (conservative). Prusa's calculator uses a 5% repair-cost default.",
+      "unit": "USD per printer-hour",
+      "low": 0.01,
+      "high": 0.4,
+      "typical": 0.03,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://sigmafilament.com/3d-print-cost-estimator-guide/",
+        "note": "$0.10-0.40/h maintenance guideline"
+       },
+       {
+        "url": "https://blog.prusa3d.com/3d-printing-price-calculator_38905/",
+        "note": "Default repair cost 5%, markup 20%"
+       }
+      ]
+     },
+     {
+      "item": "Print failure rate",
+      "value": "Print farm 2-5% (top farms 1-3%); advanced/well-maintained 3-8%; intermediate 8-15%; beginner 15-25%. Prusa MMU2S multi-material testing: 93% success (7% failure). Prusa suggests a 30% margin on material cost as failure insurance.",
+      "unit": "percent of prints",
+      "low": 2,
+      "high": 15,
+      "typical": 5,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://print-calc.com/blog/3d-printing-failure-rate",
+        "note": "Rates by experience level"
+       },
+       {
+        "url": "https://forum.prusa3d.com/forum/original-prusa-i3-mmu2s-mmu2-general-discussion-announcements-and-releases/thank-you-prusa-for-sharing-failure-statistics/",
+        "note": "93% success in multi-material testing"
+       },
+       {
+        "url": "https://blog.prusa3d.com/how-to-calculate-printing-costs_38650/",
+        "note": "30% of material price as failure margin"
+       }
+      ]
+     },
+     {
+      "item": "K2 CFS colour-change purge waste",
+      "value": "Stock firmware does a hardcoded ~100 mm purge plus 5 wipe loops on each CFS filament change, on top of slicer flush/prime-tower volume. My calculation: 100 mm of 1.75 mm PLA is about 0.3 g per change. A community fix cuts it to a 20 mm prime and 2 wipes.",
+      "unit": "grams per filament change (derived)",
+      "low": 0.06,
+      "high": 0.3,
+      "typical": 0.3,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://github.com/camaro4life18/Creality-K2-Series-Purge-Volume-Fix",
+        "note": "~100 mm hardcoded purge, 5 wipes; fix: 20 mm prime, 2 wipes"
+       },
+       {
+        "url": "https://forum.creality.com/t/excessive-purging-in-k2-plus/47435",
+        "note": "User reports of excessive purging"
+       }
+      ]
+     },
+     {
+      "item": "Key ring: 25 mm nickel-plated split ring",
+      "value": "$0.242 each at 50; $0.182 at 100; $0.097 at 250; $0.056 at 500; $0.0424 at 1,000 (free shipping). Another 1,000-pack cited at $54.21 (about $0.054 each).",
+      "unit": "USD per ring",
+      "low": 0.0424,
+      "high": 0.242,
+      "typical": 0.056,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.ballchain.com/25mm-nickel-plated-steel-split-key-rings/",
+        "note": "Tiered pricing"
+       },
+       {
+        "url": "https://www.elitesuppliesplus.com/collections/key-rings",
+        "note": "1,000-pack $54.21 (per search result)"
+       }
+      ]
+     },
+     {
+      "item": "Key ring with chain + jump ring (100-set kits)",
+      "value": "$9.99-16.99 per 100 sets = about $0.10-0.17 each",
+      "unit": "USD per set",
+      "low": 0.1,
+      "high": 0.17,
+      "typical": 0.12,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.walmart.com/ip/100Pcs-Keychain-Rings-Split-Key-Ring-Chain-Resin-25mm-Silver-Jump-Screw-Eye-Pins-Metal-Organizing-Keys-Jewelry-Making-Crafts/592570545",
+        "note": "$9.99 for 100 (per search result)"
+       },
+       {
+        "url": "https://www.amazon.com/HAUTOCO-Keychain-Heavy-Duty-Jewelry-Keyrings/dp/B0998JCHX6",
+        "note": "Amazon 100-pc kits"
+       },
+       {
+        "url": "https://www.ebay.com/itm/406990413651",
+        "note": "eBay 100-pc kit, $10.99-16.99 range (per search result)"
+       }
+      ]
+     },
+     {
+      "item": "2x3 in 2 mil reclosable zip bags",
+      "value": "Uline S-1291 $15 per carton of 1,000 ($0.015 each); US Poly Pack 'Value' $4.49 per 1,000 ($0.0045 each). No 3x4 price retrieved.",
+      "unit": "USD per bag",
+      "low": 0.0045,
+      "high": 0.015,
+      "typical": 0.01,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.uline.com/Product/Detail/S-1291/Reclosable-Poly-Bags/2-x-3-2-Mil-Reclosable-Bags",
+        "note": "$15/carton of 1,000"
+       },
+       {
+        "url": "https://www.uspolypack.com/VALUE-Zip-Reclosable-Lock-Bags-2-x-3-x-2-Mil-Case1000_p_2966.html",
+        "note": "$4.49 per 1,000"
+       }
+      ]
+     },
+     {
+      "item": "Keychain backing / display cards (blank kraft with hole)",
+      "value": "200-pack $24.96 (Home Depot) to $35.23 (Michaels) = about $0.12-0.18 each; 100-packs about $11-13.49",
+      "unit": "USD per card",
+      "low": 0.12,
+      "high": 0.18,
+      "typical": 0.13,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.homedepot.com/p/200-Pieces-Adhesive-Kraft-Paper-Jewelry-Display-Cards-with-Punched-Holes-for-Necklace-Bracelet-Keychain-Packaging-088PH01222D/336486113",
+        "note": "$24.96 for 200 (per search result)"
+       },
+       {
+        "url": "https://www.michaels.com/product/200-pieces-keychain-display-cards-with-adhesive-necklace-bracelet-jewelry-hanging-blank-kraft-paper-packaging-tags-273031430422429704",
+        "note": "$35.23 for 200 (per search result)"
+       }
+      ]
+     },
+     {
+      "item": "Printed thank-you cards (custom, 500 qty)",
+      "value": "500 for $24.01 (Bizay) to $29.08 (360onlineprint) = about $0.048-0.058 each. Note: these are A6/DL sizes, not business-card size.",
+      "unit": "USD per card",
+      "low": 0.048,
+      "high": 0.058,
+      "typical": 0.05,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://us.bizay.com/en-us/thank-you-cards",
+        "note": "500 for $24.01"
+       },
+       {
+        "url": "https://www.360onlineprint.com/en-us/thank-you-cards",
+        "note": "500 for $29.08"
+       }
+      ]
+     },
+     {
+      "item": "6x9 poly mailers",
+      "value": "Elements Supply 2 mil $29.23 per 1,000 ($0.029 each); Uline S-3352 3 mil $13-17 per case of 100 ($0.13-0.17 each); Amazon 100-packs $9.99-13.69 ($0.10-0.14 each)",
+      "unit": "USD per mailer",
+      "low": 0.029,
+      "high": 0.17,
+      "typical": 0.1,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://elementssupply.com/products/6-x-9in-poly-mailers-pm0609",
+        "note": "$29.23 per 1,000"
+       },
+       {
+        "url": "https://www.uline.com/Product/Detail/S-3352/Poly-Mailers/Tear-Proof-Polyethylene-Mailers-6-x-9",
+        "note": "$17 (1 case) to $13 (20+ cases) per 100"
+       },
+       {
+        "url": "https://www.amazon.com/poly-mailers-6x9/s?k=poly+mailers+6x9",
+        "note": "$9.99-13.69 per 100 (per search result)"
+       }
+      ]
+     },
+     {
+      "item": "4x8 #000 poly bubble (padded) mailers",
+      "value": "$52.99 per 500 ($0.11 each) down to $48.75/case at 6+ cases ($0.10 each); 6x10 #0 $0.18-0.20 each",
+      "unit": "USD per mailer",
+      "low": 0.1,
+      "high": 0.2,
+      "typical": 0.11,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://bulkmailerhq.com/products/poly-bubble-mailers",
+        "note": "Tiered case pricing"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "key": "fees",
+   "r": {
+    "summary": "SELLING FEES, SHIPPING AND IP RISK FOR 2-COLOUR PLA CAR-FRONT KEYCHAINS (US, researched Sept 2026)\n\nFEES. On Etsy a roughly $12 keychain costs about $1.59 in fees per sale (13%): a $0.20 listing fee, 6.5% transaction fee on item plus shipping, and 3% + $0.25 payment processing. If the sale came through an Offsite Ad, add 15%, which makes it about $3.39 (28%). Shops under $10k a year in sales can opt out of Offsite Ads. Shops over $10k pay 12%, participation becomes mandatory, and the fee is capped at $100 per order. Share & Save refunds 4% on sales you bring in with your own link. Some new shops pay a one-time setup fee of $15-29.\nOther platforms on the same $12 sale:\n- eBay: 13.6% + $0.40, about $2.03.\n- Amazon Handmade: 15% (minimum $0.30), about $1.80. The Professional plan is waived after the first month.\n- TikTok Shop: 6%, about $0.72, with payment processing included. TikTok's own page confirms 6%. Several August 2026 blogs claim a rise to 8% from Aug 4, 2026, but I could not confirm this officially.\n- Shopify: $29-39 a month plus 2.9% + $0.30, about $0.65 a sale plus the monthly fee.\n\nSHIPPING. A tracked USPS Ground Advantage label for a keychain in a #000 bubble mailer is the realistic option.\n- From Etsy, eBay or Pirate Ship labels, a 4 oz parcel to a normal address costs about $5.50-6.40 (Shippo example: $5.97). A mailer adds about $0.11-0.25.\n- Since July 12, 2026, rural ZIPs, Alaska, Hawaii, Puerto Rico and military addresses are charged the 15.99 oz price: $6.93-8.40.\n- At the post office counter (retail) it costs $7.90-9.45.\n- An 8% temporary surcharge runs from Apr 26, 2026 to Jan 17, 2027.\n- A stamped letter costs $0.82 + $0.49 nonmachinable surcharge = $1.31 at 1 oz ($1.60 at 2 oz). It has no tracking, and the piece must stay under 1/4 inch thick. USPS rules name rigid pieces and items like keys that make a piece uneven as nonmachinable.\n- Flats (large envelopes) must be flexible and evenly thick, so a rigid keychain is charged as a parcel. eBay Standard Envelope does not cover keychains.\n- Etsy's 2026 Purchase Protection requires tracking or an Etsy label (with some exceptions for letters). This makes Ground Advantage the safe default.\n\nIP AND TRADEMARK RISK. This is the biggest risk.\n- Etsy removes listings when a rights owner files a report. Counter-notices only work for copyright. For a trademark takedown the seller has to contact the complainant, and repeat reports can close the shop. In 2024 Etsy received 85,591 IP reports, removed about 832,000 listings and closed about 26,500 shops for IP or counterfeit violations.\n- Ford, GM, FCA, Jaguar Land Rover and DeLorean have published eBay VeRO profiles. eBay can remove listings and restrict or suspend accounts.\n- Mercedes-Benz removed over 212,000 listings in 2024.\n- BMW and Amazon won a 2023-24 lawsuit in Spain over counterfeit BMW-logo key rings.\n- SHELBY and GT-500 are registered trademarks of Carroll Shelby Licensing. Mustang is Ford's, and a third-party trademark notice says Ford also claims the Mustang's vehicle shapes.\n- Car shapes alone can be protected trade dress even with no logo. Ferrari won against body-shape replicas in 1991. In GM v. Lanard Toys (2006), a toy Humvee maker lost and paid an 8% royalty ($340k) plus over $900k in profits.\n- Nominative fair use only allows the minimum brand reference needed, with nothing implying endorsement. A blog source says \"inspired by\" disclaimers do not protect you. eBay's search manipulation policy bans unrelated keywords and comparisons with other brands.\n- Common ways to lower the risk:\n  - Leave out logos, badges and model text.\n  - Keep brand names and model names such as GT500 out of titles and tags.\n  - Use generic descriptions, such as \"1960s American muscle car front.\"\n  - Or apply for the official licensing programs (GM licensing, Ford Global Brand Licensing).\n- None of these makes a car-shaped design completely safe.\n\nAlso: marketplaces collect US sales tax for you. The federal 1099-K threshold is back to $20,000 and 200 transactions from 2025. Etsy's own fee and IP pages returned 403 errors, so Etsy numbers come from recent third-party guides and search snippets of Etsy help pages, which all agree. TikTok's rate is the least certain number here.",
+    "findings": [
+     {
+      "item": "Etsy listing fee",
+      "value": "$0.20 per listing, renews every 4 months; on multi-quantity listings, $0.20 is charged again for each unit sold",
+      "unit": "USD per listing / per unit sold",
+      "low": 0.2,
+      "high": 0.2,
+      "typical": 0.2,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+        "note": "Apr 2, 2026 guide: $0.20 per listing, auto-renew every 4 months, fee per unit sold"
+       },
+       {
+        "url": "https://printify.com/blog/how-much-does-etsy-take-per-sale/",
+        "note": "2026 fee summary"
+       }
+      ]
+     },
+     {
+      "item": "Etsy transaction fee",
+      "value": "6.5% of item price + shipping + gift wrap charged to the buyer (US sales tax excluded)",
+      "unit": "% of order (excl. tax)",
+      "low": 6.5,
+      "high": 6.5,
+      "typical": 6.5,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+        "note": "6.5% of total sale price including shipping and gift wrap"
+       },
+       {
+        "url": "https://help.etsy.com/hc/en-us/articles/115014483627-What-are-the-Fees-and-Taxes-for-Selling-on-Etsy",
+        "note": "Etsy Help (search snippet): taxes are not included in the 6.5% for US sellers"
+       }
+      ]
+     },
+     {
+      "item": "Etsy payment processing fee (US)",
+      "value": "3% + $0.25 per order, charged on the order total including shipping and sales tax",
+      "unit": "% + USD per order",
+      "low": 3,
+      "high": 3,
+      "typical": 3,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://help.etsy.com/hc/en-us/articles/115015628847-What-are-Payment-Processing-Fees-for-Selling-on-Etsy",
+        "note": "Etsy Help (search snippet); page itself returned 403"
+       },
+       {
+        "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+        "note": "3% + $0.25 per transaction"
+       }
+      ]
+     },
+     {
+      "item": "Etsy Offsite Ads fee",
+      "value": "15% of order total incl. shipping if the shop has always had <$10k sales in any 365 days (opt-out allowed); 12% once the shop reaches $10k (mandatory for the life of the shop); capped at $100 per order; 30-day attribution window",
+      "unit": "% of order total",
+      "low": 12,
+      "high": 15,
+      "typical": 15,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://craftybase.com/blog/everything-you-should-know-about-etsy-offsite-ads",
+        "note": "May 12, 2026: 12-15%, $100 cap, 30-day window, mandatory after $10k"
+       },
+       {
+        "url": "https://help.etsy.com/hc/en-us/articles/360000338367-How-Etsy-s-Offsite-Ads-Work",
+        "note": "Etsy Help (search snippet)"
+       }
+      ]
+     },
+     {
+      "item": "Etsy Share & Save refund",
+      "value": "4% of the order (calculated like the transaction fee) refunded when the buyer buys within 30 days of clicking the seller's own Share & Save link, so the effective transaction fee is 2.5%",
+      "unit": "% refund",
+      "low": 4,
+      "high": 4,
+      "typical": 4,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.growingyourcraft.com/blog/etsy-update-share-and-save",
+        "note": "Program description"
+       },
+       {
+        "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+        "note": "Reduces transaction fee to 2.5% on self-driven sales"
+       }
+      ]
+     },
+     {
+      "item": "Etsy one-time shop setup fee",
+      "value": "$15-$29, non-refundable, charged to some (not all) new shops depending on region and verification",
+      "unit": "USD one-time",
+      "low": 15,
+      "high": 29,
+      "typical": 15,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://help.erank.com/blog/understanding-etsys-new-15-setup-fee/",
+        "note": "Generally $15-$29; not every seller is charged"
+       }
+      ]
+     },
+     {
+      "item": "Etsy total fees on a $12 keychain with free shipping (calculated)",
+      "value": "$0.20 listing + $0.78 transaction + $0.61 processing = $1.59 (13.3%); if the sale is attributed to an Offsite Ad, +$1.80 = $3.39 (28%). Sales tax slightly raises the processing part.",
+      "unit": "USD per order",
+      "low": 1.59,
+      "high": 3.39,
+      "typical": 1.59,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+        "note": "Fee rates used in the calculation"
+       }
+      ]
+     },
+     {
+      "item": "Etsy shipping labels",
+      "value": "Etsy labels are billed at USPS commercial pricing; guides quote up to about 30% off USPS retail. For a 4 oz Ground Advantage package, commercial is about 32% below retail.",
+      "unit": "% discount vs retail",
+      "low": 0,
+      "high": 32,
+      "typical": 30,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+        "note": "Up to 30% USPS discount on Etsy labels"
+       },
+       {
+        "url": "https://www.ship.com/post/usps-commercial-rates-explained",
+        "note": "4 oz zone 5: $8.60 retail vs $5.83 commercial (~32%)"
+       }
+      ]
+     },
+     {
+      "item": "Etsy Purchase Protection (from May 7, 2026)",
+      "value": "Requires shipping within processing time and valid tracking or an Etsy label, with exceptions noted for letters/flats; covers up to $250 per order; seller must answer Help with Order messages within 48 hours",
+      "unit": "policy",
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://my-shop.co/blog/etsy-purchase-protection-2026-eligibility/",
+        "note": "Eligibility summary, effective May 7, 2026"
+       },
+       {
+        "url": "https://help.etsy.com/hc/en-us/articles/5850122619287-What-is-Etsy-s-Purchase-Protection-for-Sellers",
+        "note": "Official page (not fetched, 403)"
+       }
+      ]
+     },
+     {
+      "item": "eBay fees (most categories)",
+      "value": "250 free listings/month, then $0.35 insertion fee; final value fee 13.6% of total sale incl. shipping and sales tax (up to $7,500) + $0.30 per order if order is $10 or less, $0.40 if over $10. For a $12 keychain with free shipping: about $2.03 (16.9%) before tax.",
+      "unit": "% + USD per order",
+      "low": 13.6,
+      "high": 13.6,
+      "typical": 13.6,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.ebay.com/sellercenter/selling/start-selling-on-ebay/seller-fees",
+        "note": "Official eBay Seller Center fee page"
+       }
+      ]
+     },
+     {
+      "item": "eBay Standard Envelope (cheap letter-mail option)",
+      "value": "$0.78 (1 oz), $1.07 (2 oz), $1.36 (3 oz); max 3 oz, 1/4 inch thick, flexible; ONLY for patches, stickers/decals, greeting cards, seeds, trading cards, coins/currency, postcards, stamps, so keychains are NOT eligible",
+      "unit": "USD per envelope",
+      "low": 0.78,
+      "high": 1.36,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.ebay.com/sellercenter/shipping/choosing-a-carrier-and-service/ebay-standard-envelope",
+        "note": "Official eligibility and prices"
+       }
+      ]
+     },
+     {
+      "item": "Amazon Handmade fees",
+      "value": "Referral fee 15% or $0.30, whichever is greater; the $39.99/month Professional plan is waived for approved Handmade sellers after the first month. $12 sale is about $1.80 in fees.",
+      "unit": "% of sale",
+      "low": 15,
+      "high": 15,
+      "typical": 15,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://sell.amazon.com/programs/handmade",
+        "note": "Official Amazon Handmade page"
+       }
+      ]
+     },
+     {
+      "item": "TikTok Shop fees (US)",
+      "value": "Official: 6% referral fee since Apr 1, 2024, charged on (customer payment + platform discount - tax), with payment processing included and no separate transaction fee. Refund admin fee is 20% of the referral fee (max $5/SKU). New sellers can get 3% for 30 days. Some Aug 2026 blogs claim a rise to 8% from Aug 4, 2026 (unconfirmed).",
+      "unit": "% of item price",
+      "low": 6,
+      "high": 8,
+      "typical": 6,
+      "confidence": "low",
+      "sources": [
+       {
+        "url": "https://seller-us.tiktok.com/university/essay?knowledge_id=5982454398175018",
+        "note": "Official: 6% from April 1, 2024; no 2026 change mentioned"
+       },
+       {
+        "url": "https://winninghunter.com/blog/tiktok-shop-seller-fees",
+        "note": "Aug 4, 2026: still 6%, no separate transaction fee, 3% new-seller rate"
+       },
+       {
+        "url": "https://delzonic.com/blogs/tiktok-shop-fee-increase-2026/",
+        "note": "Claims 8% from Aug 4, 2026, no official source cited"
+       }
+      ]
+     },
+     {
+      "item": "Shopify fees (US)",
+      "value": "Basic plan $29/mo billed yearly or $39/mo billed monthly; Shopify Payments online 2.9% + $0.30 (Basic); 2% extra if using a third-party payment provider. $12 sale is about $0.65 plus the monthly fee.",
+      "unit": "USD/month + % + USD per order",
+      "low": 29,
+      "high": 39,
+      "typical": 29,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.shopify.com/pricing",
+        "note": "Official Shopify pricing page"
+       }
+      ]
+     },
+     {
+      "item": "USPS Ground Advantage RETAIL (post-office counter), 4 oz to 15.999 oz",
+      "value": "Zone 1 $7.90, Z2 $8.05, Z3 $8.15, Z4 $8.30, Z5 $8.60, Z6 $8.75, Z7 $8.95, Z8-9 $9.45 (same price at every weight up to 15.999 oz)",
+      "unit": "USD per package (effective July 12, 2026)",
+      "low": 7.9,
+      "high": 9.45,
+      "typical": 8.6,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://pe.usps.com/text/dmm300/notice123.htm",
+        "note": "USPS Notice 123, effective July 12, 2026"
+       }
+      ]
+     },
+     {
+      "item": "USPS Ground Advantage COMMERCIAL published price, 4 oz (after July 12, 2026)",
+      "value": "4 oz and 8 oz now priced the same as 15.999 oz: Z1 $6.93, Z2 $6.94, Z3 $7.30, Z4 $7.46, Z5 $7.69, Z6 $7.86, Z7 $8.07, Z8-9 $8.40",
+      "unit": "USD per package",
+      "low": 6.93,
+      "high": 8.4,
+      "typical": 7.69,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://pe.usps.com/text/dmm300/notice123.htm",
+        "note": "Notice 123 commercial table"
+       },
+       {
+        "url": "https://support.pirateship.com/en/articles/15453569-july-2026-usps-rate-and-rule-changes",
+        "note": "Ounce-based commercial pricing eliminated July 12, 2026"
+       }
+      ]
+     },
+     {
+      "item": "Realistic label cost for one keychain (4 oz tier) via Etsy / eBay / Pirate Ship labels",
+      "value": "Non-rural lower-48 addresses keep ounce tiers through label platforms: about $5.50 (zones 1-2) to $6.36 (zone 8), typical about $5.83-$5.97. Rural ZIPs, AK/HI/PR and APO addresses pay the 15.99 oz rate: $6.93-$8.40 (e.g., 4 oz NYC to rural CA went from $6.36 to $8.40).",
+      "unit": "USD per package",
+      "low": 5.5,
+      "high": 8.4,
+      "typical": 5.97,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.ship.com/post/usps-commercial-rates-explained",
+        "note": "4 oz commercial Apr 26, 2026: Z1-2 $5.50, Z5 $5.83, Z8 $6.36"
+       },
+       {
+        "url": "https://goshippo.com/blog/cheapest-way-to-ship-etsy-orders",
+        "note": "Jun 30, 2026: 4 oz padded mailer, Ground Advantage $5.97 (cheapest vs UPS $6.94)"
+       },
+       {
+        "url": "https://selleressentials.com/usps-ground-advantage-rate-increase-2026/",
+        "note": "Non-rural keeps 4 oz tiers on below-commercial platforms; rural bills at 15.99 oz; $6.36 to $8.40 example"
+       },
+       {
+        "url": "https://www.valueaddedresource.net/ebay-usps-ground-advantage-oz-based-rates/",
+        "note": "eBay and Pirate Ship apply rural ZIP exceptions (Jul 2026)"
+       }
+      ]
+     },
+     {
+      "item": "USPS temporary Ground Advantage surcharge",
+      "value": "8% temporary increase effective April 26, 2026, scheduled to end January 17, 2027",
+      "unit": "% surcharge",
+      "low": 8,
+      "high": 8,
+      "typical": 8,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://selleressentials.com/usps-ground-advantage-rate-increase-2026/",
+        "note": "8% temporary surcharge through Jan 17, 2027"
+       }
+      ]
+     },
+     {
+      "item": "First-Class stamped letter with a keychain (untracked)",
+      "value": "$0.82 (1 oz) + $0.29 each extra oz + $0.49 nonmachinable surcharge = $1.31 at 1 oz, $1.60 at 2 oz. Letter max 1/4 inch thick and 3.5 oz; USPS lists rigid pieces and items like keys or coins that make thickness uneven as nonmachinable. No tracking.",
+      "unit": "USD per piece (effective July 12, 2026)",
+      "low": 1.31,
+      "high": 1.6,
+      "typical": 1.31,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://pe.usps.com/text/dmm300/notice123.htm",
+        "note": "Stamped letter $0.82, +$0.29/oz, nonmachinable surcharge $0.49"
+       },
+       {
+        "url": "https://pe.usps.com/text/dmm300/101.htm",
+        "note": "DMM 101.1.1-101.1.2 letter size and nonmachinable criteria (keys, rigid)"
+       }
+      ]
+     },
+     {
+      "item": "First-Class large envelope (flat) with a rigid keychain",
+      "value": "Flat prices are $1.69 (1 oz) to $2.56 (4 oz), BUT flats must be flexible and uniformly thick (within 1/4 inch); rigid or uneven flats are charged parcel prices (DMM 101.2.5), so a rigid PLA keychain is not a valid flat",
+      "unit": "USD per piece",
+      "low": 1.69,
+      "high": 2.56,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://pe.usps.com/text/dmm300/notice123.htm",
+        "note": "Flat prices effective July 12, 2026"
+       },
+       {
+        "url": "https://pe.usps.com/text/dmm300/101.htm",
+        "note": "Flats must be flexible/uniformly thick or pay parcel prices"
+       }
+      ]
+     },
+     {
+      "item": "#000 (4x8 in) bubble mailer",
+      "value": "About $0.25 each in 25-packs, about $0.11-$0.12 each in packs of 800-1,000",
+      "unit": "USD per mailer",
+      "low": 0.11,
+      "high": 0.25,
+      "typical": 0.15,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.starboxes.com/blogs/small-bubble-mailers-guide",
+        "note": "Search snippet: 25-pack ~$0.25/unit, 1,000-pack <$0.12"
+       },
+       {
+        "url": "https://jiaropack.com/collections/padded-envelopes-4x8",
+        "note": "About $0.11 each in 800-pack (search snippet)"
+       }
+      ]
+     },
+     {
+      "item": "Etsy IP takedown process",
+      "value": "Etsy removes a listing when a rights owner files a compliant report. DMCA counter-notices are accepted for US copyright reports only; for trademark takedowns the seller's option is to contact the reporting party for a retraction. Repeat or multiple reports can lead to loss of selling privileges and closure of the shop (and the seller's other shops).",
+      "unit": "policy",
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://help.etsy.com/hc/en-us/articles/360040496854-How-to-File-a-DMCA-Counter-Notice",
+        "note": "Counter notices for copyright only (search snippet)"
+       },
+       {
+        "url": "https://help.etsy.com/hc/en-us/articles/360034079714-What-to-Do-if-You-Receive-a-Notice-of-Intellectual-Property-Infringement",
+        "note": "Trademark: contact the reporting party (search snippet)"
+       },
+       {
+        "url": "https://www.etsy.com/legal/ip/",
+        "note": "Etsy IP policy, repeat infringer terms (page 403, cited via search results)"
+       }
+      ]
+     },
+     {
+      "item": "Etsy IP enforcement scale (2024 Transparency Report)",
+      "value": "85,591 alleged IP infringement reports; about 832,000 listings removed for IP; over 26,500 shops closed for IP or counterfeit violations; over 400,000 listings removed for counterfeit concerns",
+      "unit": "count (calendar 2024)",
+      "low": 26500,
+      "high": 832000,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.tumblr.com/cindylouwho-2/787274919019954176/etsy-2024-transparency-report-and-trust-and",
+        "note": "Summary of Etsy 2024 Transparency Report figures"
+       },
+       {
+        "url": "https://iscompliant.app/Blog/etsy-reseller-crackdown-transparency-report",
+        "note": "Confirms 832,000 listings and about 85,600 reports"
+       }
+      ]
+     },
+     {
+      "item": "eBay VeRO / IP enforcement for car brands",
+      "value": "Ford Motor Company, General Motors, FCA US (Chrysler/Dodge/Jeep), Jaguar & Land Rover and DeLorean Motor Company have published eBay VeRO profiles. BMW, Porsche, Mercedes, Audi, Lamborghini and Shelby had none listed, though rights owners can report without a published profile. eBay may remove listings, warn, restrict or suspend accounts.",
+      "unit": "policy",
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.ebay.com/sellercenter/resources/verified-rights-owner-profiles",
+        "note": "VeRO profile directory"
+       },
+       {
+        "url": "https://www.ebay.com/help/policies/listing-policies/selling-policies/intellectual-property-vero-program?id=4349",
+        "note": "VeRO program and enforcement actions"
+       }
+      ]
+     },
+     {
+      "item": "eBay search manipulation policy (brand wording)",
+      "value": "All title and description words must relate to the item; comparisons with other brands are not allowed; 'fits', 'for' or 'compatible with' may not be placed before brand names for accessories or universally compatible items",
+      "unit": "policy",
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.ebay.com/help/policies/listing-policies/search-browse-manipulation-policy?id=4243",
+        "note": "Official eBay policy"
+       },
+       {
+        "url": "https://www.ebay.co.uk/help/policies/listing-policies/search-browse-manipulation-policy?id=4243",
+        "note": "UK version: unrelated keywords and comparisons not allowed"
+       }
+      ]
+     },
+     {
+      "item": "Car-maker brand enforcement examples",
+      "value": "Mercedes-Benz removed over 212,000 online listings of counterfeit or trademark-infringing content in 2024 (up 49% from about 142,000 in 2023). Amazon's Counterfeit Crimes Unit and BMW won a joint civil suit in Spain (filed Oct 2023) against sellers of counterfeit BMW-logo valve caps, badges and key rings.",
+      "unit": "listings removed / case",
+      "low": 142000,
+      "high": 212000,
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://www.automotiveworld.com/news-releases/793-raids-in-2024-over-1-5-million-mercedes-benz-counterfeit-products-seized-worldwide/",
+        "note": "Mercedes 2024 brand protection figures"
+       },
+       {
+        "url": "https://www.carscoops.com/2024/02/amazon-and-bmw-shut-down-sellers-of-counterfeit-parts-and-accessories/",
+        "note": "BMW/Amazon case including BMW-logo key rings"
+       }
+      ]
+     },
+     {
+      "item": "Ford / Shelby marks relevant to a GT500 design",
+      "value": "Ford owns Ford, Mustang, Cobra Jet, Boss, Mach I and, per a licensee-style notice, the distinctive Mustang vehicle shapes. SHELBY, CARROLL SHELBY, GT-350, GT-500 and KR are registered trademarks/trade dress of Carroll Shelby Licensing, Inc. Ford says it actively polices its 'trademarks and vehicle images'. Carroll Shelby Licensing has litigated its marks (Eleanor/GT500 case, decided in its favour in 2022-2025).",
+      "unit": "trademark ownership",
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://revologycars.com/copyright-and-trademark/",
+        "note": "Lists Ford and Shelby registered marks incl. GT-500"
+       },
+       {
+        "url": "https://www.ford.com/help/third-party-trademarks/",
+        "note": "Shelby is a registered trademark of Carroll Hall Shelby Trust"
+       },
+       {
+        "url": "https://www.fordbrandlicensing.com/",
+        "note": "Ford polices trademarks and vehicle images; license requests"
+       },
+       {
+        "url": "https://www.loeb.com/en/insights/publications/2025/06/carroll-shelby-licensing-inc-v-halicki",
+        "note": "Carroll Shelby Licensing v. Halicki (2025)"
+       }
+      ]
+     },
+     {
+      "item": "Trade dress: car shapes protected without logos",
+      "value": "Ferrari v. Roberts (6th Cir. 1991): exterior shapes of the Daytona Spyder and Testarossa were protected trade dress, and replica kits were permanently enjoined. GM v. Lanard Toys (6th Cir. 2006): a toy maker infringed the Humvee grille/body trade dress; the jury awarded an 8% royalty ($340,330) plus over $900,000 of Lanard's profits. Removing logos lowers but does not remove the risk for recognisable car fronts.",
+      "unit": "case law",
+      "confidence": "high",
+      "sources": [
+       {
+        "url": "https://law.justia.com/cases/federal/appellate-courts/F2/944/1235/34859/",
+        "note": "Ferrari S.p.A. v. Roberts, 944 F.2d 1235"
+       },
+       {
+        "url": "https://law.justia.com/cases/federal/appellate-courts/ca6/05-2085/06a0393p-06-2011-02-25.html",
+        "note": "GM v. Lanard Toys, 468 F.3d 405"
+       },
+       {
+        "url": "https://www.studicata.com/case-briefs/case/general-motors-corp-v-lanard-toys-inc",
+        "note": "Damages summary"
+       }
+      ]
+     },
+     {
+      "item": "Nominative fair use and 'inspired by' wording",
+      "value": "Nominative fair use requires that the product can't be identified without the mark, that only as much of the mark as necessary is used, and that nothing suggests sponsorship. Logos/crests usually go beyond what is necessary. A 2026 seller-compliance blog states 'inspired by' or 'unofficial' disclaimers give no protection and brand names in tags get flagged by brand-protection bots (blog opinion, not law).",
+      "unit": "legal standard",
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://en.wikipedia.org/wiki/Fair_use_(Trademark_law)",
+        "note": "Nominative fair use test"
+       },
+       {
+        "url": "https://jolt.law.harvard.edu/digest/toyota-motor-sales-v-tabari",
+        "note": "Toyota v. Tabari (Lexus) nominative fair use case digest"
+       },
+       {
+        "url": "https://www.shieldmyshop.com/blog/can-you-use-brand-names-in-etsy-listings-2026",
+        "note": "Mar 11, 2026 blog: disclaimers don't protect, no brand names in tags"
+       }
+      ]
+     },
+     {
+      "item": "Common risk-reduction practices (and official licensing route)",
+      "value": "Remove badges, crests and model lettering from the model; keep brand/model names (BMW, Porsche, GT500, etc.) out of titles, tags and photos; describe generically (e.g., 'classic American muscle car front keychain'); keep designs original rather than copying OEM artwork; or apply for a licence (GM Trademark Licensing, Ford Global Brand Licensing; one Ford reproduction-parts licence was reported at 7% royalty)",
+      "unit": "practice",
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://www.gm.com/licensing",
+        "note": "GM trademark licence submission of interest (search snippet)"
+       },
+       {
+        "url": "https://www.fordbrandlicensing.com/",
+        "note": "Ford licensing contact"
+       },
+       {
+        "url": "https://www.autoserviceworld.com/jobbernews/ford-licensses-agree-on-reproduction-parts-trademarks/",
+        "note": "7% royalty for Ford repro-parts licensees (older, industry-specific)"
+       }
+      ]
+     },
+     {
+      "item": "Sales tax and income reporting",
+      "value": "Etsy (as marketplace facilitator) calculates, collects and remits US sales tax on marketplace orders. Federal 1099-K threshold restored to $20,000 AND 200 transactions (OBBBA, 2025 onward); MD, MA, VT, VA use $600. Income is taxable regardless.",
+      "unit": "USD threshold",
+      "low": 600,
+      "high": 20000,
+      "typical": 20000,
+      "confidence": "medium",
+      "sources": [
+       {
+        "url": "https://help.etsy.com/hc/en-us/articles/115014483627-What-are-the-Fees-and-Taxes-for-Selling-on-Etsy",
+        "note": "Etsy collects US sales tax (search snippet)"
+       },
+       {
+        "url": "https://blog.taxact.com/new-form-1099-k-reporting-thresholds/",
+        "note": "1099-K $20k/200 threshold restored"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "checked": {
+  "summary": "I re-checked the main cost and price numbers on 2026-09-27. Most of the earlier research holds up. Six things needed correcting or adding.\n\n**Corrections**\n\n1. **Creality bulk filament deals are sold out.** The Hyper PLA 4 kg ($62.99), 12 kg ($159) and 4-pack ($59.99) listings all show \"Sold Out\". The $13.25\u201315.75/kg figures are therefore not available today. What you can actually buy:\n   - 1 spool: $19.99 (list $32.99)\n   - 5 spools: $16.99 each\n   - 10 spools: $15.99 each\n   - 20 spools: $14.99 each\n   - The RFID version, which the CFS reads automatically, is $21.00.\n\n2. **Filament per keychain was understated.** The earlier $0.09\u20130.18 figure ignored the filament wasted on every colour change, which is the biggest filament cost on a multi-colour keychain.\n   - The stock K2 firmware purges a fixed ~100 mm (about 0.3 g) on every CFS filament swap. The slicer's own flush comes on top of that.\n   - One K2 Plus forum user said a small 4-colour model needed \"18x more filament\" than expected because of flushing. A K2 guide estimates 30\u201340% waste on 4-colour prints with frequent changes.\n   - Purge waste per plate stays about the same however many keychains are on it, so batching spreads it out.\n   - Use 1\u20133 g of waste per keychain when printing 8\u201312 per plate, and 5\u201315 g for a single one-off. This is my estimate, not a measured figure. Take the real number from the slicer's flush estimate.\n\n3. **Printer price.** K2 Combo $549 (shown as $699 regular) and K2 $399 ($549 regular) are confirmed on the Creality store. Reviews from October 2025 quote $799 for the Combo, which is stale.\n\n4. **Printer power draw.** Still no measured figure for the base K2. The specs are confirmed: 70 W hotend, 100 \u00b0C max bed, no chamber heater. My estimate of about 100\u2013150 W stands, based on the K1, which measured about 100 W while printing. Electricity works out to about $0.02\u20130.03 per printer-hour, which is negligible.\n\n5. **Shipping.** The July 12, 2026 change is confirmed. USPS's published commercial Ground Advantage price for anything under 1 lb is now the 15.999 oz price: $6.93\u20138.40.\n   - eBay, Pirate Ship and Shippo still charge by the ounce for addresses in the lower 48 that are not rural: about $5.50\u20136.36 at 4 oz. Etsy labels probably work the same way; one guide says so, but I could not confirm it.\n   - Rural ZIPs, Alaska, Hawaii, Puerto Rico and military addresses pay $6.93\u20138.40.\n   - A stamped letter or large envelope is not valid for a rigid keychain.\n\n6. **Labour was missing from the model.** Add it. Prusa's cost method counts about 5\u201310 minutes of handling per job.\n\n**Confirmed as stated**\n- US electricity: 18.31\u00a2/kWh (EIA, July 2026).\n- Etsy fees: $0.20 listing fee (charged again on each sale), 6.5% transaction fee on item plus shipping, and 3% + $0.25 processing on the total including sales tax. Offsite Ads take 15% (12% once the shop passes $10k in sales), capped at $100 per order.\n- eBay: 13.6% + $0.30/$0.40 per order.\n- USPS counter prices: $7.90\u20139.45.\n\n**Competitor prices**\n- Etsy and eBay blocked my requests (HTTP 403), so I could not re-open those listings. Their prices remain medium confidence.\n- I did confirm these on the sellers' own sites: CarChains3D $15 (now sold out), Race Ready Designs $10, and DriftPins' enamel Mustang S550 at $12.99.\n- An Etsy search snippet showed multicolour printing as +$6 for small and +$12 for larger sizes.\n\n**Recommended model inputs**\n| Input | Value |\n|---|---|\n| Filament price | $0.020/g ($19.99/kg), or $0.016/g if buying 10 spools |\n| Keychain weight | 8\u201315 g, taken from the slicer |\n| Colour-change waste | 1\u20133 g per keychain when batched |\n| Failures | 10% extra on filament and ring |\n| Key ring (ring, chain and jump ring) | $0.15 |\n| Packaging (#000 bubble mailer, backing card, bag, thank-you card) | $0.40 |\n| Printer wear | $0.11/h depreciation ($549 over 5,000 h) + $0.03/h maintenance + $0.024/h power (0.13 kW at $0.183) = about $0.165/h |\n| Printer time | about 0.3\u20130.4 h per keychain when batched |\n| Labour | 6 min at $20/h = $2.00 |\n| Shipping label | $6.00 average ($5.50\u20136.36 normal addresses, up to $8.40 rural) |\n\n**Worked example.** Materials, printer time and packaging come to about $1.00 per keychain. Selling on Etsy at $19.99 with free shipping:\n- Costs: $1.00 materials + $2.00 labour + $6.00 label + $2.39 Etsy fees.\n- Profit: about $8.60, or 43% of the price.\n- If the sale comes through an Offsite Ad, the extra 15% takes profit down to about $5.60.\n\n**Recommended prices**\n- Etsy: $19.99 with free shipping, or $13.99\u201314.99 + $5.99 shipping.\n- Car meets: $10\u201312 each, or 3 for $25\u201330.\n- Custom body colour: +$0\u20132, since swapping filament costs you almost nothing.\n- Wholesale: $7\u20138.",
+  "findings": [
+   {
+    "item": "Creality Hyper PLA 1 kg, single spool (Creality US store)",
+    "value": "$19.99 sale ($32.99 list). Multi-buy: $16.99 each for 5, $15.99 for 10, $14.99 for 20. The Hyper PLA RFID version, which the CFS reads automatically, is $21.00 ($31.90 list).",
+    "unit": "USD per kg",
+    "low": 14.99,
+    "high": 21,
+    "typical": 19.99,
+    "confidence": "high",
+    "sources": [
+     {
+      "url": "https://store.creality.com/products/hyper-series-pla-3d-printing-filament-1kg",
+      "note": "Checked 2026-09-27: $19.99, 5/10/20 tiers at 15/20/25% off"
+     },
+     {
+      "url": "https://store.creality.com/collections/hyper-series",
+      "note": "Hyper PLA RFID $21.00 (search summary of the store collection)"
+     }
+    ]
+   },
+   {
+    "item": "CORRECTION: Creality Hyper PLA bulk packs",
+    "value": "4 kg Value Pack $62.99 ($15.75/kg), 12 kg $159 ($13.25/kg) and the 4-pack flash sale $59.99 (about $15/kg) are all SOLD OUT on 2026-09-27. The cheapest Creality-direct price you can buy today is $14.99/kg, and only when buying 20 spools. On the price tracker, the Amazon 12-pack at $169.99 works out to $14.17/kg; the tracker's own $7.08/kg figure is a mistake.",
+    "unit": "USD per kg",
+    "low": 13.25,
+    "high": 16.99,
+    "typical": 15.99,
+    "confidence": "high",
+    "sources": [
+     {
+      "url": "https://store.creality.com/products/hyper-series-pla-bulk-purchse-1kg-20kg",
+      "note": "4 kg $62.99 and 12 kg $159, marked Sold Out"
+     },
+     {
+      "url": "https://store.creality.com/products/%E2%9A%A1flash-sale-4-pack-hyper-pla-3d-printing-filament",
+      "note": "4-pack $59.99, Sold Out"
+     },
+     {
+      "url": "https://filamentpricetracker.com/brand/creality/pla",
+      "note": "12 kg at $169.99 (the tracker shows it as $7.08/kg, which is wrong); PLA market average $20.68/kg"
+     }
+    ]
+   },
+   {
+    "item": "Generic PLA price per kg (US, for comparison)",
+    "value": "Budget brands such as Elegoo and Sunlu: $10-14/kg (Elegoo 1 kg as low as $11.00, 4 kg bundle $9.66/kg). Bambu PLA Basic and Polymaker: about $20-25/kg. Average across 6,508 tracked PLA listings: $20.68/kg.",
+    "unit": "USD per kg",
+    "low": 9.66,
+    "high": 25,
+    "typical": 20,
+    "confidence": "high",
+    "sources": [
+     {
+      "url": "https://filamentpricetracker.com/brand/elegoo/pla",
+      "note": "Elegoo $11.00/kg single, $9.66/kg 4 kg; average $20.68/kg"
+     },
+     {
+      "url": "https://spoolhound.com/best-pla-deals",
+      "note": "Updated 2026-09-27: budget $10-14/kg, Bambu Basic about $25/kg"
+     }
+    ]
+   },
+   {
+    "item": "CORRECTION: filament wasted on colour changes (K2 CFS)",
+    "value": "The stock firmware purges a fixed ~100 mm on every CFS swap, which I calculate at about 0.30 g (from 1.75 mm diameter and 1.24 g/cm3 PLA). The slicer's flush comes on top of that. One user reported a small 4-colour model with 309 colour changes using 18x more filament than the model itself. A K2 guide estimates 30-40% waste on 4-colour prints with frequent changes. Purge waste per plate does not grow with the number of copies on the plate, so batching reduces waste per keychain. Model input (estimate, low confidence): about 1-3 g per keychain when printing 8-12 per plate, about 5-15 g for a single one-off. Replace this with the slicer's flush estimate.",
+    "unit": "grams per keychain",
+    "low": 1,
+    "high": 15,
+    "typical": 2,
+    "confidence": "low",
+    "sources": [
+     {
+      "url": "https://github.com/camaro4life18/Creality-K2-Series-Purge-Volume-Fix",
+      "note": "~100 mm hardcoded purge plus 5 wipe loops per change"
+     },
+     {
+      "url": "https://forum.creality.com/t/flushing-volumes-for-k2-plus-color-prints/27007",
+      "note": "18x more filament on a 4-colour model with 309 changes"
+     },
+     {
+      "url": "https://slice-lab.com/en/guide-creality-k2",
+      "note": "About 30-40% waste on 4-colour prints with frequent changes"
+     },
+     {
+      "url": "https://www.sovol3d.com/blogs/news/multi-color-3d-printing-waste-why-it-happens-and-when-it-s-worth-it",
+      "note": "Waste = number of changes x flush volume, plus priming; waste can exceed the model itself"
+     }
+    ]
+   },
+   {
+    "item": "Filament cost per keychain (recalculated)",
+    "value": "(8-15 g part + 1-3 g purge share) x $0.020/g = about $0.18-0.36; typical 10 g x $0.02 = $0.20. Add about 10% for failed prints. A one-off custom single keychain: about $0.30-0.60.",
+    "unit": "USD per keychain",
+    "low": 0.18,
+    "high": 0.6,
+    "typical": 0.22,
+    "confidence": "medium",
+    "sources": [
+     {
+      "url": "https://store.creality.com/products/hyper-series-pla-3d-printing-filament-1kg",
+      "note": "$19.99/kg price basis; the calculation is mine"
+     },
+     {
+      "url": "https://blog.prusa3d.com/how-to-calculate-printing-costs_38650/",
+      "note": "Prusa suggests 30% of material cost as a failure margin"
+     }
+    ]
+   },
+   {
+    "item": "Creality K2 printer price",
+    "value": "K2 Combo with CFS $549 (store shows it as reduced from $699). K2 without CFS $399 (from $549). October 2025 reviews quoted $799 for the Combo, which is out of date.",
+    "unit": "USD",
+    "low": 399,
+    "high": 549,
+    "typical": 549,
+    "confidence": "high",
+    "sources": [
+     {
+      "url": "https://store.creality.com/products/k2-combo-3d-printer",
+      "note": "Checked 2026-09-27"
+     },
+     {
+      "url": "https://the-gadgeteer.com/2025/10/29/creality-k2-combo-and-creality-k2-pro-combo-review-feature-rich-3d-printing-platforms/",
+      "note": "Old $799 launch price"
+     }
+    ]
+   },
+   {
+    "item": "Printer wear cost per hour (depreciation + maintenance)",
+    "value": "$549 over about 5,000 print hours = $0.11/h, plus about $0.03/h for nozzle and plate wear. Prusa's own rates run $0.10-0.36/h.",
+    "unit": "USD per printer-hour",
+    "low": 0.1,
+    "high": 0.36,
+    "typical": 0.14,
+    "confidence": "medium",
+    "sources": [
+     {
+      "url": "https://blog.prusa3d.com/how-to-calculate-printing-costs_38650/",
+      "note": "Depreciation $0.10-0.36/h, recovered over 4,392 h"
+     },
+     {
+      "url": "https://store.creality.com/products/k2-combo-3d-printer",
+      "note": "$549 basis"
+     }
+    ]
+   },
+   {
+    "item": "K2 average power draw printing PLA",
+    "value": "No measured figure exists for the base K2. Confirmed specs: 70 W rated hotend, 100 C max bed, no chamber heater. The K1 measured about 100 W average while printing (370 W peak while heating, 20 W idle). Estimate 100-150 W; use 0.13 kW.",
+    "unit": "watts",
+    "low": 100,
+    "high": 150,
+    "typical": 130,
+    "confidence": "low",
+    "sources": [
+     {
+      "url": "https://www.creality.com/products/k2-series-3d-printer",
+      "note": "K2: 70 W hotend, 100 C bed, no chamber heating"
+     },
+     {
+      "url": "https://3dprintbeginner.com/creality-k1-review-corexy-for-tinkerers/",
+      "note": "K1 smart-plug measurement about 100 W while printing"
+     }
+    ]
+   },
+   {
+    "item": "US average residential electricity price",
+    "value": "18.31 cents/kWh in July 2026 (17.45 cents in July 2025). At 0.13 kW that is about $0.024 per printer-hour, which is negligible.",
+    "unit": "USD per kWh",
+    "low": 0.1745,
+    "high": 0.1831,
+    "typical": 0.1831,
+    "confidence": "high",
+    "sources": [
+     {
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a",
+      "note": "EIA Table 5.6.A, checked 2026-09-27"
+     }
+    ]
+   },
+   {
+    "item": "Key ring hardware",
+    "value": "25 mm nickel split ring: $0.242 each at 50, $0.182 at 100, $0.097 at 250, $0.056 at 500, $0.042 at 1,000. Kits with ring, chain and jump ring: about $0.10-0.17 each (not re-verified; Amazon price did not load). Model input: $0.15.",
+    "unit": "USD per keychain",
+    "low": 0.042,
+    "high": 0.242,
+    "typical": 0.15,
+    "confidence": "high",
+    "sources": [
+     {
+      "url": "https://www.ballchain.com/25mm-nickel-plated-steel-split-key-rings/",
+      "note": "Tier prices confirmed 2026-09-27"
+     }
+    ]
+   },
+   {
+    "item": "Packaging per order",
+    "value": "#000 4x8 bubble mailer $0.11 each (500 for $52.99; about $0.25 each in 25-packs). Kraft backing card about $0.13, 2x3 zip bag about $0.01, thank-you card about $0.05. Model input: about $0.40 per order.",
+    "unit": "USD per order",
+    "low": 0.3,
+    "high": 0.5,
+    "typical": 0.4,
+    "confidence": "medium",
+    "sources": [
+     {
+      "url": "https://bulkmailerhq.com/products/poly-bubble-mailers",
+      "note": "$52.99 per 500 = $0.11, confirmed"
+     }
+    ]
+   },
+   {
+    "item": "Labour (missing from the original model)",
+    "value": "Prusa's method counts about 5-10 minutes of handling per job. For a keychain (plate removal, cleanup, attaching the ring, packing, messages) use about 6 min at $15-20/h = $1.50-2.00. At low prices this costs more than all the materials combined.",
+    "unit": "USD per keychain",
+    "low": 1.5,
+    "high": 3.33,
+    "typical": 2,
+    "confidence": "medium",
+    "sources": [
+     {
+      "url": "https://blog.prusa3d.com/how-to-calculate-printing-costs_38650/",
+      "note": "5-10 min of preparation per job counted as labour"
+     }
+    ]
+   },
+   {
+    "item": "Etsy fee structure (US)",
+    "value": "$0.20 listing fee, charged again for every unit sold. 6.5% transaction fee on item + shipping + gift wrap. 3% + $0.25 payment processing on the order total including sales tax. Offsite Ads: 15% if the shop has stayed under $10k in any 365 days (can opt out); 12% and mandatory once over $10k; capped at $100 per order; 30-day window. On a $19.99 free-shipping sale with about 7% tax: $0.20 + $1.30 + $0.89 = about $2.39 (12%); with an Offsite Ad sale, +$3.00.",
+    "unit": "USD per order",
+    "low": 2.39,
+    "high": 5.39,
+    "typical": 2.39,
+    "confidence": "high",
+    "sources": [
+     {
+      "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+      "note": "2026: $0.20 / 6.5% / 3% + $0.25"
+     },
+     {
+      "url": "https://craftybase.com/blog/everything-you-should-know-about-etsy-offsite-ads",
+      "note": "May 12 2026: 15%/12%, $100 cap, 30 days"
+     },
+     {
+      "url": "https://www.ebay.com/sellercenter/selling/start-selling-on-ebay/seller-fees",
+      "note": "eBay for comparison: 13.6% of total incl. shipping and tax + $0.30 (orders of $10 or less) / $0.40"
+     }
+    ]
+   },
+   {
+    "item": "USPS cheapest valid shipping, ~15 g keychain in a #000 padded mailer (about 1 oz, billed at the lowest 4 oz tier)",
+    "value": "Ground Advantage bought through label platforms, to non-rural addresses in the lower 48: $5.50 (zones 1-2) to $5.83 (zone 5) to $6.36 (zone 8). These prices include the 8% temporary surcharge (Apr 26 2026 - Jan 17 2027). Since July 12 2026, USPS's published commercial price for anything under 1 lb is flat per zone: $6.93-$8.40. Rural ZIPs, Alaska, Hawaii, Puerto Rico and military addresses pay that flat price even on platforms. Post office counter: $7.90-$9.45. A letter ($1.31 with the nonmachinable surcharge) or large envelope is not valid: rigid items are nonmachinable as letters, and flats must be flexible, otherwise they pay parcel prices. Model input: $6.00 average.",
+    "unit": "USD per label",
+    "low": 5.5,
+    "high": 8.4,
+    "typical": 6,
+    "confidence": "medium",
+    "sources": [
+     {
+      "url": "https://pe.usps.com/text/dmm300/notice123.htm",
+      "note": "Checked: commercial price is the same from 4 oz to 15.999 oz ($6.93-8.40); retail $7.90-9.45; letter $0.82 + $0.49"
+     },
+     {
+      "url": "https://www.ship.com/post/usps-commercial-rates-explained",
+      "note": "4 oz: $5.50 zones 1-2, $5.83 zone 5, $6.36 zone 8; 8% surcharge included"
+     },
+     {
+      "url": "https://selleressentials.com/usps-ground-advantage-rate-increase-2026/",
+      "note": "Platforms keep 4 oz pricing for non-rural lower 48; rural pays the flat price"
+     },
+     {
+      "url": "https://www.valueaddedresource.net/ebay-usps-ground-advantage-oz-based-rates/",
+      "note": "eBay keeps per-ounce pricing for the continental US"
+     },
+     {
+      "url": "https://goshippo.com/blog/cheapest-way-to-ship-etsy-orders",
+      "note": "Jun 30 2026: 4 oz padded mailer by Ground Advantage $5.97"
+     },
+     {
+      "url": "https://pe.usps.com/text/dmm300/101.htm",
+      "note": "Rigid pieces and keys are nonmachinable; flats must be flexible and evenly thick"
+     }
+    ]
+   },
+   {
+    "item": "Retail prices for 3D-printed and competing car keychains (US)",
+    "value": "Plastic 3D-printed car keychains: about $10-15 + about $5.50 shipping, or $11-13 with free shipping (Etsy listings from the earlier research; Etsy blocked my re-check with 403). Confirmed on sellers' own sites: Race Ready Designs $10 (3 in, single colour); CarChains3D $15 (now sold out; custom versions cost more); DriftPins enamel Mustang S550 $12.99 + shipping. Enamel/metal car-front keychains on Etsy: $12.99-18.95. An Etsy search snippet shows multicolour upcharges of +$6 for small and +$12 for medium/large sizes.",
+    "unit": "USD per keychain",
+    "low": 10,
+    "high": 18.95,
+    "typical": 14,
+    "confidence": "medium",
+    "sources": [
+     {
+      "url": "https://racereadydesigns.com/product/keychain-3d-car-flip-art-copy/",
+      "note": "$10 confirmed"
+     },
+     {
+      "url": "https://carchains3d.com/products/car-key-chains",
+      "note": "$15 confirmed, sold out"
+     },
+     {
+      "url": "https://driftpinsco.com/products/ford-mustang-s550-keychains",
+      "note": "$12.99 enamel, confirmed"
+     },
+     {
+      "url": "https://www.etsy.com/listing/1873061941/custom-3d-printed-car-keychain",
+      "note": "Search snippet: multicolour +$6 small / +$12 medium and larger"
+     }
+    ]
+   },
+   {
+    "item": "FINAL recommended prices and unit economics (derived)",
+    "value": "Hard cost about $1.00 per keychain when batched: filament incl. purge and failures $0.22, ring $0.15, packaging $0.40, printer time about 0.35 h x $0.165/h = $0.06, rounded up. Labour $2.00. Etsy at $19.99 with free shipping: minus $6.00 label and $2.39 fees = about $8.60 profit (43%); about $5.60 if the sale came from an Offsite Ad. Equivalent pricing: $13.99-14.99 + $5.99 shipping. Car meet: $10-12 each or 3 for $25-30 (no fees or shipping; profit about $7-9 each after labour). Custom body colour: +$0-2. Wholesale: $7-8.",
+    "unit": "USD per keychain (Etsy, free shipping)",
+    "low": 17.99,
+    "high": 21.99,
+    "typical": 19.99,
+    "confidence": "low",
+    "sources": [
+     {
+      "url": "https://craftybase.com/blog/the-complete-guide-to-etsy-fees",
+      "note": "Fee inputs"
+     },
+     {
+      "url": "https://www.ship.com/post/usps-commercial-rates-explained",
+      "note": "Shipping input"
+     },
+     {
+      "url": "https://store.creality.com/products/hyper-series-pla-3d-printing-filament-1kg",
+      "note": "Filament input"
+     }
+    ]
+   }
+  ]
+ }
+}

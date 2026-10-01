@@ -1,0 +1,15 @@
+Reference photo for the Bugatti Chiron (2016-2022) keychain
+
+front_raw.jpg : Wikimedia Commons "File:2018 Bugatti Chiron 3.jpg"
+                https://commons.wikimedia.org/wiki/File:2018_Bugatti_Chiron_3.jpg
+                downloaded as the 1920 px rendition:
+                https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/2018_Bugatti_Chiron_3.jpg/1920px-2018_Bugatti_Chiron_3.jpg
+                (original 2942 x 1789). Author: Calreyn88. Licence: CC BY-SA 4.0
+                (https://creativecommons.org/licenses/by-sa/4.0). Taken 2022-06-30, London.
+front.jpg     : front_raw.jpg levelled by -0.65 deg (python kc/lib/trace_tools.py rotate ... -0.65); both pairs of
+                parking sensors are level after the rotation. All spec.py coordinates are pixels of this file.
+
+Secondary references (not traced, used to read details):
+geneva_lit.jpg : "File:2016-03-01 Geneva Motor Show G073.JPG" (CC BY-SA 4.0) - lit quad-LED signature, lamp tail.
+basel_high.jpg : "File:Full blue 2017 Bugatti Chiron at Grand Basel 2018 (Ank Kumar) 05.jpg" (CC BY-SA 4.0) -
+                 lamp shape and the elongated-hex mesh in the side intakes.

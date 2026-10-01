@@ -1,0 +1,13 @@
+Chosen reference (traced): front_press.jpg
+  Pagani Zonda Cinque (2009), official Pagani Automobili studio press photo, straight-on front, 1600x1200.
+  Page:  https://www.caricos.com/cars/p/pagani/2009_pagani_cinque/images/5.html
+  Image: https://images.caricos.com/p/pagani/2009_pagani_cinque/images/1600x1200/2009_pagani_cinque_5_1600x1200.jpg
+  Licence: manufacturer press image (copyright Pagani Automobili S.p.A., distributed for editorial use via caricos.com).
+           Used only as a private tracing reference; not redistributed. No levelling needed (photo is centred and level).
+
+Secondary (not traced, used to check reflections vs. real panels): front_road_press.jpg
+  https://images.caricos.com/p/pagani/2009_pagani_cinque/images/1600x1200/2009_pagani_cinque_2_1600x1200.jpg
+  (same press set, same licence situation)
+
+Free-licence alternative found but not downloadable during this session (Wikimedia rate limit, HTTP 429):
+  https://commons.wikimedia.org/wiki/File:2009_Pagani_Zonda_Cinque.jpg  (CC BY-SA 4.0, 1607x1019, straight-on front)

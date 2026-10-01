@@ -1,0 +1,19 @@
+front.jpg (traced reference)
+  Lamborghini Aventador SVJ, official Automobili Lamborghini studio press photo (front view, Verde Mantis, 2018 launch)
+  Downloaded from: https://www.lambocars.com/wp-content/uploads/2020/11/aventador_svj_8.jpg  (gallery page https://www.lambocars.com/aventador-svj-image-gallery/)
+  Licence: manufacturer press image (editorial/press use, (c) Automobili Lamborghini S.p.A.); used only as a private tracing reference.
+  1280x853 px, perfectly symmetric studio shot, centreline x = 639.5 px. Camera is high (hood seen from above) -> spec uses y_scale 0.88.
+
+alt_grey_monaco_1014.jpg (cross-check: hood creases, intake/splitter structure)
+  "Lamborghini Aventador Monaco IMG 1014.jpg" by Alexander Migl, CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Lamborghini_Aventador_Monaco_IMG_1014.jpg  (3840 px rendition)
+alt_red_monaco_1146.jpg (cross-check: lit Y DRL, low camera)
+  "Lamborghini Aventador SVJ Monaco IMG 1146.jpg" by Alexander Migl, CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Lamborghini_Aventador_SVJ_Monaco_IMG_1146.jpg
+
+front_elev.png (revision 1: the overlay reference the spec is traced in)
+  front.jpg warped by ref/elev.py (run: python kc/cars/svj_aventador/ref/elev.py) into a near front elevation:
+  perspective sag removed (centre raised 12 px, quadratic over +/-262 px) and the bands re-proportioned
+  (hood above the lamps x0.60, lamps x0.72, nose x0.62, intake + splitter x1.15, smooth 8 px blends).
+  Band factors were chosen by comparing the band heights in body-width units with the low street photo
+  alt_red_monaco_1146.jpg (about 60-70 % of the way from the press view toward that view).

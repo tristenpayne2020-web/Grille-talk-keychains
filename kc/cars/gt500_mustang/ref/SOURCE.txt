@@ -1,0 +1,10 @@
+front.jpg = front_raw.jpg levelled by -0.45 deg (python kc/lib/trace_tools.py rotate ... -0.45); 2700x1608.
+front_raw.jpg (= cand/cd71.jpg): 2022 Ford Mustang Shelby GT500 (S550, Code Orange), straight-on front, camera about
+bumper/headlight height, from the Car and Driver Shelby GT500 photo gallery:
+  https://hips.hearstapps.com/hmg-prod/images/2022-ford-mustang-shelby-gt500-22-1636735311.jpg
+Licence: (c) Hearst Autos / Car and Driver (editorial/press photo) - used only as a private tracing reference, not redistributed.
+Generation check: S550 facelift headlamps with the slanted tri-bar LED DRL, full-width honeycomb upper grille with the
+centred cobra, gloss bar with "GT500" script, hood heat extractor, corner lamp blades + brake-duct mesh -> 2020-2022 GT500.
+Cross-check: cand/cd52.jpg (2022 GT500 Heritage Edition, same gallery,
+  https://hips.hearstapps.com/hmg-prod/images/2022-ford-mustang-shelby-gt500-03-1636734535.jpg) - same cobra position
+(centred), same tri-bar headlamps. Other candidates in cand/ (Wikimedia Commons, CC BY-SA / CC BY) were all 3/4 views.

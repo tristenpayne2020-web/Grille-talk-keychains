@@ -1,0 +1,540 @@
+{
+ "cars": [
+  {
+   "id": "r35_gtr",
+   "passed": true,
+   "result": {
+    "id": "r35_gtr",
+    "spec_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\r35_gtr\\spec.py",
+    "ref_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\r35_gtr\\ref\\front.jpg",
+    "ref_url": "https://commons.wikimedia.org/wiki/File:Nissan_GT-R_MY2017_(2).jpg",
+    "ref_license": "CC BY-SA 4.0 (Tokumeigakarinoao, Wikimedia Commons)",
+    "size_mm": [
+     88.02,
+     39.69
+    ],
+    "plate_count": 12,
+    "design_errors_before_repair": 0,
+    "design_errors_after_repair": 0,
+    "slicecheck_all_ok": true,
+    "signature_features": [
+     "Bold lightning-bolt LED light guide (0.9 mm white) that splits the lamp edge to edge",
+     "V-motion chrome U: thin white side strips plus a broad flat bottom",
+     "Framed GT-R 'R' emblem sitting on the U (BADGE_STYLE='nissan' and KC_BADGE=0 variants available)",
+     "Expanded-metal diamond mesh (2.2/0.8 mm, rounded tips): 2 staggered rows above the U, 4 rows in the lower half of the lower grille, with a plain black sensor band above it",
+     "Corner intakes with a white LED lamp bar and 3 vertical fin slots",
+     "Crisp shield-shaped hood vents",
+     "Dark corner splitter blades",
+     "Grooves: hood/fender shut lines, hood front line, hood bulge creases, lower bumper corner creases"
+    ],
+    "notes": "Revision 1: I addressed every high and medium issue and most of the low ones. Results: 0 design errors before repair, 0 auto-repairs and 1 warning (a 0.58 mm black gap in the badge, which is by design). Slicecheck is ok for all four parts with n_lost 0. Top-layer coverage is 0.996 / 0.986 for production black/white and 0.963 / 0.986 for classic black/white. All 52 designed mesh cells are built and no nudge was needed. The part is now 88.0 x 39.7 mm (body 80.5 x 39.7, w:h 2.03, the G80 is 2.12), so the plate holds 12 instead of 11. I deleted the stale 11x plate files from last round.\n\nCHANGES\n- HIGH, shut line sliver: the hood/fender shut line now starts inside the body at (452,482) and runs through (434,502),(424,522) to (416,540) into the lamp. The 0.22 x 2.4 mm white strip at the top corners is gone. I added my own white-cap check (white minus grooves) in work\\chk2.py. It finds no white-cap strip under 0.5 mm anywhere.\n- DRL (medium):\n  - Outer lens edge moved out: (335,580)->(331,580), (345,543)->(342,548).\n  - Inner lens edge moved out 2-6 px to match the photo: (453,600),(480,660),(499,698),(502,718),(496,738).\n  - New stroke: DRL=[(370,552),(349,606),(436,618),(463,668),(480,724)], width 0.75 -> 0.9 mm. Checked on the overlay, it now follows the photo's light guide from the outer edge to the lower inner tip.\n  - The black gap is at least 0.57 mm everywhere and 0.65 mm at the top.\n  - Headlight top-left corner: the critics conflicted here. I moved it in to (363,526), which leaves 0.76 mm of white to the silhouette. I chose the DRL start point so the top keeps its 0.65 mm black gap.\n- Badge window (medium): the window is now centred at u+win_h/2-(R-F). Its top corners are concentric with the frame, so the frame is a uniform 0.55 mm and the 0.40 mm corners are gone.\n- R glyph (medium): rewritten with a 0.6 mm stem, 0.55 mm bars, a 0.55 mm counter and a leg notch of at least 0.52 mm.\n- Badge size: I compromised between the two critics. It is now W 4.5, F 0.55, margins 0.58, R height 2.2, which is about 4.5 x 3.9 mm above the U, wider than tall. Its top sits 0.74 mm below the grille top.\n- Mesh (medium): pitch/rib 2.2/0.8 mm, angle 26.5. Hole tips are rounded (0.3 mm), so the preview matches the print.\n  - Lower mesh starts at y 950, leaving the smooth sensor band above it plain black, as in the photo. Phase 0.375 gives 4 whole rows (38 cells).\n  - Upper mesh uses option B: phase 0.75 gives 2 staggered whole rows (8 cells). Part-cells are dropped (HOLE_MIN_FRAC upper 0.6, lower 0.5).\n- Low fixes:\n  - Crisp shield vents (smooth=0, the critic's points).\n  - Outline canard nick smoothed to (262,1045),(264,1100),(269,1140).\n  - Canard needle removed: point (478,1166)->(470,1158).\n  - Crease now ends on the front groove's centreline at (631.6,649).\n  - Added lower bumper corner crease grooves, pts (549,1110),(562,1131),(574,1151), with at least 0.6 mm of white to the grille.\n  - Nissan-variant ring tips opened, so that variant is also free of white-cap slivers under 0.5 mm.\n- Hood proportion: HOOD_K=0.85 compresses everything above the hood front line (y 645). The top drops 1.9 mm and the lamps, vents and grooves stay consistent.\n  - So that overlay.png still lines up, SPEC.ref now points to ref\\front_hood085.jpg. This is the same photo with the same compression, made by work\\warp_ref.py and recorded in SOURCE.txt.\n  - KC_HOOD_K=1 restores the uncompressed version, which I also checked on the original photo.\n\nDISAGREEMENTS / NOT DONE\n- GW is 0.62 rather than 0.6: at exactly 0.6 the checker still warns because of buffer approximation.\n- Badge is not shrunk to 3.5 mm: that conflicts with the stroke and gap minimums the printability critic asked for. 3.9 mm is the compromise.\n- Corner intakes keep 3 slots of 0.8 mm rather than 4 of 0.65 mm: that is bolder and calmer, in line with the README's 0.8+ preference.\n- Badge default stays 'gtr': both critics agree, since the real R35 has no Nissan roundel on the front. Tell the user the brief's roundel is inaccurate for this car. The 'nissan' variant (0 errors) and KC_BADGE=0 (0 errors) are still available.\n- geom.check_maps is not edited: kc/lib is read-only for me. I recommend the orchestrator add the white-cap check ('white cap', white minus grooves_white, 0.5, min_len about 0.3-0.5) for all cars. My probe is kc\\cars\\r35_gtr\\work\\chk2.py.\n\nOUTPUTS: out\\face.png, out\\overlay.png, out\\vs_g80.png, out\\build_report.json, out\\production\\r35_gtr_production_render.png, out\\classic\\r35_gtr_classic_render.png, plus STL/STEP/3MF (single and 12x plate) in out\\production and out\\classic."
+   },
+   "history": [
+    {
+     "round": 1,
+     "likeness": {
+      "score": 7,
+      "pass": false,
+      "n": 9,
+      "summary": "An enthusiast would already read this as an R35 GT-R, 2017+. The chrome V-motion 'U' grille with its thin side strips and broad flat bottom, the framed R emblem sitting on the U, the two cowl vents, the corner intakes with LED lamps and the dark corner splitter blades are all there. The trace matches the photo within a few px on the outline, headlight outline, grille, U and intakes, and there are no wrong-generation cues. The signature that matters most, the lightning-bolt DRL, is under-drawn. It is thin (0.75 mm vs about 1 mm), its outer leg sits about 0.8 mm inboard of the lens edge, and it stops about 1.4 mm short of the lower inner tip. On face.png it looks like a small Z floating in a black lamp, where the real one is a bold light guide running edge to edge that splits the lamp into two chambers. The fix is to widen the outer lens edge by about 6 px, redraw the DRL as [(364,540),(347,606),(434,616),(462,668),(479,724)] at 0.9 mm, and verify the 0.55 mm black gaps. The rest is smaller: the badge is taller and squarer than the real 3.8 x 2.8 mm emblem; the 'gtr' badge default departs from the brief but matches the photo and real car; the vents are over-smoothed; the hood looks tall next to the G80 because of the high camera; the corner-intake texture, the missing bumper blade creases, a nick in the outline at the canard, and GW 0.58 -> 0.6. Score 7/10, so it does not pass yet. The DRL fix alone should bring it to about 8."
+     },
+     "style": {
+      "score": 7,
+      "pass": false,
+      "n": 12,
+      "summary": "The R35 matches the G80 product line well, but it fails this round on one high-severity printability problem that none of the automated checks caught. What already matches the G80: straight-on symmetric crop from the cowl to the lip with no mirrors, tyres or windshield. The design is 80.5 mm wide and 41.6 mm tall, with the keyring tab at 0.52 on the viewer's left on white fender, between the lamp and the intake. The tab has a 2.0 mm ring wall and a wide neck. Other parts that work: the lightning-bolt DRL (0.75 mm, gaps to the lamp edge of 0.7 mm or more), the V-motion chrome U with its white strips, three groove lines per side at 0.58 mm, clean low-point-count shapes, and a sensible black share of 39% (the G80 is 47% because of its full-width black splitter; the MY17's body-colour lip is correct here). design_report: 0 errors, 0 repairs. slicecheck: all four parts ok, n_lost 0, top_layer_coverage 0.994/0.987/0.973/0.987. The high issue: the hood shut-line groove hugs the top-corner chamfer, leaving white strips 0.22 mm wide by 2.4 mm long. The production render shows them as a paper-thin lip. The checker never tests white minus grooves, and slicecheck only counts islands. Medium issues: the badge window is clipped square, which thins the frame to 0.40 mm at its top corners; the R glyph (0.55 mm strokes and counter, 0.40 mm notch) is too fine for a 1.4 mm recess; and the diamond mesh (pitch 1.8, rib 0.7, 131 cells) is finer and busier than both the G80 slats (2.5/1.2) and the README's 2.2-2.6 range. I rebuilt four of the fixes in memory; each worked with no new thin features and all mesh cells still built: shut line starting at (452,482), window offset u+win_h/2-(R-F), canard point (470,1158), mesh 2.2/0.8. The remaining items are optional polish that makes the face calmer. I read the spec and ran temporary analysis scripts in my own scratch folder, which I then deleted. No project files were edited. Main files involved: C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\r35_gtr\\spec.py and C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\lib\\geom.py (check_maps)."
+     }
+    },
+    {
+     "round": 2,
+     "likeness": {
+      "score": 8,
+      "pass": true,
+      "n": 8,
+      "summary": "This is a faithful, well-traced MY17+ R35 and would be recognised at a glance. The overlay lines up with the photo on the outline, the headlamp outline and the grille opening. The key generation cues are all there and correct: the lightning-bolt DRL (down the outer lens edge, across the lamp, down the inner edge, which matches the photo better than the brief's \"lower lens edge\" wording), the V-motion chrome U with its thin diagonals and wide flat bottom, the huge trapezoidal grille with dark wings, the horizontal LED lamps on top of the corner intakes (MY17-only), the dark corner blades of the Premium trim, the two shield hood vents and the converging hood creases. The designer was right to use the GT-R 'R' emblem instead of the brief's Nissan roundel; the photo shows the R35 has no roundel on the front, and the 'nissan' option is still available. No high issues. The main thing to fix is the lower mesh: it spans the full opening, but the real mesh is only the central panel behind the plate, with plain black ducts outboard. The rest is polish: the DRL outer leg could start about 1 mm higher and hug the lens edge, the badge frame is too square, the corner crease floats on the bumper, there is a small notch where the chrome U meets the diagonal strip, the fender shut line stops short, and the upper mesh is sparse. Printability is clean: 0 errors, one warning about thin black in the badge window, and the slicer check shows n_lost 0 in both builds. Files reviewed: C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\r35_gtr\\spec.py, out\\overlay.png, out\\face.png, out\\vs_g80.png and the renders. My comparison crops are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\critic_r35\\ (lowgr.png shows that the lower mesh is only in the centre)."
+     },
+     "style": {
+      "score": 8,
+      "pass": true,
+      "n": 8,
+      "summary": "The Nissan GT-R (R35, 2017+) keychain matches the G80 style and prints cleanly. Score 8/10, pass.\n\n**Checks that passed**\n- **Crop:** runs from the hood top at the windshield base down to the lip. No mirrors, tyres or windshield. Mirror-symmetric. Clean simplified shapes (15-point headlight, 32-point half outline).\n- **Size and balance:** 80.5 mm body width, 39.7 mm tall. 40% black, versus 47% on the G80.\n- **Front details:** the lightning-bolt DRL (0.9 mm stroke) is right and matches the photo. So are the V-shaped chrome U, the big mouth, the corner LED intakes with fins, the corner blades and the hood vents.\n- **Grooves:** 0.62 mm wide, same weight as the G80.\n- **Tab:** on the viewer's left, on white fender, 2.0 mm ring wall.\n- **Design report:** 0 errors before repair, no auto-repairs. One warning: a black gap under 0.6 mm at the badge.\n- **Slicer check:** all four parts ok with 0 lost features. Top-layer coverage: production black 0.996, production white 0.986, classic black 0.963, classic white 0.986.\n\n**Medium issues (not blocking, but worth fixing)**\n- **The R badge is at the resolution limit.** All its strokes and gaps are 0.55-0.58 mm. In the sliced production white part, the R loses about 0.3 mm of its stem foot and half of its leg, so it starts to read as a 'P'. Fix: a frameless bold R about 2.9 mm tall with 0.65-0.7 mm strokes.\n- **The diamond mesh is too closed.** Only 25% open in the lower grille and 17% in the upper band (4 diamonds per side), against 45% for the G80 slats. It reads as a grey plate with dots and barely shows in the production render. Fix: rib 0.7 mm, keep more part-cells, thinner rim.\n\n**Low issues**\n- Drop the two short lower-bumper crease dashes. That brings the grooves from 7 to 5.\n- Open the 0.575 mm black gap at the DRL knee, where the hood-front groove also meets the lamp.\n- Widen the 0.76 mm white wall between the headlight and the outline.\n- Raise the tab to y_frac 0.54 so it sits halfway between the intake and the headlight.\n- Optionally extend the mesh up to shrink the 410 mm2 flat black band in the lower grille.\n- Clean up the zero-area slivers in the relief geometry.\n\n**Files**\n- Spec: C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\r35_gtr\\spec.py\n- Reports: ...\\kc\\cars\\r35_gtr\\out\\design_report.json and build_report.json\n- Review crops, toolpath renders and analysis scripts: C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\review_r35\\ (pw_badge_zoom.png shows the R's missing stem foot and thin leg)"
+     }
+    }
+   ],
+   "final_issues": null
+  },
+  {
+   "id": "g20_m340i_lci",
+   "passed": true,
+   "result": {
+    "id": "g20_m340i_lci",
+    "spec_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\g20_m340i_lci\\spec.py",
+    "ref_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\g20_m340i_lci\\ref\\front.jpg",
+    "ref_url": "https://www.press.bmwgroup.com/global/photo/detail/P90479608",
+    "ref_license": "(c) BMW AG - BMW Group PressClub press/editorial image; used only as a private tracing reference, not redistributed",
+    "size_mm": [
+     88.05,
+     36.54
+    ],
+    "plate_count": 13,
+    "design_errors_before_repair": 0,
+    "design_errors_after_repair": 0,
+    "slicecheck_all_ok": true,
+    "signature_features": [
+     "Slim LCI headlights, each with two slanted inverted-L DRL elements in white (traced light-guide polygons)",
+     "Twin kidneys with a flush gloss-black frame and a recessed stretched-hex M-Sport mesh",
+     "M-Sport lower intake with 3 levels: flush frame, blades and plain black plate panel; recessed plain corner pockets; recessed wide-hex mesh strip only below the plate panel",
+     "ACC radar housing in the middle of the lower mesh: U-shaped rib frame with a raised radar cover inside",
+     "Vertical air-curtain slots running into black lower-corner wedges, plus 2 M-Sport bumper crease grooves",
+     "Bold black textured lower lip, about 2 mm tall at the centre, with chamfered ends",
+     "Hood power-dome crease pair and fender shut-line grooves (0.62 mm); the shut lines exit through the flat top edge",
+     "BMW roundel on the hood nose (d 3.8 mm)"
+    ],
+    "notes": "Revision round 1. Every high and medium issue is addressed and most low ones are done. Full build: 0 design errors before and after repair, 0 auto-repairs. Slicecheck is ok on all 4 parts with n_lost 0. Top-layer coverage: production black 0.994 / white 0.981, classic black 0.977 / white 0.981. 13 per plate. The only design warning left is the roundel's built-in 0.55 mm ring, which is the same on every BMW in the line.\n\nWHAT CHANGED\n- [HIGH] Fender groove: now pts (182,268),(182,236),(189,212),(202,192),(221,175),(245,158),(270,139),(294,119). It exits through the flat top edge, so the notch and sliver are gone. I added my own check of white after the grooves are cut: the strip between groove and silhouette is now at least 0.8 mm on the long run. The only part under 0.7 mm is the normal end taper at the exit. The upper part sits about 10 px inboard of the real shut line.\n- [MED] Headlight inner end moved 5 px outward and the inner DRL bar tip shortened to match. Headlight-to-kidney gap is now 0.90 mm (was 0.59).\n- [MED] Lower intake: the mesh now starts at y=545, and the plate/PDC band (y 453-545) stays plain flush black as part of the frame. The new mesh follows the photo: columns 5.0 mm apart with centres at -7.4 / -12.4 / -17.4 mm, so the blade cuts the outer column through its middle as on the car. Settings: a 2.9, b 2.1, h 1.1, rib 0.75, regularize 0.7. The columns next to the plate panel have their flat rib on the panel edge, and each column holds exactly 3 cells. The mesh is mirrored, and the centre seam is hidden behind the radar. Relief cells dropped from 111 to 75 (G80: 41); the kidneys account for most of the 75. Every intake wedge-gap warning is gone.\n- [MED] Lip: I measured brightness columns in the photo. The real bumper bottom is at about y 683 and the textured lip runs down to y 716. The old design had the white bumper about 10 px too low and the lip too thin. The lip top now follows the real bumper edge: 2.0 mm tall at the centre (was 1.3), 1.1-1.2 mm of white between intake and lip. The vertical step at (215,691)->(219,703) is replaced by a chamfer (224,691)->(240,704). The lip reads bold in both renders.\n- [LOW] Outer intake vertex sharpened to (332,446),(302,466),(280,504),(283,520). The bumper crease now ends at (280,504).\n- [LOW] Roundel moved to (739,241), d 3.8. Gap to the kidney is 0.61 mm.\n- [LOW] Added the ACC radar: a U-shaped frame 0.75 mm wide traced from the photo, running from the plate panel to the mesh bottom, with the radar cover raised to rib level inside it. On the photo the cover is the most visible element there, so I used this instead of the suggested plain ellipse; both were tried.\n- [LOW] Kidney mesh x_phase changed from -2.31 to -2.56, which clears all kidney rib/gap warnings. I also thickened the kidney frame at its lower outer corner from 0.42 to 0.67 mm, which the critics had not flagged.\n- [LOW] Grooves widened to 0.62 mm; at exactly 0.6 some groove warnings remained. All groove warnings are now clear.\n- [LOW] Headlight outer end moved to (121,270),(131,265),(115,282), giving 1.03 mm of white wall to the silhouette. DRL leg bottoms moved up 2 px: 0.71 mm to the lens edge, 0.67 mm between the two DRLs.\n- Black share is 51.6% (G80 47%). The height of 36.54 mm and the tab position are unchanged.\n\nWHERE I DISAGREE WITH THE CRITICS\n1. Lip: I did not extend the outline to PX_B 728. The photo shows the lip is really about 2 mm tall because it starts higher, so I raised the lip top instead. That is more faithful and keeps the silhouette.\n2. Top-corner softening (270,121),(252,127),(238,139): I tried it and reverted it. With it, the groove exit left a 0.18 mm white wedge about 1.5 mm long. With the groove exiting through the flat top, the original corner looks clean at 3x.\n3. Critic 2's regularize(0.8) with rib 0.75 removes every rib, because the opening radius of 0.39 mm is larger than half the rib. I used 0.7.\n4. I kept the real mesh's shallower hex diagonals (a-b 0.8 mm). Critic 2's a 2.6 / b 2.35 makes them almost vertical and turns the cells into a brick pattern. The 2.2 mm row pitch against the real 1.5 mm is a deliberate simplification.\n5. Putting the intake diagonal on a rib is not possible: the blade runs at 18 degrees and the hex ribs at about 54 degrees. The small leftover wedge is filled solid and carries no warnings.\n6. The kidney frame stays gloss black to match the photo and the Shadowline trim, as in round 0.\n\nOutputs are in kc\\cars\\g20_m340i_lci\\out: face.png, overlay.png, vs_g80.png, build_report.json, design_report.json, plus production\\ and classic\\ (STL, STEP, single and 13x plate 3MF, renders). The round-0 spec is backed up at kc\\cars\\g20_m340i_lci\\work\\spec_r0.py."
+   },
+   "history": [
+    {
+     "round": 1,
+     "likeness": {
+      "score": 8,
+      "pass": true,
+      "n": 6,
+      "summary": "I scored the M340i likeness 8/10, a pass: nothing high-severity, two medium issues. It reads as a G20 LCI M340i at a glance and is clearly different from the M2/M3/M4 in the line. The files are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\g20_m340i_lci\\ (spec.py, out\\overlay.png, out\\face.png).\n\nWhat matches the photo:\n- **Light signature:** the slim LCI headlight lens and the two inverted-L daytime-light strokes per side match within a few px. The legs slant correctly, the bar ends are cut at an angle and the inner element's corner tucks under the outer bar's end.\n- **Kidneys:** gloss-black frames with the centre dip at top and bottom. The brief said body-colour frame, but the photo shows black, so keep black. The stretched hex mesh matches the real cell size, about 6 columns \u00d7 4 rows per kidney.\n- **Bumper:** the single wide M Sport intake with the pentagon corner pockets and the diagonal inner blades matches. So do the vertical air curtains that run into the black corner wedges, the two bumper crease lines and the thin lower lip.\n- **Silhouette:** outline and proportions (about 80.5 \u00d7 36.5 mm) match the photo.\n\nMedium issues:\n1. The lower centre opening is filled with honeycomb for its full height. On the real car the top ~43% is a smooth black bar that holds the plate and parking sensors, with the mesh only below it. This is the biggest likeness gap: it makes the mouth read like a full-height radiator.\n2. The upper part of the shoulder groove runs almost on the silhouette edge. It leaves a white sliver under 0.5 mm, which breaks the print rule, and its end cuts a notch into the top-left corner.\n\nLow issues: the outer corner of the big intake is too rounded, the roundel sits 0.5 mm high, the radar housing in the lower mesh could be added (optional), and there are sub-0.6 mm slivers in the mesh relief (the slicer check still shows nothing lost). Each issue above has its fix in px."
+     },
+     "style": {
+      "score": 7,
+      "pass": false,
+      "n": 8,
+      "summary": "Score 7/10, fail. The only thing blocking a pass is the high fender-groove sliver, and one point change fixes it. Otherwise the M340i LCI design is well traced and printable.\n\n**What already matches the G80:**\n- The overlay lines up closely with the photo.\n- It is perfectly symmetric (CX 739).\n- The crop is correct: hood up to the windshield base, no mirrors, no tyres.\n- The LCI signature is recognisable: two slanted inverted-L DRLs, ~0.6-0.8 mm wide, and stretched-hex kidneys.\n- The keyring tab is on the viewer's left at 53% height on the white fender. The neck is about 8 mm, the ring wall 2.0 mm, and the hole 4.5 mm.\n- Balance is 50.3% black against the G80's 46.5%, which is acceptable.\n\n**Printability:**\n- design_report: 0 errors and 0 auto-repairs.\n- Slicecheck is OK for all four parts, with n_lost = 0 everywhere.\n- Top-layer coverage: production black 0.994, production white 0.978, classic black 0.977, classic white 0.978.\n- There are no isolated specks. The smallest white islands are the badge quadrants at 1.43 mm\u00b2; the DRLs are 7-9 mm\u00b2.\n\n**Main problems:**\n1. **High:** near each top corner, the fender groove runs alongside the edge and leaves a white sliver 5.3-5.8 mm long and under 0.3 mm wide. It is confirmed in the production white STL. The checker misses it because it measures white before the grooves are cut.\n2. **Medium:** the white fin between the headlight and the kidney is only 0.59 mm wide.\n3. **Medium:** the face is busier than the G80. It has 111 relief cells against the G80's 41, with 0.7 mm ribs and a 1.8 mm row pitch. Part of that is hex mesh drawn behind the number plate, where the real car has a plain panel.\n4. **Medium:** the 1.3 mm lip reads as a shadow line next to the G80's bold splitter.\n\nSmaller relief slivers remain as warnings. The main fixes above were tested against the pipeline (0 errors each); none of the files were edited.\n\nThe zoomed crops and debug panels I used are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\_rev_g20\\ (for example z_fender_top.png, z_kidney.png and z_intake_corner.png)."
+     }
+    },
+    {
+     "round": 2,
+     "likeness": {
+      "score": 8,
+      "pass": true,
+      "n": 6,
+      "summary": "This reads clearly as a G20 3 Series LCI in M340i trim, and there are no high-severity issues. All the signature elements are present and correctly placed: slim notch-less LCI headlights, two inverted-L DRLs per side with the right slant, bar thickness and chamfered corners, and wide joined kidneys with a centre V-notch and a large stretched honeycomb whose cell size (3.66 x 2.0 mm) and column phase match the photo. The M Sport lower intake is also right: the corner pockets have the correct chamfered outer vertex, there are air-curtain slots with black wedges, the bumper creases run to the intake vertex, the ACC radar housing sits in the lower mesh, and the roundel is on the nose. Proportions match the photo (80.5 x ~36.5 mm body, width:height about 2.2), the overlay lines up to within a few pixels almost everywhere, and the design is unmistakably different from the vertical-kidney G80/M2/M4 fronts. On the kidney frame, the photo shows gloss black rather than the body colour the brief asks for; the design correctly follows the photo. What remains is refinement. The lower hex mesh is too coarse vertically (3 rows instead of about 4.5); fixing that matters most. The DRL legs stop about 0.5 mm short of their real length. Smaller points: a white gap between headlight and kidney that the real car does not have, corner-intake blades that do not stand out from the plate band, an outer hood shut line drawn up to about 2 mm inboard of the real one, and a slightly small roundel. Score 8/10, pass."
+     },
+     "style": {
+      "score": 8,
+      "pass": true,
+      "n": 9,
+      "summary": "The M340i (G20 LCI) keychain passes: it is clearly part of the G80 product line and should print cleanly. Score 8/10, no 'high' issues. I edited no files.\n\n**Style:**\n- **Crop:** correct. It runs from the cowl to the lower valance, with no mirrors, windshield or tyres, it is mirror-symmetric, and it is 80.5 \u00d7 36.5 mm.\n- **Light signature:** correct. Two inverted-L DRL elements with a thin top bar (0.62 mm) and a thicker slanted leg (about 0.9 mm), matching the photo.\n- **Grille mesh:** a stretched hex with 2.0 mm rows and 0.7 mm ribs, a similar scale to the G80 slats at 2.5 mm pitch. Ribs cover 49% of the kidney recess against 55% on the G80.\n- **Grooves:** 6 lines (fender shut lines, hood creases, bumper crease), which is the maximum the guide allows.\n- **Keyring tab:** on the viewer's left at 0.53 of the height, on the white fender between the headlight and the air curtain. The neck is about 8 mm tall and the ring wall about 1.9 mm.\n- **Black/white balance:** 52% black against the G80's 47%. The big lower intake (plate band, corner pockets, hex mesh, radar box) is the heaviest area, but it is true to the car and reads cleanly. The detail level is comparable to the G80, a little busier only in the lower intake.\n\n**Printability:**\n- **Reports:** design_report has 0 errors, before and after auto-repair. The only warnings are the 0.55 mm roundel ring, which the G80 also has.\n- **slicecheck:** status ok for all four parts, n_lost = 0 everywhere, top_layer_coverage 0.994 / 0.981 (production) and 0.977 / 0.981 (classic). Minimum layer coverage is in line with the G80.\n- **No specks:** the smallest white islands are the badge quadrants (1.43 mm\u00b2), then the DRLs (6.9 / 8.5 mm\u00b2).\n- **Narrow gaps:** badge to kidney 0.61 mm, DRL to DRL 0.67 mm, DRL to lamp edge 0.71 mm, lamp to kidney 0.90 mm, kidney to intake 0.97 mm, intake to lip 1.10 mm.\n\n**Main finding (medium):** the checker misses one real problem. The flush-black frame around the recessed lower-intake mesh and corner pockets is only 0.38-0.55 mm wide: along about 50 mm of the mesh bottom, and at 0.46 mm above each pocket. check_maps doesn't catch it because it measures flush and recessed black as one region. I tested new points for INTAKE_MESH, INTAKE_POCKET and RADAR in memory: they give 0 errors and a frame of at least about 0.7 mm. Don't fix this with `offset`, because it opens a seam on the centreline.\n\n**Other findings (all low):** a small sliver cell in each kidney mesh, the fender-groove spike at the top corners, the crease groove end caps, the badge sitting slightly low, the lip end tips, hood grooves notching the top edge, a slight wobble in the upper fender outline, and the roundel quadrant orientation (a line-wide question). I tested the fixes for the fender groove, crease, badge and lip in memory together with the intake fix, and they clear their slivers.\n\nMy analysis scripts and zoom crops are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\_rev_g20_r2. The best before/after views are thin_frame.png and fixed_intake.png."
+     }
+    }
+   ],
+   "final_issues": null
+  },
+  {
+   "id": "camaro_zl1",
+   "passed": true,
+   "result": {
+    "id": "camaro_zl1",
+    "spec_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\camaro_zl1\\spec.py",
+    "ref_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\camaro_zl1\\ref\\front.jpg",
+    "ref_url": "https://commons.wikimedia.org/wiki/File:2017_Camaro_ZL1.jpg",
+    "ref_license": "CC BY 2.0 (Yahya S., Flickr, 2017 auto show)",
+    "size_mm": [
+     87.99,
+     40.09
+    ],
+    "plate_count": 12,
+    "design_errors_before_repair": 0,
+    "design_errors_after_repair": 0,
+    "slicecheck_all_ok": true,
+    "signature_features": [
+     "Lower grille as 4 wavy bars measured on the photo: they dip in a V at the centreline, run flatter, kink down about 1.25 mm, then rise to the frame. The kinks sit on a slanted line parallel to the grille's side walls. Bars are 0.95 mm wide at a 2.8 mm pitch.",
+     "Hollow ZL1 flowtie: a white bowtie outline 0.62 mm wide, about 9.3 x 3.0 mm, with a recessed black inside, on the black upper-grille strip. It sits behind SHOW_BADGE; BOW_STYLE='solid' gives the old solid bowtie.",
+     "J-shaped white DRL light guide: tapered start at the lamp's sharp top-outer corner, 0.75 mm down the outer end, 1.0 mm along the lower edge, blunt diagonal end at the turn-signal piece.",
+     "One continuous black band for the slim angry headlamps and the upper grille strip, which dips under the badge.",
+     "Carbon hood extractor on the windshield-base edge with angled fin sides and a shallow V front edge; raised-panel grooves in front of it.",
+     "Slanted corner brake-duct intakes with vertical white LED blades.",
+     "Full-width black splitter with wrapped-up corner end plates.",
+     "Grooves (0.62 mm): hood shut line, two raised-panel edges, two fascia cheek creases."
+    ],
+    "notes": "Round 3. Result: 0 design errors and 0 warnings before repair, no auto-repairs. All 4 slicecheck parts are ok with n_lost 0. Top-layer coverage: production black 0.990, production white 0.984, classic black 0.965, classic white 0.984. Size is 87.99 x 40.09 mm (was 41.10). The plate now holds 12 per build (was 11).\n\nHIGH (grille direction), fixed by rebuilding the relief:\n- I replaced the hexagon lattice with custom wavy bars (bar_profile / bar_line in spec.py).\n- I measured every bar on CLAHE and gamma-boosted crops of the photo (work/r3/grille_*_grid.png). Every bar has the same profile and is lowest at the centreline, so the rows now dip into a V as they should:\n  - a rounded V rising 0.27 mm/mm out to |x| 8.2 mm\n  - a flatter run at 0.10\n  - a kink down of 1.25 mm over 2.2 mm\n  - a rise of 0.27 mm/mm to the frame\n- The kink positions follow a slanted line (0.21 mm per mm of height), parallel to the grille's side walls, as on the real grille. The photo shows the kinks at |x| about 12.8 mm (top bar) to 11 mm (bottom bar).\n- There are 4 bars (PITCH 2.8, RIB 0.95, BAR_Y0 7.85), with a large V-shaped slot above the top bar, as in the photo.\n- work/r3/ovg_grille.png shows the design bars lying on the photo's glossy bars.\n\nMEDIUM (bars vs honeycomb), fixed: the bars are now long continuous wavy bars, not cells.\n- Partial disagreement: I added no ties between the bars. The photo shows the bars nested parallel and never touching, even at the kinks. Ties would bring back the cell or mesh look.\n\nMEDIUM (solid border wedges; both critics), fixed:\n- Gaps are opened at CLIP_MIN_W 0.7, and scraps under 0.6 mm\u00b2 are filled.\n- I tuned the bar phase and the flatter-run slope so no bar runs close to the frame along its length.\n- Measured result: widest solid rib 1.42 mm (was 3.55), rib area wider than 2 mm is 0 and wider than 1.5 mm is 0. The frame is 0.7 mm everywhere. The narrowest gap is 0.73 mm.\n- The ribs now overlap the recess wall by 0.05 mm. This removes the zero-width relief-gap slivers that the pipeline's snapped region clip used to leave.\n- Photo-phase trade-off: the true bar phase (bottom bar at 6.9 mm, pitch 3.0) merged the bottom bar into the bottom frame (solid patch about 2.3 mm) and put the top bar's flatter run on the top frame. I shifted the bars about 0.9 mm up, which keeps the slots clean.\n\nDRL, low issues from both critics:\n- It now starts at the lamp's sharp top corner, (207,585) px, tapering to 0.62 mm.\n- It ends in a blunt diagonal cut (DRL_CUT) where the chrome turn-signal piece cuts the lit guide, instead of a round point.\n- Width compromise: 0.75 mm on the vertical run and 1.0 mm peak along the lower edge. Critic 2 asked for a 0.95 peak (G80 line weight); critic 1 measured 1.2-1.3 on the photo, which is overexposed bloom.\n- The lamp band's lower-outer corner now sits about 0.3 mm from the photo edge (was about 0.7).\n- The band's top-outer corner is sharpened to (192,552),(179,571).\n\nOther low issues, applied as the critics suggested:\n- Grille top-outer corners follow the photo's rounded chamfer: (580,958),(556,975),(541,1010),(538,1040),(542,1065).\n- Extractor corner uses (915,150),(903,165),(898,196), so it meets the outline cleanly.\n- (334,262) is prepended to HOOD_LINE, so the groove runs off the edge.\n- CHEEK starts at (190,812), about 6.7 mm from the tab centre.\n\nBadge (critic 1, optional): changed to the ZL1 flowtie outline.\n- The black inside is a relief pocket with no ribs, so it is recessed like the real hollow flowtie.\n- It also stays black in face.png. The lib's painter otherwise erases a black island inside a white ring.\n- The upper strip is 0.1 mm taller at the badge (738 to 877 px), which keeps at least 0.63 mm of black around it.\n\nHeight (critic 1, low), partly applied:\n- KA/KB changed from 0.50/0.66 to 0.42/0.58, giving 40.09 mm.\n- I did not use 0.40/0.55 (39.8 mm): it squeezes the extractor into a thin band (work/r3/k_stack.png). Only the hood zone is compressed; the fascia is untouched.\n\nTab, split between the critics: TAB_Y_PX 785 (27.1 mm, 67.6% of the new height).\n- Critic 1's 800 px (66.5%) brings the tab's lower fillet within about 0.75 mm of the corner intake and LED-blade top (critic 2's concern). See work/r3/z_tab_cmp.png.\n- The white fender zone between the lamp end and the intake sits high on this car, so 65% is not reachable cleanly.\n\nFiles, all in camaro_zl1:\n- Round-3 spec copy: work/spec_r3.py\n- Round-2 start: work/r3/spec_r2_start.py\n- Analysis images and scripts: work/r3/ (ovg.py, zoom.py, zoomfix.py, ribstat.py)\n- Unwarped trace check: work/overlay_unwarped.png (KC_NOWARP=1)\n- The old 11x plate 3MFs were moved out of out/ into work/r3/stale_r2_outputs/.\n- Outputs: out/face.png, out/overlay.png, out/vs_g80.png, out/production/*, out/classic/*, out/build_report.json"
+   },
+   "history": [
+    {
+     "round": 1,
+     "likeness": {
+      "score": 7,
+      "pass": false,
+      "n": 8,
+      "summary": "The Camaro ZL1 design doesn't pass: likeness 7/10 with one high issue. It already reads as a 6th-gen Camaro ZL1. The lamps are slim, wedge-shaped and flow into the black upper strip, and the J-shaped headlight light strip (DRL) is traced accurately; the overlay matches the photo within a few px on both sides. The huge lower grille, the slanted corner intakes with their vertical light blades, and the splitter with its wrapped corner plates also match the photo well.\n\nIt fails on the hood (the high issue). Photo sampling shows the black trapezoid was traced over red painted hood (centreline y 295-445). The real carbon extractor (y 145-292) sits above the traced top edge, so it is cut off. The result looks like a windshield notch, and the raised centre panel with its two creases is lost.\n\nSecondary problems:\n- **Too tall:** 44.7 mm vs the G80's 38 mm. The low Camaro should be flatter, but the close, elevated photo inflates the hood zone.\n- **Grille:** the hex relief uses a weak uniform V-bend of 0.085. The real bars form a sharp stacked V at the centre (slope about 0.26), so the grille reads as generic honeycomb.\n- **Badge:** the bowtie is too flat (4:1 vs the real 3.25:1).\n- **Light strip:** its lower run is too thin (0.75 vs 1.0-1.26 mm measured).\n\nFixing the hood, the height, the grille V and the bowtie should bring it to 8-9.\n\nFiles reviewed (not edited): C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\camaro_zl1\\spec.py, the overlay.png, face.png, the two 3D renders and vs_g80.png in camaro_zl1\\out, and the reference photo ref\\front.jpg. Scratch crops for this review are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\critic_zl1\\."
+     },
+     "style": {
+      "score": 7,
+      "pass": false,
+      "n": 8,
+      "summary": "The Camaro ZL1 keychain fails round 1 because of one high issue: the hood vent is traced in the wrong place. Printability is clean.\n\n**Printability:** design_report shows 0 errors before repair, 0 warnings and no auto-repairs. Slicecheck is ok for all four parts: n_lost is 0 everywhere, and top_layer_coverage is 0.991, 0.984, 0.963 and 0.984. I rebuilt the colour maps and found no specks and nothing under 0.6 mm except the pointed tips of the relief cells, which are harmless. The smallest white island is the LED blade at 4.46 mm\u00b2.\n\n**Style consistency with the G80:** mostly good.\n- Colour balance is almost identical: 46.2% black against 46.8% on the G80.\n- The DRL stroke (0.75 mm) and groove (0.62 mm) match the G80 line weights.\n- Groove length is comparable (one 69 mm hood shut line against the G80's 70 mm total).\n- The relief pitch (about 2.7 mm) is close to the G80's.\n- The tab sits at the G80's height fraction.\n- Symmetry and the tracing of the lamps, DRL J-shape, lower grille, corner intakes and splitter are good.\n- The design keeps the ZL1's recognisable features: the strip that runs into the lamps, the J-shaped DRLs, the huge lower grille, the corner LED blades, the splitter end plates and the bowtie.\n\n**Main defect (high):** the outline's top edge at the centre was traced along the front edge of the real carbon extractor, taken to be the windshield base. So the real extractor is cropped away and a black vent is drawn over painted hood instead. The top edge dips between two fender 'ears' where the real cowl line is flat, and the vent is too tall and sits about 4.6 mm too low.\n\n**Other issues:**\n- **Medium:** the keychain is 44.7 mm tall against the G80's 38 mm, because the photo was taken close and from above the hood. The fix needs y scaled in the spec's own mm() function too, because the 'geom' primitives ignore the spec-level y_scale.\n- **Low:** a thick rib patch at the centre of the grille pattern (HEX_Y0=1.7 fixes it), ribs thinner than the G80's slats (RIB=1.0), tight bowtie margins, a 0.66 mm white rim on the outer edge, a crowded tab neck, and two small jags on the lamp outline.\n\nI did not edit any files."
+     }
+    },
+    {
+     "round": 2,
+     "likeness": {
+      "score": 7,
+      "pass": false,
+      "n": 10,
+      "summary": "The trace is faithful to the photo. The outline, the black band of lamps and slim upper grille with a correct J-shaped LED DRL, the solid bowtie, the trapezoid lower grille with its V lower edge, the corner brake ducts with vertical LED blades, the splitter with end plates, the carbon hood extractor, the raised-panel grooves and the cheek creases all line up with the overlay. At a glance face.png reads as a 6th-gen Camaro ZL1. The one clear defect is the grille relief texture: _chevron subtracts _vdy from an upward y axis, so the rows arch up at the centre ('\u039b', confirmed from the computed cell centroids and the face zoom). The real ZL1's 5 wavy bars dip into a V at the centreline that follows the grille's lower edge. Outside |x| 8.5 mm the cells are also flat short hexagons, so the grille reads as honeycomb or scales rather than wavy bars, and dropped edge cells leave solid 3-4 mm grey wedges at the grille's lower sides. Fixing the sign, extending the bar profile (plateau, step, outer rise), stretching the cells and relaxing the clip thresholds should bring it to about 8-9. Smaller issues: the DRL's outer tip is rounded and a little short, its inner end tapers to a point where the real one is blunt, the lamp's outer-lower corner sits about 0.7 mm low, the grille's top corners are slightly boxy, the height is 41.1 mm against the G80's 38 mm, the tab is at 68 % height, and the bowtie could optionally be an outline 'black bowtie'."
+     },
+     "style": {
+      "score": 8.5,
+      "pass": true,
+      "n": 5,
+      "summary": "The Camaro ZL1 keychain looks like part of the G80 product line and should print cleanly. There are no high issues, so it passes at 8.5/10. One medium fix is worth doing: the grille pattern leaves thick solid patches at its edges.\n\n**Printability**\n- design_report.json has 0 errors before repair, no warnings and no auto-repairs.\n- build_report.json slicecheck is ok for all four parts, with n_lost = 0 everywhere. Top-layer coverage is 0.993 / 0.983 (production black / white) and 0.970 / 0.983 (classic).\n- In the production white cap (white minus grooves) nothing is thinner than 0.6 mm. The only strip under 0.8 mm is the 0.75 mm white fender edge beside each LED blade, which is still better than the G80's own 0.25-0.5 mm edges.\n- There are no isolated specks. The smallest white islands are the LED blades at 5.86 mm\u00b2 (0.95 mm wide).\n- There is one zero-width sliver polygon in the relief at x = +/-25.4..26.5, y = 15.3..19.9 mm. It is harmless to the slicer and comes from the pipeline's precision snapping, not from the spec; my two attempts to fix it in spec.py did not remove it.\n\n**Style against the G80**\n- Black/white balance is 47/52 %, the same as the G80's 47/53 %.\n- The level of detail is comparable. There are 5 groove lines at 0.62 mm: the hood shut line, the two raised-panel edges and the two cheek creases, within the 2-6 guideline.\n- The grille pattern has a 3.0 mm row pitch, about the same scale as the G80 slats, with 0.9 mm ribs.\n- The crop is right: from the windshield base (the extractor reaches the cowl) to the splitter, with no mirrors or tyres. The design is mirror-symmetric, except the bowtie, which is point-symmetric like the real badge.\n- I rendered the trace without the hood warp over the photo and it follows the car closely.\n- The shapes are clean and the tab is on white fender.\n- Height is 41.1 mm against the G80's 38.0. The splitter is as wide as the fenders in the photo, so perspective barely inflates the fascia; the extra height is the ZL1's genuinely tall front. The hood is already compressed, so I accepted it.\n\n**Remaining fixes**\nAll five fixes below are spec.py edits. I tested each one on an in-memory copy of spec.py: each gives 0 errors and 0 warnings.\n1. **Grille (medium):** set CLIP_MIN_W, CLIP_MIN_AREA = 0.75, 0.15 and HEX_Y0 = 1.9. This removes the solid patches up to 3.55 mm wide; the widest drops to 1.81 mm.\n2. **DRL (low):** the white stroke is about 50 % bolder than the G80's. Lower DRL_WIDTHS to a 0.95 mm peak.\n3. **Cheek groove (low):** it starts only 1.5 mm from the keyring tab. Move CHEEK's first point to (190, 812) px.\n4. **Extractor corners (low):** replace three HOOD_INSERT points to remove a thin white sliver at x = +/-14.2 mm.\n5. **Hood line ends (low):** prepend (334, 262) to HOOD_LINE so the groove runs cleanly off the edge.\n\nI edited no project files. My analysis scripts and zoomed renders are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\review_zl1\\ (exp.py and exp2.py hold the fix tests)."
+     }
+    },
+    {
+     "round": 3,
+     "likeness": {
+      "score": 8,
+      "pass": true,
+      "n": 6,
+      "summary": "Score 8/10 and a pass: no high-severity issues. The keychain reads straight away as a 6th-gen Camaro ZL1.\n\nWhat is right, checked pixel by pixel against the photo:\n- The slim, angled lamps flow into the slim upper grille strip. Lamp top and bottom edges are within about 5 px at x=260, 460, 580 and 700.\n- The J-shaped DRL (the car's light signature) is right: the stroke's centre and its 0.75-1.0 mm width match the lit light guide, and the blunt diagonal end sits where the turn-signal piece is.\n- The Chevrolet bowtie has the correct forward lean: a white outline with a black interior, like the black chrome-edged badge in the photo.\n- The huge trapezoid lower grille matches, with 4 relief bars in the ZL1 profile (V at the centre, a flatter run, a step down, then a rise outward) and the kinks slanting parallel to the side walls.\n- The corner intakes with their vertical LED blades, the splitter with the wrapped-up corner plates, the hood shut line, the raised hood panel edges and the carbon extractor are all present and traced accurately.\n- The hood-zone vertical compression gives about 5.5 mm of hood above the shut line, which is plausible for a true straight-on view.\n- There are no wrong-generation cues, and the style matches the G80.\n\nWhat is left is polish:\n- **Upper grille strip (medium):** below the bowtie its lower edge sags too low for about 28 mm, so the centre of the strip is about 1 mm too deep. The fix confines the dip to the bowtie's own width.\n- **Lower grille top edge:** about 0.6 mm too high and too flat toward the centre.\n- **Grille bars:** the V bottoms are rounded where the photo shows sharp arrow points.\n- **Lamp outer top corner:** a small rounded bump replaces the sharp swept-up corner.\n- **Extractor corners:** a small white spike where the outline steps up at each outer corner.\n- **Keyring tab:** at 68% of the height it is a little high and crowds the DRL; about 60% is better.\n\nNo files were edited. The crops I used are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\critic_zl1\\."
+     },
+     "style": {
+      "score": 8,
+      "pass": true,
+      "n": 6,
+      "summary": "Camaro ZL1, round 3: consistent with the G80 product line and clean to print. Score 8/10, pass: no high issues and slicecheck ok on all four parts.\n\nPrintability:\n- design_report shows 0 errors before repair, 0 auto-repairs and 0 warnings.\n- slicecheck is ok on all four parts with n_lost 0. Top-layer coverage is 0.99 / 0.984 for the production black / white parts and 0.965 / 0.984 for the classic black / white parts. The low minimum-layer figures (0.39 and 0.47) are sparse-infill layers, which is expected.\n- I rebuilt the maps in memory at 0.8 mm minimum length and found no black or white feature, groove, rib or gap under 0.6 mm. The only local exception is the 0.57 mm black margin at the bowtie centre block.\n- There are no specks. The smallest white islands are the LED blades at 5.9 mm\u00b2 (the G80 has 0.64 mm\u00b2 islands).\n- Other measured widths: fender rim beside the intakes 0.75 mm, DRL-to-body gap 0.62 mm, blade-to-body gap 0.60 mm.\n- spec.py was saved 47 s after the full build, so I checked the builds are not stale. The current spec gives the same production white cap area (1480.34 mm\u00b2) and black volume (4359.6 vs 4359.8 mm\u00b3) as the STLs.\n\nStyle match with the G80:\n- Black/white balance is 48% black, against 46.5% for the G80.\n- The DRL J-stroke runs 0.62 to 1.0 mm, matching the G80's 1.0 mm DRL maximum. Its shape follows the lit guide in the photo.\n- The level of detail is similar to the G80: extractor, one hood line plus two panel edges, a continuous lamp/strip band, the flowtie, 4 wavy bars measured on the photo, corner intakes with LED blades, and the splitter with end plates.\n- The crop runs from the windshield base to the splitter, with no mirrors or tyres. The design is mirror-symmetric, and the bowtie is correctly point-symmetric with the '/' lean.\n\nMain gap: the grille ribs are thinner and sparser than the G80 slats (40% vs 55% fill), and they miss the chamfered rib tops in the classic build. RIB 1.3 / RIM 0.9 fixes both; I checked this in memory and it gives no thin gaps.\n\nMinor points:\n- 0.57 mm black gap at the bowtie (BOW_H 2.8 fixes it).\n- The extractor sits flush on the top edge and reads as a step-down notch in production.\n- The tab is at 67.6% of the height, above the 50-65% guide.\n- The grooves are about twice the G80's total length.\n- A couple of small traced lumps on the lamp corner and the blade surround.\n\nNo project files were edited. I rendered some temporary crops outside the car folder and deleted them afterwards."
+     }
+    }
+   ],
+   "final_issues": null
+  },
+  {
+   "id": "ct5v_blackwing",
+   "passed": null,
+   "result": {
+    "id": "ct5v_blackwing",
+    "spec_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\ct5v_blackwing\\spec.py",
+    "ref_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\ct5v_blackwing\\ref\\front.jpg",
+    "ref_url": "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/1111000/600/1111655.jpg",
+    "ref_license": "(c) CarBuzz / Valnet editorial photo, all rights reserved. Used only as a private tracing reference; not redistributed and not part of the product.",
+    "size_mm": [
+     87.83,
+     36.72
+    ],
+    "plate_count": 13,
+    "design_errors_before_repair": 0,
+    "design_errors_after_repair": 0,
+    "slicecheck_all_ok": true,
+    "signature_features": [
+     "Stacked vertical light signature: a curved '(' LED blade (1.2 x 4.6 mm) at the outer end of each slim headlamp, directly above the tall tapered DRL blade (9.9 mm) in each plain-black corner housing",
+     "Blackwing scale mesh: wide, flat staggered hexagon cells (3.4 x 2.1 mm, 1.6:1 like the photo, 0.7 mm walls) in the shield upper grille and the lower centre grille, inside a solid border",
+     "Quartered Cadillac crest (10.0 x 4.3 mm): white shield with a black horizontal quartering line and dark upper-right / lower-left quarters, on a flat black collar",
+     "V-shaped lower fascia: one wide lower opening split by two bold 1.15 mm diagonal dividers into side intakes (3 horizontal louvres each) and the centre mesh",
+     "Carbon splitter with a ~1.1 mm body-colour band above it, body-colour diagonal 'fangs'",
+     "5 grooves: hood front shut line dropping into the lamps, hood/fender shut lines running into the cowl corners (G80-style), two hood power-dome creases",
+     "One parking-sensor ring per side"
+    ],
+    "notes": "Revision round 1. I used 1 full build. It gave 0 design errors before repair, 0 auto-repairs and 0 relief warnings (round 0 had 23). The only remaining warnings are the 5 grooves, which are 0.58 / 0.55 mm on purpose (style guide 0.5-0.6). All four slicecheck parts are ok with n_lost 0. top_layer_coverage is 0.992 / 0.983 for production black / white and 0.972 / 0.983 for classic. The plate holds 13. Colour split is white 51.6 % / black 47.8 %. Relief area dropped from 863 to 751 mm2 (G80: 643). I tested the badge-free build (KC_BADGE=0): 0 errors, 0 non-groove warnings. vs_g80.png is regenerated. Round-0 spec and all working crops are in ct5v_blackwing/work/r1.\n\nWHAT CHANGED\n1. Headlamp LED bar (medium, likeness). The bar is now a curved '(' blade that follows the lens outer edge and leans inward at the top. The flat LAMP_TOP cut is gone, so the lens rises to a point at (608,955) where the fender groove starts, and I widened the lens top inward by about 7 px so the bar fits. The bar is 1.2 mm wide and 4.6 mm tall (was 3.8), sits over the bumper blade, and has a 0.6 mm black rim (0.63 mm on the body side). Lamp-to-blade ratio is now about 1:2.15 (was 1:2.5).\n2. Mesh (medium, from both critics). Cells are now P 3.4 / V 1.6 / rib 0.7: flat staggered hexagons at the photo's measured 1.6:1 cell aspect. There are 79 cells (52 upper, 27 lower) instead of about 190. Every hole keeps at least 0.85 mm of rib to the recess wall, so no ragged cut cells remain, and MIN_CELL is 1.3. The upper grille's top row sits complete under the frame, and the lower rows are centred vertically. The mesh is exactly mirror-symmetric.\n3. Crest (medium, likeness; low, style). The slit through the V tip is gone. Instead, a black horizontal quartering line runs across the crest and out through both flanks, with the upper-right and lower-left quarters black. It keeps the real crest's point symmetry and creates no black island. The crest is drawn 8 % larger (10.0 x 4.3 mm) so the two windows come out about 3 x 1.2 mm each. The wing tips were blunted by hand to about a 0.4 mm end. There is a 0.9 mm collar, and a flat black bridge above the crest replaces the sliver row of mesh that was there.\n4. Grooves.\n   - The hood front line now enters the lamp steeply, so the white knife wedge is gone.\n   - The fender line moved about 1.2 mm inside the edge and runs into the cowl corner at (806,822), like the G80's fender lines.\n   - Two mirrored hood power-dome creases were added from the cowl (1146,800) to (1240,990). They end about 1 mm above the shut line and follow the reflection break visible in front.jpg. That makes 5 grooves in total.\n   - GROOVE_W is 0.58 and the creases are 0.55.\n5. Small printability fixes.\n   - SENSOR moved to (1078,1404) with r_mm 0.95.\n   - The lamp tail tip moved to (843,1097) / (840,1104).\n   - DIV_W is 1.15 with a 0.5 mm flat margin on each side.\n   - The LOWER bottom was raised so the white band above the splitter is at least 1.1 mm.\n   - The LOWER top edge is now flat at y 1448 and its bottom centre flat at 1646. That moves the edge 0.3 mm at most and stops a zero-width crack the pipeline left along it.\n   - The side louvres are coarsened to pitch 2.3 / rib 0.95, which gives 3 per side.\n\nWHERE I DISAGREED OR COMPROMISED\n- Corner vents: critic 2 said to remove the vent relief; critic 1 said to extend the slats to the blade. I followed critic 2 (medium issue): the vents are plain black like the G80's, which leaves the white blade as the only feature in the corner and makes it the signature element. Critic 1's flat-strip complaint no longer applies.\n- Mesh numbers: I did not use critic 1's V 1.35 or critic 2's V 2.05.\n  - At V 1.35 the flat holes have end edges shorter than what the pipeline's own mitred 0.31 mm re-regularisation removes, so it re-grows their tips and merges the cells into zigzag bands. I tested this.\n  - V 2.05 is too coarse against the photo.\n  - With V 1.6 the upper grille has 5-6 rows and the lower 3, so fewer than critic 1's roughly 9.\n- LAMP_MARGIN is 0.75, not 0.9. At 0.9 the LED bar top drops about 1 mm, which works against critic 1's medium issue; 0.75 is still above the 0.6 preferred minimum.\n- LED bar height is 4.6 mm, not 5.2-5.5. Above y about 1000 px the lens is narrower than the white margin, the two black rims and a 0.6 mm bar added together.\n- Crest: I tried critic 1's flank notches, but at print scale they read as two stray dashes. The quartering line reads better. I blunted the wing tips by hand because critic 2's 0.25 mm opening cut the crest down to 8.5 mm wide.\n\nPIPELINE NOTE FOR OTHER CARS\nexport.design always calls geom.repair_min_width, and that re-runs geom.regularize (mitred 0.31 mm opening) on every relief, even when nothing was repaired. My own check tools, which skip that step, did not show its effect. It can:\n- merge flat or short-edged cells;\n- fill holes whose rib to the recess wall is under about 0.8 mm;\n- leave zero-width cracks.\nThe effect only shows in face.png and the builds. I designed around it: holes are plain hexagons, pre-opened the same way, and kept at least 0.85 mm from the recess wall. It now changes this car by only 0.02 mm2 in both badge modes. Other cars with custom mesh may be affected.\n\nThe style folder has only 4 of the 6 listed references: g80_user_keychain_fusion_screenshot.png and g80_user_keychain_iso.png are missing."
+   },
+   "history": [
+    {
+     "round": 1,
+     "likeness": {
+      "score": 7,
+      "pass": false,
+      "n": 7,
+      "summary": "Scored 7/10, so it does not pass (the bar is 8 with no high issues). The tracing itself is good. The outline, the sloping fender shoulders, the slim headlamps with their inner tips at the grille corners, the shield grille and the tall corner housings all land within about 10 px of the photo. So do the corner light blades (y 1212-1460, which is correct), the body-colour fangs, the lower intake, the splitter and the sensor rings. This is the correct pre-facelift 2022-24 face, and next to the G80 it clearly belongs to the same line. Three medium issues keep it from reading instantly as a Blackwing: (1) The headlamp's vertical LED bar is a short straight pill (about 3.8 mm) clipped by the lens corner. On the car it is a curved blade of about 5.5 mm, so the top half of the stacked vertical light is weak. (2) The grille mesh is a round-cell honeycomb (about 1.05:1, 7 rows) where the car has a wide, flat scale mesh (about 1.6:1, tightly stacked rows). (3) The crest reads as a lopsided flag on a pole: a big upper-right window, a thin lower-left wedge and a black slit to the tip, instead of a balanced quartered crest. The low issues are the missing hood creases the brief asked for, 23 thin relief slivers, lower dividers that are too faint to carry the V-shaped lower fascia, and a flat black strip between the corner blade and the vent slats. Fixing the three medium issues should bring it to 8+. No files were edited; working crops are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\crit_ct5\\."
+     },
+     "style": {
+      "score": 7,
+      "pass": false,
+      "n": 10,
+      "summary": "Scored 7/10, so it does not pass the 8+ bar, but there are no 'high' issues and every slicecheck part is ok. This is a faithful, recognisable CT5-V Blackwing. The crop is correct (hood up to the cowl, no mirrors, tyres or windshield), the halves mirror properly, and the colour balance matches the G80 (white 50.7% / black 48.7% against 53/47). The light signature is right (vertical LED bar in the lamp plus a tall DRL blade), there are 3 grooves like the G80, and the tab is on the white fender at 0.55 of the height with the same 2.0 mm ring wall. The design report has 0 errors and no auto-repairs. The slicecheck is fine: n_lost = 0 for all four parts, and top_layer_coverage is 0.988 and 0.985 for production black and white, 0.966 and 0.985 for classic. Two things hold it back. First, the relief is much busier and finer than the G80: 198 mesh cells in 4 textures with 0.72 mm walls, against 14 slats in one pattern. Second, there are several minimum-width spots in the production white cap that check_maps misses, because it tests the white layer before the grooves are cut: a 0.14 mm white wedge where the hood groove meets the lamp, a 0.50 mm bridge between the sensor ring and the lower intake, a 0.60-0.80 mm white wall between the fender grooves and the part edge, and a 0.72 mm band between the lower opening and the splitter. The design report also has 23 relief sliver warnings at the mesh edges. I tested the key fixes in memory without editing any files: the steeper groove entry, SENSOR (1078,1404), the inward fender groove, the raised LOWER bottom, and mesh 2.9/2.05/0.8 with MIN_CELL 1.0. Each clears its problem with 0 errors, so one cleanup round should bring it to 8 or above. The zoom crops I made are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\rv_ct5\\."
+     }
+    },
+    {
+     "round": 2,
+     "likeness": null,
+     "style": null
+    },
+    {
+     "round": 3,
+     "likeness": null,
+     "style": null
+    },
+    {
+     "round": 4,
+     "likeness": null,
+     "style": null
+    }
+   ],
+   "final_issues": {
+    "likeness": null,
+    "style": null
+   }
+  },
+  {
+   "id": "mclaren_720s",
+   "passed": true,
+   "result": {
+    "id": "mclaren_720s",
+    "spec_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\mclaren_720s\\spec.py",
+    "ref_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\mclaren_720s\\ref\\front.jpg",
+    "ref_url": "https://www.supercars.net/blog/wp-content/uploads/2017/06/McLaren-720S-10.jpg",
+    "ref_license": "Copyright McLaren Automotive. This is a manufacturer press photo for editorial use, used only as a private tracing reference and not redistributed. No CC-licensed straight-on 720S photo could be found. Speedmark contour: Wikimedia Commons File:McLaren_Speedmark.svg, public domain.",
+    "size_mm": [
+     88.05,
+     28.37
+    ],
+    "plate_count": 19,
+    "design_errors_before_repair": 0,
+    "design_errors_after_repair": 0,
+    "slicecheck_all_ok": true,
+    "signature_features": [
+     "Short, fat 'eye socket' teardrops traced on the hard rim, with the inner apex on the rim at about px (583-587, 640)",
+     "White lens outline (0.65 mm) with a blunt tip at px x 520.5, matching the lamp",
+     "White LED DRL blade that droops about 7 deg into the socket tip (0.9 to 0.58 mm, rounded bevel end at x 521), clearly separate from the lens (1.37 mm black gap)",
+     "Relief duct pocket below the DRL inside a 0.7 mm black rim",
+     "Short, fat comma-shaped hood nostrils covering only the real dark opening (0.6 to 1.2 mm wide, 1.10 mm of white to the top edge)",
+     "Single clamshell shut-line groove forming one U across the nose (0.62 mm)",
+     "Lower mouth split by two white fins into outer voids, which are relief pockets with a 0.7 mm black rim and a smoothed crest, and a carbon centre",
+     "0.8 mm white lip (silver bezel) above a full-width black splitter with a smooth bottom edge",
+     "Soft clamshell shoulder at the top corners, measured on the photo",
+     "McLaren speedmark 7.5 x 4.1 mm with both tails redrawn as tapers to 0.6 mm round tips and a 1.7 mm deep white bite, 0.74 mm above the shut line (SHOW_BADGE)",
+     "Keyring tab on the viewer's left at y_frac 0.60 on the white fender"
+    ],
+    "notes": "Revision 1 is done. Design check: 0 errors before repair, 0 auto-repairs and 0 warnings (last round had 5 groove warnings). Full build: slicecheck is ok with n_lost 0 on all four parts. Top-layer coverage is 0.992 / 0.992 for production (black / white) and 0.971 / 0.992 for classic. The body is still 80.5 x 28.37 mm, 88.05 mm wide with the tab, and black covers 31% of the face.\n\nWhat changed, per critic issue:\n- Socket (high): I re-traced the upper-inner edge on the hard rim, checked with per-column intensity profiles (the edge sits at y 565 at x=476, 576 at 500, 588 at 524, 603 at 548, 614 at 564, 627 at 580). The apex now lands at px 586.6 (the rim is at 583) instead of 607. The socket is 17.4 mm long instead of 19.4. The lens tip moved back to x=520.5, which matches the lamp at about 521.\n- DRL (high): the DRL is re-traced to the measured blade centreline (420,620)-(468,626)-(500,630)-(518,632). It ends at x 521 with a bevel rounded by opened(0.26), so there is no wedge tip. It tapers from 0.91 to 0.58 mm and droops about 7 deg. The black gap to the lens now opens from 1.3 mm to about 2.6 mm. The duct pocket top follows the new blade and is also kept at least 0.7 mm below it.\n- Hood vent (high/medium): the vent now covers only the real dark opening, VENT_C (551,525) to (620,561) with widths 0.6/0.95/1.2/1.15/0.65 mm. The white wall to the top edge is 1.10 mm (it was 0.48 mm).\n- Speedmark (medium/low): I combined the two critics' suggestions. BADGE_W is 7.5 mm and BADGE_GROW is 0.06 mm. Both tails are now tapered strokes that follow the real tail centrelines and end in 0.6 mm round tips. The bite between them is 1.7 mm deep. BADGE_GAP is 0.75 mm, a compromise between the requested 0.7 and at least 0.8.\n- Outline (medium/low): the top corner follows the measured shoulder (y 511 at x=420, 518 at 410, 527 at 400, 535 at 390, 548 at 385.5). I did not use the style critic's exact points: the photo shows the top at about y 511 at x=440, not 516, and its 519 dip at x=455-480 is the A-pillar shadow. The bottom edge is now one smooth line (530,802)-(600,804.5)-(680,805.7), so the chin kink is gone. The bottom corners now drop vertically to y 795 and then round off, which removes the splitter wedge.\n- Grooves (low): GW is 0.62 mm. At exactly 0.6 mm the checker flagged 15 small groove pieces, and at 0.62 it flags none.\n- Classic void walls (low): the void pocket is now void.buffer(-0.7) opened at 0.4, so it has the same black rim as the socket duct. The classic render no longer shows white crescents in the voids.\n- Lip (low): the splitter top is lowered by 1.5 px, so the white lip is about 0.8 mm wide.\n- Wedges (low): the lens and lens interior are opened at 0.4 and the mouth centre at 0.35. The only thin pieces left are crescent tips and corner specks under 0.02 mm2.\n- Void top corner (low): opened(1.0) alone does not round such a wide-angle peak. I added a simplify(0.25) plus 3-pass Chaikin smoothing, clipped so it can only shrink the void, so the crest now flows into the fin.\n\nWhere I disagreed or left something out:\n- Crease: I removed it, although the likeness critic listed it as a strength. With the vent cut back to the real opening, a crease that stays at least 0.8 mm from the shut line is just a short dash parallel to the vent and reads as a second vent. I rendered no-crease, long-crease and short-crease versions side by side (work\\r1\\var_crease.png), and the version without it is clearly cleaner. This follows the style critic's fallback. Setting CREASE in the spec brings a short one back.\n- LED dots (low, optional): I tried a 0.5 mm white dot at (442,582.5). It fit with a 0.62 mm gap but read as a cartoon eye pupil. A second dot at x=466 cannot keep 0.5 mm gaps, because the lamp interior is only about 1.8 mm tall there. LED_DOTS is empty.\n- Centre lower slot (low): not added. The real slot is about 1.1 mm tall and sits directly on the thin lip. As a pocket it would be under 0.6 mm tall and would leave the lip as a free-standing 2.4 mm white wall, the fragile edge the style critic warned about. A white stroke would leave under 0.5 mm of black to the lip.\n- Silhouette: the outline is still close to a rounded rectangle. That is faithful to how the 720S looks from the front (flat cowl, vertical fender sides), and the corners are now the real soft shoulder.\n\nOutputs are in kc\\cars\\mclaren_720s\\out: face.png, overlay.png, vs_g80.png (regenerated), design_report.json, build_report.json, and in production\\ and classic\\ the renders, STL, STEP, single 3MF and 19x plate 3MF. The previous revision is backed up in kc\\cars\\mclaren_720s\\work\\r1\\ (spec_r0_backup.py, out_r0\\), along with chk.py and the zoomed checking crops."
+   },
+   "history": [
+    {
+     "round": 1,
+     "likeness": {
+      "score": 7,
+      "pass": false,
+      "n": 8,
+      "summary": "It already reads as a McLaren at a glance, but not quite as an exact 720S yet. What's right: the silhouette ratio (2.83:1, flat cowl, vertical fender sides, which matches the photo), the lower 'smile' with the two strakes and the plain outer voids, the white bezel lip and full-width splitter, the clamshell shut line and crease grooves, and the tab position. Three measured trace errors hold it back, all in the main signature area. (1) The eye socket was traced along the shadow on the paint instead of the rim: the apex is at x=607 against the real 583, and the upper-inner edge is up to 23 px too high. That makes the socket 2.2 mm too long, and the white lens ring runs 2 mm too far inboard with it. (2) The DRL blade is 4 deg instead of the real 7.3 deg droop, 1.5 mm too long, and its inner half sits completely above the real blade. So it reads as a flat '=' pair with the lens bottom instead of an arrow into the teardrop tip. (3) The hood vent includes 2.4 mm of scoop shadow and is too thin, so it looks like an eyebrow slash rather than the short, fat nostril. The speedmark also loses its needle tail and bite and reads as a blob. The build is printable: no errors, 0 lost features. The px coordinates in the fixes are ready to paste into spec.py."
+     },
+     "style": {
+      "score": 7,
+      "pass": false,
+      "n": 10,
+      "summary": "This 720S keychain is close to ready and clearly belongs to the G80 product line, but it fails this round on one hard-rule violation: a 0.48 mm white gap between the hood vent tip and the top edge, where the rule is 0.5 mm minimum. The design checker does not catch it, so the vent needs to be shortened before this passes.\n\nWhat already works:\n- **Look:** the eye sockets, the DRL blades, the hood nostrils, the mouth with its two white fins, the full-width splitter and the speedmark badge all read as a 720S. The overlay on the photo lines up well.\n- **Style rules:** the crop is right (no mirrors, tyres or windshield), the design is mirrored, there are 3 groove lines, and line weights are in family (DRL 0.88 mm mean vs the G80's 0.63).\n- **Keyring tab:** viewer's left, at 60 % height (17 mm), on a white fender strip at least 2.4 mm wide.\n- **Reports:** zero design errors before repair and no auto-repairs. Slicecheck is ok on all four parts: nothing lost, and top-layer coverage is 0.992 and 0.989 for production, 0.969 and 0.989 for classic.\n- **Islands:** no specks and no white islands too small. The smallest white island is 10.9 mm\u00b2 and the smallest black one is 8.1 mm\u00b2.\n- **No grille pattern:** leaving it out is correct, because the real car has no grille mesh.\n\nMeasured in memory from spec.py (no files were edited):\n- **Vent gap:** the vent is traced about 3 mm longer than the real dark opening, which starts near px (555,524). The design checker misses the thin wall because it is under 1 mm long.\n- **Silhouette:** the outline is too boxy. The flat top and tight top corners run 1 to 1.5 mm above the real fender shoulder, so next to the G80 it looks like a tag rather than a car shape.\n- **Minor polish:** in the classic build the outer mouth voids show white walls, unlike the black-rimmed socket ducts. There is also a groove blob where the crease meets the shut line, and the top corner is busy with three nearly parallel lines. The white lip above the splitter is 0.66 mm wide over about 62 mm. Some wedge tips are under 0.5 mm, there is a kink in the bottom edge, and the speedmark has come out chunky. The grooves are 0.55 mm; 0.6 mm clears the 5 warnings.\n\nBlack covers 33 % of the face against the G80's 47 %. That is faithful to the 720S's clean nose and needs no change. Score 7/10. With the vent shortened and the top corners rounded I would expect about 8.5/10.\n\nFiles reviewed: C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\mclaren_720s\\spec.py, plus out\\design_report.json, out\\build_report.json, out\\face.png, out\\overlay.png, out\\vs_g80.png and both renders. High-zoom crops I made for checking are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\review_720s\\ (face_hi.png, hi_left.png, grid_tl.png)."
+     }
+    },
+    {
+     "round": 2,
+     "likeness": {
+      "score": 8,
+      "pass": true,
+      "n": 7,
+      "summary": "The keychain reads as a McLaren 720S. The eye sockets carry it and are well registered to the photo on both sides: teardrop rim, inner tip at (589,641), lens ring, and the DRL blade drooping about 7 deg and ending at x\u2248521. The hood nostrils, the U-shaped clamshell shut line under the badge, the outline proportions (80.5 x 28.4 mm, shoulder chamfer) and the speedmark are also traced faithfully.\n\nThe main weakness is the lower mouth. On the real car the fins between the outer voids and the carbon centre are dark blades with only thin silver pinstripe edges, so the mouth reads as one continuous dark grin. The design renders the fins as a white wedge up to about 2.9 mm wide, plus a 0.8 mm white lip, so the mouth breaks into three separate black islands. This is visible at glance size (medium).\n\nSmaller cues that would sharpen the likeness:\n- the dark slots at the outer bumper edges (x 380-394, y 620-720), which means moving the tab\n- the 45-deg cut bottom corners, staying body colour, with the splitter ending at x\u2248482\n- the hood-channel edge line from the cowl into the shut line\n- a slightly smaller speedmark (6-6.5 mm)\n- optionally, LED projector dots or a stronger DRL blade\n\nThere are no wrong-generation cues and no high-severity issues. Printability reports are clean (0 errors, n_lost 0). No files were edited; the scratch crops I made for inspection are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\critic720\\."
+     },
+     "style": {
+      "score": 8.5,
+      "pass": true,
+      "n": 6,
+      "summary": "The McLaren 720S (2017-2023) keychain passes: score 8.5/10, no high issues, and all four slicecheck parts are ok. I changed no files.\n\n**Printability**\n- design_report: 0 errors, 0 warnings, 0 errors before repair, no auto-repairs.\n- build_report slicecheck: n_lost is 0 for all four parts. Top-layer coverage is 0.992 / 0.992 (production black / white) and 0.971 / 0.992 (classic black / white).\n- Recomputing the maps myself, the smallest features are:\n  - white lip 0.80 mm\n  - mouth fins 1.0 mm\n  - lens ring 0.65 mm\n  - DRL tip 0.58 mm\n  - vent ends 0.6 mm\n  - badge tails 0.6 mm\n- Nothing is under 0.5 mm except two tiny corner slivers the checker ignores: at the splitter's bottom corners (0.48 mm) and where the groove leaves the top-left shoulder.\n- No isolated specks. The smallest white islands are the DRL blades at 7.8 mm\u00b2 and the lens rings at 14.7 mm\u00b2. The smallest black part is the vent at 8 mm\u00b2.\n- In production the outer mouth voids and the socket ducts are plain pockets: 2.4 mm deep from the face with a 0.6 mm floor and no ribs. That is acceptable for a keychain.\n- The tab is on the viewer's left at y_frac 0.60 (17 mm) on white fender. The tab root's full-thickness strip is only 2.4 mm wide before the socket starts (the G80's is about 3.1 mm). It is still strong enough because the load spreads into the full-thickness bands above and below the socket.\n\n**Style**\n- The crop is right: windshield base down to the splitter, with no mirrors, doors or tyres. Everything is mirror-symmetric except the speedmark, and the shapes are smooth with no traced noise.\n- The overlay matches the photo closely: sockets, lens, DRL, nostrils, mouth voids with the white fins, and the shut line.\n- The light signature is the lens outline plus the drooping LED blade, which is recognisably 720S.\n- Detail level is comparable to the G80. It has no relief ribs, which is faithful because the real car has no grille or mesh.\n\n**What would bring it closer to the G80**\n- The groove is 0.62 mm wide against the G80's 0.40 mm. This is the one medium issue; setting GW to 0.55 fixes it.\n- Only one groove line is used, where the guide asks for 2-6.\n- There is less black overall (31% against 47%), and the splitter is only 0.86 mm tall at its outer ends.\n- The lens ring is slightly thinner than the G80's DRL strokes.\n- The speedmark's visual weight sits 0.8 mm right of centre.\n\nEach of these has a concrete spec.py fix in the issue list.\n\nFiles I looked at:\n- C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\mclaren_720s\\spec.py\n- ...\\mclaren_720s\\out\\design_report.json\n- ...\\mclaren_720s\\out\\build_report.json\n- ...\\mclaren_720s\\out\\face.png\n- ...\\mclaren_720s\\out\\vs_g80.png\n\nMy zoomed crops for checking are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\review_720s_r2\\ (they are only for review)."
+     }
+    }
+   ],
+   "final_issues": null
+  },
+  {
+   "id": "challenger_hellcat",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "charger_srt",
+   "passed": null,
+   "result": {
+    "id": "charger_srt",
+    "spec_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\spec.py",
+    "ref_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\ref\\front.jpg",
+    "ref_url": "https://moparinsiders.com/wp-content/uploads/2019/10/DG020_186CHqir1thdp7fu4b8tg26u0q6empb.jpg",
+    "ref_license": "FCA US LLC / Stellantis press photo DG020_186CH (editorial media use, all rights reserved; not CC). Used only as a private tracing reference. Source details are in ref/SOURCE.txt.",
+    "size_mm": [
+     87.98,
+     35.28
+    ],
+    "plate_count": 13,
+    "slicecheck_all_ok": true,
+    "design_errors_before_repair": 0,
+    "design_errors_after_repair": 0,
+    "signature_features": [
+     "Slim headlamps with the C-shaped LED light-pipe DRL (0.7 mm white stroke along the top bar, round outer end and bottom bar, open towards the grille)",
+     "One continuous black band made of the headlamps and the upper grille (the 2015-23 Charger face), with a stretched-honeycomb relief in the grille",
+     "Mail-slot black bar in the body-colour brow under the upper grille",
+     "Wide lower grille with the same stretched-hex relief and a body-colour surround",
+     "Two outer intakes: flat black duct on top, a hex-mesh insert in the lower part",
+     "Hellcat hood: black power-bulge scoop at top centre plus two slim black heat-extractor slits beside it",
+     "Widebody flares in the outline (fender-to-flare step), plus grooves for the flare seam and flare crease",
+     "Hood front shut line and hood/fender shut lines as 0.6 mm grooves",
+     "Full-width black splitter",
+     "Italic SRT wordmark on a plain black plate at the driver-side end of the grille, off-centre like the real badge (SHOW_BADGE / KC_BADGE=0 switch)",
+     "Keyring tab on the viewer's left flare at y_frac 0.47, below the lamp"
+    ],
+    "notes": "The Charger SRT keychain is finished. It has 0 design errors before auto-repair, and the full build passed: every slicecheck part is status ok with n_lost 0 (top_layer_coverage: production black 0.994, white 0.98; classic black 0.976, white 0.98). Size is 80.5 mm body width (87.98 mm with the tab) x 35.28 mm. I ran the full build once. Black covers 41% of the face against 46% on the G80, because the Charger really does have a big body-colour bumper.\n\nReference: FCA press photo DG020_186CH, a 2020 Charger SRT Hellcat Widebody, 2999x1688, straight-on at about headlight height. I checked that it is the widebody facelift with the slim C-DRL lamps. It was already level (left and right DRL heights agree within 2 px), so no rotation. Centreline x 1493, body edges x 440 / 2546 at the flares, bottom 1414 (splitter). I traced the lit left half. A second photo from the same press set (DG020_188, taken from higher up) confirmed where the heat extractors are.\n\nWhat is black / white / relief / groove, and why:\n- White = body paint, including the brow between the upper grille and the mail slot, the lower-grille surround, and the fascia corners.\n- Black band = headlamp units plus the upper grille as one continuous dark band. That band is what makes a 2015-23 Charger face.\n- DRL = one 0.7 mm white C-shaped stroke per lamp, following the real light pipe. It is nudged about 0.2-0.3 mm inside the lamp so at least 0.5 mm of black bezel stays around it.\n- Grilles = a custom stretched-honeycomb relief (flat-topped cells about 2.7x wider than tall, staggered). This copies the Charger's real mesh at 1.6x scale so it prints (row pitch 1.9, walls and rim 0.75 mm). The pattern mirrors about the centreline. Rows are phased so no thin half-cells sit along the rims: the upper grille gets a two-row zigzag, the lower grille whole rows top and bottom, and the intake insert a 2x2 block.\n- Intakes = flat black duct on top with a mesh insert below, like the photo.\n- Mail slot = plain black bar (at 1.3 mm tall there is no room for its fins).\n- Hood = black scoop plus two slim black extractor slits. The slits are shown as they look from the front: dark slits under the raised shoulders.\n- Splitter = black band across the full width.\n- Grooves (0.6 mm): the hood front shut line, the hood/fender shut lines, and the widebody flare seam plus flare crease. The flare grooves carry the widebody look along with the stepped outline.\n- Tab = viewer's left, on the white flare at y_frac 0.47. I moved it down from 0.55 so the flare crease groove doesn't run into the tab neck.\n\nWhat I could not do exactly:\n- The badge is enlarged. The real grille badge is \"SRT\" plus a Hellcat cat head, only 1.7 mm tall at keychain scale. I drew just the italic SRT letters at 2.62 mm tall, with 0.52 mm strokes and 0.53 mm gaps inside the letters, on a plain black plate at the driver-side end of the grille. The cat head was dropped because it would be an unreadable blob. The badge is off-centre like the real car, so the face is symmetric only with the badge off (SHOW_BADGE=False or KC_BADGE=0). That version prints the full symmetric grille mesh.\n- The scoop's real mesh is too fine to print, so the scoop is plain black.\n- The mesh cells are coarser than the real ones (about 2 half-rows in the upper grille versus about 4.5 on the car).\n- The splitter's bottom edge is in shadow in the photo, so its depth (about 1.5 mm at the sides, 2.1 mm at the centre) is an estimate.\n- Remaining warnings (no errors) are the badge's 0.52 mm strokes and gaps, and grooves measuring 0.599 mm against the 0.6 mm preferred width.\n\nOn the brief: the 2015-23 Charger has no full-width DRL, so the light signature is drawn as the real per-lamp C-ring. It reads clearly differently from the Challenger's quad round lamps.\n\nFiles are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\:\n- out\\face.png\n- out\\overlay.png\n- out\\vs_g80.png\n- out\\production\\charger_srt_production_render.png\n- out\\classic\\charger_srt_classic_render.png\n- out\\build_report.json\n- ref\\SOURCE.txt"
+   },
+   "history": [
+    {
+     "round": 1,
+     "likeness": {
+      "score": 7,
+      "pass": false,
+      "n": 9,
+      "summary": "Likeness score is 7/10: fail (needs 8+ and no high issues), round 1. There are no high issues, but four medium ones.\n\nWhat already works: it reads as a 7th-gen Charger SRT Widebody (2020+) and is clearly different from the Challenger in this batch, which has quad round lamps, a brick mesh and twin hood nostrils. What's right, checked against the photo:\n- Body proportions (80.5 x 35.3 mm, the photo's aspect ratio) and the widebody flare \"ears\" with their seam lines.\n- One dark band running lamp-grille-lamp across the face.\n- The C-shaped light-pipe DRL framing each lens, open toward the grille. It matches the photo closely.\n- The body-colour strip under the grille with the slim black slot.\n- A large rounded lower grille with a body-colour surround, two tapered outer intakes with mesh in their lower-outer part, a black splitter, the central hood scoop, and the hood shut lines.\n\nWhat keeps it below 8:\n1. **Upper grille texture.** It shows only one staggered row of cells on a grey slab and looks like a dashed bar. The real grille is a dense stretched honeycomb.\n2. **Badge keep-out.** It extends to x = 60 mm and wipes all mesh from the badge to the right headlamp, so the grille is visibly lopsided. The SRT letters are also centred about 1 mm too far right (on SRT plus the Hellcat head) and are too tall.\n3. **DRL bars too long.** Both bars run too far inboard; the bottom one reaches the lamp/grille frame. The photo has about 1.5 mm of dark lens there.\n4. **Flare groove against the lamp.** The flare seam groove comes within about 0.13 mm of the headlamp's outer end. That white sliver can't print, and the checker missed it.\n\nSmaller items (all low):\n- The hood heat extractors are about 50% too long and too close to the scoop, measured against the second-angle photo.\n- The outer intakes sit about 0.7 mm too high and 0.6 mm too far outboard.\n- The lower grille is missing its smooth top lip, and its cells are fatter than the real stretched ones.\n- The edge where the grille meets the brow should be a softer, lower S-curve.\n- Optionally, add short grooves for the edges of the hood's power bulge.\n\nNo files were edited.\n\nFiles reviewed:\n- C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\spec.py\n- C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\out\\face.png\n- C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\out\\overlay.png\n- C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\work\\c188_hood.jpg (second angle, used for the extractor check)\n\nZoomed comparison crops are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\critic_charger\\."
+     },
+     "style": {
+      "score": 7,
+      "pass": false,
+      "n": 9,
+      "summary": "Round 1 does not pass: score 7/10, with one high issue. The overall design is strong and clearly fits the G80 line. The crop is right: hood to windshield base, no mirrors, windshield or tyres, and the widebody flare steps are faithful. The Charger's signature full-width dark band with the C-shaped DRL is correct; the DRL at 0.7 mm matches the G80's 0.71 mm average DRL width. The outline is clean and symmetric (about 40 points per half). The black/white balance is close: 41 % black against 46 % on the G80. Size is 80.5 x 35.3 mm plus the tab. On printability the numbers are clean: design_report has 0 errors and 0 auto-repairs, and slicecheck passes all four parts with n_lost = 0 and top-layer coverage of 0.994, 0.98, 0.976 and 0.98.\n\nThe high issue is one neither checker detects: the flare seam groove passes 0.19 mm from the headlamp band at (+/-36.85, 22.9) mm. That breaks the 0.5 mm hard rule, and the groove will merge into the lamp in both builds. I tested a replacement groove path that gives 0.63 mm clearance and 0 errors.\n\nThe medium issues:\n- The hood extractor black slots do not show as dark in the photo; they should be removed.\n- The badge keep-out wipes out the right-hand third of the upper grille mesh, so the grille looks lopsided.\n- The SRT letter counters are 0.53 mm and the R counter is enclosed, so they will close up in the 1.4 mm production recess. Setting BADGE_H to 2.8 mm fixes this.\n\nThe low issues:\n- 7 groove strokes instead of at most 6, at 2.7x the G80's groove area. Drop the flare creases.\n- The tab sits at 0.47 of the height; move it to 0.52.\n- The honeycomb is finer and busier than the G80 slats (row pitch 1.9, below the guide's 2.2), and the upper grille shows only a single row of cells.\n- A thin ledge at the edge of the intake mesh.\n- Hairline slivers in the relief geometry.\n\nAfter these fixes I expect a score of 8-9. Files reviewed are in C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\charger_srt\\. My measurement scripts and zoomed crops are in scratchpad\\rv_charger*.py and scratchpad\\rv_charger\\; I did not edit any project files."
+     }
+    },
+    {
+     "round": 2,
+     "likeness": null,
+     "style": null
+    },
+    {
+     "round": 3,
+     "likeness": null,
+     "style": null
+    },
+    {
+     "round": 4,
+     "likeness": null,
+     "style": null
+    }
+   ],
+   "final_issues": {
+    "likeness": null,
+    "style": null
+   }
+  },
+  {
+   "id": "mk5_supra",
+   "passed": null,
+   "result": {
+    "id": "mk5_supra",
+    "spec_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\mk5_supra\\spec.py",
+    "ref_path": "C:\\Users\\trist\\AppData\\Local\\Temp\\claude\\C--Users-trist\\eb31f25f-c0e7-4c47-a2a2-d10d3da19ae7\\scratchpad\\kc\\cars\\mk5_supra\\ref\\front.jpg",
+    "ref_url": "https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2019/05/2020_GR_Supra_Launch_Edition_Absolute_Zero_019_44DE4C39466DD08954B103DC24C848F0D288DE51.jpg",
+    "ref_license": "Toyota press/media image from the Toyota USA Newsroom (pressroom.toyota.com, 2020 GR Supra gallery, (c) Toyota Motor North America). It is licensed for editorial/media use and is used here only as a private tracing reference. The photo is not redistributed with the keychain. Source and licence are recorded in ref/SOURCE.txt.",
+    "size_mm": [
+     87.87,
+     37.46
+    ],
+    "plate_count": 13,
+    "design_errors_before_repair": 0,
+    "design_errors_after_repair": 0,
+    "slicecheck_all_ok": true,
+    "signature_features": [
+     "Swept A90 headlight units with pointed inner tails, traced from the photo",
+     "DRL light guide as a white stroke. It runs up the lamp's outer side and along its lower edge into the tail (0.70 mm wide, 0.65 mm of black bezel outside it).",
+     "Three LED projector cells per lamp as small white rounded squares (the six-lens lamps)",
+     "Vertical teardrop side vents behind the lamps",
+     "Large central lower intake, a trapezoid, with honeycomb relief (pitch 2.4, rib 0.8)",
+     "Outer intakes with the same honeycomb and flat black upper inserts",
+     "White fang pillars between the intakes with parking-sensor rings, and white body-colour blades under the outer intakes",
+     "Full-width black splitter that wraps up the corners as canards and joins the intakes",
+     "Hood front shut line across the nose between the lamps (groove)",
+     "Nose-cone crease that sweeps from each lamp's inner corner down under the badge (groove)",
+     "Simplified three-oval Toyota badge behind SHOW_BADGE (7.0 x 3.44 mm; KC_BADGE=0 also turns it off)",
+     "Keyring tab on the viewer's left fender at y_frac 0.52"
+    ],
+    "notes": "Reference photo: a Toyota press photo of a 2020 GR Supra Launch Edition in Absolute Zero white. It is a real A90/MK5, confirmed by the lamps, fascia, badge and red mirror caps. The shot is straight-on at headlight height. The original was rolled 2.74 deg: the parking sensors differed by 24 px over 501 px. I levelled it with trace_tools rotate on the 3600 px original and cropped it to ref/front.jpg. The unlevelled crop is ref/front_raw.jpg. The candidate downloads are in ref/cand, including a second, higher-camera photo from the same shoot (az015) used to cross-check shapes.\n\nA slight yaw remains: the viewer's right half shows more of the car's side. I traced the viewer's left half, whose inner features match the right side to within 2 px. Scale is 1 mm = 18.98 px, and the body is 80.5 x 37.46 mm (G80 is 38 mm tall).\n\nDesign decisions (G80 language):\n- White = body paint: hood, round fender tops, the nose cone with the badge, the two fang pillars between the intakes, the body-colour blades under the outer intakes, and the lower corner legs.\n- Black = the whole headlight lens, the side vents, both outer intakes, the central lower intake, one full-width splitter, the two parking-sensor rings and the badge. The splitter wraps up the outer corners as the canards and joins the central intake and the outer intakes' lower corners, as on the car.\n- White on black = the light signature. The DRL is the lamp's outer and lower edge offset 1.0 mm into the lens, so the bezel outside it is exactly 0.65 mm. The three LED cells are 1.85 x 1.55 mm rounded squares along the lamp top, the same approach the AMG GT in this line uses for its LED cells.\n- Relief = the line's honeycomb (built-in hex, pitch 2.4, rib 0.8) in all three intakes, because the real car has the same mesh in all of them. The outer intakes' upper inserts stay flat black at rib height. In the production build they read as a solid insert against the recessed mesh.\n- Grooves (0.55 mm) = the hood's front shut line and the nose-cone crease. The crease leaves each lamp's inner corner and sweeps down under the badge. I compared full, short and no crease: the full version is the one that reads as the Supra's protruding centre nose.\n- Sensor rings: r 0.95 mm, width 0.5, placed mid-pillar.\n\nPrintability: 0 design errors before repair and 0 auto-repairs. The remaining warnings are either by design (0.55 mm grooves, the badge's 0.5 mm strokes and cell tips) or cut honeycomb cells at the pocket walls, which the checker only warns about. I used 2 of the 3 full builds. In the first build the classic black part lost the two tiny black cells inside the badge's horizontal oval (area 0.54 mm2, coverage 0.55). I enlarged them to 0.83 mm2 and gave them rounded tips (r 0.12). In the second, final build all four slicecheck parts are ok, n_lost 0, top_layer_coverage 0.97 to 0.995, and a plate holds 13.\n\nWhat I could not or did not do:\n1. The brief mentions a tiny upper grille slot with the emblem. The real A90 nose (this photo and the higher-camera shot) is a solid painted nose cone with the badge, with no slot, so I drew none.\n2. The badge is simplified to a black ellipse with the white vertical and horizontal ovals sharing their top. The chrome outer ring and the horizontal oval's lower arc inside the vertical oval are left out, because at 3.4 mm tall they can't be kept with gaps of at least 0.5 mm. The badge is about 7% larger than in the photo (7.0 x 3.44 mm vs 6.5 x 3.2 mm).\n3. I made the lamp tail about 0.4 mm thicker than on the car so the DRL can run into it with a printable bezel.\n4. The real mesh is horizontally stretched diamonds. I used the line's standard hex cell (points left and right) to keep the set consistent.\n5. The narrow side vents (1.9 mm) are flat black with no mesh."
+   },
+   "history": [
+    {
+     "round": 1,
+     "likeness": null,
+     "style": null
+    },
+    {
+     "round": 2,
+     "likeness": null,
+     "style": null
+    },
+    {
+     "round": 3,
+     "likeness": null,
+     "style": null
+    },
+    {
+     "round": 4,
+     "likeness": null,
+     "style": null
+    }
+   ],
+   "final_issues": {
+    "likeness": null,
+    "style": null
+   }
+  },
+  {
+   "id": "f92_m8",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "e30_m3",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "f87_m2",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "amg_gt63_4door",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "c7_z06",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "g42_m240i_lci",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "lexus_is350",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "civic_11th",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  },
+  {
+   "id": "camry_xv80",
+   "passed": false,
+   "result": null,
+   "history": [],
+   "final_issues": null
+  }
+ ],
+ "consistency": null,
+ "consistency_fixed": []
+}

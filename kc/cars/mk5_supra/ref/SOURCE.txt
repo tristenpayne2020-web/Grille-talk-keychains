@@ -1,0 +1,13 @@
+Reference photo for the mk5_supra keychain trace
+file: ref/front.jpg  = levelled (+2.74 deg, trace_tools rotate on the full-res original) and cropped (800,650)-(2600,1750) copy of
+      ref/cand/az019_full.jpg
+source: Toyota USA Newsroom (pressroom.toyota.com), 2020 Toyota GR Supra Launch Edition "Absolute Zero" gallery,
+        image 2020_GR_Supra_Launch_Edition_Absolute_Zero_019
+url: https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2019/05/2020_GR_Supra_Launch_Edition_Absolute_Zero_019_44DE4C39466DD08954B103DC24C848F0D288DE51.jpg
+gallery page: https://pressroom.toyota.com/vehicle/2020-toyota-supra/
+licence: Toyota press/media image (pressroom terms: editorial/media use, (c) Toyota Motor North America). Used only as a
+         private tracing reference; the photo itself is not redistributed with the keychain.
+car: 2020 Toyota GR Supra 3.0 (A90 / J29 / DB42), Launch Edition, Absolute Zero white, red mirror caps. Straight-on front,
+     camera at about headlight height, levelled by the left/right parking sensors (dy 24 px over 501 px) and side vents.
+     Slight yaw remains (outer body edges ~2 % wider on the viewer's right); the viewer's LEFT half is traced.
+alternate: ref/cand/az015_full.jpg (same shoot, camera slightly higher, level), used to cross-check shapes.

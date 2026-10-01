@@ -1,0 +1,18 @@
+Reference photo used for tracing: ref/front.jpg (identical copy: ref/front_raw.jpg; no levelling needed)
+  Car:     2022 Cadillac CT5-V Blackwing (pre-facelift 2022-2024 front: slim headlamps with vertical LED bar,
+           vertical DRL blades in the bumper corners, scale mesh grille, carbon splitter; manual-gearbox review car)
+  Source:  CarBuzz 2022 CT5-V Blackwing review gallery
+           page:  https://carbuzz.com/cars/cadillac/ct5-v-blackwing/2022/
+           image: https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/1111000/600/1111655.jpg
+           3000 x 2250 px, straight-on, camera ~headlight height
+  Licence: (c) CarBuzz / Valnet - editorial photo, all rights reserved. Used only as a private tracing reference;
+           not redistributed and not part of the product.
+
+Supporting references (ref/cand/, not traced):
+  cb_1141504.jpg  CarBuzz 2024 CT5-V Blackwing gallery, straight-on Cadillac configurator render (body lines, lamp)
+                  https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/1141000/500/1141504.jpg
+  cc_8.jpg        conceptcarz.com 2022 CT5-V Blackwing GM press image (grille mesh + crest close-up)
+                  https://www.conceptcarz.com/images/Cadillac/cadillac-ct5-v-blackwing_2022_8-1280.jpg
+  cb_1111663.jpg  CarBuzz review gallery 3/4 view (headlamp LED bar shape)
+  br3.jpg / br4.jpg  Wikimedia Commons "Cadillac CT5-V Blackwing 6DC79 Black Raven (3)/(4)" by Damian B Oh, CC BY-SA 4.0
+                  (straight-on but black car - rejected for tracing)

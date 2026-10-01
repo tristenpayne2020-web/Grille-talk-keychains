@@ -1,0 +1,12 @@
+Reference photo used for tracing
+  ref/front.jpg = crop x640..2860, y1000..2080 of ref/P90299387_full.jpg (3508x2480, unaltered otherwise)
+  BMW Group PressClub photo P90299387 "The new BMW M2 Competition (04/2018)" - F87 M2 Competition, studio,
+  straight-on front view, camera at about headlight height, level (no rotation needed; centreline x=1109 in front.jpg)
+  page:  https://www.press.bmwgroup.com/global/photo/compilation/T0279885EN/the-new-bmw-m2-competition
+  image: https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?dokNo=P90299387&attachment=1&actEvent=image
+  licence: (c) BMW AG, BMW Group PressClub press material (editorial use); used only as a private tracing reference.
+Generation check: black double-slat kidneys with M2 badge, Competition front bumper (hex-mesh intakes, lip with three
+small slots), LCI full-LED headlights with hexagonal U-shaped DRLs -> F87 M2 Competition (2018-2021).
+Detail photos (not traced, headlight/kidney check): PressClub P90299393, P90299392, P90302279 (600 px previews in work/bmw).
+Other candidates looked at (not used): Wikimedia Commons "BMW M2 Competition (51083639537).jpg" (CC BY-SA 2.0, black car,
+hard to read) and "23-05-2019 Galeria Mlociny, BMW M2.jpg" (CC0, high camera, strong hood foreshortening) in ref/cand.

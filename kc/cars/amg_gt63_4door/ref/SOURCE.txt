@@ -1,0 +1,21 @@
+Reference photo used for tracing: ref/front.jpg (2560 x 1440)
+  = copy of ref/cand/cand_blue_dark_2560x1440.jpg
+  "2019 Mercedes-AMG GT 63 S 4MATIC+ 4-Door Coupe (Color: Brilliant Blue Magno) - Front"
+  Source URL: https://wallpaper.caricos.com/2019-Mercedes-AMG-GT-63-S-4MATIC+-4-Door-Coupe-(Color-Brilliant-Blue-Magno)---Front-165713-2560x1440.jpg
+  Gallery:    https://www.caricos.com/cars/m/mercedes-benz/2019_mercedes-amg_gt_4-door_coupe/
+  Licence: Mercedes-Benz (Daimler AG) press/media photo, republished by caricos.com (watermark "CARICOS.COM"
+           bottom right). Copyright Mercedes-Benz AG - press image for editorial use; used here only as a private
+           tracing reference, not redistributed.
+  Model check: X290 pre-facelift GT 63 S (Panamericana grille with star, AMG A-wing apron with chrome crossbar,
+           Multibeam LED headlights with eyebrow DRL, German plate S-MB 1114) - model years 2019-2023 family.
+  Geometry: straight-on, level, centred; the left half mirrored at x = 1270 overlays the right half seamlessly
+           (no rotation applied).
+
+Secondary (cross-check of the lower fascia in daylight, not traced):
+  ref/cand/cand_us_blue_2560x1440.jpg
+  https://wallpaper.caricos.com/2019-Mercedes-AMG-GT-63-S-4-Door-Coupe-(US-Spec)---Front-166023-2560x1440.jpg
+  (Mercedes-Benz USA press photo, same licence situation)
+Other candidate kept: ref/cand/cand_graphite_2560x1440.jpg (Graphite Grey Magno, 165654).
+
+Wikimedia Commons candidates reviewed (none straight-on enough), e.g.
+  File:Mercedes AMG GT 63 Photo 2020 Free image (49646986953).jpg (CC BY 2.0) - slightly from above, show-room.

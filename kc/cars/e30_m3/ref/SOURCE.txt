@@ -1,0 +1,19 @@
+Reference photo used for tracing: ref/front.jpg
+  = ref/evo_front_4000.jpg (the 3840x2560 Commons rendition of the original 7008x4672 file), yaw-rectified with a
+    1D projective fit on the four headlight centres (the camera stood slightly right of the centreline) and levelled
+    by +0.6 deg; the car is then mirror-symmetric about x = 2087. Homography: ../work/H_total.npy
+  Wikimedia Commons: "BMW M3 E30 Evolution Front 2025-06-28.jpg" by Strubbl (own work, 28 June 2025)
+  page:    https://commons.wikimedia.org/wiki/File:BMW_M3_E30_Evolution_Front_2025-06-28.jpg
+  image:   https://upload.wikimedia.org/wikipedia/commons/d/db/BMW_M3_E30_Evolution_Front_2025-06-28.jpg
+  licence: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)
+  Car: BMW M3 E30 Evolution (BMW Group Classic display car, black) - same front architecture as every 1986-1991
+  E30 M3 (quad round lamps in the louvred black grille band, upright kidneys, M3 bumper with rub strip, rectangular
+  turn signals, centre slots and lower lip).
+
+Colour / detail cross-check (not traced): ref/cand_white_closeup.jpg
+  Wikimedia Commons: "BMW M3 (17755995436).jpg" (white standard E30 M3, close front view), CC BY 2.0
+  page:    https://commons.wikimedia.org/wiki/File:BMW_M3_(17755995436).jpg
+  Used to confirm which parts are body colour on a light car: hood lip, nose strip under the grille band, bumper with
+  the black rub strip, the nose/bumper gap line, slot dividers.
+
+front_bright.jpg / front_clahe.jpg = brightened copies of front.jpg used only for reading coordinates on the black car.

@@ -1,0 +1,24 @@
+Chevrolet Corvette C7 Z06 (2015-2019) - reference photos
+
+TRACED (primary)
+  front_raw.jpg   = "2015 Chevy Corvette Stingray Z06 Debut at Detroit Auto Show 10.jpg" (4128x2322, 2014-01-14)
+                    Z06 with the Z07 package (carbon splitter + end plates), turntable at the NAIAS 2014 debut
+    page    : https://commons.wikimedia.org/wiki/File:2015_Chevy_Corvette_Stingray_Z06_Debut_at_Detroit_Auto_Show_10.jpg
+    file    : https://upload.wikimedia.org/wikipedia/commons/4/45/2015_Chevy_Corvette_Stingray_Z06_Debut_at_Detroit_Auto_Show_10.jpg
+    author  : Tuner tom (Wikimedia Commons)
+    licence : CC BY-SA 3.0  https://creativecommons.org/licenses/by-sa/3.0
+  front_level.jpg = front_raw rotated -2.2 deg (trace_tools rotate) -> all traced pixel numbers in spec.py
+  front.jpg       = front_level with the vertical hood correction Y() of spec.py (work/warp.py); used for overlay.png
+
+CROSS-CHECKS (proportions, not traced)
+  cand_blue_show.jpg = "2015 Chevrolet Corvette Z06 (16397707051).jpg" (1280x720, 2015-01-29), level straight-on camera
+    page    : https://commons.wikimedia.org/wiki/File:2015_Chevrolet_Corvette_Z06_(16397707051).jpg
+    author  : Dan G from Atlanta, GA, US      licence : CC BY 2.0  https://creativecommons.org/licenses/by/2.0
+    used for: overall height/width (0.49), feature heights (headlight 0.61-0.91, hood shut line 0.73, grille top 0.41),
+              vent height (~3.0-3.2 mm of 40 mm)
+  cand_5.jpg / cand_5_lev.jpg = "2014 Canadian International AutoShow 0192 (12646376994).jpg" (3872x2592)
+    page    : https://commons.wikimedia.org/wiki/File:2014_Canadian_International_AutoShow_0192_(12646376994).jpg
+    author  : Lord of the Wings from Toronto, Canada      licence : CC BY-SA 2.0  https://creativecommons.org/licenses/by-sa/2.0
+    used for: headlight / DRL shape and the yaw correction (averaged left/right halves)
+  cand_58.jpg, cand_59.jpg = "Chevrolet Corvette (Ank Kumar) 07/08.jpg" (CC BY-SA 4.0): looked at, not used
+  cand_yellow_detroit.jpg = identical copy of front_raw.jpg

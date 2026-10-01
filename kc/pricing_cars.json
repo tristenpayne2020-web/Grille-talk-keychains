@@ -1,0 +1,282 @@
+[
+ {
+  "car": "BMW M3 (G80) - your design, printability-fixed",
+  "n": 13,
+  "swap_h": 5.205,
+  "swap_g": 89.25,
+  "cl_h": 8.339,
+  "cl_g": 118.51,
+  "chg_min": 3.08,
+  "chg_g": 0.83
+ },
+ {
+  "car": "BMW M2 (G87)",
+  "n": 12,
+  "swap_h": 4.485,
+  "swap_g": 83.35,
+  "cl_h": 6.935,
+  "cl_g": 113.5,
+  "chg_min": 3.1,
+  "chg_g": 0.83
+ },
+ {
+  "car": "BMW M4 (F82)",
+  "n": 13,
+  "swap_h": 5.711,
+  "swap_g": 88.7,
+  "cl_h": 9.034,
+  "cl_g": 114.03,
+  "chg_min": 3.17,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Porsche 911 GT3 RS (992)",
+  "n": 13,
+  "swap_h": 5.576,
+  "swap_g": 90.52,
+  "cl_h": 8.761,
+  "cl_g": 117.76,
+  "chg_min": 3.07,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Chevrolet Corvette C8",
+  "n": 17,
+  "swap_h": 6.22,
+  "swap_g": 98.34,
+  "cl_h": 9.91,
+  "cl_g": 127.86,
+  "chg_min": 3.2,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Ford Mustang Shelby GT500 (2020-22)",
+  "n": 13,
+  "swap_h": 6.102,
+  "swap_g": 85.97,
+  "cl_h": 10.218,
+  "cl_g": 120.58,
+  "chg_min": 3.18,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Audi R8 V10 (4S)",
+  "n": 16,
+  "swap_h": 6.51,
+  "swap_g": 99.73,
+  "cl_h": 10.903,
+  "cl_g": 131.15,
+  "chg_min": 3.03,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Lamborghini Aventador SVJ",
+  "n": 17,
+  "swap_h": 5.827,
+  "swap_g": 103.63,
+  "cl_h": 8.388,
+  "cl_g": 129.81,
+  "chg_min": 3.16,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Mercedes-AMG GT (C190)",
+  "n": 17,
+  "swap_h": 6.59,
+  "swap_g": 110.05,
+  "cl_h": 10.37,
+  "cl_g": 140.79,
+  "chg_min": 3.3,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Nissan GT-R (R35, 2017+)",
+  "n": 12,
+  "swap_h": 5.588,
+  "swap_g": 93.55,
+  "cl_h": 8.807,
+  "cl_g": 119.61,
+  "chg_min": 2.87,
+  "chg_g": 0.83
+ },
+ {
+  "car": "BMW M340i (G20 LCI, 2023+)",
+  "n": 13,
+  "swap_h": 5.593,
+  "swap_g": 84.91,
+  "cl_h": 9.084,
+  "cl_g": 116.86,
+  "chg_min": 3.19,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Chevrolet Camaro ZL1 (6th gen)",
+  "n": 12,
+  "swap_h": 4.693,
+  "swap_g": 85.2,
+  "cl_h": 6.9,
+  "cl_g": 114.27,
+  "chg_min": 3.03,
+  "chg_g": 0.83
+ },
+ {
+  "car": "McLaren 720S",
+  "n": 19,
+  "swap_h": 6.086,
+  "swap_g": 111.02,
+  "cl_h": 9.169,
+  "cl_g": 137.24,
+  "chg_min": 3.49,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Cadillac CT5-V Blackwing",
+  "n": 13,
+  "swap_h": 5.988,
+  "swap_g": 88.25,
+  "cl_h": 9.444,
+  "cl_g": 120.07,
+  "chg_min": 3.14,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Dodge Charger SRT Hellcat (widebody)",
+  "n": 13,
+  "swap_h": 5.456,
+  "swap_g": 89.44,
+  "cl_h": 8.571,
+  "cl_g": 117.56,
+  "chg_min": 3.1,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Toyota GR Supra (A90 / MK5)",
+  "n": 13,
+  "swap_h": 6.049,
+  "swap_g": 93.39,
+  "cl_h": 9.271,
+  "cl_g": 119.41,
+  "chg_min": 3.33,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Dodge Challenger SRT Hellcat",
+  "n": 11,
+  "swap_h": 5.394,
+  "swap_g": 93.52,
+  "cl_h": 7.992,
+  "cl_g": 119.28,
+  "chg_min": 3.13,
+  "chg_g": 0.83
+ },
+ {
+  "car": "BMW M8 Competition (F92)",
+  "n": 12,
+  "swap_h": 5.859,
+  "swap_g": 84.67,
+  "cl_h": 9.182,
+  "cl_g": 113.75,
+  "chg_min": 3.24,
+  "chg_g": 0.83
+ },
+ {
+  "car": "BMW M3 (E30)",
+  "n": 13,
+  "swap_h": 5.654,
+  "swap_g": 95.21,
+  "cl_h": 8.537,
+  "cl_g": 119.86,
+  "chg_min": 3.09,
+  "chg_g": 0.83
+ },
+ {
+  "car": "BMW M2 Competition (F87)",
+  "n": 13,
+  "swap_h": 5.877,
+  "swap_g": 92.3,
+  "cl_h": 9.421,
+  "cl_g": 117.06,
+  "chg_min": 3.06,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Mercedes-AMG GT 63 S 4-Door",
+  "n": 13,
+  "swap_h": 5.338,
+  "swap_g": 88.1,
+  "cl_h": 8.144,
+  "cl_g": 116.63,
+  "chg_min": 3.16,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Chevrolet Corvette C7 Z06",
+  "n": 12,
+  "swap_h": 4.857,
+  "swap_g": 88.32,
+  "cl_h": 7.034,
+  "cl_g": 112.91,
+  "chg_min": 3.14,
+  "chg_g": 0.83
+ },
+ {
+  "car": "BMW M240i (G42)",
+  "n": 13,
+  "swap_h": 5.435,
+  "swap_g": 89.74,
+  "cl_h": 7.856,
+  "cl_g": 118.51,
+  "chg_min": 3.11,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Lexus IS 350 F Sport",
+  "n": 16,
+  "swap_h": 7.563,
+  "swap_g": 97.13,
+  "cl_h": 12.242,
+  "cl_g": 132.61,
+  "chg_min": 3.23,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Honda Civic (11th gen)",
+  "n": 13,
+  "swap_h": 4.92,
+  "swap_g": 87.89,
+  "cl_h": 7.267,
+  "cl_g": 117.04,
+  "chg_min": 3.23,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Toyota Camry (2025+)",
+  "n": 13,
+  "swap_h": 5.796,
+  "swap_g": 89.2,
+  "cl_h": 8.984,
+  "cl_g": 118.51,
+  "chg_min": 3.24,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Bugatti Chiron (2016-2022)",
+  "n": 17,
+  "swap_h": 7.508,
+  "swap_g": 104.35,
+  "cl_h": 11.169,
+  "cl_g": 133.05,
+  "chg_min": 3.15,
+  "chg_g": 0.83
+ },
+ {
+  "car": "Lamborghini Urus (2018+)",
+  "n": 11,
+  "swap_h": 4.565,
+  "swap_g": 84.31,
+  "cl_h": 7.28,
+  "cl_g": 112.29,
+  "chg_min": 3.22,
+  "chg_g": 0.83
+ }
+]

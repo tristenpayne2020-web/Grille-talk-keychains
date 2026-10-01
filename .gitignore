@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+kc/cars/*/out/
+kc/cars/*/work/
+kc/cars/*/cand/
+kc/work/
+*.gcode
+*.tmp
+/tmp/

@@ -1,0 +1,10 @@
+Reference photo for the Camaro ZL1 (6th gen) keychain
+File: ref/front.jpg = crop (x 300..3070, y 400..2200) of ref/cand_red_2017show.jpg (no rotation: lower grille edges level within 1 px)
+Source: https://commons.wikimedia.org/wiki/File:2017_Camaro_ZL1.jpg
+Direct: https://upload.wikimedia.org/wikipedia/commons/1/16/2017_Camaro_ZL1.jpg
+Author: Yahya S. from United States (Flickr, IMG_5258, 2017-01-20, auto show)
+Licence: CC BY 2.0 (https://creativecommons.org/licenses/by/2.0)
+Note: the ZL1 nose (fascia, grille, headlamps, hood insert) is unchanged 2017-2024; the 2019 refresh changed the
+other Camaro trims only, so this 2017 show car shows the same front as a 2019+ ZL1.
+Other candidate kept: ref/cand_commons_frontview.jpg (https://commons.wikimedia.org/wiki/File:Camaro_ZL1_front_view.jpg,
+Ominae, CC BY-SA 4.0) - straight-on but shot from high above, Dubai plate, wrapped chrome splitter.

@@ -1,0 +1,11 @@
+front.jpg (traced reference)
+  2020 Mercedes-AMG GT R (C190 facelift), Green Hell Magno, straight-on front view.
+  Mercedes-Benz / Daimler AG press photo, downloaded from caricos.com gallery
+  https://www.caricos.com/cars/m/mercedes-benz/2020_mercedes-amg_gt/
+  image: https://wallpaper.caricos.com/2020-Mercedes-AMG-GT-R-(Color-Green-Hell-Magno)---Front-183840-2560x1440.jpg
+  Licence: manufacturer press image (editorial use, (c) Daimler AG) - used only as a private tracing reference.
+  Photo is level and centred: left half + mirrored right half overlay cleanly at x=1311, no rotation applied.
+
+alt_gtc_red.jpg (secondary check only, not traced)
+  2020 Mercedes-AMG GT C Coupe (US-Spec) front, same source/licence:
+  https://wallpaper.caricos.com/2020-Mercedes-AMG-GT-C-Coupe-(US-Spec)---Front-183975-2560x1440.jpg
