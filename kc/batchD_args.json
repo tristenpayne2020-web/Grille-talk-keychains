@@ -1,0 +1,63 @@
+{
+ "sp": "/home/user/Grille-talk-keychains",
+ "pool": 3,
+ "max_rounds": 2,
+ "cloud": true,
+ "others": [
+  "/home/user/Grille-talk-keychains/kc/cars/g87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f82_m4/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt3rs_992/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c8_corvette/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt500_mustang/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r8_audi/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/svj_aventador/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r35_gtr/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g20_m340i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camaro_zl1/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mclaren_720s/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/ct5v_blackwing/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/charger_srt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mk5_supra/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/challenger_hellcat/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f92_m8/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/e30_m3/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt63_4door/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c7_z06/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g42_m240i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lexus_is350/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/civic_11th/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camry_xv80/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/bugatti_chiron/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lambo_urus/spec.py"
+ ],
+ "prev_done": [],
+ "cars": [
+  {
+   "id": "gr86",
+   "name": "Toyota GR86 (2022+, ZN8)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Second-gen Toyota GR86 (2022+). Signature: the large trapezoid lower grille with mesh (relief hex/grid) and the functional corner 'fangs' / side vents, slim headlights with the L-shaped LED DRL (white strokes), the GR86-specific front bumper (no Toyota logo on the grille; small Toyota badge on the nose - simplified three-oval behind SHOW_BADGE), low hood with two creases. Must be clearly different from the BRZ in the same batch (different bumper, lamp graphics)."
+  },
+  {
+   "id": "brz_zd8",
+   "name": "Subaru BRZ (2022+, ZD8)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Second-gen Subaru BRZ (2022+). Signature: the hexagonal upper grille with the Subaru star-cluster oval badge (simplified oval with small stars behind SHOW_BADGE), headlights with the C-shaped / hawk-eye LED DRL (white strokes), the lower bumper with the wide intake and corner vents, low hood. Must be clearly different from the GR86 in the same batch."
+  },
+  {
+   "id": "g90_m5",
+   "name": "BMW M5 (G90, 2025+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. New BMW M5 G90 (2025+). Signature: the large illuminated-outline kidney grille (big, wide, with horizontal/vertical bars - check the photo), slim headlights with the vertical LED DRL elements (white strokes), the massive M bumper with huge outer intakes and a wide centre intake, hood creases, roundel (badge type 'roundel'). BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair."
+  },
+  {
+   "id": "f90_m5",
+   "name": "BMW M5 Competition (F90 LCI)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. BMW M5 F90 (prefer the 2021+ LCI Competition). Signature: the wide twin kidneys with black double vertical slats (relief vbars), LCI laser headlights with the L-shaped DRL (white strokes; pre-LCI has hexagonal rings - use what the photo shows), the three large lower intakes of the M bumper, the bulging hood with creases, roundel (badge type 'roundel'). Must be clearly different from the G90 M5 in the same batch. BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair."
+  },
+  {
+   "id": "ferrari_sf90",
+   "name": "Ferrari SF90 Stradale (2019+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Ferrari SF90 Stradale. Signature: the slim C-shaped LED headlight signature at the upper outer corners (white strokes), the full-width black lower 'mouth' with the central splitter blade and side intakes, the smooth sculpted hood with the central channel, the Ferrari shield on the nose (badge type 'shield'). Very low and wide."
+  }
+ ]
+}

@@ -12,6 +12,13 @@ export const meta = {
 const SP = args.sp
 const CARS = args.cars
 const KC = SP + '/kc'
+// args.cloud: Linux container without Creality Print. Full builds skip the slicer and render on the Xvfb display :99.
+const BUILD = args.cloud ? 'DISPLAY=:99 python kc/lib/export.py' : 'python kc/lib/export.py'
+const NOSLICE = args.cloud ? ' --no-slice' : ''
+const CLOUD_NOTE = args.cloud ? `
+- CLOUD RUN: there is no slicer here. Every FULL build is \`DISPLAY=:99 python kc/lib/export.py <spec> <out> --no-slice\`
+  (the 3D renders need DISPLAY=:99). build_report.json then has no slicecheck: report slicecheck_all_ok = true when the
+  full build finishes with 0 design errors; the user re-checks on their PC with the real slicer.` : ''
 
 const COMMON = `
 WORKING CONTEXT
@@ -22,7 +29,7 @@ WORKING CONTEXT
     g80_reference_photo_the_user_traced.png, g80_user_keychain_fusion_screenshot.png, g80_user_keychain_iso.png,
     g80_face_flat.png, g80_production_render.png, g80_classic_render.png
 - A rough px-format example spec: ${KC}/cars/_example_g80_px/spec.py (format demo only; the real quality bar is g80_face_flat.png)
-- Python 3.11 with shapely, numpy, PIL, cv2, requests is available. Use the Bash tool (Git Bash) or PowerShell. Paths contain no spaces.
+- Python 3.11 with shapely, numpy, PIL, cv2, requests is available. Use the Bash tool. Paths contain no spaces.${CLOUD_NOTE}
 - Only touch files inside your own car folder ${KC}/cars/<id>/ . Do not install packages. Do not edit kc/lib or other cars.
 - Printer: Creality K2, 0.4 mm nozzle, two colours (black + white) - the pipeline handles slicer settings.
 
@@ -63,7 +70,7 @@ TASK - produce an excellent, faithful, printable keychain design for this car.
    The DRL light signature must be recognisable at a glance - it is what makes a modern car identifiable.
 4. PRINTABILITY. 0 design errors before auto-repair is the target (>= 0.5 mm features and gaps). Use strokes of
    width 0.6-0.8 mm for DRL lines, 0.5-0.6 mm for grooves.
-5. FULL BUILD. python kc/lib/export.py kc/cars/${car.id}/spec.py kc/cars/${car.id}/out
+5. FULL BUILD. ${BUILD} kc/cars/${car.id}/spec.py kc/cars/${car.id}/out${NOSLICE}
    (Several cars build in parallel on this PC, so the full build is slow: iterate with --design-only and run the full build
    at most 3 times in total, when the 2D design is essentially final.)
    Look at out/production/${car.id}_production_render.png and out/classic/${car.id}_classic_render.png. Read
@@ -73,7 +80,7 @@ TASK - produce an excellent, faithful, printable keychain design for this car.
    and view it: same level of detail, same visual weight of black vs white, similar line weights, same kind of tab.
    Fix anything that looks off, rebuild, and look again. Iterate until you would be proud to sell it next to the G80.
 
-Return the structured result. spec_path/ref_path must be absolute Windows paths. In notes, list the design decisions
+Return the structured result. spec_path/ref_path must be absolute paths. In notes, list the design decisions
 (what is black/white/relief/grooves and why) and anything you could not do.`
 }
 
@@ -161,7 +168,7 @@ clean simplified shapes (no jagged traced noise), symmetry. Printability: design
 (n_lost must be 0, top_layer_coverage >= 0.9 for all four parts), any feature or gap < 0.5 mm, tiny isolated specks,
 white islands that are too small, anything that would look bad when recessed 1.4 mm in the production build.
 Each issue needs a concrete fix. Score 1-10 for style consistency + printability. pass = score >= 8, no 'high' issues
-and slicecheck all ok. Do not edit any files.`
+and slicecheck all ok.${args.cloud ? ' CLOUD RUN: there is no slicer here, so build_report.json has no slicecheck; judge printability from design_report.json and the renders, and do not fail the design for the missing slicecheck.' : ''} Do not edit any files.`
 }
 
 function revisePrompt(car, r, crits, round) {
@@ -179,10 +186,10 @@ ${issues}
 
 Workflow: read the spec, view the reference photo, out/overlay.png, out/face.png and the renders; apply fixes;
 iterate with --design-only (look at overlay.png + face.png every time); then run the full build
-  python kc/lib/export.py kc/cars/${car.id}/spec.py kc/cars/${car.id}/out
+  ${BUILD} kc/cars/${car.id}/spec.py kc/cars/${car.id}/out${NOSLICE}
 check build_report.json (slicecheck ok, n_lost 0, top_layer_coverage >= 0.9), regenerate vs_g80.png:
   python -c "import sys; sys.path.insert(0,'kc/lib'); import render; render.side_by_side(['kc/style/g80_face_flat.png','kc/cars/${car.id}/out/face.png'],'kc/cars/${car.id}/out/vs_g80.png',['G80 (user)','${car.id}'])"
-and look at everything once more. Return the structured result (absolute Windows paths; notes = what changed + any
+and look at everything once more. Return the structured result (absolute paths; notes = what changed + any
 disagreements with the critics).`
 }
 
