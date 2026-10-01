@@ -4,7 +4,7 @@ make(base_spec, drl_index) returns a new spec dict; the original approved spec i
 import copy, os, sys
 from shapely import affinity
 from shapely.geometry import LineString, Point, Polygon
-from shapely.ops import unary_union
+from shapely.ops import unary_union, substring
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'lib'))
 import geom
 
@@ -14,21 +14,25 @@ FRACS = (0.20, 0.58)  # bar positions along the lamp, from its outer end
 LEAN = 0.35         # mm the bar top leans outward (photos: bars tilt slightly with the lamp)
 
 
-def _bars(lamp, outer_is_left):
+def _bars(lamp, outer_is_left, length=1.0, lean_mm=LEAN):
     x0, y0, x1, y1 = lamp.bounds
     inner = lamp.buffer(-MARGIN - BAR_W / 2)
     out = []
     for f in FRACS:
         x = x0 + f * (x1 - x0) if outer_is_left else x1 - f * (x1 - x0)
-        lean = -LEAN if outer_is_left else LEAN
+        lean = -lean_mm if outer_is_left else lean_mm
         seg = LineString([(x - lean, y0 - 5), (x + lean, y1 + 5)]).intersection(inner)
         if seg.is_empty:
             continue
+        if length < 1.0:                                   # shorten about the bar's middle
+            L = seg.length
+            seg = substring(seg, L * (1 - length) / 2, L * (1 + length) / 2)
         out.append(seg.buffer(BAR_W / 2, cap_style=2))
     return unary_union(out)
 
 
-def make(base, drl_index, new_id, new_name):
+def make(base, drl_index, new_id, new_name, length=1.0, lean=LEAN):
+    """length: fraction of the full in-lamp bar length kept; lean: mm the bar top leans outward."""
     spec = copy.deepcopy(base)
     old = spec['prims'].pop(drl_index)
     M = geom.build_maps(spec)
@@ -44,7 +48,7 @@ def make(base, drl_index, new_id, new_name):
         solid = Polygon(p.exterior)
         if any(solid.contains(d.representative_point()) and d.area < 0.5 * solid.area for d in old_drl):
             lamps.append(solid)
-    bars = unary_union([_bars(p, p.centroid.x < 0) for p in lamps])
+    bars = unary_union([_bars(p, p.centroid.x < 0, length, lean) for p in lamps])
     lamps_u = unary_union(lamps)
     # back into the pre-placement mm frame ('geom' prims are mm in every spec ; build_maps applies translate(dy) then scale(k))
     pre = affinity.translate(affinity.scale(bars, 1 / k, 1 / k, origin=(0, 0)), 0, -dy)
