@@ -1,6 +1,6 @@
 """Steering-wheel keychain from the user's WheelKeychain_user.step (2026-10-01).
 Two filaments: 1 = black, 2 = gray (the parts that are silver on the real wheel: paddle shifters, spoke button
-panels, 12 o'clock stripe, plus the plain centre emblem disc). Perforated dimples on the leather grips. Scaled to keychain size, paddles thickened.
+panels without their scroll wheels, 12 o'clock stripe, plus the plain centre emblem disc). Perforated dimples on the leather grips. Scaled to keychain size, paddles thickened.
 usage (from kc/):  python wheel/build_wheel.py [--size 60]   -> wheel/out/"""
 import os, sys, math
 import numpy as np
@@ -50,7 +50,10 @@ def mesh_of(shape, tol=0.02):
     return m
 
 
-body = trimesh.boolean.union([mesh_of(s).apply_transform(TF) for s in solids], **BOOL)
+parts_in = [mesh_of(s).apply_transform(TF) for s in solids]
+body = trimesh.boolean.union(parts_in, **BOOL)
+# the user's two small separate pieces on the button panels are the scroll wheels: they stay black
+wheels_in = [m for m, s in zip(parts_in, solids) if s.Volume() < 0.1 * max(x.Volume() for x in solids)]
 
 
 def section(m, z):
@@ -75,9 +78,11 @@ pads = clean(section(body, lv(3.5)).difference(section(body, lv(5.0)).buffer(0.0
 body = trimesh.boolean.union([body, prism(pads, 0.0, PAD_T)], **BOOL)
 gray = [prism(pads, -0.1, PAD_T)]
 
-# 2. spoke button panels and the centre emblem disc (left plain, no logo): everything above the face (gray)
+# 2. spoke button panels and the centre emblem disc (left plain, no logo): everything above the face (gray),
+#    except the scroll wheels
 face_z = lv(8.0)
-front = section(body, face_z + 0.15)
+scroll = unary_union([section(m, (m.bounds[0][2] + m.bounds[1][2]) / 2) for m in wheels_in]) if wheels_in else Polygon()
+front = section(body, face_z + 0.15).difference(scroll.buffer(0.05))
 gray.append(prism(front.buffer(0.02), face_z, ztop + 0.5))
 
 # 3. rim: leather grips (perforated) and the 12 o'clock stripe
