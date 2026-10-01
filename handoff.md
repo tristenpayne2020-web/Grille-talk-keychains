@@ -262,7 +262,7 @@ python finalize.py
 
 ---
 
-## 7. Cloud session 2026-10-01: design runs done (all drafts, NONE approved yet)
+## 7. Cloud session 2026-10-01: design runs done, ALL APPROVED by the user
 
 38 new car drafts, all logo-free, traced from real photos, 1 critique + 1 revision round each (cost cut agreed with
 the user; `final_critique=false`, `consistency=false` in the args). Specs snapshotted as `spec_SHOWN_20261001_draft<X>.py`.
@@ -280,3 +280,10 @@ Next: the user reviews the sheets. On approval: copy the shown snapshot to `spec
 `python kc/finish_cars.py --only=<ids>` (real slice check + packaging). Still open from section 5: snake-eye G80/G87
 variants (needs a reference from the user).
 Spend in this session: about 14.4M subagent tokens (D 1.2M, E 3.3M, F 4.7M, G 5.2M), about $160 at the user's $11/M.
+
+UPDATE (same day): the user approved all 33 new cars. Each `spec_APPROVED_by_user.py` is a copy of its last
+`spec_SHOWN_20261001_draft*.py`, and all 33 are in `cars_pkg.json` (paths relative).
+Snake-eye variants (user photos: two near-vertical DRL bars per lamp, CSL style) added as new ids
+`g80_m3_snakeeye` and `g87_m2_snakeeye`, built by `kc/cars/_snakeeye.py` on top of the approved G80/G87, which stay
+untouched. Also locked and packaged. The line is now 63 cars.
+On the PC: `git pull`, then `python kc/rebuild_all.py` (all 63: slice check + Downloads packaging, 0 tokens).
