@@ -1,0 +1,50 @@
+{
+ "sp": "/home/user/Grille-talk-keychains",
+ "pool": 2,
+ "max_rounds": 1,
+ "cloud": true,
+ "others": [
+  "/home/user/Grille-talk-keychains/kc/cars/g87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f82_m4/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt3rs_992/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c8_corvette/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt500_mustang/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r8_audi/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/svj_aventador/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r35_gtr/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g20_m340i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camaro_zl1/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mclaren_720s/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/ct5v_blackwing/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/charger_srt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mk5_supra/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/challenger_hellcat/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f92_m8/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/e30_m3/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt63_4door/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c7_z06/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g42_m240i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lexus_is350/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/civic_11th/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camry_xv80/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/bugatti_chiron/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lambo_urus/spec.py"
+ ],
+ "prev_done": [],
+ "cars": [
+  {
+   "id": "tesla_model3",
+   "name": "Tesla Model 3 (Highland, 2024+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Refreshed Tesla Model 3 'Highland' (2024+). Signature: no grille - a smooth nose; very slim angular headlights with the thin LED DRL line (white strokes), the slim lower intake slot and small side intakes, the T badge on the nose (simplified T behind SHOW_BADGE), the smooth rounded hood. Clean and minimal - a mostly white face is correct for this car."
+  },
+  {
+   "id": "tesla_models_plaid",
+   "name": "Tesla Model S Plaid (2021+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Tesla Model S Plaid (2021+ refresh). Signature: smooth grille-less nose with the T badge (simplified T behind SHOW_BADGE), wide headlights with the LED DRL arc (white strokes), the wide lower intake band with mesh (relief hex/grid) and small side openings, the gently sloped hood with two soft creases. Must be clearly different from the Model 3 in the same batch (wider, flatter lamps, bigger lower intake)."
+  }
+ ],
+ "final_critique": false,
+ "consistency": false
+}
