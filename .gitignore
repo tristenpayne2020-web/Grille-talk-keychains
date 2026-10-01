@@ -7,3 +7,5 @@ kc/work/
 *.gcode
 *.tmp
 /tmp/
+kc/rebuild_log.txt
+kc/rebuild_status.json

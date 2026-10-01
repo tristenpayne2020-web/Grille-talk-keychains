@@ -3,11 +3,23 @@ sys.path.insert(0, 'lib')
 import package
 DEST = r'C:\Users\trist\Downloads\CarKeychains'
 cars = json.load(open('cars_pkg.json'))
-# refresh ref urls for any car whose workflow result changed (mustang)
+# every packaged car needs its build outputs here; stop BEFORE touching Downloads if any are missing
+missing = [c['id'] for c in cars if not os.path.exists(os.path.join(c['out'], 'build_report.json'))]
+if missing:
+    sys.exit(f"finalize: no build outputs for {', '.join(missing)} - build them first "
+             f"(python rebuild_all.py, or finish_cars.py --only=...). Downloads was not touched.")
+# move the old package aside in one step: if anything inside is open (Explorer window, Creality Print, a terminal)
+# the rename fails and nothing is deleted
 if os.path.isdir(DEST):
-    for p in os.listdir(DEST):
-        full = os.path.join(DEST, p)
-        shutil.rmtree(full) if os.path.isdir(full) else os.remove(full)
+    old = DEST + '_old'
+    if os.path.exists(old):
+        shutil.rmtree(old, ignore_errors=True)
+    try:
+        os.rename(DEST, old)
+    except OSError:
+        sys.exit("finalize: something in Downloads\\CarKeychains is open (File Explorer window, Creality Print, a terminal). "
+                 "Close it and run again. Nothing was deleted.")
+    shutil.rmtree(old, ignore_errors=True)
 rows = package.package(DEST, cars)
 # line-up + editable source
 specs = ['kc_style_pkl'] if False else []
