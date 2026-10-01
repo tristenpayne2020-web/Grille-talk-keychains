@@ -223,7 +223,9 @@ const refineCar = async (r, car) => {
       const nr = await agent(revisePrompt(car, cur, issues, round), { label: `revise:${car.id}:r${round}`, phase: 'Revise', schema: RESULT_SCHEMA })
       if (nr) cur = nr
     }
-    // one last critique of the final revision so the report is truthful
+    // one last critique of the final revision so the report is truthful (args.final_critique=false skips it: the
+    // main session then judges the drafts by eye, which is cheaper)
+    if (args.final_critique === false) return { car, result: cur, history, passed: null, final_issues: null }
     const c = await critique(car, cur, MAX_ROUNDS + 1)
     history.push({ round: MAX_ROUNDS + 1, likeness: c.likeness && { score: c.likeness.score, summary: c.likeness.summary }, style: c.style && { score: c.style.score, summary: c.style.summary } })
     return { car, result: cur, history, passed: passed(c), final_issues: { likeness: c.likeness, style: c.style } }
@@ -259,7 +261,8 @@ const CONS_SCHEMA = {
   },
   required: ['cars_to_fix', 'summary'],
 }
-const cons = await agent(`${COMMON}
+// args.consistency=false skips the art director (the main session reviews the line-up itself)
+const cons = (args.consistency === false || !done.length) ? null : await agent(`${COMMON}
 You are the art director of this keychain product line. First run (from ${SP}):
   ${lineupCmd}
 then view kc/lineup_all.png (all keychains at the same mm scale; the first one is the user's own G80 = the reference).

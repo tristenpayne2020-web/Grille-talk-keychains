@@ -4,16 +4,14 @@
 # WordPress 2560 px copy, cropped (440,250)-(2130,1320). See ref/SOURCE.txt.
 # Coordinates = photo px of ref/front.jpg. Body 61..1617 px (centre 839) -> 1 mm = 19.33 px.
 import os, sys, math
-from shapely.geometry import Polygon, LineString, Point, box
+from shapely.geometry import Polygon, LineString, box
 from shapely.ops import unary_union
 from shapely import affinity
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'lib')))
 import geom
 
-SHOW_BADGE = True
-if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):   # badge-free export, no edit
-    SHOW_BADGE = False
+# NO LOGOS (user rule): no badge / emblem / lettering anywhere; the nose spot stays plain body.
 
 CX = 839                               # centreline (px)
 
@@ -47,7 +45,7 @@ HEADLIGHT = [(163, 424), (178, 423), (200, 428), (240, 442), (280, 462), (320, 4
 # DRL light guide: the "L" that runs down the lamp's outer edge and along its lower edge to the inner tip
 LAMP_EDGE = [(166, 423), (156, 433), (151, 450), (148, 475), (148, 505), (151, 532), (158, 553), (170, 570),
              (188, 584), (215, 596), (250, 606), (290, 614), (330, 621), (370, 627), (395, 630)]
-DRL_IN, DRL_W0, DRL_W1, DRL_END = 0.97, 0.70, 0.86, 392     # inset, width at top / at inner end (mm), end x (px)
+DRL_IN, DRL_W0, DRL_W1, DRL_END = 1.17, 0.68, 0.9, 392     # inset, width at top / at inner end (mm), end x (px)
 
 GRILLE = [(845, 710), (700, 709), (560, 707), (455, 706), (438, 707), (420, 711), (404, 720), (390, 731),
           (379, 743), (370, 758), (363, 775), (357, 800), (352, 830), (347, 865), (343, 895), (340, 918),
@@ -55,19 +53,21 @@ GRILLE = [(845, 710), (700, 709), (560, 707), (455, 706), (438, 707), (420, 711)
 GRILLE_BAR = 729                        # px: the flat black upper frame of the grille ends here, mesh below
 
 # corner air duct: black "fang" blade + the vertical duct opening + its frame down to the bumper corner
-FANG = [(118, 680), (140, 678), (165, 684), (195, 693), (230, 704), (268, 716), (298, 727), (309, 734),
-        (298, 740), (262, 733), (222, 725), (190, 719), (175, 721), (165, 735), (160, 760), (159, 780),
+FANG = [(118, 680), (140, 678), (165, 684), (195, 693), (230, 704), (268, 716), (298, 727), (306, 730),
+        (306, 738), (298, 741), (262, 733), (222, 725), (190, 719), (175, 721), (165, 735), (160, 760), (159, 780),
         (165, 800), (169, 822), (168, 842), (163, 862), (155, 882), (146, 902), (137, 924), (129, 946),
-        (123, 966), (118, 990), (70, 990), (70, 930), (103, 905), (103, 850), (103, 800), (105, 750),
+        (123, 966), (118, 990), (40, 990), (40, 888), (107, 872), (106, 850), (104, 800), (105, 750),
         (108, 712), (112, 690)]
 
 FENDER_LINE = [(178, 426), (178, 405), (180, 390), (185, 375), (193, 361), (205, 348), (220, 337), (240, 326),
-               (262, 315), (284, 305)]
-HOOD_CREASE = [(390, 302), (395, 380), (402, 450), (410, 514)]
-HOOD_LINE = [(330, 500), (340, 505), (375, 512), (420, 516), (470, 514), (560, 513), (700, 515), (845, 516)]
+               (252, 320)]
+HOOD_CREASE = [(386, 372), (392, 410), (401, 460), (411, 512)]
+HOOD_LINE = [(345, 502), (380, 510), (400, 514), (420, 516), (470, 514), (560, 513), (700, 515), (845, 516)]
 
-BADGE_C = (839, 638)
-GROOVE_W = 0.55
+GROOVE_W = 0.65
+# bumper seam that wraps the grille's upper corners ('nostril'), and the lower-lip crease under the grille
+NOSTRIL = [(438, 699), (428, 686), (414, 681), (397, 686), (379, 698), (362, 716), (348, 740), (339, 765), (337, 786)]
+LIP_LINE = [(160, 982), (230, 992), (320, 997), (450, 999), (600, 1000), (845, 1001)]
 
 
 def drl():
@@ -84,17 +84,21 @@ def drl():
         w = DRL_W0 + (DRL_W1 - DRL_W0) * ((i + 0.5) / n) ** 1.5
         segs.append(LineString([a, b]).buffer(w / 2, 24))
     g = unary_union(segs)
-    return g.intersection(lamp.buffer(-0.58))
+    return g.intersection(lamp.buffer(-0.72))
 
 
 # ------------------------------------------------------------------------------------------------ G-mesh relief
 # The real grille is a staggered mesh of horizontally stretched hexagons (pointed left/right ends). Built as a
 # tessellation of elongated hexes: column step DX, row pitch P, tip half-width A (flat half-width B = DX - A).
-MESH_DX, MESH_P, MESH_A, MESH_RIB = 3.3, 2.0, 1.85, 0.7
+MESH_DX, MESH_P, MESH_A, MESH_RIB = 3.3, 2.0, 1.85, 0.75
+MESH_RIM, MESH_MINFRAC = 0.7, 0.6
 
 
 def g_mesh(region):
-    minx, miny, maxx, maxy = region.bounds
+    # holes live inside a continuous 0.7 mm black rim (no hole ever opens onto the white grille wall); rows are
+    # anchored on the grille bottom so the lower edge shows whole cells and cut cells hide under the top frame.
+    inner = region.buffer(-MESH_RIM, join_style=2)
+    minx, miny, maxx, maxy = inner.bounds
     A, B, P = MESH_A, MESH_DX - MESH_A, MESH_P
     cells = []
     nx = int((maxx - minx) / MESH_DX) + 4
@@ -102,29 +106,47 @@ def g_mesh(region):
     for i in range(-nx, nx + 1):
         for j in range(-2, ny + 1):
             x = i * MESH_DX
-            y = maxy - 0.35 - j * P - (P / 2 if i % 2 else 0)
+            y = miny + P / 2 - MESH_RIB / 2 + j * P + (P / 2 if i % 2 else 0)
             h = Polygon([(x - A, y), (x - B, y - P / 2), (x + B, y - P / 2), (x + A, y), (x + B, y + P / 2), (x - B, y + P / 2)])
             cells.append(h.buffer(-MESH_RIB / 2, join_style=2))
-    holes = unary_union(cells)
-    return box(minx - 1, miny - 1, maxx + 1, maxy + 1).difference(holes)
+    full = max(c.area for c in cells)
+    keep = []
+    for c in cells:
+        q = c.intersection(inner)
+        if q.is_empty or q.area < 0.995 * full and q.area < MESH_MINFRAC * full:
+            continue
+        if q.area < 0.995 * full:                       # cut cell: open it so no point is narrower than 0.8 mm
+            q = q.buffer(-0.4, join_style=1).buffer(0.4, join_style=1)
+        keep += [g for g in geom.polys(q) if g.area > 0.5]
+    return box(minx - 2, miny - 2, maxx + 2, maxy + 2).difference(unary_union(keep))
 
 
 _grille = sym(Polygon(mm(GRILLE)).buffer(0))
 _mesh_zone = _grille.intersection(box(-60, -10, 60, (YB - GRILLE_BAR) * S))
 
-def groove(pts, smooth=1, lamp_gap=0.55):
+_outline = sym(Polygon(mm(OUTLINE)).buffer(0))
+
+
+def groove(pts, smooth=1, lamp_gap=0.6, wall=None, avoid=None, gap=0.65):
     """Engraved line; where it runs into the headlight it stops lamp_gap (mm) short of the black lens, so no
-    half-covered groove slivers are left at the shallow crossing."""
+    half-covered groove slivers are left at the shallow crossing. wall: keep >= wall mm of white between the
+    groove and the outline. avoid: a black area the groove must stay >= gap mm away from."""
     line = LineString(geom.chaikin(mm(pts), smooth, closed=False) if smooth else mm(pts))
     lamp = Polygon(mm(HEADLIGHT)).buffer(0)
     line = line.difference(lamp.buffer(lamp_gap + GROOVE_W / 2))
+    if wall is not None:
+        line = line.intersection(_outline.buffer(-(wall + GROOVE_W / 2)))
+    if avoid is not None:
+        line = line.difference(avoid.buffer(gap + GROOVE_W / 2))
     return line.buffer(GROOVE_W / 2, 24)
 
 
 prims = [
-    dict(kind='geom', color='groove', geom=groove(FENDER_LINE, 2, lamp_gap=-0.3)),
+    dict(kind='geom', color='groove', geom=groove(FENDER_LINE, 2, lamp_gap=-0.3, wall=0.9)),
     dict(kind='geom', color='groove', geom=groove(HOOD_CREASE)),
-    dict(kind='geom', color='groove', geom=groove(HOOD_LINE)),
+    dict(kind='geom', color='groove', geom=groove(HOOD_LINE, lamp_gap=-0.3)),
+    dict(kind='geom', color='groove', geom=groove(NOSTRIL, 2, avoid=_grille)),
+    dict(kind='geom', color='groove', geom=groove(LIP_LINE, 1, wall=0.9, avoid=Polygon(mm(FANG)).buffer(0))),
     dict(kind='poly', color='black', pts=HEADLIGHT, smooth=1),
     dict(kind='geom', color='white', geom=drl()),
     dict(kind='geom', color='black', geom=_grille, mirror=False),
@@ -134,42 +156,6 @@ prims = [
 ]
 
 
-# ------------------------------------------------------------------------------------------------ Toyota badge
-# Simplified three-oval emblem (same construction as the product line's GR Supra): black ellipse = the badge,
-# white 0.5 mm strokes = the vertical oval + the horizontal oval (sharing their top like the real "T").
-# Photo: 6.7 x 3.5 mm incl. the dark rim -> 7.0 x 3.44 mm here.
-BADGE_A, BADGE_B, BADGE_W = 3.5, 1.72, 0.5
-BADGE_GTOP, BADGE_GBOT = 0.55, 0.5
-BADGE_AH, BADGE_BH, BADGE_AV = 2.45, 0.78, 0.66
-BADGE_ROUND = 0.12
-
-
-def _ell(a, b, y=0.0):
-    return affinity.translate(affinity.scale(Point(0, 0).buffer(1, 128), a, b), 0, y)
-
-
-def toyota_badge():
-    w = BADGE_W
-    top = BADGE_B - BADGE_GTOP - w / 2
-    bot = -(BADGE_B - BADGE_GBOT - w / 2)
-    bv, yv = (top - bot) / 2, (top + bot) / 2
-    yh = top - BADGE_BH
-    base = _ell(BADGE_A, BADGE_B)
-    vert = _ell(BADGE_AV, bv, yv).exterior.buffer(w / 2, 32)
-    horz = _ell(BADGE_AH, BADGE_BH, yh).exterior.buffer(w / 2, 32).difference(_ell(BADGE_AV - w / 2, bv - w / 2, yv))
-    white = unary_union([vert, horz]).intersection(base)
-    black = unary_union([q.buffer(-BADGE_ROUND, 32).buffer(BADGE_ROUND, 32) if q.area < 1.5 else q
-                         for q in geom.polys(base.difference(white))])
-    white = base.difference(black)
-    x, y = mm([BADGE_C])[0]
-    return affinity.translate(base, 0, y), affinity.translate(white, 0, y)
-
-
-if SHOW_BADGE:
-    _bb, _bw = toyota_badge()
-    prims += [dict(kind='geom', color='black', geom=_bb, mirror=False),
-              dict(kind='geom', color='white', geom=_bw, mirror=False)]
-
 SPEC = dict(
     id='gr86', name='Toyota GR86 (ZN8)',
     ref='kc/cars/gr86/ref/front.jpg',
@@ -177,5 +163,5 @@ SPEC = dict(
     outline_half=OUTLINE,
     prims=prims,
     tab=dict(y_frac=0.55),
-    badge_on=SHOW_BADGE,
+    badge=None,
 )

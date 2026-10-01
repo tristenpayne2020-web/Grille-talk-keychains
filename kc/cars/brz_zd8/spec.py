@@ -5,19 +5,19 @@
 # See ref/SOURCE.txt. Traced half = viewer's LEFT. Coordinates = photo px of ref/front.jpg (1 mm = 25.9 px).
 #
 # Design (G80 language):
-#  white  = body paint: the long flat hood (outline top = cowl / windshield base), fenders, the nose with the badge,
+#  white  = body paint: the long flat hood (outline top = cowl / windshield base), fenders, the plain nose (NO LOGOS: the badge spot stays plain body),
 #           the thin body-colour lip between grille and lower intake, and the body-colour lower bumper corners.
 #  black  = headlight units (whole lens), the slim vertical corner vents with their horizontal blade (the BRZ
-#           "fangs"), the wide hexagonal grille, the lower intake + splitter lip between the body-colour corners, the
-#           Subaru badge (SHOW_BADGE).
+#           "fangs"), the wide hexagonal grille, the lower intake + splitter lip between the body-colour corners.
 #  white on black = the light signature: the C-shaped DRL light guide that runs down the lamp's outer side and along
 #           its lower edge to the inner tip (0.80 mm, >= 0.55 mm black bezel), exactly as it lights up in the photo.
 #  relief = horizontal slats in the grille (pitch 2.32 = the real fin spacing, phased onto the real fins) and finer
 #           slats inside the corner vents (the real vents show horizontal fins behind a flat trim frame, kept flat).
 #  grooves (0.62 mm) = hood front shut line across the nose (headlight to headlight), the hood/fender shut lines
 #           rising from the lamps' top-outer corners to the cowl, the bumper/fender seams from the lamps' lower-outer
-#           corners to the body edge.
-#  dropped = plate recess, front camera, "BRZ tS" grille badge, side markers, tow-hook cover, projector lenses
+#           corners to the body edge, the stepped grille-surround crease (from under the vent blade, round the
+#           grille's outer corner to the lower intake) that gives the face its hexagonal frame.
+#  dropped = Subaru badge + all lettering (user rule: no logos), plate recess, front camera, "BRZ tS" grille badge, side markers, tow-hook cover, projector lenses
 #           (tried as rings: they turn the lamps into cartoon eyes and hide the DRL signature).
 import os, sys, math
 import shapely
@@ -28,9 +28,6 @@ from shapely import affinity
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'lib')))
 import geom
 
-SHOW_BADGE = True
-if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):
-    SHOW_BADGE = False
 
 CX, YB, XL = 1146, 1382, 106          # centreline, splitter bottom, fender (body) left edge (px)
 XR = 2 * CX - XL
@@ -67,12 +64,13 @@ GRILLE = [(1250, 1018), (1200, 1018), (800, 1017), (600, 1012), (520, 1012), (49
           (505, 1102), (526, 1142), (548, 1180), (572, 1212), (598, 1234), (640, 1242), (800, 1243), (1200, 1243), (1250, 1243)]
 LOWER = [(1146, 1263), (700, 1263), (575, 1261), (550, 1268), (505, 1293), (465, 1322), (430, 1348), (398, 1363),
          (398, 1420), (1146, 1420)]
-HOOD_LINE = [(492, 700), (545, 709), (595, 713), (645, 707), (700, 702), (800, 705), (950, 710), (1100, 713),
-             (1146, 713), (1200, 713)]
+HOOD_LINE = [(490, 702), (535, 711), (585, 718), (630, 715), (680, 709), (800, 710), (1000, 713), (1146, 715),
+             (1200, 715)]
+# body crease of the stepped grille surround: from under the vent blade tip, round the grille's outer corner
+SURROUND_LINE = [(548, 962), (480, 984), (446, 1012), (440, 1046), (456, 1090), (488, 1148), (522, 1205), (548, 1246)]
 FENDER_LINE = [(266, 608), (262, 572), (264, 542), (271, 512)]
 SEAM_LINE = [(214, 748), (160, 782), (100, 820)]
 GROOVE_W = 0.62
-BADGE_C = (1147, 864)
 
 
 def drl():
@@ -99,6 +97,7 @@ prims = [
     dict(kind='stroke', color='groove', width=GROOVE_W, smooth=2, pts=HOOD_LINE),
     dict(kind='stroke', color='groove', width=GROOVE_W, smooth=1, pts=FENDER_LINE),
     dict(kind='stroke', color='groove', width=GROOVE_W, pts=SEAM_LINE),
+    dict(kind='stroke', color='groove', width=GROOVE_W, smooth=2, pts=SURROUND_LINE),
     dict(kind='poly', color='black', pts=HEADLIGHT, smooth=1),
     dict(kind='geom', color='white', geom=drl()),
     dict(kind='poly', color='black', pts=VENT, smooth=1),
@@ -108,38 +107,12 @@ prims = [
 ]
 
 
-# ------------------------------------------------------------------------------------------------ Subaru badge
-# Simplified six-star oval: black ellipse, one big white 4-point star (left) + small white stars (the cluster)
-BADGE_A, BADGE_B = 3.8, 1.5
-
-
-def star4(c, rx, ry, w):
-    """4-point star centred c (mm), tip half-lengths rx/ry, waist half-width w"""
-    x, y = c
-    return Polygon([(x + rx, y), (x + w, y + w), (x, y + ry), (x - w, y + w), (x - rx, y), (x - w, y - w),
-                    (x, y - ry), (x + w, y - w)])
-
-
-def subaru_badge():
-    base = affinity.scale(Point(0, 0).buffer(1, 128), BADGE_A, BADGE_B)
-    big = star4((-1.5, 0.08), 1.25, 0.85, 0.3)
-    small = [Point(p).buffer(0.34, 32) for p in [(0.15, -0.5), (1.2, 0.3), (2.35, -0.2)]]
-    white = unary_union([big] + small).intersection(base.buffer(-0.5))
-    x, y = mm([BADGE_C])[0]
-    return affinity.translate(base, 0, y), affinity.translate(white, 0, y)
-
-
-if SHOW_BADGE:
-    _bb, _bw = subaru_badge()
-    prims += [dict(kind='geom', color='black', geom=_bb, mirror=False),
-              dict(kind='geom', color='white', geom=_bw, mirror=False)]
-
 SPEC = dict(
     id='brz_zd8', name='Subaru BRZ (ZD8)',
     ref='kc/cars/brz_zd8/ref/front.jpg',
     units='px', px_left=XL, px_right=XR, px_bottom=YB, center_x=CX,
     outline_half=OUTLINE,
     prims=prims,
+    badge=None,
     tab=dict(y_frac=0.44),
-    badge_on=SHOW_BADGE,
 )

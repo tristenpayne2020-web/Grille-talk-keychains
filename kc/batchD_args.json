@@ -1,7 +1,7 @@
 {
  "sp": "/home/user/Grille-talk-keychains",
  "pool": 3,
- "max_rounds": 2,
+ "max_rounds": 1,
  "cloud": true,
  "others": [
   "/home/user/Grille-talk-keychains/kc/cars/g87_m2/spec.py",
@@ -59,5 +59,7 @@
    "name": "Ferrari SF90 Stradale (2019+)",
    "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Ferrari SF90 Stradale. Signature: the slim C-shaped LED headlight signature at the upper outer corners (white strokes), the full-width black lower 'mouth' with the central splitter blade and side intakes, the smooth sculpted hood with the central channel, the Ferrari shield on the nose (badge type 'shield'). Very low and wide."
   }
- ]
+ ],
+ "final_critique": false,
+ "consistency": false
 }
