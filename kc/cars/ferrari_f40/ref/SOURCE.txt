@@ -1,0 +1,5 @@
+Reference: ref/front.jpg = 2000 px downscale of
+"Paris - Bonhams 2016 - Ferrari F40 Berlinetta - 1990 - 005.jpg" by Thesupermat, CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Paris_-_Bonhams_2016_-_Ferrari_F40_Berlinetta_-_1990_-_005.jpg
+(downloaded as the 3840 px Wikimedia thumbnail = c404.jpg)
+Alternates: c125.jpg (File:F40 (12822512265).jpg, Ben, CC BY-SA 2.0), c332.jpg (File:Ferrari F40-02.jpg, Shane K, CC BY-SA 2.0)

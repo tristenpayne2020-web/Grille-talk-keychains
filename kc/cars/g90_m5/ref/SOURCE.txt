@@ -1,9 +1,9 @@
-NO REFERENCE PHOTO (cloud run 2026-10-01)
-The container's egress proxy refused every image host tried (commons.wikimedia.org, upload.wikimedia.org,
-press.bmwgroup.com, mediapool.bmwgroup.com, caricos, netcarshow, motor1, hearstapps, carbuzz, bmwblog, edmunds,
-unsplash, flickr, imgur, pexels, pixabay), so no photo could be downloaded.
-spec.py is therefore drawn directly in keychain millimetres (units='mm') from the published G90/G60 front design
-description (BMW press text: DRL = "two nearly vertical LED elements positioned towards the outside" of each lamp;
-large kidney grille with horizontal slats; M bumper with wide centre intake, large outer intakes, corner air curtains).
-TODO on the user's PC: download a straight-on front photo (e.g. BMW Group PressClub "The new BMW M5 (06/2024)"),
-convert the spec to units='px' and re-trace / check proportions before selling.
+Reference photo used for tracing: front.jpg (2000x1500, downscaled from the 3840x2880 Commons rendition; cand2.jpg)
+Source: https://commons.wikimedia.org/wiki/File:BMW_G90_M5_Brooklyn_Grey_Metallic_(2).jpg
+Direct: https://upload.wikimedia.org/wikipedia/commons/1/10/BMW_G90_M5_Brooklyn_Grey_Metallic_%282%29.jpg
+Author: Damian B Oh (https://commons.wikimedia.org/wiki/User:Damian_B_Oh), taken 2025-09-04.
+Commons description: "Brooklyn Grey Metallic BMW G90 M5 PHEV sedan." (Korean-registered car, underground car park;
+the pale grey paint looks almost white in the photo).
+Licence: CC BY-SA 4.0 (Wikimedia Commons). Straight-on front of a 2025 BMW M5 (G90), camera ~grille height, level.
+Alternate candidate (not traced, slightly higher camera): cand1.jpg =
+https://commons.wikimedia.org/wiki/File:BMW_G90_M5_Brooklyn_Grey_Metallic_(1).jpg (CC BY-SA 4.0)

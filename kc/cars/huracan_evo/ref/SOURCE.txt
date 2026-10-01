@@ -1,0 +1,6 @@
+front.jpg / fl_54124826722.jpg : "Lamborghini Huracan EVO (54124826722)" - Flickr photo 54124826722, also on Wikimedia Commons
+  https://commons.wikimedia.org/wiki/File:Lamborghini_Hurac%C3%A1n_EVO_(54124826722).jpg
+  https://www.flickr.com/photo.gne?id=54124826722  (downloaded the 2048 px 'k' size from live.staticflickr.com)
+  Licence: as listed on Commons for this file (Flickr import, CC BY-SA 2.0 per the Commons search listing).
+front_lvl.jpg : front.jpg levelled +1.5 deg (trace_tools.py rotate) - all spec coordinates refer to this file.
+Other fl_*.jpg / cand0.jpg: candidates checked, not used (yawed / 3-4 views).

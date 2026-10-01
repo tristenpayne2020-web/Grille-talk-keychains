@@ -1,0 +1,14 @@
+front_raw.jpg  (traced reference)
+  "2007 Chevrolet Corvette Z06 front view" - GM studio press photo, posted on Flickr by "zorly"
+  https://www.flickr.com/photos/zorly/6912329178/
+  file: https://live.staticflickr.com/5340/6912329178_19fe7c7afa_k.jpg (2048x1365)
+  licence: All Rights Reserved (Flickr licence 0) - used only as a private tracing reference, not redistributed artwork.
+  Camera dead centre at headlight height, level, symmetric about x=1024 -> no rotation/warp applied.
+
+cand_red_z06.jpg  (cross-check only)
+  "Z06 Europe Corvette front view" - Flickr "zorly", https://www.flickr.com/photos/zorly/7057734111/
+  licence: All Rights Reserved.
+
+Wikimedia Commons was searched first (Category:Chevrolet Corvette C6 / Z06 C6 / Grand Sport / ZR1 C6), but every
+"front" C6 file there that could be fetched was a 3/4 view or a very low wide-angle shot (Corvette (avant).jpg),
+and upload.wikimedia.org rate-limited (HTTP 429, retry-after 600 s) most downloads.

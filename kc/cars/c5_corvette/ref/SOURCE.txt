@@ -1,0 +1,7 @@
+front.jpg (= cs_silver.jpg): silver Chevrolet Corvette C5 convertible, straight-on front, pop-up headlights closed, 1024x769.
+  Source: https://www.corvsport.com/wp-content/uploads/2017/02/02-DSC06198.jpg
+  (CorvSport.com "2000 C5 Chevrolet Corvette: Image Gallery", https://www.corvsport.com/2000-c5-corvette-image-gallery/)
+  Licence: not stated (user-submitted gallery photo) - used only as a private tracing reference, not redistributed.
+cs_red.jpg: second straight-on C5 (same gallery, 31519870004_large.jpg) used to confirm the intake mesh.
+flk_*.jpg: Flickr candidates (CC BY 2.0 / via Wikimedia Commons) rejected - 3/4 views.
+Wikimedia Commons originals (e.g. CC0 "Chevrolet CORVETTE C5 front.JPG") could not be downloaded: HTTP 429, retry-after 600 s.

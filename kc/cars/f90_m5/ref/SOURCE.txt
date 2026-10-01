@@ -1,7 +1,10 @@
-NO REFERENCE PHOTO (cloud run 2026-10-01)
-The container's egress proxy answers 403 for every image/web host (re-checked: commons/upload.wikimedia.org,
-en.wikipedia, bmwusa, motor1, autoevolution, carpixel, cars.com, google, duckduckgo ...; only GitHub is reachable),
-so no photo could be downloaded. spec.py is drawn in keychain millimetres (units='mm') with BMW proportions of the
-same era calibrated on the photo-traced f92_m8 / f82_m4 specs.
-TODO on the user's PC: check against a straight-on photo of a 2021+ M5 Competition (F90 LCI), e.g. BMW Group
-PressClub, before selling a batch.
+Reference photo for f90_m5 (BMW M5 Competition, F90 LCI, 2021+), downloaded 2026-10-01.
+Traced: front.jpg = crop (650,430)-(2020,1130) of P90390715_2249.jpg, gamma 0.6 + contrast 1.15 (photo is level and
+symmetric about x=686 in front.jpg).
+  P90390715 "The new BMW M5 Competition (06/2020)", studio, straight front
+  page:  https://www.press.bmwgroup.com/global/photo/detail/P90390715/
+  file:  https://mediapool.bmwgroup.com/cache/P9/202006/P90390715/P90390715-the-new-bmw-m5-competition-06-2020-2249px.jpg
+Cross-check (hood creases): P90391321 (same car, daylight, straight front)
+  page:  https://www.press.bmwgroup.com/global/photo/detail/P90391321/
+Licence: BMW AG press images (c) BMW AG, released for editorial/press use; used here only as a tracing reference,
+not redistributed in the product.
