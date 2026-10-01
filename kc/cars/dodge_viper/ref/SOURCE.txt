@@ -1,0 +1,4 @@
+front.jpg = crop (x 500-3300, y 250-1750) of original_2014_Viper_9526066709.jpg (3840 px wide thumbnail)
+Source: https://commons.wikimedia.org/wiki/File:2014_Viper_(9526066709).jpg
+Author: Patrick Corcoran (Flickr)  Licence: CC BY 2.0
+Car: 2014 SRT Viper GTS (5th gen VX), straight-on front, level.

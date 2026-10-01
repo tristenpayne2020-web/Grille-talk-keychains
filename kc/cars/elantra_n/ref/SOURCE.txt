@@ -1,0 +1,7 @@
+front.jpg = copy of hn_7_47674-2022HyundaiElantraNLine38copy.jpg
+Source: Hyundai USA Media Center (hyundainews.com), model page "2022 Elantra N" photo gallery
+  page: https://www.hyundainews.com/models/hyundai-elantra-2022-elantra_n/photos
+  file: https://www.hyundainews.com/assets/images/original/47674-2022HyundaiElantraNLine38copy.jpg (3000 x 2001, published Aug 19, 2021)
+Licence: manufacturer press/media image (editorial use; Hyundai Motor America copyright) - used only as a private tracing reference.
+Car: 2022 Hyundai Elantra N (CN7 N, pre-facelift), white, straight-on front at headlight height, level - no rotation needed.
+Other candidates in this folder: hn_2_* (slightly off-axis), hn_85_* (black car, off-axis).

@@ -258,3 +258,25 @@ python finalize.py
   `G80Keychain_user_original.step`).
 - The design workflow script is in `workflows/` (paths use `/`). In a Claude Code session the Workflow tool runs it via
   `scriptPath`; ultracode / explicit user opt-in is needed to launch workflows.
+
+
+---
+
+## 7. Cloud session 2026-10-01: design runs done (all drafts, NONE approved yet)
+
+38 new car drafts, all logo-free, traced from real photos, 1 critique + 1 revision round each (cost cut agreed with
+the user; `final_critique=false`, `consistency=false` in the args). Specs snapshotted as `spec_SHOWN_20261001_draft<X>.py`.
+Contact sheets: `previews/drafts_batchD|E|F|G/contact_sheet.png`.
+
+- Batch D: gr86, brz_zd8 (photos from the earlier PC run).
+- Batch E: g90_m5, f90_m5, ferrari_sf90 (remade from photos after network access was opened), jesko, ferrari_f40,
+  huracan_evo, c6_corvette, c5_corvette.
+- Batch F (queue 7): g20_330i, lexus_lc500, g30_m550i, kia_stinger, s550_mustang, s650_mustang, audi_rs5, audi_rs7,
+  nd_miata, camaro_1ss, ram_trx.
+- Batch G (queue 8): dodge_viper, civic_type_r_fl5, f150, mini_cooper_s, elantra_n, silverado, escalade, x5m, x4m,
+  macan, cayenne, nissan_350z. jeep_wrangler NOT designed: ask the user first (seven-slot grille trademark).
+
+Next: the user reviews the sheets. On approval: copy the shown snapshot to `spec_APPROVED_by_user.py`, then on the PC
+`python kc/finish_cars.py --only=<ids>` (real slice check + packaging). Still open from section 5: snake-eye G80/G87
+variants (needs a reference from the user).
+Spend in this session: about 14.4M subagent tokens (D 1.2M, E 3.3M, F 4.7M, G 5.2M), about $160 at the user's $11/M.
