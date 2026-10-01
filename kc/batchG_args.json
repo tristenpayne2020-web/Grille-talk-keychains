@@ -1,0 +1,100 @@
+{
+ "sp": "/home/user/Grille-talk-keychains",
+ "pool": 3,
+ "max_rounds": 1,
+ "cloud": true,
+ "others": [
+  "/home/user/Grille-talk-keychains/kc/cars/g87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f82_m4/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt3rs_992/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c8_corvette/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt500_mustang/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r8_audi/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/svj_aventador/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r35_gtr/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g20_m340i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camaro_zl1/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mclaren_720s/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/ct5v_blackwing/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/charger_srt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mk5_supra/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/challenger_hellcat/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f92_m8/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/e30_m3/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt63_4door/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c7_z06/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g42_m240i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lexus_is350/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/civic_11th/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camry_xv80/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/bugatti_chiron/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lambo_urus/spec.py"
+ ],
+ "prev_done": [],
+ "cars": [
+  {
+   "id": "dodge_viper",
+   "name": "Dodge Viper (5th gen VX, 2013-2017)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: very long low hood with the big central power bulge and the two large hood vents, the snake-eye headlights (slim, angled lamps with the LED DRL strip), the wide mouth grille with mesh (relief hex), the side intakes and splitter. Very wide, low, long-nose."
+  },
+  {
+   "id": "civic_type_r_fl5",
+   "name": "Honda Civic Type R (FL5, 2023+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the FL5 Type R bumper - wide honeycomb lower grille (relief hex), the upper grille slot, the big corner intakes with the vertical fins, the hood vent/bulge, slim LED headlights with the Civic DRL line. Must be clearly different from the regular 11th-gen Civic already in the line (much more aggressive bumper, hood scoop)."
+  },
+  {
+   "id": "f150",
+   "name": "Ford F-150 (14th gen, 2021+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the big upright grille with the horizontal bars (relief hbars), the C-clamp LED headlight signature that wraps around the lamp (white strokes), the tall squared hood with the power dome, the tall bumper with the fog pockets. Truck proportions - taller keychain is correct."
+  },
+  {
+   "id": "mini_cooper_s",
+   "name": "Mini Cooper S (F56 hatch, 2014-2024)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the round headlights with the ring LED DRL (white rings), the hexagonal grille with mesh (relief hex) and the S bumper intakes, the rounded short hood with the Cooper S hood scoop, the small round fog lamps. Cute, short, round proportions."
+  },
+  {
+   "id": "elantra_n",
+   "name": "Hyundai Elantra N (2022-2023)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the wide parametric-jewel grille with the N diamond mesh (relief diamond), the sharp slim headlights with the DRL line, the angular N bumper with the side intakes and red-lip splitter (draw the lip as a black band), the creased hood."
+  },
+  {
+   "id": "silverado",
+   "name": "Chevrolet Silverado 1500 (2022+ refresh)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the tall grille with the thick horizontal bar across the middle (bowtie position left plain), the slim headlights with the stacked C-shaped LED DRL (white strokes) set high, the tall hood with creases, the big bumper. Truck proportions - taller keychain is correct. Must differ clearly from the F-150."
+  },
+  {
+   "id": "escalade",
+   "name": "Cadillac Escalade (5th gen, 2021+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the huge shield-shaped grille with the fine mesh/vertical pattern (relief), the slim horizontal headlights plus the tall vertical LED light blades at the outer edges (white strokes - the key Escalade signature), the tall flat hood, the SUV bumper. Tall luxury SUV proportions."
+  },
+  {
+   "id": "x5m",
+   "name": "BMW X5 M Competition (F95 LCI, 2024+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the large single-frame kidney grille with the double horizontal/vertical M bars (relief), slim LCI headlights with the angled L-shaped DRL (white strokes), the M bumper with the huge outer intakes and wide centre intake, the tall hood with creases. SUV proportions. BMW rule from the user: exactly ONE front tow-hook cover (single ring, mirror=False) on the viewer's left, only if visible - never a mirrored pair."
+  },
+  {
+   "id": "x4m",
+   "name": "BMW X4 M Competition (F98 LCI, 2022+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the wide kidney grille with the double M slats (relief vbars), slim LCI headlights with the L-shaped DRL (white strokes), the M bumper with the big outer intakes, the lower sportier SUV-coupe nose. Must differ clearly from the X5 M (lower, lamp graphic, grille shape). BMW rule from the user: exactly ONE front tow-hook cover (single ring, mirror=False) on the viewer's left, only if visible - never a mirrored pair."
+  },
+  {
+   "id": "macan",
+   "name": "Porsche Macan GTS (95B.2, 2022-2024)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the four-point LED DRL in each headlight (four small white dots/bars), the rounded Porsche hood with the raised fenders, the three large lower intakes with the horizontal slats (relief hbars), the SUV-sport proportions. Must differ from the Cayenne and from the 911 GT3 RS in the line."
+  },
+  {
+   "id": "cayenne",
+   "name": "Porsche Cayenne (E3.2, 2024+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Signature: the Matrix LED headlights with the four-point DRL in a wider, flatter lamp (white), the tall rounded hood with the fender peaks, the big three-part lower intakes with the horizontal slat, the taller SUV nose. Must differ clearly from the Macan (taller, wider, flatter lamps)."
+  },
+  {
+   "id": "nissan_350z",
+   "name": "Nissan 350Z (Z33, 2006-2009 facelift)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Nissan 350Z coupe (Z33). Signature: the tall swept-back headlights running up the fenders (lamp outline with the projector rings, white), the wide low mouth grille with the horizontal bar (relief hbars/mesh), the round fog lamps in the bumper corners, the long low hood with the fender peaks. Must differ clearly from the GT-R R35 in the line."
+  }
+ ],
+ "final_critique": false,
+ "consistency": false
+}
