@@ -1,6 +1,6 @@
 """G80 wall key holder (user's G80_WallKeyholder_user.step), custom-colour snake-eye version.
-3 filaments like the custom-colour keychains: 1 = black (back plate, hood, sensor dots, tow-hook ring),
-2 = body colour (body with the key hooks), 3 = white (the snake-eye DRL bars).
+3 filaments like the custom-colour keychains: 1 = black (back plate, sensor dots, tow-hook ring),
+2 = body colour (body with the key hooks, hood), 3 = white (the snake-eye DRL bars).
 Changes vs the user's STEP: stock DRL pieces replaced by the snake-eye bars (kc/cars/_snakeeye.py TEMPLATE, fitted
 to these lamps); BMW roundel removed and its hole filled flush (no-logo rule).
 usage (from anywhere):  python kc/wall/build_wall_snakeeye.py      -> kc/wall/out/"""
@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.join(KC, 'lib')); sys.path.insert(0, os.path.join(KC,
 from geom import polys, clean
 import _snakeeye
 
-HOOD = 'black'          # 'black' = carbon hood like the user's car; 'body' = hood in the body colour
+HOOD = 'body'           # user 2026-10-01: hood in the body colour ('black' = carbon hood)
 OUT = os.path.join(HERE, 'out'); os.makedirs(OUT, exist_ok=True)
 BOOL = dict(engine='manifold')
 
