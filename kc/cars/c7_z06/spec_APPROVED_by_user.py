@@ -31,12 +31,15 @@
 # Build note (2026-09-29): Creality Print auto-updated to 7.3.0.6149 and its CLI rejects the call in kc/lib/slicecheck.py
 # ('CLI exit 1'). Until the library is updated, run the full build with work/build_cp73.py (export.full with an in-memory
 # slicer-call shim: --cli --slice 1 --outputdir DIR --need-gcode-file) and work/build3_cp73.py for the colour set.
+import os
 import math
 from shapely.geometry import Polygon, LineString, Point, box
 from shapely.ops import unary_union
 from shapely import affinity
 
 SHOW_BADGE = True          # crossed-flags winged V (custom prim, see BADGE)
+if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):   # badge-free export, no edit
+    SHOW_BADGE = False
 BLACK_HOOD = True          # gloss-black hood centre (traced debut car, cand_5); False = body colour (cand_blue_show)
 GROOVE_W = 0.58
 

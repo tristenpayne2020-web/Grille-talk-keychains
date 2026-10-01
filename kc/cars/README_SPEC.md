@@ -20,7 +20,7 @@ Compare the photo with the keychain to see how the user abstracts a car: **what 
 2. **Size**: the car body is always scaled to exactly **80.5 mm wide**; height follows the car (G80 = 38 mm). A low
    supercar will be flatter, which is correct. 3.0 mm thick (handled by the pipeline).
 3. **Two colours only.** White = body paint. Black = everything dark: headlight units (the whole lens outline),
-   grille openings, air intakes, splitter/lip, side air curtains/vents, prominent hood vents, badge.
+   grille openings, air intakes, splitter/lip, side air curtains/vents, prominent hood vents.
 4. **White on black** = the car's light signature (DRL graphics) drawn inside the black headlights. This is the most
    recognisable element of a modern car front - get its shape right (G80: the two hexagonal "L" strokes).
 5. **Grille** = black region with a **relief pattern** matching the real car (G80: horizontal slats). Other patterns:
@@ -29,7 +29,7 @@ Compare the photo with the keychain to see how the user abstracts a car: **what 
 6. **Engraved lines** (`groove`) for 2-6 key body lines only: hood shut line / hood edges / fender-to-A-pillar lines,
    creases (G80: hood outline + two fender lines). Width 0.5-0.6 mm.
 7. **Small details**: parking sensors / washers as small rings (`ring`, outer r >= 0.9 mm, width 0.5 mm) - optional,
-   max ~2 per side. Tow-hook covers, plates, text, wipers: dropped. Badge: simplified (see `badge`).
+   max ~2 per side. Tow-hook covers, plates, text, wipers: dropped. Logos: dropped (see below).
 8. **Keyring tab**: on the viewer's LEFT side, at a height where the car edge is white (fender), usually 50-65 % of
    the height. Set `tab: {'y_frac': 0.55}` (fraction of height from the bottom) or `{'y_mm': 21}`.
 9. **Printability (0.4 mm nozzle, hard rule)**: every black feature, white feature (e.g. a DRL stroke), groove and
@@ -97,7 +97,14 @@ Primitive kinds (coordinates in px unless noted; all widths/sizes in **mm**):
   `out/classic/*_render.png`, and a real-slicer check (`build_report.json` -> `slicecheck`: `n_lost` must be 0 and
   `top_layer_coverage` >= 0.9 for all four parts).
 
-## Badges without a built-in type (Nissan, McLaren, Dodge, Toyota, Cadillac, Chevrolet bowtie, Shelby...)
+## NO LOGOS (user decision 2026-09-30, trademark reasons)
+No car gets a badge, emblem, crest or brand lettering. New specs set `badge=None` and draw no logo prims; leave the
+spot as plain body or plain grille. The pipeline enforces it for old specs too: `geom.py` sets `KC_BADGE=0` by
+default, `build_maps` then skips the library `badge`, and specs with a custom `SHOW_BADGE` / `BADGE_ON` flag read
+`KC_BADGE` and drop their logo prims. `KC_BADGE=1` brings the old logos back (internal use only).
+The two sections below describe the old badge mechanisms; they stay only so the older specs make sense.
+
+## Badges without a built-in type (legacy) (Nissan, McLaren, Dodge, Toyota, Cadillac, Chevrolet bowtie, Shelby...)
 Draw a simplified badge as custom `geom`/`mm_poly` primitives (>= 0.5 mm strokes, 3.5-8 mm size) and put them behind a
 module-level literal flag `SHOW_BADGE = True` (append them to `prims` only when True). Keep proportions faithful:
 zoom in at print scale before accepting. See kc/cars/gt500_mustang/spec.py (COBRA_MM) for an example.

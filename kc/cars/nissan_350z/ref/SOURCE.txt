@@ -1,0 +1,14 @@
+Reference photo for nissan_350z (Nissan 350Z / Z33)
+front.jpg (traced) = flickr_3231256488_o.jpg upscaled x2 (LANCZOS, 858x570 -> 1716x1140). No rotation needed
+  (headlights, mouth and lip level; centreline x = 828 px in front.jpg, confirmed by badge / mouth / headlamp midpoints).
+Source: Flickr photo "350Z front" by Automotiv 66 (franckspotter)
+  page: https://www.flickr.com/photos/franckspotter/3231256488/
+  file: https://live.staticflickr.com/3360/3231256488_f2119c0ba3_o.jpg (858 x 570 original)
+Licence: All rights reserved (Flickr) - used only as a private tracing reference, not redistributed in the product.
+Car: black Z33 350Z, straight-on, camera at headlight height; projector headlamps with clear lenses.
+  Aftermarket parts on this car: mesh inserts in the lower mouth (stock = horizontal slats) and an add-on lip under the
+  bumper. The keychain uses the stock slat pattern; the lip is kept as the line's black splitter band.
+Why not a Wikimedia photo: the only straight-on Commons photo found (cand3.jpg = "Nissan 350Z Premium Pack in sunset
+  orange, 2003, front view.jpg", TeEmKah, CC BY-SA 4.0, 1920 px thumbnail) is a pre-facelift car shot with strong yaw
+  (left/right half widths 560 vs 738 px). Commons "Nissan 350Z front 20070914.jpg" (CC BY-SA 3.0) could not be downloaded
+  (upload.wikimedia.org answered HTTP 429 for 30+ minutes). cand3.jpg was used only to cross-check proportions.

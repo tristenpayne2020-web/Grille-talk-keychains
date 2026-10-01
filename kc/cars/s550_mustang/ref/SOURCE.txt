@@ -1,0 +1,14 @@
+front.jpg = crop (x 2200-5500, y 1000-3400) of front_raw.jpg, resized to 2200x1600 (traced image). No rotation needed
+(mirror check about x=1100 is clean).
+front_raw.jpg (7686x3917): 2022 Ford Mustang GT California Special (S550 facelift, Atlas Blue), dead-centred front view,
+camera above the hood. Source: Car and Driver 2022 Mustang GT California Special gallery,
+  https://hips.hearstapps.com/hmg-prod/images/2022-ford-mustang-gt-california-special-01-1633475577.jpg
+Licence: (c) Hearst Autos / Car and Driver (Ford press/editorial photo) - used only as a private tracing reference, not redistributed.
+Generation check: facelift (2018+) headlamps with the slanted tri-bar LED DRL at the inner lens end, lower hood with the
+two GT heat-extractor vents, wide trapezoid upper grille, full-width lower grille + lip, corner lamp strips with the
+black triangular vents -> 2018-2023 S550.2 GT. (California Special differences - GT/CS grille script and chrome
+grille surround - are not drawn: no logos, plain black mesh grille like the regular GT.)
+Cross-check for level-view proportions (hood band, vent bulges): wm_grey22a.jpg = Wikimedia Commons
+"File:Ford Mustang GT Coupé (2022) (53465078210).jpg" (CC BY 2.0, Flickr upload), 3840 px thumbnail,
+  https://commons.wikimedia.org/wiki/File:Ford_Mustang_GT_Coup%C3%A9_(2022)_(53465078210).jpg
+and the level S550 GT500 reference in kc/cars/gt500_mustang/ref/front.jpg.

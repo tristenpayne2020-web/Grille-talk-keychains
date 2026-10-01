@@ -1,0 +1,9 @@
+Reference photo used for tracing: front.jpg (2000x1500, downscaled from the 3840x2880 Commons rendition; cand2.jpg)
+Source: https://commons.wikimedia.org/wiki/File:BMW_G90_M5_Brooklyn_Grey_Metallic_(2).jpg
+Direct: https://upload.wikimedia.org/wikipedia/commons/1/10/BMW_G90_M5_Brooklyn_Grey_Metallic_%282%29.jpg
+Author: Damian B Oh (https://commons.wikimedia.org/wiki/User:Damian_B_Oh), taken 2025-09-04.
+Commons description: "Brooklyn Grey Metallic BMW G90 M5 PHEV sedan." (Korean-registered car, underground car park;
+the pale grey paint looks almost white in the photo).
+Licence: CC BY-SA 4.0 (Wikimedia Commons). Straight-on front of a 2025 BMW M5 (G90), camera ~grille height, level.
+Alternate candidate (not traced, slightly higher camera): cand1.jpg =
+https://commons.wikimedia.org/wiki/File:BMW_G90_M5_Brooklyn_Grey_Metallic_(1).jpg (CC BY-SA 4.0)

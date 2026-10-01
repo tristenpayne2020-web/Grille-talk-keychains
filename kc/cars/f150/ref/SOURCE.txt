@@ -1,0 +1,8 @@
+front.jpg (traced) = caricos_11.jpg rotated -6.6 deg (python kc/lib/trace_tools.py rotate ... -6.6) to level the camera roll.
+caricos_11.jpg: official Ford press photo "2021 Ford F-150 Limited - Front" (image 11 of the 2021 Ford F-150 press gallery),
+  downloaded from https://images.caricos.com/f/ford/2021_ford_f-150/images/2560x1440/2021_ford_f-150_11_2560x1440.jpg
+  (page https://www.caricos.com/cars/f/ford/2021_ford_f-150/images/11.html). 2560x1440, straight-on (low camera), ~6.6 deg roll.
+  Licence: manufacturer press/media image (editorial use; (c) Ford Motor Company), used only as a private tracing reference.
+caricos_3.jpg: other near-front press shot from the same gallery (Lariat, moving, lights on) - backup reference.
+Rejected: Wikimedia Commons "2021 Ford F-150 (fourteenth generation) front view 01/02.png" (CC BY 3.0, three-quarter views),
+  "2021 Ford F-150 SuperCrew, front 4.28.21.jpg" and "2024 Ford F-150 XLT front view.jpg" (three-quarter views).

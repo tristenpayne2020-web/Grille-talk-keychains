@@ -52,7 +52,7 @@ Each build is delivered as STL, STEP, a single 3MF and a full-plate 3MF (260×26
   - on approval, restore from that snapshot and lock it as `spec_APPROVED_by_user.py`;
   - running revise agents have overwritten approved designs before, so stop the workflow first.
 - **Slicer settings:** ONE master preset, never per-car settings (see section 2).
-- **NO LOGOS on any car.** The user decided this on 2026-09-30, for trademark reasons. It has not been implemented yet; see section 5.
+- **NO LOGOS on any car.** The user decided this on 2026-09-30, for trademark reasons. DONE 2026-10-01: see section 5, step 1.
 
 ---
 
@@ -216,7 +216,15 @@ python finalize.py
 
 ## 5. Next steps, in order, once the user says "continue"
 
-1. **No-logo versions of everything:**
+1. **No-logo versions of everything: DONE 2026-10-01 (cloud session).**
+   - Switch: `geom.py` sets `KC_BADGE=0` by default; `build_maps` skips `spec['badge']` unless `KC_BADGE=1`. Specs with
+     `SHOW_BADGE` / `BADGE_ON` read the same variable (env checks added to mclaren_720s, c7_z06, lambo_urus, amg_gt,
+     svj_aventador, c8_corvette; the AMG GT hood emblem now sits behind `BADGE_ON` too).
+   - All 28 cars rebuilt with `--no-slice` in the cloud (all build types, 0 design errors), checked by eye.
+     Previews: `previews/no_logo/`. Still to run on the PC: `python kc/rebuild_all.py` (slice checks + finalize).
+   - Queue briefs (6, 7, 8), `README_SPEC.md` and the workflow prompts all carry the no-logo rule.
+   - Cloud renders need a display: start `Xvfb :99` and set `DISPLAY=:99`.
+   Original plan for reference:
    - Add one global switch (e.g. in `geom.badge_geoms` / `build_maps`, or an env/flag read by `export.py`) that drops every badge: the built-in types (roundel, star, rings, shield, flags, pony, bar) and the custom `SHOW_BADGE` badges.
    - Make it the default.
    - Run `python rebuild_all.py` (all 28 cars, about 2.5 min each), check that every car rebuilt and the logos are gone, then confirm finalize ran.
@@ -250,3 +258,32 @@ python finalize.py
   `G80Keychain_user_original.step`).
 - The design workflow script is in `workflows/` (paths use `/`). In a Claude Code session the Workflow tool runs it via
   `scriptPath`; ultracode / explicit user opt-in is needed to launch workflows.
+
+
+---
+
+## 7. Cloud session 2026-10-01: design runs done, ALL APPROVED by the user
+
+38 new car drafts, all logo-free, traced from real photos, 1 critique + 1 revision round each (cost cut agreed with
+the user; `final_critique=false`, `consistency=false` in the args). Specs snapshotted as `spec_SHOWN_20261001_draft<X>.py`.
+Contact sheets: `previews/drafts_batchD|E|F|G/contact_sheet.png`.
+
+- Batch D: gr86, brz_zd8 (photos from the earlier PC run).
+- Batch E: g90_m5, f90_m5, ferrari_sf90 (remade from photos after network access was opened), jesko, ferrari_f40,
+  huracan_evo, c6_corvette, c5_corvette.
+- Batch F (queue 7): g20_330i, lexus_lc500, g30_m550i, kia_stinger, s550_mustang, s650_mustang, audi_rs5, audi_rs7,
+  nd_miata, camaro_1ss, ram_trx.
+- Batch G (queue 8): dodge_viper, civic_type_r_fl5, f150, mini_cooper_s, elantra_n, silverado, escalade, x5m, x4m,
+  macan, cayenne, nissan_350z. jeep_wrangler NOT designed: ask the user first (seven-slot grille trademark).
+
+Next: the user reviews the sheets. On approval: copy the shown snapshot to `spec_APPROVED_by_user.py`, then on the PC
+`python kc/finish_cars.py --only=<ids>` (real slice check + packaging). Still open from section 5: snake-eye G80/G87
+variants (needs a reference from the user).
+Spend in this session: about 14.4M subagent tokens (D 1.2M, E 3.3M, F 4.7M, G 5.2M), about $160 at the user's $11/M.
+
+UPDATE (same day): the user approved all 33 new cars. Each `spec_APPROVED_by_user.py` is a copy of its last
+`spec_SHOWN_20261001_draft*.py`, and all 33 are in `cars_pkg.json` (paths relative).
+Snake-eye variants (user photos: two near-vertical DRL bars per lamp, CSL style) added as new ids
+`g80_m3_snakeeye` and `g87_m2_snakeeye`, built by `kc/cars/_snakeeye.py` on top of the approved G80/G87, which stay
+untouched. Also locked and packaged. The line is now 63 cars.
+On the PC: `git pull`, then `python kc/rebuild_all.py` (all 63: slice check + Downloads packaging, 0 tokens).

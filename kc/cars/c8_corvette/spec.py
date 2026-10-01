@@ -19,12 +19,15 @@
 #     centred black prim painted last (like the library badge). Switch it off with BADGE_ON = False (the same
 #     convention as s650_mustang's pony).
 #   * the honeycomb: relief type 'custom' (see c8_mesh).
+import os
 import math
 from shapely.geometry import Polygon, LineString, Point, box
 from shapely.ops import unary_union
 from shapely import affinity
 
 BADGE_ON = True
+if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):   # badge-free export, no edit
+    BADGE_ON = False
 GROOVE_W = 0.62
 
 # ---- px <-> mm (same frame as the pipeline: 80.5 mm between px 173 and 1123, y up from px 722; the outline spans

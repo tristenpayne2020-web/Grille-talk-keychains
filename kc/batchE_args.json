@@ -1,0 +1,80 @@
+{
+ "sp": "/home/user/Grille-talk-keychains",
+ "pool": 3,
+ "max_rounds": 1,
+ "cloud": true,
+ "others": [
+  "/home/user/Grille-talk-keychains/kc/cars/g87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f82_m4/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt3rs_992/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c8_corvette/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/gt500_mustang/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r8_audi/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/svj_aventador/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/r35_gtr/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g20_m340i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camaro_zl1/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mclaren_720s/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/ct5v_blackwing/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/charger_srt/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/mk5_supra/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/challenger_hellcat/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f92_m8/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/e30_m3/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/f87_m2/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/amg_gt63_4door/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/c7_z06/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/g42_m240i_lci/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lexus_is350/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/civic_11th/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/camry_xv80/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/bugatti_chiron/spec.py",
+  "/home/user/Grille-talk-keychains/kc/cars/lambo_urus/spec.py"
+ ],
+ "prev_done": [],
+ "cars": [
+  {
+   "id": "g90_m5",
+   "name": "BMW M5 (G90, 2025+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. New BMW M5 G90 (2025+). Signature: the large illuminated-outline kidney grille (big, wide, with horizontal/vertical bars - check the photo), slim headlights with the vertical LED DRL elements (white strokes), the massive M bumper with huge outer intakes and a wide centre intake, hood creases, roundel (badge type 'roundel'). BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair. REDO: the existing spec.py in this folder was drawn from memory without a photo (units='mm', ref=None). Do not build on it: find a real reference photo and trace a fresh px spec from it."
+  },
+  {
+   "id": "f90_m5",
+   "name": "BMW M5 Competition (F90 LCI)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. BMW M5 F90 (prefer the 2021+ LCI Competition). Signature: the wide twin kidneys with black double vertical slats (relief vbars), LCI laser headlights with the L-shaped DRL (white strokes; pre-LCI has hexagonal rings - use what the photo shows), the three large lower intakes of the M bumper, the bulging hood with creases, roundel (badge type 'roundel'). Must be clearly different from the G90 M5 in the same batch. BMW rule from the user: exactly ONE front tow-hook cover (a single ring, mirror=False) on the side the photo shows it (viewer's left on BMWs), only if visible - never a mirrored pair. REDO: the existing spec.py in this folder was drawn from memory without a photo (units='mm', ref=None). Do not build on it: find a real reference photo and trace a fresh px spec from it."
+  },
+  {
+   "id": "ferrari_sf90",
+   "name": "Ferrari SF90 Stradale (2019+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Ferrari SF90 Stradale. Signature: the slim C-shaped LED headlight signature at the upper outer corners (white strokes), the full-width black lower 'mouth' with the central splitter blade and side intakes, the smooth sculpted hood with the central channel, the Ferrari shield on the nose (badge type 'shield'). Very low and wide. REDO: the existing spec.py in this folder was drawn from memory without a photo (units='mm', ref=None). Do not build on it: find a real reference photo and trace a fresh px spec from it."
+  },
+  {
+   "id": "jesko",
+   "name": "Koenigsegg Jesko (2019+)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Koenigsegg Jesko. Signature: the wide low nose with the large central intake and front splitter, the slim headlights with the LED DRL line (white strokes), the prominent front canards/dive planes, the hood with the central vents, the Koenigsegg shield badge (badge type 'shield'). Very low and wide."
+  },
+  {
+   "id": "ferrari_f40",
+   "name": "Ferrari F40 (1987-1992)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Ferrari F40 classic. Signature: pop-up headlights DOWN (closed) with the rectangular fixed lamp units behind clear covers at the front corners (black rectangles with white lamp discs/strokes), the thin horizontal nose with the three NACA-duct hood vents (black), the wide low black radiator mouth with the central divider, the prancing-horse shield badge (badge type 'shield'). Very flat 80s wedge."
+  },
+  {
+   "id": "huracan_evo",
+   "name": "Lamborghini Huracan EVO (2019-2024)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Lamborghini Huracan EVO. Signature: the Y-shaped LED DRL in the slim angular headlights (white strokes), the large side air intakes with the Y-shaped/hexagonal dividers, the central lower intake, the hood with the centre ridge and creases, the Lamborghini shield on the nose (badge type 'shield'). Must be clearly different from the Aventador SVJ already in the line (smaller, simpler intakes, different lamp shape)."
+  },
+  {
+   "id": "c6_corvette",
+   "name": "Chevrolet Corvette C6 (2005-2013)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. C6 Corvette coupe (Z06/Grand Sport front acceptable). Signature: the exposed (non pop-up) teardrop headlights with the round lamp elements (white rings/discs on black), the wide low oval mouth grille with mesh (relief grid/hex), the crossed-flags emblem on the nose (badge type 'flags'), the sharp hood with the central crease, the small fog/turn lamps in the bumper. Different from the C7 and C8 in the line."
+  },
+  {
+   "id": "c5_corvette",
+   "name": "Chevrolet Corvette C5 (1997-2004)",
+   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. C5 Corvette with the pop-up headlights CLOSED (smooth nose). Signature: the rounded nose with the round crossed-flags emblem (badge type 'flags'), the wide low mouth intake with the horizontal divider, the round fog lamps and the long oval parking/turn lamps in the bumper (white on black), the smooth hood with the soft centre bulge. Rounded 90s shape - clearly different from the C6/C7/C8 in the line."
+  }
+ ],
+ "final_critique": false,
+ "consistency": false
+}

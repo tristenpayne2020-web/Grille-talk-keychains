@@ -11,9 +11,12 @@
 # >= 0.62 mm wide and run 0.3 mm into the ring instead of tapering to a point. Switch it off with BADGE_ON = False
 # (same convention as c8_corvette, s650_mustang and svj_aventador; SPEC['badge'] is None so the library never draws
 # a second one).
+import os
 import math
 
 BADGE_ON = True
+if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):   # badge-free export, no edit
+    BADGE_ON = False
 
 _PX_PER_MM = (2168 - 454) / 80.5            # photo px per keychain mm (same calibration as below)
 
@@ -132,10 +135,11 @@ SPEC = dict(
         # parking sensor: black ring (outer r 1.1 mm) with a 0.9 mm white pin, like the G80's sensor rings
         dict(kind='circle', color='black', c=(504, 938), r_mm=1.1),
         dict(kind='poly', color='white', pts=_ngon((504, 938), 0.5)),
+    ] + ([
         # hood emblem: small ring on the nose, clear of the shut line (0.6 mm) and the grille (0.64 mm)
         dict(kind='circle', color='black', c=(1311, 744), r_mm=1.05, mirror=False),
         dict(kind='poly', color='white', pts=_ngon((1311, 744), 0.46), mirror=False),
-    ] + (STAR if BADGE_ON else []),   # grille star, painted last like the library badge (BADGE_ON above)
+    ] + STAR if BADGE_ON else []),   # hood emblem + grille star, painted last like the library badge (BADGE_ON above)
     badge=None,          # library 'star' not used; the star is the last three prims (BADGE_ON above)
     badge_note='custom Mercedes star prims (white disc / black ring / black 3-point star), on/off with BADGE_ON in spec.py',
     badge_on=False,

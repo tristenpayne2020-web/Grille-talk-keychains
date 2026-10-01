@@ -25,6 +25,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 import geom as _geom                 # read-only use of the pipeline's own helpers (polys / clean)
 
 SHOW_BADGE = True
+if os.environ.get('KC_BADGE', '').strip().lower() in ('0', 'false', 'no', 'off'):   # badge-free export, no edit
+    SHOW_BADGE = False
 
 CX = 1217.0
 HALF = 1113.0                       # centreline -> widest body point (left fender side at x = 104)

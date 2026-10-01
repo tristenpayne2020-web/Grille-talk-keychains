@@ -1,0 +1,3 @@
+front.jpg = chili1.jpg (3840px Commons thumbnail) resized to 2000x1500 and cropped (150,200,1850,1400)
+Source: https://commons.wikimedia.org/wiki/File:MINI_F56_Hatch_Cooper_S_Chili_Red_(1).jpg
+Author: Damian B Oh - Licence: CC BY-SA 4.0

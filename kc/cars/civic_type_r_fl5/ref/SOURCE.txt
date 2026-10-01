@@ -1,0 +1,9 @@
+Reference photo for civic_type_r_fl5
+File:   "Honda CIVIC TYPE R (FL5) front.jpg" (Wikimedia Commons)
+Page:   https://commons.wikimedia.org/wiki/File:Honda_CIVIC_TYPE_R_(FL5)_front.jpg
+Image:  https://upload.wikimedia.org/wikipedia/commons/5/58/Honda_CIVIC_TYPE_R_%28FL5%29_front.jpg  (2560 x 1920)
+Licence: CC BY-SA 4.0
+front.jpg = traced frame, 2560 x 1920 (the 1920 px Commons rendition, upscaled x1.333 to the original pixel frame;
+upload.wikimedia.org rate-limited the full-size file, front_1920.jpg is the downloaded copy). The first trace was
+made on the 960 px thumbnail; coordinates in spec.py are original-frame pixels, so the full-size
+file can be dropped in as front.jpg without changing the spec.

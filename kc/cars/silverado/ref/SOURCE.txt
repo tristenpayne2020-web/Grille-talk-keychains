@@ -1,0 +1,17 @@
+front.jpg (traced) = gma_rst_009.jpg, horizontally rectified and mirrored (yaw correction):
+  the near (viewer's right) half was remapped with a piecewise-linear width map whose landmarks
+  (grille edge, DRL inner edge, headlamp outer edge, body edge; image px from centre 435/480/670/695 -> 412/447/597/624)
+  are the averages of the left and right halves, cross-checked against the straight-on press night shot
+  (press_drl_night.jpg: DRL inner edge ~0.77 and body edge ~1.045 of the headlamp half-width). Centreline x = 700.
+gma_rst_009.jpg: 2022 Chevrolet Silverado RST 1500 (2022 refresh), real-world photo by GM Authority,
+  https://gmauthority.com/blog/wp-content/uploads/2021/09/2022-Chevrolet-Silverado-RST-1500-First-Real-World-Photos-September-2021-Exterior-009.jpg
+  (article https://gmauthority.com/blog/2021/09/refreshed-2022-silverado-rst-first-look/), 1500x1000.
+  Licence: (c) GM Authority, editorial photo, used only as a private tracing reference (not redistributed in the product).
+gma_rst_008.jpg: wider frame of the same shoot (...-Exterior-008.jpg), used for the hood/cowl and overall proportions.
+press_drl_night.jpg: official Chevrolet press photo (2022 Silverado ZR2, DRL signature at night, straight-on), via
+  dailyrevs.com (https://www.dailyrevs.com/cars/2022-chevrolet-silverado-zr2), (c) General Motors, editorial use;
+  used to confirm the C-shaped DRL graphic and the frontal proportions.
+Rejected / not obtainable: Wikimedia Commons "File:2023 Chevrolet Silverado 1500 au S.I.A.M. 2023.JPG" (public domain,
+  near-frontal) - upload.wikimedia.org returned HTTP 429 (retry-after 600 s) for >30 min; other Commons photos
+  ("2022 Chevrolet Silverado LTZ front view.jpg", "2023 Chevrolet Silverado LT front view.jpg", CC BY-SA 4.0) are
+  three-quarter views; caricos.com 2022 Silverado press gallery has no straight-on front shot.

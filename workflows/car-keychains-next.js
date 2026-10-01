@@ -12,6 +12,15 @@ export const meta = {
 const SP = args.sp
 const CARS = args.cars
 const KC = SP + '/kc'
+// args.cloud: Linux container without Creality Print. Full builds skip the slicer and render on the Xvfb display :99.
+const BUILD = args.cloud ? 'DISPLAY=:99 python kc/lib/export.py' : 'python kc/lib/export.py'
+const NOSLICE = args.cloud ? ' --no-slice' : ''
+const CLOUD_NOTE = args.cloud ? `
+- CLOUD RUN: there is no slicer here. Every FULL build is \`DISPLAY=:99 python kc/lib/export.py <spec> <out> --no-slice\`
+  (the 3D renders need DISPLAY=:99). build_report.json then has no slicecheck: report slicecheck_all_ok = true when the
+  full build finishes with 0 design errors; the user re-checks on their PC with the real slicer.
+- Wikimedia (commons API + upload.wikimedia.org) needs a descriptive User-Agent, e.g.
+  'GrilleTalkKeychains/1.0 (https://github.com/tristenpayne2020-web/Grille-talk-keychains)'; on HTTP 429 wait 10-30 s and retry.` : ''
 
 const COMMON = `
 WORKING CONTEXT
@@ -22,7 +31,7 @@ WORKING CONTEXT
     g80_reference_photo_the_user_traced.png, g80_user_keychain_fusion_screenshot.png, g80_user_keychain_iso.png,
     g80_face_flat.png, g80_production_render.png, g80_classic_render.png
 - A rough px-format example spec: ${KC}/cars/_example_g80_px/spec.py (format demo only; the real quality bar is g80_face_flat.png)
-- Python 3.11 with shapely, numpy, PIL, cv2, requests is available. Use the Bash tool (Git Bash) or PowerShell. Paths contain no spaces.
+- Python 3.11 with shapely, numpy, PIL, cv2, requests is available. Use the Bash tool. Paths contain no spaces.${CLOUD_NOTE}
 - Only touch files inside your own car folder ${KC}/cars/<id>/ . Do not install packages. Do not edit kc/lib or other cars.
 - Printer: Creality K2, 0.4 mm nozzle, two colours (black + white) - the pipeline handles slicer settings.
 
@@ -49,9 +58,11 @@ TASK - produce an excellent, faithful, printable keychain design for this car.
    and licence of the chosen one. If the best photo is slightly tilted, level it (trace_tools.py rotate) and trace the
    levelled copy. Confirm (by looking at it) that it really is the right generation/facelift.
 2. STUDY. View the photo at full size and zoomed crops. Write down the car's signature front elements (headlight
-   outline + DRL graphic, grille shape + texture, intakes, splitter, vents, creases/shut lines, badge) and decide, the
+   outline + DRL graphic, grille shape + texture, intakes, splitter, vents, creases/shut lines) and decide, the
    way the user did for the G80, what becomes black, what stays white, what becomes a white DRL stroke, where relief
    patterns and engraved lines go, and where the keyring tab sits (viewer's left, on a white area of the fender).
+   NO LOGOS (user rule): no badge, emblem, crest or brand lettering anywhere; badge=None, no SHOW_BADGE prims, leave
+   that spot as plain body or plain grille.
 3. TRACE. Use kc/lib/trace_tools.py (grid / edges / points, with --crop and --scale to zoom; labels are original
    photo pixels) to read precise coordinates. Write ${KC}/cars/${car.id}/spec.py. Iterate many times with
      python kc/lib/export.py kc/cars/${car.id}/spec.py kc/cars/${car.id}/out --design-only
@@ -61,7 +72,7 @@ TASK - produce an excellent, faithful, printable keychain design for this car.
    The DRL light signature must be recognisable at a glance - it is what makes a modern car identifiable.
 4. PRINTABILITY. 0 design errors before auto-repair is the target (>= 0.5 mm features and gaps). Use strokes of
    width 0.6-0.8 mm for DRL lines, 0.5-0.6 mm for grooves.
-5. FULL BUILD. python kc/lib/export.py kc/cars/${car.id}/spec.py kc/cars/${car.id}/out
+5. FULL BUILD. ${BUILD} kc/cars/${car.id}/spec.py kc/cars/${car.id}/out${NOSLICE}
    (Several cars build in parallel on this PC, so the full build is slow: iterate with --design-only and run the full build
    at most 3 times in total, when the 2D design is essentially final.)
    Look at out/production/${car.id}_production_render.png and out/classic/${car.id}_classic_render.png. Read
@@ -71,7 +82,7 @@ TASK - produce an excellent, faithful, printable keychain design for this car.
    and view it: same level of detail, same visual weight of black vs white, similar line weights, same kind of tab.
    Fix anything that looks off, rebuild, and look again. Iterate until you would be proud to sell it next to the G80.
 
-Return the structured result. spec_path/ref_path must be absolute Windows paths. In notes, list the design decisions
+Return the structured result. spec_path/ref_path must be absolute paths. In notes, list the design decisions
 (what is black/white/relief/grooves and why) and anything you could not do.`
 }
 
@@ -140,7 +151,7 @@ ${filesFor(car, r)}
 Check, comparing against the photo (overlay.png shows the design edges drawn on it) and your knowledge of the car:
 silhouette proportions (width:height, hood/fender line, bumper corners), headlight outline size/angle/position, the
 DRL light signature shape (most important), grille shape/size/position and its texture pattern, intake shapes, splitter,
-vents, badge placement, missing signature elements, wrong generation cues, asymmetry or misalignment with the photo.
+vents, any logo (there must be NONE: no badge, emblem, crest or brand lettering - user rule), missing signature elements, wrong generation cues, asymmetry or misalignment with the photo.
 Each issue needs a concrete fix (which primitive, which direction, approx px or mm). Score 1-10 for likeness.
 pass = score >= 8 and no 'high' issues. Do not edit any files.`
 }
@@ -159,7 +170,7 @@ clean simplified shapes (no jagged traced noise), symmetry. Printability: design
 (n_lost must be 0, top_layer_coverage >= 0.9 for all four parts), any feature or gap < 0.5 mm, tiny isolated specks,
 white islands that are too small, anything that would look bad when recessed 1.4 mm in the production build.
 Each issue needs a concrete fix. Score 1-10 for style consistency + printability. pass = score >= 8, no 'high' issues
-and slicecheck all ok. Do not edit any files.`
+and slicecheck all ok.${args.cloud ? ' CLOUD RUN: there is no slicer here, so build_report.json has no slicecheck; judge printability from design_report.json and the renders, and do not fail the design for the missing slicecheck.' : ''} Do not edit any files.`
 }
 
 function revisePrompt(car, r, crits, round) {
@@ -177,10 +188,10 @@ ${issues}
 
 Workflow: read the spec, view the reference photo, out/overlay.png, out/face.png and the renders; apply fixes;
 iterate with --design-only (look at overlay.png + face.png every time); then run the full build
-  python kc/lib/export.py kc/cars/${car.id}/spec.py kc/cars/${car.id}/out
+  ${BUILD} kc/cars/${car.id}/spec.py kc/cars/${car.id}/out${NOSLICE}
 check build_report.json (slicecheck ok, n_lost 0, top_layer_coverage >= 0.9), regenerate vs_g80.png:
   python -c "import sys; sys.path.insert(0,'kc/lib'); import render; render.side_by_side(['kc/style/g80_face_flat.png','kc/cars/${car.id}/out/face.png'],'kc/cars/${car.id}/out/vs_g80.png',['G80 (user)','${car.id}'])"
-and look at everything once more. Return the structured result (absolute Windows paths; notes = what changed + any
+and look at everything once more. Return the structured result (absolute paths; notes = what changed + any
 disagreements with the critics).`
 }
 
@@ -214,7 +225,9 @@ const refineCar = async (r, car) => {
       const nr = await agent(revisePrompt(car, cur, issues, round), { label: `revise:${car.id}:r${round}`, phase: 'Revise', schema: RESULT_SCHEMA })
       if (nr) cur = nr
     }
-    // one last critique of the final revision so the report is truthful
+    // one last critique of the final revision so the report is truthful (args.final_critique=false skips it: the
+    // main session then judges the drafts by eye, which is cheaper)
+    if (args.final_critique === false) return { car, result: cur, history, passed: null, final_issues: null }
     const c = await critique(car, cur, MAX_ROUNDS + 1)
     history.push({ round: MAX_ROUNDS + 1, likeness: c.likeness && { score: c.likeness.score, summary: c.likeness.summary }, style: c.style && { score: c.style.score, summary: c.style.summary } })
     return { car, result: cur, history, passed: passed(c), final_issues: { likeness: c.likeness, style: c.style } }
@@ -250,7 +263,8 @@ const CONS_SCHEMA = {
   },
   required: ['cars_to_fix', 'summary'],
 }
-const cons = await agent(`${COMMON}
+// args.consistency=false skips the art director (the main session reviews the line-up itself)
+const cons = (args.consistency === false || !done.length) ? null : await agent(`${COMMON}
 You are the art director of this keychain product line. First run (from ${SP}):
   ${lineupCmd}
 then view kc/lineup_all.png (all keychains at the same mm scale; the first one is the user's own G80 = the reference).
