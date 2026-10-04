@@ -1,0 +1,68 @@
+{%- comment -%}
+  Cart lines, totals and checkout, shared by the drawer and the /cart page.
+  usage: {% render 'cart-items', context: 'drawer' %} or context: 'page'
+  Quantity and remove use the Cart AJAX API when JS runs; without JS the page form posts to /cart.
+{%- endcomment -%}
+{%- if cart.item_count == 0 -%}
+  <div class="{% if context == 'drawer' %}dialog__body{% endif %}">
+    <div class="cart-empty">
+      <p class="h-3">{{ 'cart.empty_title' | t }}</p>
+      <p class="t-mute">{{ 'cart.empty_body' | t }}</p>
+      <a class="btn" href="{{ routes.collections_url }}/all">{{ 'cart.continue' | t }}</a>
+    </div>
+  </div>
+{%- else -%}
+  <form action="{{ routes.cart_url }}" method="post" class="cart-form{% if context == 'drawer' %} dialog__body{% endif %}" data-cart-form novalidate>
+    <ul class="cart-lines" role="list">
+      {%- for item in cart.items -%}
+        <li class="cart-line" data-line="{{ forloop.index }}" data-key="{{ item.key }}">
+          <a class="cart-line__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+            {%- if item.image -%}
+              {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '', width: 84, height: 84 }}
+            {%- endif -%}
+          </a>
+          <div>
+            <a class="cart-line__title" href="{{ item.url }}">{{ item.product.title | escape }}</a>
+            {%- unless item.product.has_only_default_variant -%}
+              <p class="cart-line__opts">
+                {%- for option in item.options_with_values -%}{{ option.name }}: {{ option.value }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}
+              </p>
+            {%- endunless -%}
+            <div class="cart-line__row">
+              <div class="qty">
+                <button type="button" data-qty-step="-1" aria-label="{{ 'cart.decrease' | t: title: item.product.title | escape }}">{% render 'icon', name: 'minus', class: 'icon--sm' %}</button>
+                <label class="visually-hidden" for="qty-{{ context }}-{{ forloop.index }}">{{ 'cart.quantity_for' | t: title: item.product.title | escape }}</label>
+                <input id="qty-{{ context }}-{{ forloop.index }}" type="number" inputmode="numeric" name="updates[]" value="{{ item.quantity }}" min="0" max="99" data-qty-input>
+                <button type="button" data-qty-step="1" aria-label="{{ 'cart.increase' | t: title: item.product.title | escape }}">{% render 'icon', name: 'plus', class: 'icon--sm' %}</button>
+              </div>
+              <span class="cart-line__price">{{ item.final_line_price | money }}</span>
+            </div>
+            <a class="cart-line__remove" href="{{ item.url_to_remove }}" data-remove>{{ 'cart.remove' | t }}</a>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+    <p class="cart-error" data-cart-error role="alert" hidden></p>
+    {%- if context == 'page' -%}
+      <noscript><button class="btn btn--ghost" type="submit" name="update">{{ 'cart.update' | t }}</button></noscript>
+    {%- endif -%}
+  </form>
+  <div class="{% if context == 'drawer' %}dialog__foot{% else %}cart-summary{% endif %}">
+    <div class="cart-total">
+      <span>{{ 'cart.subtotal' | t }}</span>
+      <strong>{{ cart.total_price | money_with_currency }}</strong>
+    </div>
+    <p class="cart-note">{{ 'cart.taxes_note' | t }}</p>
+    {%- assign note = section.settings.note -%}
+    {%- if note != blank -%}<p class="cart-note">{{ note | escape }}</p>{%- endif -%}
+    <form action="{{ routes.cart_url }}" method="post" data-checkout-form>
+      <button class="btn btn--block" type="submit" name="checkout" data-checkout>
+        <span class="btn__spinner" aria-hidden="true"></span>
+        <span class="btn__label">{{ 'cart.checkout' | t }}</span>
+      </button>
+    </form>
+    {%- if context == 'drawer' -%}
+      <a class="link-arrow" href="{{ routes.cart_url }}">{{ 'cart.view_cart' | t }} {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+    {%- endif -%}
+  </div>
+{%- endif -%}

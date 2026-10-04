@@ -1,0 +1,51 @@
+{%- comment -%}
+  "Don't see your car?" request. Native contact form, so Shopify handles spam and emails the owner. No price or time promised.
+{%- endcomment -%}
+<section class="section" aria-labelledby="request-title">
+  <div class="page-width split">
+    <div>
+      <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="h-2" id="request-title" style="margin-top: var(--s-3)">{{ section.settings.heading | escape }}</h1>
+      {%- if section.settings.text != blank -%}<p class="lede" style="margin-top: var(--s-4)">{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    <div>
+      {%- form 'contact', id: 'request-form' -%}
+        <input type="hidden" name="contact[subject]" value="Car request">
+        {%- if form.posted_successfully? -%}
+          <p class="form-msg" role="status" tabindex="-1" autofocus>{{ 'request.success' | t }}</p>
+        {%- else -%}
+          {%- if form.errors -%}
+            <div class="form-msg form-msg--error" role="alert" style="margin-bottom: var(--s-4)">
+              <p>{{ 'contact.error_heading' | t }}</p>
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+          <div class="form-grid form-grid--2">
+            <div class="field"><label for="r-make">{{ 'request.make' | t }}</label><input class="input" id="r-make" name="contact[make]" required autocomplete="off" placeholder="Porsche"></div>
+            <div class="field"><label for="r-model">{{ 'request.model' | t }}</label><input class="input" id="r-model" name="contact[model]" required autocomplete="off" placeholder="911 GT3"></div>
+            <div class="field"><label for="r-year">{{ 'request.year' | t }}</label><input class="input" id="r-year" name="contact[year or generation]" autocomplete="off" placeholder="2022, 992"></div>
+            <div class="field"><label for="r-email">{{ 'contact.email' | t }}</label><input class="input" id="r-email" type="email" name="contact[email]" required autocomplete="email"></div>
+            <div class="field span-2">
+              <label for="r-photo">{{ 'request.photo' | t }}</label>
+              <input class="input" id="r-photo" type="url" name="contact[photo link]" placeholder="https://" aria-describedby="r-photo-hint">
+              <p class="t-mute" id="r-photo-hint" style="font-size: var(--t-sm)">{{ 'request.photo_hint' | t }}</p>
+            </div>
+            <div class="field span-2"><label for="r-notes">{{ 'request.notes' | t }}</label><textarea class="input" id="r-notes" name="contact[body]"></textarea></div>
+            <div class="span-2"><button class="btn" type="submit">{{ 'request.send' | t }}</button></div>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Request a car",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Request a car" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Don't see your car?" },
+    { "type": "text", "id": "text", "label": "Text", "default": "Tell us what you drive, or what you dream about. Every request helps us pick the next cars to draw." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,97 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "eyebrow": "Help"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How big is it?",
+            "answer": "<p>80.5 mm wide and 3 mm thick, just under the width of a credit card. The height depends on the car.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What comes with it?",
+            "answer": "<p>The keychain, a split ring and a short chain.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Why is there no badge on the front?",
+            "answer": "<p>Logos and emblems belong to the car makers, so every Grille Talk design is logo-free. The shape, the lights and the grille do the talking.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Which body colors can I pick?",
+            "answer": "<p>White, matte red, matte yellow, matte gray, matte blue and metallic silver. The lights stay white and the details stay black whichever you pick.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "My car isn't here. Can you make it?",
+            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. 40+ more cars are already in the works.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "How long does it take to make?",
+            "answer": ""
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "How much is shipping, and how fast?",
+            "answer": ""
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return it?",
+            "answer": ""
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "Do you do orders for car clubs?",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

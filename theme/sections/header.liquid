@@ -1,0 +1,64 @@
+<header class="site-header" data-header>
+  <div class="site-header__inner page-width">
+    <a class="site-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, {{ 'general.home' | t }}">
+      {{ 'logo-flat.svg' | inline_asset_content }}
+    </a>
+    <nav class="site-nav" aria-label="{{ 'general.main_menu' | t }}">
+      <ul role="list">
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="{{ routes.search_url }}" class="icon-btn" data-open="search-dialog" aria-label="{{ 'search.title' | t }}" aria-haspopup="dialog">{% render 'icon', name: 'search' %}</a>
+      <a href="{{ routes.cart_url }}" class="icon-btn cart-btn" data-open="cart-drawer" aria-haspopup="dialog">
+        {% render 'icon', name: 'bag' %}
+        <span class="visually-hidden">{{ 'cart.title' | t }},</span>
+        <span class="cart-count" data-cart-count data-count="{{ cart.item_count }}">{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
+        <span class="visually-hidden">{{ 'cart.items_label' | t }}</span>
+      </a>
+      <button type="button" class="icon-btn menu-btn" data-open="menu-dialog" aria-haspopup="dialog" aria-label="{{ 'general.menu' | t }}">{% render 'icon', name: 'menu' %}</button>
+    </div>
+  </div>
+</header>
+
+<div class="dialog" id="menu-dialog" data-dialog role="dialog" aria-modal="true" aria-label="{{ 'general.menu' | t }}" hidden>
+  <div class="dialog__scrim" data-close></div>
+  <div class="dialog__panel">
+    <div class="dialog__head">
+      <span class="t-eyebrow">{{ 'general.menu' | t }}</span>
+      <button type="button" class="icon-btn" data-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+    </div>
+    <nav class="dialog__body" aria-label="{{ 'general.main_menu' | t }}">
+      <ul class="menu-list" role="list">
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a></li>
+        {%- endfor -%}
+      </ul>
+      <div class="contact-links">
+        {%- if settings.contact_email != blank -%}
+          <a href="mailto:{{ settings.contact_email }}">{% render 'icon', name: 'mail', class: 'icon--sm' %}{{ settings.contact_email }}</a>
+        {%- endif -%}
+        {%- if settings.contact_phone != blank -%}
+          <a href="tel:{{ settings.contact_phone_tel }}">{% render 'icon', name: 'phone', class: 'icon--sm' %}{{ settings.contact_phone }}</a>
+        {%- endif -%}
+      </div>
+    </nav>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-wrapper",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

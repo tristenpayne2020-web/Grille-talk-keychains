@@ -1,0 +1,12 @@
+<article class="section section--tight" aria-labelledby="article-title">
+  <div class="page-width page-narrow">
+    <p class="t-eyebrow">{{ article.published_at | date: '%B %-d, %Y' }}</p>
+    <h1 class="h-2" id="article-title" style="margin: var(--s-3) 0 var(--s-6)">{{ article.title | escape }}</h1>
+    {%- if article.image -%}{{ article.image | image_url: width: 1400 | image_tag: loading: 'eager', widths: '600, 1000, 1400', sizes: '(min-width: 800px) 760px, 100vw', alt: article.image.alt }}{%- endif -%}
+    <div class="rte" style="margin-top: var(--s-6)">{{ article.content }}</div>
+  </div>
+</article>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

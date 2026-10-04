@@ -1,0 +1,157 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "home": "home",
+    "menu": "Menu",
+    "main_menu": "Main",
+    "close": "Close",
+    "policies": "Policies",
+    "page": "Page {{ page }}",
+    "skip_intro": "Skip",
+    "faq": "Frequently asked questions"
+  },
+  "search": {
+    "title": "Search",
+    "label": "Search the range",
+    "placeholder": "Try M3, Supra or Corvette",
+    "submit": "Search",
+    "loading": "Searching",
+    "error": "Search is not responding right now. Press Enter to search the full catalog.",
+    "results_label": "Matching keychains",
+    "view_all": "See every match for \"{{ terms }}\"",
+    "no_match": "No match for \"{{ terms }}\".",
+    "request_it": "Request it",
+    "results_count": {
+      "one": "{{ count }} result for \"{{ terms }}\"",
+      "other": "{{ count }} results for \"{{ terms }}\""
+    },
+    "heading": "Search",
+    "empty_heading": "Nothing matches \"{{ terms }}\" yet.",
+    "empty_body": "We may not have drawn that car yet. Tell us which one and we will look at it."
+  },
+  "cart": {
+    "title": "Cart",
+    "items_label": "items",
+    "empty_title": "Your cart is empty.",
+    "empty_body": "Pick a car, pick a body color, and it lands here.",
+    "continue": "Browse the range",
+    "subtotal": "Subtotal",
+    "taxes_note": "Taxes and shipping are worked out at checkout.",
+    "checkout": "Check out",
+    "view_cart": "View cart",
+    "remove": "Remove",
+    "update": "Update cart",
+    "decrease": "One fewer {{ title }}",
+    "increase": "One more {{ title }}",
+    "quantity_for": "Quantity of {{ title }}",
+    "added": "Added to cart",
+    "error_generic": "The cart did not update. Check your connection and try again."
+  },
+  "products": {
+    "from_price_html": "From {{ price }}",
+    "for_owners": "For {{ model }} owners",
+    "body_color": "Body color",
+    "add_to_cart": "Add to cart",
+    "sold_out": "Unavailable",
+    "quantity": "Quantity",
+    "view_3d": "Drag to turn it",
+    "media_label": "Images of {{ title }}",
+    "show_image": "Show image {{ index }}",
+    "facts_title": "The details",
+    "fact_size": "Size",
+    "fact_size_value": "80.5 mm wide, 3 mm thick",
+    "fact_print": "Print",
+    "fact_print_value": "Two colours",
+    "fact_included": "In the box",
+    "fact_included_value": "Split ring and short chain",
+    "fact_design": "Design",
+    "fact_design_value": "Logo-free",
+    "fact_production": "Made",
+    "fact_shipping": "Shipping",
+    "variant_unavailable": "That combination is not available."
+  },
+  "range": {
+    "carousel": "carousel",
+    "slide": "keychain",
+    "slide_label": "{{ index }} of {{ total }}",
+    "previous": "Previous keychain",
+    "next": "Next keychain",
+    "choose": "Choose a keychain"
+  },
+  "collections": {
+    "filter": "Filter",
+    "sort": "Sort by",
+    "clear": "Clear all",
+    "remove_filter": "Remove filter {{ value }}",
+    "apply": "Apply",
+    "count": {
+      "one": "{{ count }} design",
+      "other": "{{ count }} designs"
+    },
+    "empty_heading": "No design matches those filters.",
+    "empty_body": "Clear a filter, or ask us to draw the car you are after.",
+    "request": "Request a car"
+  },
+  "newsletter": {
+    "label": "Email",
+    "placeholder": "you@example.com",
+    "success": "You are on the list. We will email when new cars land."
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "message": "Message",
+    "send": "Send",
+    "success": "Thanks. Your message is in, and we reply by email.",
+    "error_heading": "Please fix these before sending:"
+  },
+  "request": {
+    "make": "Make",
+    "model": "Model",
+    "year": "Year or generation",
+    "photo": "Photo link (optional)",
+    "photo_hint": "A straight-on photo of the front helps most.",
+    "notes": "Anything else (optional)",
+    "send": "Send request",
+    "success": "Request received. We read every one, and we will email you if we draw it."
+  },
+  "not_found": {
+    "title": "This page took a wrong turn.",
+    "text": "The link may be old, or the page moved. Search for your car or browse the range.",
+    "shop": "Browse the range"
+  },
+  "accounts": {
+    "login": "Log in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "register": "Create account",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "logout": "Log out",
+    "orders": "Orders",
+    "no_orders": "No orders yet.",
+    "order": "Order {{ name }}",
+    "recover": "Reset password",
+    "recover_sent": "Check your email for a reset link.",
+    "activate": "Activate account",
+    "reset": "Set a new password",
+    "addresses": "Addresses",
+    "back": "Back to account"
+  },
+  "password": {
+    "heading": "Opening soon",
+    "enter": "Enter",
+    "label": "Store password"
+  },
+  "gift_card": {
+    "title": "Your gift card",
+    "code": "Code",
+    "balance": "Balance",
+    "shop": "Start shopping"
+  },
+  "blogs": {
+    "read": "Read"
+  }
+}

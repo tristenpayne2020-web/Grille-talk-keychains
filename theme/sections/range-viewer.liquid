@@ -1,0 +1,147 @@
+{%- comment -%}
+  Guided range: one keychain at a time in 3D on its chain, the neighbours dimmed at the sides.
+  Arrows, swipe, arrow keys and position dots. Data comes from the chosen collection; nothing is hardcoded.
+  Without JS the first keychain shows and a plain list of every design follows.
+{%- endcomment -%}
+{%- liquid
+  assign col = section.settings.collection | default: collections.all
+  assign items = col.products
+  assign total = items.size
+-%}
+<section class="section range" id="range" aria-labelledby="range-title">
+  <div class="page-width">
+    <div class="range__head" data-reveal>
+      <div>
+        <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        <h2 class="h-2" id="range-title">{{ section.settings.heading | escape }}</h2>
+      </div>
+      <p class="range__counter" aria-hidden="true"><span data-range-index>01</span> / {{ total | prepend: '00' | slice: -2, 2 }}</p>
+    </div>
+
+    {%- if total > 0 -%}
+      <div
+        class="range__carousel"
+        data-range
+        role="region"
+        aria-roledescription="{{ 'range.carousel' | t }}"
+        aria-label="{{ section.settings.heading | escape }}"
+        tabindex="0"
+      >
+        <div class="range__viewport" data-range-viewport>
+          <ul class="range__track" role="list">
+            {%- for product in items -%}
+              {%- liquid
+                assign idx = forloop.index0
+                assign pos = ''
+                if idx == 0
+                  assign pos = '0'
+                elsif idx == 1
+                  assign pos = '1'
+                elsif forloop.last and total > 2
+                  assign pos = '-1'
+                endif
+                assign glb = ''
+                for media in product.media
+                  if media.media_type == 'model'
+                    assign src = media.sources | where: 'format', 'glb' | first
+                    assign glb = src.url
+                    break
+                  endif
+                endfor
+                assign short = product.metafields.custom.short_model.value | default: product.metafields.custom.short_model
+                assign from_price = product.price_min | money
+              -%}
+              <li
+                class="range__slide"
+                {% if pos != '' %}data-pos="{{ pos }}"{% endif %}
+                role="group"
+                aria-roledescription="{{ 'range.slide' | t }}"
+                aria-label="{{ 'range.slide_label' | t: index: forloop.index, total: total }}"
+                {% if idx != 0 %}aria-hidden="true"{% endif %}
+                data-title="{{ product.title | escape }}"
+                data-url="{{ product.url }}"
+                data-short="{% if short != blank %}{{ 'products.for_owners' | t: model: short | escape }}{% endif %}"
+                data-price="{{ 'products.from_price_html' | t: price: from_price | strip_html | escape }}"
+                data-model="{{ glb }}"
+              >
+                {%- if product.featured_image -%}
+                  {%- liquid
+                    assign loading = 'lazy'
+                    if idx < 2
+                      assign loading = 'eager'
+                    endif
+                  -%}
+                  {{ product.featured_image | image_url: width: 1400 | image_tag:
+                    loading: loading,
+                    widths: '500, 800, 1100, 1400',
+                    sizes: '(min-width: 990px) 760px, 92vw',
+                    alt: product.featured_image.alt | default: product.title
+                  }}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+          <div class="range__canvas" data-range-canvas aria-hidden="true"></div>
+          <button type="button" class="range__arrow range__arrow--prev" data-range-prev aria-label="{{ 'range.previous' | t }}">{% render 'icon', name: 'arrow-left' %}</button>
+          <button type="button" class="range__arrow range__arrow--next" data-range-next aria-label="{{ 'range.next' | t }}">{% render 'icon', name: 'arrow-right' %}</button>
+        </div>
+
+        {%- assign first = items | first -%}
+        {%- assign first_short = first.metafields.custom.short_model.value | default: first.metafields.custom.short_model -%}
+        {%- assign first_price = first.price_min | money -%}
+        <div class="range__info" aria-live="polite">
+          <h3 class="range__title" data-range-title>{{ first.title | escape }}</h3>
+          <p class="range__meta">
+            <span data-range-short>{% if first_short != blank %}{{ 'products.for_owners' | t: model: first_short }}{% endif %}</span>
+            <span class="range__price" data-range-price>{{ 'products.from_price_html' | t: price: first_price }}</span>
+          </p>
+          <a class="btn" href="{{ first.url }}" data-range-view>{{ section.settings.view_label | escape }}<span class="visually-hidden" data-range-view-name>: {{ first.title | escape }}</span></a>
+        </div>
+
+        <ol class="range__dots" aria-label="{{ 'range.choose' | t }}">
+          {%- for product in items -%}
+            <li><button type="button" data-range-dot="{{ forloop.index0 }}" aria-label="{{ product.title | escape }}"{% if forloop.first %} aria-current="true"{% endif %}></button></li>
+          {%- endfor -%}
+        </ol>
+      </div>
+
+      <noscript>
+        <ul class="range-list" role="list" style="margin-top: var(--s-7)">
+          {%- for product in items -%}
+            <li>{% render 'product-card', product: product %}</li>
+          {%- endfor -%}
+        </ul>
+      </noscript>
+    {%- endif -%}
+
+    <div class="range__foot">
+      {%- if section.settings.coming_soon != blank -%}
+        <p class="soon"><span class="soon__dot" aria-hidden="true"></span>{{ section.settings.coming_soon | escape }}</p>
+      {%- endif -%}
+      <div style="display: flex; gap: var(--s-5); flex-wrap: wrap">
+        {%- if settings.request_page != blank or section.settings.request_label != blank -%}
+          <a class="link-arrow" href="{{ settings.request_page.url | default: '/pages/request-a-car' }}">{{ section.settings.request_label | escape }}</a>
+        {%- endif -%}
+        <a class="link-arrow" href="{{ col.url }}">{{ section.settings.catalog_label | escape }} {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'range.js' | asset_url }}" type="module"></script>
+
+{% schema %}
+{
+  "name": "Range viewer",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Defaults to all products." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The range" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find your car" },
+    { "type": "text", "id": "view_label", "label": "View button", "default": "View" },
+    { "type": "text", "id": "catalog_label", "label": "Catalog link", "default": "See every design" },
+    { "type": "text", "id": "request_label", "label": "Request link", "default": "Don't see yours? Request it" },
+    { "type": "text", "id": "coming_soon", "label": "Coming soon note", "default": "40+ more cars coming soon" }
+  ],
+  "presets": [{ "name": "Range viewer" }]
+}
+{% endschema %}

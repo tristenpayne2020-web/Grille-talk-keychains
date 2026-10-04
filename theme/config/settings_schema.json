@@ -1,0 +1,59 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Grille Talk",
+    "theme_version": "1.0.0",
+    "theme_author": "Grille Talk",
+    "theme_documentation_url": "https://grilletalk.shop",
+    "theme_support_email": "tristen@grilletalk.shop"
+  },
+  {
+    "name": "Business",
+    "settings": [
+      { "type": "text", "id": "contact_email", "label": "Contact email", "default": "tristen@grilletalk.shop" },
+      { "type": "text", "id": "contact_phone", "label": "Phone (as shown)", "default": "229-947-3742" },
+      { "type": "text", "id": "contact_phone_tel", "label": "Phone (tel link, E.164)", "default": "+12299473742" },
+      { "type": "page", "id": "request_page", "label": "Request a car page", "info": "Linked from search with no results, the range and the catalog." },
+      {
+        "type": "textarea",
+        "id": "legal_notice",
+        "label": "Legal notice (footer)",
+        "default": "Grille Talk is an independent maker. We are not affiliated with, endorsed by or sponsored by any vehicle manufacturer. Make and model names are used only to identify the car each design is based on, and belong to their owners."
+      }
+    ]
+  },
+  {
+    "name": "Body colors",
+    "settings": [
+      { "type": "paragraph", "content": "Swatch groups and colours on product pages. Names must match the Body color variant names. Prices always come from the variants." },
+      {
+        "type": "textarea",
+        "id": "color_tiers",
+        "label": "Tiers (one per line: Tier: Color, Color)",
+        "default": "Standard: White\nCustom color: Matte Red, Matte Yellow, Matte Gray, Matte Blue\nMetallic: Metallic Silver"
+      },
+      {
+        "type": "textarea",
+        "id": "color_swatches",
+        "label": "Swatches (one per line: Color: #hex: metalness: roughness)",
+        "default": "White: #f2f2ef: 0: 0.55\nMatte Red: #b3261e: 0: 0.8\nMatte Yellow: #e8b10e: 0: 0.8\nMatte Gray: #6f7276: 0: 0.8\nMatte Blue: #1f4fa3: 0: 0.8\nMetallic Silver: #c4c7cc: 0.85: 0.32"
+      }
+    ]
+  },
+  {
+    "name": "Product facts",
+    "settings": [
+      { "type": "paragraph", "content": "Shown on product pages only when filled in. Leave blank until confirmed." },
+      { "type": "text", "id": "production_time", "label": "Production time", "info": "e.g. Made to order in 3-5 business days" },
+      { "type": "text", "id": "shipping_note", "label": "Shipping", "info": "e.g. Ships from the US" }
+    ]
+  },
+  {
+    "name": "Search and share",
+    "settings": [
+      { "type": "textarea", "id": "default_description", "label": "Default meta description", "default": "3D-printed keychains of real car fronts: light signatures, grille texture and intakes in two colours. Find your car, pick a body color." },
+      { "type": "image_picker", "id": "share_image", "label": "Share image", "info": "1200 x 630. Defaults to the Grille Talk mark with a logo-free keychain." },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "Optional. Defaults to the Grille Talk mark." }
+    ]
+  }
+]

@@ -1,0 +1,55 @@
+<footer class="site-footer">
+  <div class="page-width">
+    <div class="site-footer__grid">
+      <div>
+        <a class="site-footer__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, {{ 'general.home' | t }}">{{ 'logo-flat.svg' | inline_asset_content }}</a>
+        {%- if section.settings.tagline != blank -%}
+          <p class="t-mute" style="margin-top: var(--s-4); max-width: 36ch">{{ section.settings.tagline | escape }}</p>
+        {%- endif -%}
+        <div class="contact-links">
+          {%- if settings.contact_email != blank -%}
+            <a href="mailto:{{ settings.contact_email }}">{% render 'icon', name: 'mail', class: 'icon--sm' %}{{ settings.contact_email }}</a>
+          {%- endif -%}
+          {%- if settings.contact_phone != blank -%}
+            <a href="tel:{{ settings.contact_phone_tel }}">{% render 'icon', name: 'phone', class: 'icon--sm' %}{{ settings.contact_phone }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if section.settings.menu.links.size > 0 -%}
+        <nav aria-labelledby="footer-shop-title">
+          <h2 id="footer-shop-title">{{ section.settings.menu.title | escape }}</h2>
+          <ul role="list">
+            {%- for link in section.settings.menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+      {%- assign policies = shop.policies -%}
+      {%- if policies.size > 0 -%}
+        <nav aria-labelledby="footer-policies-title">
+          <h2 id="footer-policies-title">{{ 'general.policies' | t }}</h2>
+          <ul role="list">
+            {%- for policy in policies -%}
+              <li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+    </div>
+    <div class="site-footer__legal">
+      <p>{{ settings.legal_notice | escape }}</p>
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "We turn the car you love into the keychain you carry." },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+  ]
+}
+{% endschema %}

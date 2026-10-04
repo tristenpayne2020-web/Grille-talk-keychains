@@ -1,0 +1,12 @@
+<section class="section section--tight" aria-labelledby="cart-title">
+  <div class="page-width" data-cart-page>
+    <h1 class="h-2" id="cart-title" style="margin-bottom: var(--s-6)">{{ 'cart.title' | t }}</h1>
+    <div class="cart-page">
+      {%- render 'cart-items', context: 'page' -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

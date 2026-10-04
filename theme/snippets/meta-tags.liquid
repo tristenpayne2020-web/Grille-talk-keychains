@@ -1,0 +1,88 @@
+{%- comment -%}
+  Title, description, Open Graph, Twitter and Product JSON-LD. No review or rating markup: there are no reviews.
+{%- endcomment -%}
+{%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_type = 'website'
+  assign og_image_url = 'og-image.jpg' | asset_url | prepend: 'https:'
+  if settings.share_image != blank
+    assign og_image_url = settings.share_image | image_url: width: 1200 | prepend: 'https:'
+  endif
+  if request.page_type == 'product'
+    assign og_type = 'product'
+    if product.featured_image != blank
+      assign og_image_url = product.featured_image | image_url: width: 1200 | prepend: 'https:'
+    endif
+  endif
+  assign desc = page_description | default: settings.default_description | default: shop.description
+-%}
+<title>
+  {{- page_title -}}
+  {%- if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif -%}
+  {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+</title>
+{%- if desc != blank -%}
+  <meta name="description" content="{{ desc | strip_html | escape | truncate: 300 }}">
+{%- endif -%}
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:description" content="{{ desc | strip_html | escape | truncate: 300 }}">
+<meta property="og:image" content="{{ og_image_url }}">
+<meta property="og:image:secure_url" content="{{ og_image_url }}">
+{%- if request.page_type == 'product' -%}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+  <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+<meta name="twitter:description" content="{{ desc | strip_html | escape | truncate: 300 }}">
+<meta name="twitter:image" content="{{ og_image_url }}">
+
+{%- if request.page_type == 'product' -%}
+  {%- liquid
+    assign img = product.featured_image | image_url: width: 1200 | prepend: 'https:'
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "url": {{ shop.url | append: product.url | json }},
+      "image": [{{ img | json }}],
+      "description": {{ product.description | strip_html | strip | truncate: 500 | json }},
+      "sku": {{ product.selected_or_first_available_variant.sku | json }},
+      "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+      "category": "Keychains",
+      "offers": [
+        {%- for variant in product.variants -%}
+          {
+            "@type": "Offer",
+            "name": {{ variant.title | json }},
+            "sku": {{ variant.sku | json }},
+            "price": {{ variant.price | divided_by: 100.0 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": {{ shop.url | append: variant.url | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+{%- if request.page_type == 'index' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      "logo": {{ 'apple-touch-icon.png' | asset_url | prepend: 'https:' | json }},
+      "email": {{ settings.contact_email | json }},
+      "telephone": {{ settings.contact_phone_tel | json }}
+    }
+  </script>
+{%- endif -%}

@@ -1,0 +1,15 @@
+<section class="page-width not-found" aria-labelledby="nf-title">
+  <p class="not-found__code" aria-hidden="true">404</p>
+  <h1 class="h-2" id="nf-title">{{ 'not_found.title' | t }}</h1>
+  <p class="lede">{{ 'not_found.text' | t }}</p>
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-form" style="max-width: 560px">
+    <label class="visually-hidden" for="nf-search">{{ 'search.label' | t }}</label>
+    <input class="input" id="nf-search" type="search" name="q" placeholder="{{ 'search.placeholder' | t }}">
+    <button class="btn" type="submit">{{ 'search.submit' | t }}</button>
+  </form>
+  <p><a class="link-arrow" href="{{ routes.collections_url }}/all">{{ 'not_found.shop' | t }} {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a></p>
+</section>
+
+{% schema %}
+{ "name": "404", "settings": [] }
+{% endschema %}

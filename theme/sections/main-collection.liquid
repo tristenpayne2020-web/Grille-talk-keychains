@@ -1,0 +1,114 @@
+{%- comment -%}
+  Catalog grid with Shopify Search & Discovery filters (only filters that exist: make), sort and a real empty state.
+  Works without JS: filters and sort are a GET form; with JS they submit on change.
+{%- endcomment -%}
+{%- paginate collection.products by section.settings.per_page -%}
+<section class="section section--tight" aria-labelledby="collection-title">
+  <div class="page-width">
+    <div class="collection__head">
+      <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="h-2" id="collection-title">{{ collection.title | escape }}</h1>
+      {%- if collection.description != blank -%}<div class="lede rte">{{ collection.description }}</div>{%- endif -%}
+    </div>
+
+    <form class="facets" id="facets" action="{{ collection.url }}" method="get" data-facets>
+      {%- for filter in collection.filters -%}
+        {%- if filter.type == 'list' -%}
+          <details class="facets__group">
+            <summary>{{ filter.label | escape }}{% if filter.active_values.size > 0 %} ({{ filter.active_values.size }}){% endif %}{% render 'icon', name: 'chevron-down', class: 'icon--sm' %}</summary>
+            <fieldset class="facets__panel" style="border: 1px solid var(--c-line-strong)">
+              <legend class="visually-hidden">{{ filter.label | escape }}</legend>
+              {%- for value in filter.values -%}
+                <label class="facets__option">
+                  <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value | escape }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
+                  {{ value.label | escape }} <span class="t-mute">({{ value.count }})</span>
+                </label>
+              {%- endfor -%}
+              <noscript><button class="btn" type="submit">{{ 'collections.apply' | t }}</button></noscript>
+            </fieldset>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="sort">
+        <label for="sort-by">{{ 'collections.sort' | t }}</label>
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        <select id="sort-by" name="sort_by">
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>
+          {%- endfor -%}
+        </select>
+        <noscript><button class="btn btn--ghost" type="submit">{{ 'collections.apply' | t }}</button></noscript>
+      </div>
+    </form>
+
+    <div class="facets__active" style="margin-bottom: var(--s-5)">
+      <p class="count" role="status">{{ 'collections.count' | t: count: collection.products_count }}</p>
+      {%- for filter in collection.filters -%}
+        {%- for value in filter.active_values -%}
+          <a class="chip" href="{{ value.url_to_remove }}" aria-label="{{ 'collections.remove_filter' | t: value: value.label | escape }}">{{ value.label | escape }} {% render 'icon', name: 'close', class: 'icon--sm' %}</a>
+        {%- endfor -%}
+      {%- endfor -%}
+      {%- assign any_active = false -%}
+      {%- for filter in collection.filters -%}{%- if filter.active_values.size > 0 -%}{%- assign any_active = true -%}{%- endif -%}{%- endfor -%}
+      {%- if any_active -%}<a class="chip" href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}">{{ 'collections.clear' | t }}</a>{%- endif -%}
+    </div>
+
+    {%- if collection.products.size > 0 -%}
+      <ul class="grid" role="list">
+        {%- for product in collection.products -%}
+          {%- liquid
+            assign eager = false
+            if forloop.index <= 4
+              assign eager = true
+            endif
+          -%}
+          <li>{% render 'product-card', product: product, eager: eager %}</li>
+        {%- endfor -%}
+      </ul>
+      {%- if paginate.pages > 1 -%}
+        <nav aria-label="Pagination"><ul class="pagination" role="list">
+          {%- if paginate.previous -%}<li><a href="{{ paginate.previous.url }}" aria-label="Previous page">{% render 'icon', name: 'arrow-left', class: 'icon--sm' %}</a></li>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            <li>{% if part.is_link %}<a href="{{ part.url }}">{{ part.title }}</a>{% else %}<span aria-current="page">{{ part.title }}</span>{% endif %}</li>
+          {%- endfor -%}
+          {%- if paginate.next -%}<li><a href="{{ paginate.next.url }}" aria-label="Next page">{% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a></li>{%- endif -%}
+        </ul></nav>
+      {%- endif -%}
+    {%- else -%}
+      <div class="empty">
+        <p class="h-3">{{ 'collections.empty_heading' | t }}</p>
+        <p class="t-mute">{{ 'collections.empty_body' | t }}</p>
+        <div style="display: flex; gap: var(--s-3); flex-wrap: wrap">
+          <a class="btn" href="{{ collection.url }}">{{ 'collections.clear' | t }}</a>
+          <a class="btn btn--ghost" href="{{ settings.request_page.url | default: '/pages/request-a-car' }}">{{ 'collections.request' | t }}</a>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="collection__foot">
+      {%- if section.settings.coming_soon != blank -%}
+        <p class="soon"><span class="soon__dot" aria-hidden="true"></span>{{ section.settings.coming_soon | escape }}</p>
+      {%- endif -%}
+      <a class="link-arrow" href="{{ settings.request_page.url | default: '/pages/request-a-car' }}">{{ section.settings.request_label | escape }} {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+    </div>
+  </div>
+</section>
+{%- endpaginate -%}
+
+<script type="module">
+  const form = document.querySelector('[data-facets]');
+  if (form) form.addEventListener('change', () => form.requestSubmit ? form.requestSubmit() : form.submit());
+</script>
+
+{% schema %}
+{
+  "name": "Catalog",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The catalog" },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 48 },
+    { "type": "text", "id": "coming_soon", "label": "Coming soon note", "default": "40+ more cars coming soon" },
+    { "type": "text", "id": "request_label", "label": "Request link", "default": "Don't see yours? Request a car" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,34 @@
+{%- comment -%}
+  Rendered by /search/suggest?section_id=predictive-search. The JS swaps this markup into the search dialog.
+{%- endcomment -%}
+{%- assign request_href = settings.request_page.url | default: '/pages/request-a-car' -%}
+<div id="predictive-search-results" data-terms="{{ predictive_search.terms | escape }}">
+  {%- if predictive_search.performed -%}
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <ul class="predictive__list" role="listbox" id="predictive-listbox" aria-label="{{ 'search.results_label' | t }}">
+        {%- for product in predictive_search.resources.products -%}
+          <li class="predictive__item" role="option" aria-selected="false" id="predictive-option-{{ forloop.index }}">
+            <a href="{{ product.url }}" tabindex="-1">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '', width: 72, height: 48 }}
+              {%- else -%}
+                <span></span>
+              {%- endif -%}
+              <span class="predictive__title">{{ product.title | escape }}</span>
+              <span class="predictive__price">{% render 'price', product: product %}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <a class="link-arrow predictive__more" href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&amp;type=product">
+        {{- 'search.view_all' | t: terms: predictive_search.terms -}}
+        {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}
+      </a>
+    {%- else -%}
+      <p class="predictive__status">
+        {{ 'search.no_match' | t: terms: predictive_search.terms }}
+        <a href="{{ request_href }}">{{ 'search.request_it' | t }}</a>
+      </p>
+    {%- endif -%}
+  {%- endif -%}
+</div>

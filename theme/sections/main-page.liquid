@@ -1,0 +1,16 @@
+<section class="page-width" aria-labelledby="page-title">
+  <div class="page-head page-narrow">
+    {%- if section.settings.eyebrow != blank -%}<p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+    <h1 class="h-2" id="page-title">{{ page.title | escape }}</h1>
+  </div>
+  {%- if page.content != blank -%}
+    <div class="rte page-narrow" style="padding-bottom: var(--s-8)">{{ page.content }}</div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow" }]
+}
+{% endschema %}

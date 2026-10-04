@@ -1,0 +1,15 @@
+{%- comment -%}
+  Price of a product or variant. Amounts always come from Shopify; nothing is hardcoded.
+  usage: {% render 'price', product: product %} (shows "From" when variant prices differ)
+         {% render 'price', variant: variant %}
+{%- endcomment -%}
+{%- if variant -%}
+  <span class="price">{{ variant.price | money }}</span>
+{%- elsif product -%}
+  {%- if product.price_varies -%}
+    {%- assign min_price = product.price_min | money -%}
+    <span class="price">{{ 'products.from_price_html' | t: price: min_price }}</span>
+  {%- else -%}
+    <span class="price">{{ product.price | money }}</span>
+  {%- endif -%}
+{%- endif -%}

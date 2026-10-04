@@ -1,0 +1,27 @@
+{%- comment -%}
+  Catalog card. usage: {% render 'product-card', product: product, eager: false %}
+{%- endcomment -%}
+{%- liquid
+  assign short = product.metafields.custom.short_model.value | default: product.metafields.custom.short_model
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+-%}
+<article class="card">
+  <div class="card__media">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 900 | image_tag:
+        loading: loading,
+        widths: '300, 450, 600, 900',
+        sizes: '(min-width: 1200px) 300px, (min-width: 750px) 30vw, 46vw',
+        alt: product.featured_image.alt | default: product.title
+      }}
+    {%- endif -%}
+  </div>
+  <h3 class="card__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+  {%- if short != blank -%}
+    <p class="card__line">{{ 'products.for_owners' | t: model: short }}</p>
+  {%- endif -%}
+  <p class="card__price">{% render 'price', product: product %}</p>
+</article>

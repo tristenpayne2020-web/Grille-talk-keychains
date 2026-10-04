@@ -1,0 +1,30 @@
+{%- comment -%}
+  Cart drawer. Re-rendered through the Section Rendering API (sections=cart-drawer) after every cart change.
+  Checkout always goes to Shopify checkout; nothing here takes payment.
+{%- endcomment -%}
+<div class="dialog" id="cart-drawer" data-dialog role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" hidden>
+  <div class="dialog__scrim" data-close></div>
+  <div class="dialog__panel">
+    <div class="dialog__head">
+      <h2 class="t-eyebrow" id="cart-drawer-title">{{ 'cart.title' | t }} <span class="t-mono">({{ cart.item_count }})</span></h2>
+      <button type="button" class="icon-btn" data-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+    </div>
+    <div data-cart-content class="dialog__content" style="display: contents">
+      {%- render 'cart-items', context: 'drawer' -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note above checkout",
+      "info": "Leave blank unless you have confirmed shipping or production details."
+    }
+  ]
+}
+{% endschema %}

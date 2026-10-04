@@ -1,0 +1,12 @@
+{%- comment -%}
+  Loading placeholders. usage: {% render 'skeleton', type: 'rows', count: 3 %} or type: 'block'
+{%- endcomment -%}
+{%- if type == 'rows' -%}
+  <div aria-hidden="true">
+    {%- for i in (1..count) -%}
+      <div class="skeleton-row"><div class="skeleton"></div><div><div class="skeleton skeleton-line" style="width: 70%"></div><div class="skeleton skeleton-line" style="width: 35%"></div></div></div>
+    {%- endfor -%}
+  </div>
+{%- else -%}
+  <div class="skeleton {{ class }}" aria-hidden="true"></div>
+{%- endif -%}

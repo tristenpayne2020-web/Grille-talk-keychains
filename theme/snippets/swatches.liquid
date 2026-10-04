@@ -1,0 +1,47 @@
+{%- comment -%}
+  Body color swatches grouped by tier (theme setting "Body colors"). Each tier shows its price, read from the first
+  matching variant. Any variant value not listed in a tier falls into a final group so nothing is ever hidden.
+  usage: {% render 'swatches', product: product, current: variant %}
+{%- endcomment -%}
+{%- liquid
+  assign opt = product.options_with_values | first
+  assign tier_lines = settings.color_tiers | newline_to_br | split: '<br />'
+  assign swatch_lines = settings.color_swatches | newline_to_br | split: '<br />'
+  assign listed = ''
+-%}
+<fieldset class="swatches">
+  <legend>{{ opt.name | escape }}: <strong data-color-name>{{ current.option1 | escape }}</strong></legend>
+  {%- for line in tier_lines -%}
+    {%- assign parts = line | split: ':' -%}
+    {%- assign tier = parts[0] | strip -%}
+    {%- assign names = parts[1] | split: ',' -%}
+    {%- capture row -%}
+      {%- assign tier_price = '' -%}
+      {%- for raw in names -%}
+        {%- assign cname = raw | strip -%}
+        {%- for v in product.variants -%}
+          {%- if v.option1 == cname -%}
+            {%- if tier_price == '' -%}{%- assign tier_price = v.price | money -%}{%- endif -%}
+            {%- render 'swatch', v: v, cname: cname, current: current, swatch_lines: swatch_lines -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- assign listed = listed | append: '|' | append: cname | append: '|' -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if row != blank -%}
+      <div class="swatches__tier">
+        <p class="swatches__tier-head"><span>{{ tier | escape }}</span><span>{{ tier_price }}</span></p>
+        <div class="swatches__row">{{ row }}</div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+  {%- capture rest -%}
+    {%- for v in product.variants -%}
+      {%- assign key = '|' | append: v.option1 | append: '|' -%}
+      {%- unless listed contains key -%}{%- render 'swatch', v: v, cname: v.option1, current: current, swatch_lines: swatch_lines -%}{%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if rest != blank -%}
+    <div class="swatches__tier"><div class="swatches__row">{{ rest }}</div></div>
+  {%- endif -%}
+</fieldset>

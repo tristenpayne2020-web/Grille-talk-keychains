@@ -1,0 +1,39 @@
+<section class="section section--tight" aria-labelledby="search-title">
+  <div class="page-width">
+    <div class="collection__head">
+      <h1 class="h-2" id="search-title">{{ 'search.heading' | t }}</h1>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form" style="max-width: 640px">
+        <label class="visually-hidden" for="search-page-input">{{ 'search.label' | t }}</label>
+        <input class="input" id="search-page-input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}">
+        <input type="hidden" name="type" value="product">
+        <input type="hidden" name="options[prefix]" value="last">
+        <button class="btn" type="submit">{{ 'search.submit' | t }}</button>
+      </form>
+    </div>
+    {%- if search.performed -%}
+      {%- if search.results_count > 0 -%}
+        <p class="count" role="status" style="margin-bottom: var(--s-5)">{{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}</p>
+        <ul class="grid" role="list">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' or item.variants -%}
+              <li>{% render 'product-card', product: item %}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- else -%}
+        <div class="empty" role="status">
+          <p class="h-3">{{ 'search.empty_heading' | t: terms: search.terms }}</p>
+          <p class="t-mute">{{ 'search.empty_body' | t }}</p>
+          <div style="display: flex; gap: var(--s-3); flex-wrap: wrap">
+            <a class="btn" href="{{ settings.request_page.url | default: '/pages/request-a-car' }}">{{ 'collections.request' | t }}</a>
+            <a class="btn btn--ghost" href="{{ routes.collections_url }}/all">{{ 'not_found.shop' | t }}</a>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Search results", "settings": [] }
+{% endschema %}

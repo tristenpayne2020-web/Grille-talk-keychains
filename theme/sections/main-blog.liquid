@@ -1,0 +1,19 @@
+<section class="section section--tight" aria-labelledby="blog-title">
+  <div class="page-width page-narrow">
+    <h1 class="h-2" id="blog-title" style="margin-bottom: var(--s-6)">{{ blog.title | escape }}</h1>
+    {%- paginate blog.articles by 12 -%}
+      <ul class="faq__list" role="list">
+        {%- for article in blog.articles -%}
+          <li class="faq__item" style="padding-block: var(--s-5)">
+            <h2 class="h-3"><a href="{{ article.url }}">{{ article.title | escape }}</a></h2>
+            <p class="t-mute" style="margin-top: var(--s-2)">{{ article.excerpt_or_content | strip_html | truncatewords: 30 }}</p>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

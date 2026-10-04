@@ -1,0 +1,31 @@
+{%- comment -%} One body color radio. Used by swatches.liquid. {%- endcomment -%}
+{%- liquid
+  assign hex = '#888888'
+  assign metal = '0'
+  assign rough = '0.6'
+  for sl in swatch_lines
+    assign sp = sl | split: ':'
+    assign sname = sp[0] | strip
+    if sname == cname
+      assign hex = sp[1] | strip
+      assign metal = sp[2] | strip | default: '0'
+      assign rough = sp[3] | strip | default: '0.6'
+    endif
+  endfor
+  assign metal_f = metal | times: 1.0
+-%}
+<span class="swatch{% if metal_f > 0.3 %} swatch--metal{% endif %}">
+  <input
+    type="radio"
+    name="color-{{ v.product_id | default: 'p' }}"
+    id="swatch-{{ v.id }}"
+    value="{{ cname | escape }}"
+    data-variant="{{ v.id }}"
+    data-hex="{{ hex }}"
+    data-metal="{{ metal }}"
+    data-rough="{{ rough }}"
+    {% if v.id == current.id %}checked{% endif %}
+    {% unless v.available %}disabled{% endunless %}
+  >
+  <label for="swatch-{{ v.id }}" style="--swatch: {{ hex }}"><span class="swatch__chip" aria-hidden="true"></span>{{ cname | escape }}</label>
+</span>

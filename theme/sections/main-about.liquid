@@ -1,0 +1,46 @@
+{%- comment -%}
+  About: the G80 origin story. The story text is a setting so the owner can replace it with their own words;
+  the default only states facts from the brief. The legal notice always shows.
+{%- endcomment -%}
+<section class="section" aria-labelledby="about-title">
+  <div class="page-width split">
+    <div>
+      <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="h-2" id="about-title" style="margin-top: var(--s-3)">{{ section.settings.heading | escape }}</h1>
+    </div>
+    <div class="rte lede" style="color: var(--c-fg)">
+      {{ section.settings.story }}
+      {%- if page.content != blank -%}{{ page.content }}{%- endif -%}
+    </div>
+  </div>
+  <div class="page-width" style="margin-top: var(--s-8)">
+    <div class="stage" style="max-width: 880px; margin-inline: auto">
+      <img src="{{ 'hero-g80.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1600" height="1135" loading="lazy">
+    </div>
+  </div>
+  <div class="page-width" style="margin-top: var(--s-8)">
+    <div class="split" style="border-top: 1px solid var(--c-line); padding-top: var(--s-6)">
+      <h2 class="t-eyebrow">{{ section.settings.legal_heading | escape }}</h2>
+      <p class="t-mute">{{ settings.legal_notice | escape }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "About Grille Talk" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "It started with one M3." },
+    {
+      "type": "richtext",
+      "id": "story",
+      "label": "Story",
+      "info": "Replace with the story in your own words.",
+      "default": "<p>The first Grille Talk keychain was our own BMW M3, the G80, traced from a photo of the front.</p><p>That one set the rules for every car after it: a straight-on view, cropped at the windshield, the light signature, grille texture and intakes kept, everything else simplified. Two colours, 80.5 mm wide, a tab for your keys.</p><p>No badges, ever. You know your car by its face.</p>"
+    },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "The Grille Talk keychain inspired by the BMW M3 (G80), white body, on its chain" },
+    { "type": "text", "id": "legal_heading", "label": "Legal heading", "default": "Independent maker" }
+  ]
+}
+{% endschema %}
