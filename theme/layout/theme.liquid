@@ -13,7 +13,7 @@
       <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32.png' | asset_url }}">
     {%- endif -%}
     <link rel="apple-touch-icon" href="{{ 'apple-touch-icon.png' | asset_url }}">
-    <link rel="preload" href="{{ 'michroma-latin-400.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    {{ 'michroma-latin-400.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
 
     {% render 'meta-tags' %}
 
@@ -23,7 +23,8 @@
         "imports": {
           "vendor-three": "{{ 'vendor-three.js' | asset_url }}",
           "vendor-gsap": "{{ 'vendor-gsap.js' | asset_url }}",
-          "keychain3d": "{{ 'keychain3d.js' | asset_url }}"
+          "keychain3d": "{{ 'keychain3d.js' | asset_url }}",
+          "when3d": "{{ 'when3d.js' | asset_url }}"
         }
       }
     </script>

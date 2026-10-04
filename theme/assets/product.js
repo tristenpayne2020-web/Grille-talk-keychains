@@ -16,20 +16,24 @@ if (root) {
   if (mv) {
     const ready = () => viewerBox.classList.add('is-ready');
     mv.addEventListener('load', () => { ready(); paint(); });
-    mv.addEventListener('error', ready);
-    if (!customElements.get('model-viewer')) {
-      if (window.Shopify && window.Shopify.loadFeatures) {
-        window.Shopify.loadFeatures([{ name: 'model-viewer-ui', version: '1.0', onLoad: (err) => { if (err) ready(); } }]);
-      } else if (window.__PREVIEW__) {
-        const s = document.createElement('script');
-        s.type = 'module';
-        s.src = '/vendor/model-viewer.min.js';
-        document.head.append(s);
-      } else {
-        ready();
+    mv.addEventListener('error', () => viewerBox.classList.add('no-skeleton'));   // keep the poster image on failure
+    const boot = () => {
+      if (!customElements.get('model-viewer')) {
+        if (window.Shopify && window.Shopify.loadFeatures) {
+          window.Shopify.loadFeatures([{ name: 'model-viewer-ui', version: '1.0', onLoad: (err) => { if (err) viewerBox.classList.add('no-skeleton'); } }]);
+        } else if (window.__PREVIEW__) {
+          const s = document.createElement('script');
+          s.type = 'module';
+          s.src = '/vendor/model-viewer.min.js';
+          document.head.append(s);
+        } else {
+          viewerBox.classList.add('no-skeleton');
+        }
       }
-    }
-    setTimeout(ready, 8000);   // never leave a skeleton forever
+    };
+    // load the viewer after the page (desktop) or on the first touch or scroll (phones); the render image covers the wait
+    import('when3d').then((m) => m.when3D()).then(boot, boot);
+    setTimeout(() => viewerBox.classList.add('no-skeleton'), 8000);   // never leave a skeleton forever
   }
 
   const current = () => form.querySelector('.swatch input:checked');
@@ -56,6 +60,8 @@ if (root) {
     addBtn.disabled = !v.available;
     addBtn.querySelector('.btn__label').textContent = v.available ? data.strings.addToCart : data.strings.soldOut;
     if (varImg && v.image) { varImg.removeAttribute('srcset'); varImg.src = v.image; varImg.alt = v.imageAlt || ''; }
+    const poster = root.querySelector('[data-poster]');
+    if (poster && v.image) { poster.removeAttribute('srcset'); poster.src = v.image; }
     const url = new URL(window.location.href);
     url.searchParams.set('variant', v.id);
     window.history.replaceState({}, '', url);

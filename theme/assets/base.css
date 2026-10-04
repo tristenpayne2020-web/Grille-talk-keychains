@@ -259,6 +259,9 @@ textarea.input { min-height: 120px; resize: vertical; }
 .hero__static img { width: 100%; height: 100%; object-fit: contain; }
 .hero__3d { opacity: 0; transition: opacity 600ms var(--ease-out); }
 .hero.is-intro .hero__static { opacity: 0; }
+.hero__art::before { transition: opacity 600ms var(--ease-out); }
+.hero.is-intro:not(.is-handover) .hero__art::before { opacity: 0; }
+.hero.is-intro.is-handover:not(.is-3d) .hero__static { opacity: 1; transition: opacity 450ms var(--ease-out); }
 .hero.is-3d .hero__3d { opacity: 1; }
 .hero.is-3d .hero__static { opacity: 0; transition: opacity 600ms var(--ease-out); }
 .hero__copy { display: grid; justify-items: center; text-align: center; gap: var(--s-3); padding-block: 0 clamp(var(--s-6), 6vh, var(--s-8)); position: relative; z-index: 2; flex: none; }
@@ -310,9 +313,7 @@ textarea.input { min-height: 120px; resize: vertical; }
   .range__canvas { width: 92%; }
   .range__slide[data-pos='-1'] { transform: translateX(-140%) scale(0.5); }
   .range__slide[data-pos='1'] { transform: translateX(40%) scale(0.5); }
-  .range__dots button { width: 16px; }
-  .range__dots button::before { width: 8px; }
-  .range__dots button[aria-current='true']::before { width: 14px; }
+  .range__dots { display: none; }   /* too many for 24 px targets on a phone; the counter, arrows and swipe remain */
 }
 @media (prefers-reduced-motion: reduce) { .range__slide, .range__canvas { transition: none; } }
 
@@ -386,7 +387,12 @@ textarea.input { min-height: 120px; resize: vertical; }
 .product__viewer { position: relative; aspect-ratio: 1.25; background: var(--c-panel); border: 1px solid var(--c-line); border-radius: var(--radius); overflow: hidden; }
 .product__viewer model-viewer { width: 100%; height: 100%; --poster-color: transparent; background: transparent; }
 .product__viewer .skeleton { position: absolute; inset: 0; }
-.product__viewer.is-ready .skeleton { display: none; }
+.product__viewer.is-ready .skeleton, .product__viewer.no-skeleton .skeleton { display: none; }
+.product__poster { position: absolute; inset: 0; display: grid; place-items: center; transition: opacity var(--dur-2); }
+.product__poster img { width: 88%; height: 88%; object-fit: contain; }
+.product__viewer.is-ready .product__poster { opacity: 0; pointer-events: none; }
+.product__viewer model-viewer { position: relative; }
+.product__viewer model-viewer::part(default-poster) { display: none; }   /* our own image layer is the poster */
 .product__viewer-hint { position: absolute; left: var(--s-4); bottom: var(--s-3); font-size: var(--t-xs); color: var(--c-mute); pointer-events: none; }
 .product__thumbs { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: var(--s-2); margin-top: var(--s-3); }
 .product__thumbs button { width: 100%; aspect-ratio: 1; padding: 6px; background: var(--c-panel); border: 1px solid var(--c-line); border-radius: var(--radius); }

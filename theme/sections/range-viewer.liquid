@@ -28,7 +28,7 @@
         tabindex="0"
       >
         <div class="range__viewport" data-range-viewport>
-          <ul class="range__track" role="list">
+          <div class="range__track">
             {%- for product in items -%}
               {%- liquid
                 assign idx = forloop.index0
@@ -51,7 +51,7 @@
                 assign short = product.metafields.custom.short_model.value | default: product.metafields.custom.short_model
                 assign from_price = product.price_min | money
               -%}
-              <li
+              <div
                 class="range__slide"
                 {% if pos != '' %}data-pos="{{ pos }}"{% endif %}
                 role="group"
@@ -78,9 +78,9 @@
                     alt: product.featured_image.alt | default: product.title
                   }}
                 {%- endif -%}
-              </li>
+              </div>
             {%- endfor -%}
-          </ul>
+          </div>
           <div class="range__canvas" data-range-canvas aria-hidden="true"></div>
           <button type="button" class="range__arrow range__arrow--prev" data-range-prev aria-label="{{ 'range.previous' | t }}">{% render 'icon', name: 'arrow-left' %}</button>
           <button type="button" class="range__arrow range__arrow--next" data-range-next aria-label="{{ 'range.next' | t }}">{% render 'icon', name: 'arrow-right' %}</button>
@@ -108,7 +108,7 @@
       <noscript>
         <ul class="range-list" role="list" style="margin-top: var(--s-7)">
           {%- for product in items -%}
-            <li>{% render 'product-card', product: product %}</li>
+            <li>{% render 'product-card', product: product, heading: 'h3' %}</li>
           {%- endfor -%}
         </ul>
       </noscript>

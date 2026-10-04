@@ -78,11 +78,14 @@ liquid.registerFilter('model_viewer_tag', (media, ...args) => {
   const o = Object.fromEntries(args.filter(Array.isArray));
   const src = media.sources[0].url;
   const extra = Object.entries(o).map(([k, v]) => (v === true ? k : `${k}="${esc(v)}"`)).join(' ');
-  return `<model-viewer src="${src}" alt="${esc(media.alt)}" camera-controls ${extra}></model-viewer>`;
+  // Shopify's tag also sets a poster from the media preview image
+  const poster = media.preview_image ? media.preview_image.url(Number(String(o.image_size || '1200').replace('x', '')) || 1200) : '';
+  return `<model-viewer src="${src}" poster="${poster}" alt="${esc(media.alt)}" camera-controls ${extra}></model-viewer>`;
 });
 liquid.registerFilter('default_errors', (errs) => (errs && errs.messages ? `<ul>${Object.values(errs.messages).map((m) => `<li>${esc(m)}</li>`).join('')}</ul>` : ''));
 liquid.registerFilter('placeholder_svg_tag', () => '<svg viewBox="0 0 10 10"></svg>');
 liquid.registerFilter('within', (u) => u);
+liquid.registerFilter('preload_tag', (u, ...args) => `<link rel="preload" href="${u}" ${args.filter(Array.isArray).map(([k, v]) => `${k}="${esc(v)}"`).join(' ')}>`);
 liquid.registerFilter('link_to', (t, u) => `<a href="${u}">${t}</a>`);
 
 /* ---------------- tags ---------------- */

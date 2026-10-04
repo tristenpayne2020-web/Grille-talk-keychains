@@ -1,8 +1,9 @@
 {%- comment -%}
-  Catalog card. usage: {% render 'product-card', product: product, eager: false %}
+  Catalog card. usage: {% render 'product-card', product: product, eager: false, heading: 'h3' %} (heading defaults to h2)
 {%- endcomment -%}
 {%- liquid
   assign short = product.metafields.custom.short_model.value | default: product.metafields.custom.short_model
+  assign tag = heading | default: 'h2'
   assign loading = 'lazy'
   if eager
     assign loading = 'eager'
@@ -19,7 +20,7 @@
       }}
     {%- endif -%}
   </div>
-  <h3 class="card__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+  <{{ tag }} class="card__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></{{ tag }}>
   {%- if short != blank -%}
     <p class="card__line">{{ 'products.for_owners' | t: model: short }}</p>
   {%- endif -%}

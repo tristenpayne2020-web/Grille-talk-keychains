@@ -42,6 +42,7 @@ if (root) {
   async function ensureStage() {
     if (stagePromise) return stagePromise;
     stagePromise = (async () => {
+      await (await import('when3d')).when3D();
       const mod = await import('keychain3d');
       if (!mod.webglAvailable()) return null;
       return new mod.KeychainStage(canvasBox, { fit: 0.66, interactive: 'mouse' });

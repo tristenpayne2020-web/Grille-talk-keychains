@@ -65,6 +65,7 @@ export class KeychainStage {
     this.camera = new PerspectiveCamera(16, 1, 0.005, 5);
 
     this.visible = true;
+    this.active = opts.active !== false;   // an inactive stage loads but does not render frames
     this.running = false;
     this.yaw = 0; this.yawV = 0; this.pitch = 0; this.pitchV = 0; this.t = 0;
     this.offsetX = 0; this.offsetV = 0;
@@ -115,6 +116,11 @@ export class KeychainStage {
     this._maybeRun();
     if (this.opts.onReady) this.opts.onReady(this);
     return this;
+  }
+
+  setActive(on) {
+    this.active = on;
+    if (on) { this.resize(); this._maybeRun(); }
   }
 
   setColor({ hex, metal = 0, rough = 0.55 }) {
@@ -211,7 +217,7 @@ export class KeychainStage {
   }
 
   _maybeRun() {
-    const should = this.visible && !document.hidden && this.root && !this.static && !this.disposed;
+    const should = this.active && this.visible && !document.hidden && this.root && !this.static && !this.disposed;
     if (should && !this.running) { this.running = true; this._last = performance.now(); requestAnimationFrame(this._tick); }
     if (!should) this.running = false;
   }

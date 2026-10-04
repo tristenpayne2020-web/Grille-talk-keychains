@@ -13,7 +13,11 @@
     <div class="product__media">
       <div class="product__viewer{% unless model %} is-ready{% endunless %}" data-viewer>
         {%- if model -%}
-          {% render 'skeleton' %}
+          {%- if current.featured_image -%}
+            <div class="product__poster">{{ current.featured_image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200, 1400', sizes: '(min-width: 990px) 58vw, 100vw', alt: '', data-poster: '' }}</div>
+          {%- else -%}
+            {% render 'skeleton' %}
+          {%- endif -%}
           {{ model | model_viewer_tag: image_size: '1200x', reveal: 'auto', interaction-prompt: 'none', camera-orbit: '0deg 90deg auto', min-camera-orbit: '-70deg 50deg auto', max-camera-orbit: '70deg 120deg auto', shadow-intensity: '0.6', exposure: '1.05', environment-image: 'neutral', disable-zoom: true, data-model: '' }}
           <p class="product__viewer-hint">{% render 'icon', name: 'rotate', class: 'icon--sm' %} {{ 'products.view_3d' | t }}</p>
         {%- elsif product.featured_image -%}
