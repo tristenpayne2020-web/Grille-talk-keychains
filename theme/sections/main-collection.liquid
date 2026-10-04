@@ -51,7 +51,7 @@
       {%- endfor -%}
       {%- assign any_active = false -%}
       {%- for filter in collection.filters -%}{%- if filter.active_values.size > 0 -%}{%- assign any_active = true -%}{%- endif -%}{%- endfor -%}
-      {%- if any_active -%}<a class="chip" href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}">{{ 'collections.clear' | t }}</a>{%- endif -%}
+      {%- if any_active -%}<a class="chip" href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by | url_encode }}{% endif %}">{{ 'collections.clear' | t }}</a>{%- endif -%}
     </div>
 
     {%- if collection.products.size > 0 -%}

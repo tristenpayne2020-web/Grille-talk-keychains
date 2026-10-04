@@ -71,7 +71,9 @@ liquid.registerFilter('t', (key, ...args) => {
   let v = String(key).split('.').reduce((a, k) => (a ? a[k] : undefined), locales);
   if (v && typeof v === 'object') v = o.count === 1 ? v.one : v.other;
   if (v === undefined) return `translation missing: en.${key}`;
-  return String(v).replace(/\{\{\s*(\w+)\s*\}\}/g, (_, k) => (o[k] !== undefined ? o[k] : ''));
+  // like Shopify: interpolations are escaped unless the key ends in _html
+  const raw = String(key).endsWith('_html');
+  return String(v).replace(/\{\{\s*(\w+)\s*\}\}/g, (_, k) => (o[k] !== undefined ? (raw ? o[k] : esc(o[k])) : ''));
 });
 liquid.registerFilter('payment_button', () => '<div class="shopify-payment-button"><button type="button" class="shopify-payment-button__button btn btn--ghost btn--block" disabled title="Dynamic checkout (Shop Pay) renders here on the live store">Buy with Shop Pay (live store only)</button></div>');
 liquid.registerFilter('model_viewer_tag', (media, ...args) => {
@@ -169,6 +171,7 @@ const themeSettings = (() => {
 })();
 
 async function renderSection(type, id, cfg, ctxBase) {
+  if (!/^[\w-]+$/.test(type)) throw new Error('bad section name');
   const file = path.join(THEME, 'sections', `${type}.liquid`);
   const schema = schemaOf(file);
   const blocks = (cfg.block_order || Object.keys(cfg.blocks || {})).map((bid) => {
@@ -443,4 +446,4 @@ const server = http.createServer(async (req, res) => {
     res.end(`Preview error: ${e.message}`);
   }
 });
-server.listen(PORT, () => console.log(`Grille Talk preview on http://localhost:${PORT}`));
+server.listen(PORT, '127.0.0.1', () => console.log(`Grille Talk preview on http://localhost:${PORT}`));
