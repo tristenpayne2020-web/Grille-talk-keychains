@@ -1,0 +1,28 @@
+{
+  "name": "grille-talk-site-tools",
+  "private": true,
+  "description": "Asset pipeline and local preview for the Grille Talk Shopify theme. Not deployed.",
+  "type": "module",
+  "scripts": {
+    "preview": "node preview/server.mjs",
+    "glb:compress": "node tools/compress_glb.mjs",
+    "images": "node tools/make_images.mjs",
+    "audit": "node tools/audit.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@fontsource/michroma": "^5.3.0",
+    "@gltf-transform/cli": "4.5.1",
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "@google/model-viewer": "^4.3.1",
+    "esbuild": "^0.28.2",
+    "gsap": "3.15.0",
+    "lighthouse": "13.5.0",
+    "liquidjs": "10.30.0",
+    "meshoptimizer": "1.3.0",
+    "playwright": "1.63.0",
+    "three": "0.186.1"
+  }
+}

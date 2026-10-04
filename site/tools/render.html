@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>render</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script type="importmap">
+{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}
+</script>
+</head>
+<body>
+<script type="module">
+// Studio render of one keychain GLB. Driven by tools/make_images.mjs through window.renderCar().
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.55;
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-0.4, 0.8, 1.2); scene.add(key);
+const rim = new THREE.DirectionalLight(0xffffff, 0.6); rim.position.set(0.8, 0.2, -0.6); scene.add(rim);
+const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+
+window.renderCar = async ({ url, size, bg, color, metal, rough, chain, angle }) => {
+  renderer.setPixelRatio(1);
+  renderer.setSize(size, size, true);
+  scene.background = bg ? new THREE.Color(bg) : null;
+  const gltf = await loader.loadAsync(url);
+  const root = gltf.scene;
+  root.traverse((o) => {
+    if (o.isMesh && o.material.name === 'body') {
+      o.material = o.material.clone();
+      o.material.color.set(color);
+      o.material.metalness = metal; o.material.roughness = rough;
+    }
+    if (!chain && (/^link_/.test(o.name) || o.name === 'ring')) o.visible = false;
+  });
+  const kc = root.getObjectByName('keychain');
+  kc.rotation.y = angle || 0;
+  scene.add(root);
+  const target = chain ? root : kc;
+  const box = new THREE.Box3().setFromObject(target);
+  const c = box.getCenter(new THREE.Vector3()), s = box.getSize(new THREE.Vector3());
+  const cam = new THREE.PerspectiveCamera(20, 1, 0.001, 10);
+  const fit = Math.max(s.x, s.y) * 1.12;
+  const dist = fit / 2 / Math.tan(THREE.MathUtils.degToRad(10));
+  cam.position.set(c.x, c.y, c.z + dist); cam.lookAt(c);
+  renderer.render(scene, cam);
+  scene.remove(root);
+  return renderer.domElement.toDataURL('image/png');
+};
+window.ready = true;
+</script>
+</body>
+</html>
