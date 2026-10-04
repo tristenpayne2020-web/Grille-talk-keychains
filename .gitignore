@@ -9,3 +9,10 @@ kc/work/
 /tmp/
 kc/wheel/out/
 kc/wall/out/
+kc/rebuild_log.txt
+kc/rebuild_status.json
+# storefront
+.env
+.env.*
+node_modules/
+site/build/
