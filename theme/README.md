@@ -209,6 +209,6 @@ Results land in `site/build/reports/`.
 - Print files: `python kc/wall/build_wall_snakeeye.py` (writes `kc/wall/out/` and copies to
   `Downloads\GrilleTalk_Extras\G80_Wall_Key_Holder_snake_eye`). It now cuts a 4.5 mm countersunk mounting hole on each
   side (screw or nail). The previous 3MF was kept as `g80_wall_snakeeye_BACKUP_2026-10-02_before_mount_holes.3mf`.
-- Site: listed under `wall` in `site/catalog/launch.json` (type "Wall key holder", prices 11.99 / 12.99 / 13.99,
+- Site: listed under `wall` in `site/catalog/launch.json` (type "Wall key holder", prices 14.99 / 15.99 / 16.99,
   headlight color +0.50). The listed weight (150 g) is an estimate: weigh one and update it in Shopify.
 - The description recommends double-sided mounting tape; the holes are there for screws or nails.

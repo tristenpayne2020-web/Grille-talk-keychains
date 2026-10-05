@@ -113,7 +113,7 @@ The original 28:
   Corvette C8 (`kc/wall/build_wall.py`, files in `Downloads\GrilleTalk_Extras\Wall_Key_Holders`). On the site
   (2026-10-05) as `*_wall` items in `launch.json`. The site's 3D models and renders come from the custom-colour
   print (`*_custom_colour_black/body/light.stl`: black plate and details, body colour face and hooks, white lights),
-  so they offer every body colour and the headlight option, like the G80 holder; prices $11.99 / $12.99 / $13.99.
+  so they offer every body colour and the headlight option, like the G80 holder; prices $14.99 / $15.99 / $16.99 (raised 2026-10-05).
   White orders can print the 1-swap file (1 filament change, 3h45m-4h35m) instead of the custom-colour one
   (22 changes, 4h50m-5h42m). Weights are estimates (150 g): weigh one.
   Descriptions say keys only (no coats or bags) and the heat/sunlight care note (all products).
@@ -248,7 +248,7 @@ Built from `WEBSITE_MASTER_PROMPT.md`. Run and setup instructions: `theme/README
 - `kc/wall/build_wall_snakeeye.py` now cuts two countersunk 4.5 mm wall-mounting holes (owner request), placed
   automatically on the outer edges below the headlights. Rebuilt and copied to `Downloads\GrilleTalk_Extras`; the
   owner's previous 3MF is backed up next to it. Not slice-verified in Creality Print here: slice once before printing.
-- On the site as its own product type and collection, same options as the keychains, base price $11.99.
+- On the site as its own product type and collection, same options as the keychains, base price $14.99 (was $11.99 until 2026-10-05).
 
 ### Tesla Model S Plaid approved; Model 3 dropped (2026-10-05)
 
