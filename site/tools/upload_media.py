@@ -103,7 +103,8 @@ def main():
         sys.exit('Set SHOPIFY_STORE and SHOPIFY_ADMIN_TOKEN (environment or .env), or use --dry-run.')
     api = None if dry else Admin(store, token)
 
-    for car in launch['cars']:
+    walls = [dict(w, wall=True) for w in launch.get('wall', {}).get('items', [])]
+    for car in launch['cars'] + walls:
         h = handle(car)
         if only and h not in only:
             continue

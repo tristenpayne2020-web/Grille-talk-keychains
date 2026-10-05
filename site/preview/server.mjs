@@ -152,7 +152,7 @@ function resolveSetting(type, v) {
   if (v === undefined || v === null || v === '') return v;
   if (type === 'link_list') return data.linklists[v] || null;
   if (type === 'product') return data.products.find((p) => p.handle === v) || null;
-  if (type === 'collection') return v === 'all' ? allCollection() : null;
+  if (type === 'collection') return allCollection({}, v);
   if (type === 'page') return data.pages[v] || null;
   return v;
 }
@@ -201,11 +201,14 @@ liquid.registerTag('sections', {
 });
 
 /* ---------------- store state ---------------- */
-function allCollection(query = {}) {
-  let items = data.products.map((p) => data.productView(p));
+// mock collections: 'all', plus the automated ones the owner creates in Shopify (product type = Keychain / Wall key holder)
+const COLLECTIONS = { all: { title: 'All products', filter: () => true }, keychains: { title: 'Keychains', filter: (p) => p.type === 'Keychain' }, 'wall-key-holders': { title: 'Wall key holders', filter: (p) => p.type === 'Wall key holder' } };
+function allCollection(query = {}, handle = 'all') {
+  const def = COLLECTIONS[handle] || COLLECTIONS.all;
+  let items = data.products.filter(def.filter).map((p) => data.productView(p));
   const make = [].concat(query['filter.p.m.custom.make'] || []);
   const makes = [...new Set(data.products.map((p) => p.metafields.custom.make.value))].sort();
-  const base = '/collections/all';
+  const base = `/collections/${handle}`;
   const qs = (params) => { const u = new URLSearchParams(); for (const [k, v] of params) u.append(k, v); const s = u.toString(); return s ? `${base}?${s}` : base; };
   const current = [...make.map((m) => ['filter.p.m.custom.make', m])];
   if (query.sort_by) current.push(['sort_by', query.sort_by]);
@@ -226,7 +229,7 @@ function allCollection(query = {}) {
   }[sort];
   if (by) items = [...items].sort(by);
   return {
-    id: 1, handle: 'all', title: 'All keychains', url: base, description: '', products: items, products_count: items.length,
+    id: 1, handle, title: def.title, url: base, description: '', products: items, products_count: items.length,
     all_products_count: data.products.length, sort_by: sort, default_sort_by: 'manual',
     sort_options: [['manual', 'Featured'], ['title-ascending', 'Alphabetically, A-Z'], ['title-descending', 'Alphabetically, Z-A'], ['price-ascending', 'Price, low to high'], ['price-descending', 'Price, high to low']].map(([value, name]) => ({ value, name })),
     filters: [{ label: 'Make', param_name: 'filter.p.m.custom.make', type: 'list', values, active_values: values.filter((v) => v.active), url_to_remove: qs(current.filter(([k]) => k !== 'filter.p.m.custom.make')) }],
@@ -271,7 +274,7 @@ function baseContext(req, extra = {}) {
     canonical_url: `http://localhost:${PORT}${url.pathname}`,
     content_for_header: '<!-- content_for_header (Shopify injects scripts here on the live store) -->',
     cart: cartView(),
-    collections: { all: allCollection() },
+    collections: { all: allCollection(), keychains: allCollection({}, 'keychains'), 'wall-key-holders': allCollection({}, 'wall-key-holders') },
     linklists: data.linklists,
     pages: data.pages,
     current_page: 1,
@@ -410,9 +413,10 @@ const server = http.createServer(async (req, res) => {
       return await page(req, res, 'search', { page_type: 'search', page_title: terms ? `Search: ${terms}` : 'Search', search: { performed: !!terms, terms, results, results_count: results.length } });
     }
     if (p === '/' ) return await page(req, res, 'index', { page_type: 'index', page_title: 'Grille Talk: car-front keychains' });
-    if (p === '/collections/all' || p === '/collections') {
+    const cm = p.match(/^\/collections\/([\w-]+)$/);
+    if (p === '/collections' || (cm && COLLECTIONS[cm[1]])) {
       const filterQ = { 'filter.p.m.custom.make': qa('filter.p.m.custom.make'), sort_by: q.sort_by };
-      const col = allCollection(filterQ);
+      const col = allCollection(filterQ, cm ? cm[1] : 'all');
       return await page(req, res, 'collection', { page_type: 'collection', page_title: col.title, collection: col, page_description: 'Every Grille Talk design: car-front keychains with light signatures, grilles and intakes in two colours.' });
     }
     const pm = p.match(/^\/products\/([\w-]+)$/);

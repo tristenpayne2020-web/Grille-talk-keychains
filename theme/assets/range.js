@@ -52,7 +52,19 @@ if (root) {
       await (await import('when3d')).when3D();
       const mod = await import('keychain3d');
       if (!mod.webglAvailable()) return null;
-      return new mod.KeychainStage(canvasBox, { fit: 0.6, interactive: 'mouse', float: true, spot: true });
+      const name = el('[data-range-name]');
+      const vp = el('[data-range-viewport]');
+      return new mod.KeychainStage(canvasBox, {
+        fit: 0.6, interactive: 'mouse', float: true, spot: true, display: true,
+        // the car name sits on the 3D pedestal's front face
+        onLayout: ({ nameX, nameY, ppm }) => {
+          vp.classList.add('is-3d-display');
+          const cb = canvasBox.getBoundingClientRect(), vb = vp.getBoundingClientRect();
+          name.style.left = `${cb.left - vb.left + nameX}px`;
+          name.style.top = `${cb.top - vb.top + nameY}px`;
+          name.style.fontSize = `${Math.max(16, Math.min(56, ppm * 0.011))}px`;
+        },
+      });
     })().catch(() => null);
     return stagePromise;
   }
@@ -61,7 +73,7 @@ if (root) {
     const s = slides[i];
     const url = s.dataset.model;
     const my = ++token;
-    canvasBox.classList.remove('is-on');
+    if (!stage) canvasBox.classList.remove('is-on');   // with the 3D display up, the old keychain stays until the next one loads
     if (!url) return;
     stage = await ensureStage();
     if (!stage || my !== token) return;

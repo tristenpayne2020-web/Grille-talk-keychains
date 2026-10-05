@@ -39,6 +39,12 @@
         "id": "legal_notice",
         "label": "Legal notice (footer)",
         "default": "Grille Talk is an independent maker. We are not affiliated with, endorsed by or sponsored by any vehicle manufacturer. Make and model names are used only to identify the car each design is based on, and belong to their owners."
+      },
+      {
+        "type": "url",
+        "id": "coldstart_url",
+        "label": "Loader engine sound (optional)",
+        "info": "Link to your own cold-start recording (MP3), e.g. uploaded in Content > Files. Leave empty to use the built-in straight-six."
       }
     ]
   },

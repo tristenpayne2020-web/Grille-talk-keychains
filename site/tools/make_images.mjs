@@ -13,7 +13,7 @@ const launch = JSON.parse(fs.readFileSync('catalog/launch.json', 'utf8'));
 const args = process.argv.slice(2);
 const only = args.find((a) => !a.startsWith('--'))?.split(',');
 const whiteOnly = args.includes('--white-only');
-const cars = launch.cars.filter((c) => !only || only.includes(c.id));
+const cars = [...launch.cars, ...((launch.wall && launch.wall.items) || []).map((w) => ({ ...w, wall: true }))].filter((c) => !only || only.includes(c.id));
 const colors = whiteOnly ? launch.colors.slice(0, 1) : launch.colors;
 
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.glb': 'model/gltf-binary', '.wasm': 'application/wasm' };
@@ -50,7 +50,7 @@ for (const car of cars) {
   await save(`${car.id}__lights__front.png`, { url, size: 2000, color: w.hex, metal: 0, rough: 1, chain: false, angle: 0, bg: null, mask: true });
   await save(`${car.id}__lights__angle.png`, { url, size: 2000, color: w.hex, metal: 0, rough: 1, chain: true, angle: -0.45, bg: null, mask: true });
   // back view: carbon-fibre finish and lettering (the black base, so one render covers every body color)
-  await save(`${car.id}__white__back.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: Math.PI - 0.32, bg: null });
+  if (!car.wall) await save(`${car.id}__white__back.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: Math.PI - 0.32, bg: null });
   if (car.id === 'g80_m3') {   // detail tour: the back seen straight on
     await save(`${car.id}__white__back-straight.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: Math.PI, bg: null });
   }

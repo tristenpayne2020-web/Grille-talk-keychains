@@ -61,12 +61,9 @@ export class KeychainStage {
     this.scene.environmentIntensity = 0.55;
     const key = new DirectionalLight(0xffffff, 1.6); key.position.set(-0.4, 0.8, 1.2);
     const rim = new DirectionalLight(0xffffff, 0.6); rim.position.set(0.8, 0.2, -0.6);
-    const backKey = new DirectionalLight(0xffffff, 1.8); backKey.position.set(0.5, 0.9, -1.2);   // lights the carbon back
+    // lights the carbon back; on the floating display it is dimmed, or it glares off the pedestal top
+    const backKey = new DirectionalLight(0xffffff, this.opts.display ? 0.35 : 1.8); backKey.position.set(0.5, 0.9, -1.2);
     this.scene.add(key, rim, backKey);
-    if (this.opts.spot) {   // floating display: a hard overhead light, like the ring light above it
-      const top = new DirectionalLight(0xffffff, 1.4); top.position.set(0, 1.6, 0.35);
-      this.scene.add(top);
-    }
     this.camera = new PerspectiveCamera(16, 1, 0.005, 5);
 
     this.visible = true;
@@ -118,6 +115,12 @@ export class KeychainStage {
     this.yaw = 0; this.yawV = 0; this.pitch = 0; this.pitchV = 0;   // a new keychain starts at rest, no inherited swing
     this._initChain(root);
     this.scene.add(root);
+    if (this.opts.display) {   // the floating display (pedestal, fixture, spotlight, beam), sized to this keychain
+      if (!this.display) { const { Display } = await import('display3d'); this.display = new Display(this); }
+      root.updateMatrixWorld(true);
+      const all = new Box3().setFromObject(root);
+      this.display.fit(this.bodyBox, all.min.y);
+    }
     this.resize();
     this.render();
     this._maybeRun();
@@ -214,6 +217,24 @@ export class KeychainStage {
     const tan = Math.tan(MathUtils.degToRad(this.camera.fov / 2));
     const b = this.bodyBox, size = b.getSize(new Vector3()), c = b.getCenter(new Vector3());
     let ppm, ox = 0, oy = 0;   // pixels per metre at z = 0, and screen offset (px) of the body centre from canvas centre
+    if (this.display && this.display.bounds) {
+      // frame the whole display, fixture to pedestal; the camera sits level with the keychain, so it looks up into
+      // the lamp and down onto the pedestal top
+      const B = this.display.bounds, span = B.top - B.bottom;
+      ppm = Math.min((h * 0.97) / span, (w * 0.96) / (0.068 * 2 * 1.3));
+      const midY = (B.top + B.bottom) / 2;
+      const dist = h / (2 * tan * ppm);
+      this.camera.position.set(B.cx, midY + span * 0.06, dist);
+      this.camera.lookAt(B.cx, midY, 0);
+      this.camera.near = dist / 20; this.camera.far = dist * 4;
+      this.camera.updateProjectionMatrix();
+      if (this.opts.onLayout) {
+        const v = B.name.clone().project(this.camera);
+        this.opts.onLayout({ nameX: ((v.x + 1) / 2) * w, nameY: ((1 - v.y) / 2) * h, ppm });
+      }
+      this.render();
+      return;
+    }
     if (this.opts.align) {
       // map the body box (plus the SVG's 1 mm margin) exactly onto the align element, as the hero art does
       const a = this.opts.align.getBoundingClientRect(), r = this.container.getBoundingClientRect();

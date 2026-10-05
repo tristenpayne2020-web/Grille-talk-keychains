@@ -63,16 +63,25 @@ if (el && root.classList.contains('gt-loading')) {
     clearTimeout(autoEnter);
     setPref('on');
     el.classList.add('is-starting');
+    let catchAt = 620;   // ms: when the bundled straight-six catches
     try {
       const AC = window.AudioContext || window.webkitAudioContext;
       const ctx = new AC();
       await ctx.resume();
-      const { playColdStart } = await import('coldstart');
-      playColdStart(ctx, { volume: 0.5 });
-      setTimeout(() => ctx.close(), 4600);
-    } catch (err) { /* no audio: carry on silently */ }
-    setTimeout(() => el.classList.add('is-caught'), 860);   // the engine catches: lights flare
-    setTimeout(finish, 1250);
+      const play = (buffer) => { const src = ctx.createBufferSource(); src.buffer = buffer; const g = ctx.createGain(); g.gain.value = 0.85; src.connect(g).connect(ctx.destination); src.start(); setTimeout(() => ctx.close(), (buffer.duration + 0.3) * 1000); };
+      const decode = async (url) => ctx.decodeAudioData(await (await fetch(url)).arrayBuffer());
+      const own = window.GT && window.GT.coldstartUrl;   // the owner's own recording (theme setting), if set
+      try {
+        if (own) { play(await decode(own)); catchAt = 800; }
+        else { const { COLDSTART_MP3 } = await import('coldstart-audio'); play(await decode(COLDSTART_MP3)); }
+      } catch (e2) {
+        const { playColdStart } = await import('coldstart');   // last resort: synthesise live
+        playColdStart(ctx, { volume: 0.5 });
+        catchAt = 860;
+      }
+    } catch (err) { /* no audio at all: carry on silently */ }
+    setTimeout(() => el.classList.add('is-caught'), catchAt);   // the engine catches: lights flare
+    setTimeout(finish, catchAt + 450);
   });
 
   const finish = () => {

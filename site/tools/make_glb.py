@@ -272,9 +272,34 @@ def build(car_id):
     print(car_id, os.path.getsize(path) // 1024, 'KB', 'tris', len(body.faces) + len(details.faces))
 
 
+def build_wall(item):
+    """Wall key holder from its three print parts (kc/wall/out): black plate and trim -> details, body colour -> body,
+    white snake-eye bars -> lights. Centred, face toward +Z. No chain, no carbon back (the back sits on the wall)."""
+    src = os.path.join(ROOT, item['source'])
+    parts = {k: trimesh.load(src.format(part=k)) for k in ('black', 'body', 'white')}
+    allm = trimesh.util.concatenate(list(parts.values()))
+    c = allm.bounds.mean(0)
+    for m in parts.values():
+        m.apply_translation(-c)
+        m.apply_scale(MM)
+    scene = trimesh.Scene()
+    scene.graph.update(frame_to='keychain', frame_from='world', matrix=np.eye(4))
+    scene.add_geometry(shaded(parts['body'], mat('body', (0.95, 0.95, 0.94), 0.0, 0.55)), node_name='body', geom_name='body', parent_node_name='keychain')
+    scene.add_geometry(shaded(parts['black'], mat('details', (0.012, 0.012, 0.014), 0.0, 0.72)), node_name='details', geom_name='details', parent_node_name='keychain')
+    scene.add_geometry(shaded(parts['white'], mat('lights', (0.97, 0.97, 0.96), 0.0, 0.5)), node_name='lights', geom_name='lights', parent_node_name='keychain')
+    os.makedirs(OUT, exist_ok=True)
+    path = os.path.join(OUT, f"{item['id']}.glb")
+    scene.export(path)
+    print(item['id'], os.path.getsize(path) // 1024, 'KB (wall key holder)')
+
+
 if __name__ == '__main__':
     launch = json.load(open(os.path.join(ROOT, 'site', 'catalog', 'launch.json')))
-    ids = sys.argv[1].split(',') if len(sys.argv) > 1 else [c['id'] for c in launch['cars']]
+    walls = {w['id']: w for w in launch.get('wall', {}).get('items', [])}
+    ids = sys.argv[1].split(',') if len(sys.argv) > 1 else [c['id'] for c in launch['cars']] + list(walls)
     assert not geom.badges_on(), 'KC_BADGE must be 0: products are logo-free'
     for i in ids:
-        build(i)
+        if i in walls:
+            build_wall(walls[i])
+        else:
+            build(i)

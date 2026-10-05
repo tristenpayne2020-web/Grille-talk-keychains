@@ -44,7 +44,9 @@
     },
     "range": {
       "type": "range-viewer",
-      "settings": {}
+      "settings": {
+        "collection": "keychains"
+      }
     },
     "faq": {
       "type": "faq",
@@ -251,11 +253,55 @@
         "p4"
       ],
       "settings": {}
+    },
+    "wall": {
+      "type": "wall-holder",
+      "settings": {
+        "product": "bmw-m3-g80-snake-eye-wall-key-holder",
+        "collection": "wall-key-holders"
+      },
+      "blocks": {
+        "w1": {
+          "type": "fact",
+          "settings": {
+            "label": "Size",
+            "value": "About 241 x 114 mm"
+          }
+        },
+        "w2": {
+          "type": "fact",
+          "settings": {
+            "label": "Hooks",
+            "value": "Four"
+          }
+        },
+        "w3": {
+          "type": "fact",
+          "settings": {
+            "label": "Mounting",
+            "value": "Double-sided tape recommended, or two countersunk screw holes"
+          }
+        },
+        "w4": {
+          "type": "fact",
+          "settings": {
+            "label": "Colors",
+            "value": "Every body and headlight color"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ]
     }
   },
   "order": [
     "hero",
     "range",
+    "wall",
     "details",
     "process",
     "faq",

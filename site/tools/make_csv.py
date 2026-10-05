@@ -24,13 +24,27 @@ FIELDS = ['Handle', 'Title', 'Body (HTML)', 'Vendor', 'Product Category', 'Type'
 
 
 def handle(c):
-    h = f"{c['make']}-{c['model']}-{c['generation']}" + ('-snake-eye' if c.get('variant') else '') + '-keychain'
+    h = f"{c['make']}-{c['model']}-{c['generation']}" + ('-snake-eye' if c.get('variant') else '') + ('-wall-key-holder' if c.get('wall') else '-keychain')
     return ''.join(ch if ch.isalnum() else '-' for ch in h.lower()).replace('--', '-').strip('-').replace('--', '-')
 
 
 def title(c):
-    t = f"Inspired by the {c['make']} {c['model']} ({c['generation']})"
+    t = ("Wall key holder inspired by the " if c.get('wall') else "Inspired by the ") + f"{c['make']} {c['model']} ({c['generation']})"
     return t + (f", {c['variant']}" if c.get('variant') else '')
+
+
+def wall_body(c):
+    w, h, d = c.get('size_mm', ['', '', ''])
+    return (f"<p>The {c['make']} {c['model']} ({c['generation']}) front, {'with snake-eye light bars, ' if c.get('variant') else ''}"
+            "as a wall key holder: hang your keys on the front of your car by the door.</p>"
+            f"<ul><li>About {w} x {h} mm, {d} mm deep at the hooks</li><li>Four key hooks</li>"
+            "<li>Printed in your body color, with black details and white lights (or a custom headlight color)</li>"
+            "<li>Logo-free design</li></ul>"
+            "<p><strong>Mounting:</strong> we recommend strong double-sided mounting tape on the back. It sits flat, "
+            "looks cleanest and leaves no screws on show. If you would rather screw or nail it up, there is a countersunk "
+            "hole on each side.</p>"
+            "<p>Grille Talk is an independent maker. Not affiliated with, endorsed by or sponsored by any vehicle "
+            "manufacturer. Make and model names identify the car the design is based on.</p>")
 
 
 def body(c):
@@ -47,30 +61,35 @@ def body(c):
 def main():
     L = json.load(open(os.path.join(ROOT, 'site', 'catalog', 'launch.json')))
     rows = []
-    for c in L['cars']:
+    walls = [dict(w, wall=True) for w in L.get('wall', {}).get('items', [])]
+    for c in L['cars'] + walls:
+        prices = L['wall']['prices'] if c.get('wall') else L['prices']
+        ptype = L['wall']['type'] if c.get('wall') else 'Keychain'
         h_ = handle(c)
         tags = [f"make:{c['make']}", f"model:{c['model']}", f"generation:{c['generation']}"]
         tags += [f'alias:{a}' for a in c.get('aliases', [])]
         if c.get('variant'):
             tags.append('variant:snake-eye')
-        seo_t = f"{title(c)} | Car front keychain | Grille Talk"
-        seo_d = (f"3D-printed keychain of the {c['make']} {c['model']} ({c['generation']}) front. "
+        seo_t = f"{title(c)} | Grille Talk" if c.get('wall') else f"{title(c)} | Car front keychain | Grille Talk"
+        seo_d = (f"3D-printed wall key holder of the {c['make']} {c['model']} ({c['generation']}) front, four key hooks. "
+                 "Pick your body color and headlight color." if c.get('wall') else
+                 f"3D-printed keychain of the {c['make']} {c['model']} ({c['generation']}) front. "
                  "80.5 mm, two colours, split ring and chain included. Pick your body color.")[:320]
         hl = L['headlights']
         combos = [(col, h) for col in L['colors'] for h in hl['values']]
         for i, (col, h) in enumerate(combos):
             r = dict.fromkeys(FIELDS, '')
-            price = float(L['prices'][col['tier']]) + (0 if h.get('base') else float(hl['surcharge']))
+            price = float(prices[col['tier']]) + (0 if h.get('base') else float(hl['surcharge']))
             r.update({'Handle': h_, 'Option1 Value': col['name'], 'Option2 Value': h['name'],
                       'Variant SKU': f"GT-{c['id']}-{col['name'].lower().replace(' ', '-')}-hl-{h['name'].lower()}",
-                      'Variant Grams': '10', 'Variant Weight Unit': 'g', 'Variant Inventory Tracker': '',
+                      'Variant Grams': '150' if c.get('wall') else '10',   # wall: estimate, owner to weigh 'Variant Weight Unit': 'g', 'Variant Inventory Tracker': '',
                       'Variant Inventory Policy': 'continue', 'Variant Fulfillment Service': 'manual',
                       'Variant Price': f'{price:.2f}', 'Variant Requires Shipping': 'TRUE',
                       'Variant Taxable': 'TRUE'})
             if i == 0:
-                r.update({'Title': title(c), 'Body (HTML)': body(c), 'Vendor': 'Grille Talk',
-                          'Product Category': 'Apparel & Accessories > Clothing Accessories > Keychains',
-                          'Type': 'Keychain', 'Tags': ', '.join(tags), 'Published': 'FALSE',
+                r.update({'Title': title(c), 'Body (HTML)': wall_body(c) if c.get('wall') else body(c), 'Vendor': 'Grille Talk',
+                          'Product Category': 'Home & Garden > Decor > Key Holders' if c.get('wall') else 'Apparel & Accessories > Clothing Accessories > Keychains',
+                          'Type': ptype, 'Tags': ', '.join(tags), 'Published': 'FALSE',
                           'Option1 Name': 'Body color', 'Option2 Name': L['headlights']['option'], 'Gift Card': 'FALSE', 'SEO Title': seo_t[:70],
                           'SEO Description': seo_d, 'Make (product.metafields.custom.make)': c['make'],
                           'Model (product.metafields.custom.model)': c['model'],

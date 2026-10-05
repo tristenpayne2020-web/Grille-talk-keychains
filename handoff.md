@@ -234,6 +234,13 @@ Built from `WEBSITE_MASTER_PROMPT.md`. Run and setup instructions: `theme/README
 - **Preview:** `cd site` then `node preview/server.mjs` (liquidjs + mock data) at http://localhost:4100. `node tools/audit.mjs` runs 90 checks (uses the GPU; set GT_SOFTWARE_GL=1 without one); reports in `site/build/reports/`.
 - **Not done (needs the owner):** Shopify store, payments, domain, policies, metafield definitions, menus, CSV import, media upload. Full list in `theme/README.md`.
 
+### Wall-mounted key holder (2026-10-05)
+
+- `kc/wall/build_wall_snakeeye.py` now cuts two countersunk 4.5 mm wall-mounting holes (owner request), placed
+  automatically on the outer edges below the headlights. Rebuilt and copied to `Downloads\GrilleTalk_Extras`; the
+  owner's previous 3MF is backed up next to it. Not slice-verified in Creality Print here: slice once before printing.
+- On the site as its own product type and collection, same options as the keychains, base price $11.99.
+
 ### Tesla Model 3 and Model S Plaid are on the site but NOT approved
 
 The owner asked for them on the site (2026-10-05). They are the traced drafts from batch H (`spec.py`, no

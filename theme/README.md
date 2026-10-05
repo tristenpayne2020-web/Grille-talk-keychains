@@ -12,13 +12,17 @@ site/    tools that build the catalog, 3D models and images, plus a local previe
 ## What's on the home page
 
 1. **Loader** (first visit per session): your Grille Talk artwork fills with light from the bottom while a
-   counter tracks real loading. At 100% an ENGINE START button plays a V8 cold start (synthesised in the browser,
-   `assets/coldstart.js`, no audio file) and the site opens as the engine catches. "Enter without sound" is
+   counter tracks real loading. At 100% an ENGINE START button plays a cold start of a modified straight-six
+   (S58-style, synthesised by `site/tools/make_coldstart.py`, no recording used, shipped as `assets/coldstart-audio.js`)
+   and the site opens as the engine catches. To use your own recording instead, upload an MP3 in Content > Files and
+   paste its link in Theme settings > Business > Loader engine sound. "Enter without sound" is
    remembered; with no press it enters quietly after 7 s. Skippable; never without JS.
 2. **Hero**: the 3D G80 on a jump ring, chain and split ring that swing with physics (drag it), other designs
    drifting at depth behind, and a stat row.
-3. **Range**: a floating display. The 3D keychain hovers under an overhead ring light with a spotlight beam, above a
+3. **Range**: a floating display, built in 3D (`assets/display3d.js`): metal pedestal with chrome rims and a light
+   strip, ring-light fixture, a real spotlight with shadows and a soft beam (CSS version as the fallback). The 3D keychain hovers under an overhead ring light with a spotlight beam, above a
    pedestal carrying the car's name; neighbours float on a curved arc. Arrows, swipe, keys, rail.
+   Below it, the **wall-mounted key holder** section (the holder on a lit wall panel).
 4. **Detail tour** (pinned): the camera pushes into the G80 and a spotlight moves to the light signature, grille,
    intakes and tab, with a chapter rail. Spotlight positions come from the real design file.
    A fifth chapter turns it over to show the carbon-fibre back and the GRILLE TALK lettering.
@@ -83,8 +87,11 @@ Publish it from Online Store > Themes when you are ready. Nothing in this repo p
     Products arrive as drafts with two options, Body color and Headlight color (36 variants each, 936 rows).
     Custom headlights cost $0.50 more; change `headlights.surcharge` in `site/catalog/launch.json` and rebuild the
     CSV to adjust. Inventory is not tracked (made to order).
-11. **Collection.** Products > Collections: the theme uses "all" by default. If you make a "Keychains"
-    collection, pick it in the Range viewer section.
+11. **Collections.** Products > Collections > Create, automated:
+    - "Keychains" (handle `keychains`): Product type is equal to Keychain. The Range viewer uses it.
+    - "Wall key holders" (handle `wall-key-holders`): Product type is equal to Wall key holder. The home page's
+      wall key holder section and the menu link use it.
+    Add "Wall key holders" to the main menu (`/collections/wall-key-holders`).
 12. **Images and 3D models.** Run the upload script (below).
 13. **Menus.** Online Store > Navigation:
     - `main-menu`: Shop (`/#range`), Catalog (`/collections/all`), Request a car, About, FAQ, Contact
@@ -193,3 +200,12 @@ Results land in `site/build/reports/`.
 - Fonts: Michroma (SIL Open Font License) for headings, the system sans for text.
 - Vendored libraries are bundled into `assets/vendor-three.js` (three.js, MIT) and `assets/vendor-gsap.js`
   (GSAP, standard no-charge license) by `site/tools/bundle_vendor.mjs` from pinned npm versions.
+
+## Wall-mounted key holder
+
+- Print files: `python kc/wall/build_wall_snakeeye.py` (writes `kc/wall/out/` and copies to
+  `Downloads\GrilleTalk_Extras\G80_Wall_Key_Holder_snake_eye`). It now cuts a 4.5 mm countersunk mounting hole on each
+  side (screw or nail). The previous 3MF was kept as `g80_wall_snakeeye_BACKUP_2026-10-02_before_mount_holes.3mf`.
+- Site: listed under `wall` in `site/catalog/launch.json` (type "Wall key holder", prices 11.99 / 12.99 / 13.99,
+  headlight color +0.50). The listed weight (150 g) is an estimate: weigh one and update it in Shopify.
+- The description recommends double-sided mounting tape; the holes are there for screws or nails.

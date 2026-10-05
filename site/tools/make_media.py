@@ -21,6 +21,10 @@ def slug(s):
     return ''.join(ch if ch.isalnum() else '-' for ch in s.lower()).strip('-')
 
 
+def noun(c):
+    return 'wall key holder' if c.get('wall') else 'keychain'
+
+
 def car_name(c):
     return f"{c['make']} {c['model']} ({c['generation']})" + (f", {c['variant']}" if c.get('variant') else '')
 
@@ -54,7 +58,8 @@ def main():
     from multiprocessing import Pool
     launch = json.load(open(os.path.join(ROOT, 'site', 'catalog', 'launch.json')))
     with Pool(max(2, os.cpu_count() - 2)) as pool:
-        manifest = dict(pool.map(one, [(c, launch['colors']) for c in launch['cars']]))
+        items = launch['cars'] + [dict(w, wall=True) for w in launch.get('wall', {}).get('items', [])]
+        manifest = dict(pool.map(one, [(c, launch['colors']) for c in items]))
     json.dump(manifest, open(os.path.join(BUILD, 'media', 'manifest.json'), 'w'), indent=1)
     print(len(manifest), 'cars')
 
@@ -69,14 +74,14 @@ def car_media(c, colors):
         src = os.path.join(BUILD, 'renders_png', f'{cid}__{cs}__front.png')
         files = webp(src, os.path.join(od, f'{cid}-{cs}-front'))
         items.append(dict(kind='variant', color=col['name'], files=files,
-                          alt=f"Grille Talk keychain inspired by the {name}, {col['name'].lower()} body, front view"))
+                          alt=f"Grille Talk {noun(c)} inspired by the {name}, {col['name'].lower()} body, front view"))
         src = os.path.join(BUILD, 'renders_png', f'{cid}__{cs}__angle.png')
         items.append(dict(kind='angle', color=col['name'], files=webp(src, os.path.join(od, f'{cid}-{cs}-angle')),
-                          alt=f"Grille Talk keychain inspired by the {name}, {col['name'].lower()} body, angled view with jump ring, chain and split ring"))
+                          alt=f"Grille Talk {noun(c)} inspired by the {name}, {col['name'].lower()} body, angled view with jump ring, chain and split ring"))
         src = os.path.join(BUILD, 'renders_png', f'{cid}__{cs}__front-white.png')
         files = webp(src, os.path.join(od, f'{cid}-{cs}-front-on-white'), trim=False)
         items.append(dict(kind='variant_on_white', color=col['name'], files=files,
-                          alt=f"Grille Talk keychain inspired by the {name}, {col['name'].lower()} body, front view on white"))
+                          alt=f"Grille Talk {noun(c)} inspired by the {name}, {col['name'].lower()} body, front view on white"))
     # headlight masks for the theme: same square crop as the white front / angle renders, alpha only
     from make_csv import handle
     for view in ('front', 'angle'):
@@ -86,9 +91,10 @@ def car_media(c, colors):
             stem = os.path.join(THEME_ASSETS, f'lights-{handle(c)}-{view}')
             webp(mask, stem, box_from=ref, sizes=(900,))
             os.replace(stem + '-900.webp', stem + '.webp')
-    src = os.path.join(BUILD, 'renders_png', f'{cid}__white__back.png')
-    items.append(dict(kind='back', color=None, files=webp(src, os.path.join(od, f'{cid}-back')),
-                      alt=f'Back of the Grille Talk keychain inspired by the {name}: carbon-fibre finish with GRILLE TALK lettering'))
+    if not c.get('wall'):   # the wall key holder's back sits on the wall: no back view
+        src = os.path.join(BUILD, 'renders_png', f'{cid}__white__back.png')
+        items.append(dict(kind='back', color=None, files=webp(src, os.path.join(od, f'{cid}-back')),
+                          alt=f'Back of the Grille Talk {noun(c)} inspired by the {name}: carbon-fibre finish with GRILLE TALK lettering'))
     face = os.path.join(BUILD, 'geom', cid, 'face.png')
     if os.path.exists(face):
         items.append(dict(kind='face', color=None, files=webp(face, os.path.join(od, f'{cid}-design')),

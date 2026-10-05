@@ -11,10 +11,10 @@ export const cents = (s) => Math.round(parseFloat(s) * 100);
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 export function handleFor(c) {
-  return slug(`${c.make}-${c.model}-${c.generation}${c.variant ? '-snake-eye' : ''}-keychain`);
+  return slug(`${c.make}-${c.model}-${c.generation}${c.variant ? '-snake-eye' : ''}${c.wall ? '-wall-key-holder' : '-keychain'}`);
 }
 export function titleFor(c) {
-  return `Inspired by the ${c.make} ${c.model} (${c.generation})${c.variant ? `, ${c.variant}` : ''}`;
+  return `${c.wall ? 'Wall key holder inspired by the' : 'Inspired by the'} ${c.make} ${c.model} (${c.generation})${c.variant ? `, ${c.variant}` : ''}`;
 }
 
 // Image object: prints as its URL, image_url picks the nearest built width.
@@ -30,7 +30,8 @@ export class Img {
 }
 
 let nextId = 1000;
-export const products = launch.cars.map((c, idx) => {
+const walls = ((launch.wall && launch.wall.items) || []).map((w) => ({ ...w, wall: true }));
+export const products = [...launch.cars, ...walls].map((c, idx) => {
   const m = manifest[c.id];
   const handle = handleFor(c);
   const title = titleFor(c);
@@ -54,7 +55,7 @@ export const products = launch.cars.map((c, idx) => {
   const variants = launch.colors.flatMap((col) => hl.values.map((h) => {
     const id = nextId++;
     const img = variantImg[col.name];
-    const price = cents(launch.prices[col.tier]) + (h.base ? 0 : cents(hl.surcharge));
+    const price = cents((c.wall ? launch.wall.prices : launch.prices)[col.tier]) + (h.base ? 0 : cents(hl.surcharge));
     return {
       id, title: `${col.name} / ${h.name}`, option1: col.name, option2: h.name, options: [col.name, h.name], price,
       available: true, sku: `GT-${c.id}-${slug(col.name)}-hl-${slug(h.name)}`, url: `/products/${handle}?variant=${id}`,
@@ -62,9 +63,11 @@ export const products = launch.cars.map((c, idx) => {
     };
   }));
   const prices = variants.map((v) => v.price);
-  const description = `<p>A straight-on keychain of the ${c.make} ${c.model} (${c.generation}) front. ${c.variant ? 'Snake-eye light bars' : 'The light signature'}, grille texture and intakes are printed in relief, in two colours.</p><ul><li>80.5 mm wide, 3 mm thick</li><li>Two-colour 3D print</li><li>Split ring and short chain included</li><li>Logo-free design</li></ul>`;
+  const description = c.wall
+    ? `<p>The ${c.make} ${c.model} (${c.generation}) front as a wall key holder, four key hooks.</p><p><strong>Mounting:</strong> we recommend strong double-sided mounting tape on the back: it sits flat and looks cleanest. There is also a countersunk hole on each side for a screw or nail.</p>`
+    : `<p>A straight-on keychain of the ${c.make} ${c.model} (${c.generation}) front. ${c.variant ? 'Snake-eye light bars' : 'The light signature'}, grille texture and intakes are printed in relief, in two colours.</p><ul><li>80.5 mm wide, 3 mm thick</li><li>Two-colour 3D print</li><li>Split ring and short chain included</li><li>Logo-free design</li></ul>`;
   return {
-    id: nextId++, index: idx, handle, title, url: `/products/${handle}`, vendor: 'Grille Talk', type: 'Keychain',
+    id: nextId++, index: idx, handle, title, url: `/products/${handle}`, vendor: 'Grille Talk', type: c.wall ? 'Wall key holder' : 'Keychain',
     tags: [`make:${c.make}`, `model:${c.model}`, `generation:${c.generation}`, ...c.aliases.map((a) => `alias:${a}`)],
     description, content: description,
     featured_image: imgs[0], images: imgs, media, featured_media: media[0],
@@ -102,8 +105,8 @@ Object.values(pages).forEach((p) => { p.url = `/pages/${p.handle}`; p.id = nextI
 
 const link = (title, url) => ({ title, url, links: [] });
 export const linklists = {
-  'main-menu': { title: 'Main menu', handle: 'main-menu', links: [link('Shop', '/#range'), link('Catalog', '/collections/all'), link('Request a car', '/pages/request-a-car'), link('About', '/pages/about'), link('FAQ', '/pages/faq'), link('Contact', '/pages/contact')] },
-  footer: { title: 'Shop', handle: 'footer', links: [link('All keychains', '/collections/all'), link('Request a car', '/pages/request-a-car'), link('About', '/pages/about'), link('FAQ', '/pages/faq'), link('Contact', '/pages/contact'), link('Search', '/search')] },
+  'main-menu': { title: 'Main menu', handle: 'main-menu', links: [link('Shop', '/#range'), link('Catalog', '/collections/all'), link('Wall holders', '/collections/wall-key-holders'), link('Request a car', '/pages/request-a-car'), link('About', '/pages/about'), link('FAQ', '/pages/faq'), link('Contact', '/pages/contact')] },
+  footer: { title: 'Shop', handle: 'footer', links: [link('Keychains', '/collections/keychains'), link('Wall key holders', '/collections/wall-key-holders'), link('Request a car', '/pages/request-a-car'), link('About', '/pages/about'), link('FAQ', '/pages/faq'), link('Contact', '/pages/contact'), link('Search', '/search')] },
 };
 
 // Policies stay empty until the owner writes them in Shopify; the preview shows placeholders as links only.

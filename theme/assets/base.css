@@ -183,7 +183,8 @@ textarea.input { min-height: 120px; resize: vertical; }
 .cart-btn { position: relative; }
 .cart-count { position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--c-fg); color: var(--c-bg); font: 600 11px/18px var(--f-body); text-align: center; }
 .cart-count:empty, .cart-count[data-count='0'] { display: none; }
-@media (min-width: 990px) { .site-nav { display: block; } .menu-btn { display: none; } }
+@media (min-width: 1200px) { .site-nav { display: block; } .menu-btn { display: none; } }
+.site-nav a { white-space: nowrap; }
 
 /* dialogs: menu, search, cart drawer */
 .dialog { position: fixed; inset: 0; z-index: 60; display: none; }
@@ -679,3 +680,33 @@ body::after { content: ''; position: fixed; inset: -50%; z-index: 90; pointer-ev
 .ignition__quiet:hover { color: var(--c-fg); }
 .loader.is-caught .loader__img--lit { filter: brightness(1.6) contrast(1.05); transition: filter 120ms; }
 @media (prefers-reduced-motion: reduce) { .ignition__ring { animation: none; opacity: 1; } .gt-loading .loader__ignition:not([hidden]) { transition: none; } }
+
+/* wall key holder feature: a lit wall panel the holder hangs on */
+.wallhold__grid { display: grid; gap: var(--s-7); align-items: center; }
+@media (min-width: 990px) { .wallhold__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); } }
+.wallhold__copy { display: grid; gap: var(--s-4); align-content: start; }
+.wallhold__facts { list-style: none; border-top: 1px solid var(--c-line); margin-top: var(--s-2); }
+.wallhold__facts li { display: flex; justify-content: space-between; gap: var(--s-4); padding: var(--s-3) 0; border-bottom: 1px solid var(--c-line); font-size: var(--t-sm); }
+.wallhold__facts li span:first-child { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-mute); }
+.wallhold__buy { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin-top: var(--s-3); }
+.wallhold__price { font: 400 var(--t-lg)/1 var(--f-mono); }
+.wallhold__wall { position: relative; aspect-ratio: 1.35; border-radius: var(--radius); overflow: hidden; isolation: isolate;
+  background:
+    radial-gradient(55% 60% at 50% 18%, rgba(255, 252, 245, 0.22), transparent 70%),
+    radial-gradient(120% 90% at 50% 0%, #3a3936 0%, #23221f 45%, #121211 100%); }
+.wallhold__wall::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0.35; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.1 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"); }   /* plaster texture */
+.wallhold__wall::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 9%; background: linear-gradient(#1a1917, #0d0d0c); box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.08); }   /* skirting */
+.wallhold__lamp { position: absolute; top: -2%; left: 50%; width: 30%; height: 5%; transform: translateX(-50%); border-radius: 0 0 50% 50%; background: linear-gradient(#0b0b0c, #2b2b2e); box-shadow: 0 8px 40px rgba(255, 248, 230, 0.45); }
+.wallhold__piece { position: absolute; left: 6%; right: 6%; top: 20%; height: 52%; filter: drop-shadow(0 26px 22px rgba(0, 0, 0, 0.55)) drop-shadow(0 6px 6px rgba(0, 0, 0, 0.45)); }
+.wallhold__piece img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transform: scale(1.18); }   /* the render is a padded square */
+.wallhold__shadow { position: absolute; left: 24%; right: 24%; top: 62%; height: 10%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.45), transparent); filter: blur(10px); }
+
+/* when the 3D display is running, the CSS fixture, beam and pedestal give way to the real ones */
+.display.is-3d-display .display__fixture, .display.is-3d-display .display__beam, .display.is-3d-display .display__pedestal > span:not(.display__name) { opacity: 0; transition: opacity 600ms var(--ease-out); }
+.display.is-3d-display .range__canvas { top: 0; height: 100%; z-index: 1; }
+.display.is-3d-display .display__pedestal { inset: 0; width: auto; aspect-ratio: auto; transform: none; z-index: 3; }
+.display.is-3d-display .display__name { top: 0; left: 0; transform: translate(-50%, -50%); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.15), 0 -1px 0 rgba(0, 0, 0, 0.8); color: #e9e9e7; letter-spacing: 0.04em; }
+.display.is-3d-display .range__slide[data-pos='0'] img { opacity: 0; }
+
+.range__carousel .range__viewport.display ~ .range__info { margin-top: var(--s-4); }

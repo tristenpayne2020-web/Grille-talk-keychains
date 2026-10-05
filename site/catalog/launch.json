@@ -401,5 +401,37 @@
         "hex": "#cfd2d6"
       }
     ]
+  },
+  "wall": {
+    "type": "Wall key holder",
+    "prices": {
+      "Standard": "11.99",
+      "Custom color": "12.99",
+      "Metallic": "13.99"
+    },
+    "items": [
+      {
+        "id": "g80_wall_snakeeye",
+        "make": "BMW",
+        "model": "M3",
+        "generation": "G80",
+        "variant": "snake-eye lights",
+        "short_model": "M3",
+        "aliases": [
+          "M3",
+          "G80",
+          "wall",
+          "key holder",
+          "key rack",
+          "snake eye"
+        ],
+        "source": "kc/wall/out/g80_wall_snakeeye_{part}.stl",
+        "size_mm": [
+          241,
+          114,
+          31.5
+        ]
+      }
+    ]
   }
 }

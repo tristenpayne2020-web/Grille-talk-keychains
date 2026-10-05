@@ -2,7 +2,8 @@
 3 filaments like the custom-colour keychains: 1 = black (back plate, sensor dots, tow-hook ring),
 2 = body colour (body with the key hooks, hood), 3 = white (the snake-eye DRL bars).
 Changes vs the user's STEP: stock DRL pieces replaced by the snake-eye bars (kc/cars/_snakeeye.py TEMPLATE, fitted
-to these lamps); BMW roundel removed and its hole filled flush (no-logo rule).
+to these lamps); BMW roundel removed and its hole filled flush (no-logo rule); two countersunk wall-mounting holes,
+one each side (screw or nail; double-sided tape also works and leaves the face clean).
 usage (from anywhere):  python kc/wall/build_wall_snakeeye.py      -> kc/wall/out/"""
 import os, sys
 import numpy as np
@@ -111,6 +112,41 @@ if not fill_hood.is_empty and fill_hood.area > 0.5:
 mk = {k: trimesh.boolean.union(v, **BOOL) if len(v) > 1 else v[0] for k, v in parts.items()}
 mk['body'] = trimesh.boolean.difference([mk['body'], mk['black']], **BOOL)     # no overlap between filaments
 mk['white'] = trimesh.boolean.difference([white, trimesh.boolean.union([mk['black'], mk['body']], **BOOL)], **BOOL)
+# ---------------------------------------------------------------- wall-mounting holes (owner request 2026-10-05)
+# one hole each side for a screw or nail: 4.5 mm through every layer, 90-degree countersink at the front so a #6/#8
+# screw head sits flush. Placed mirror-symmetrically at the spot nearest the outer edge that has solid body and back
+# plate all round (clear of the lamps, the black trim and the key hooks).
+MOUNT_D, CSK_D, MARGIN = 4.5, 8.6, 2.2
+allm = trimesh.util.concatenate(list(mk.values()))
+zlo = allm.bounds[0][2]
+zhi = mk['black'].bounds[1][2]                 # the face (the key hooks stand much taller; they are not drilled)
+plate_s = section(mk['black'], zlo + 0.3)
+front_s = section(mk['body'], zhi - 0.4)
+solid = plate_s.intersection(front_s)
+hx0, hy0, hx1, hy1 = solid.bounds
+best = None
+for x in np.arange(hx0 + 4, hx0 + (hx1 - hx0) * 0.3, 0.5):
+    for y in np.arange(hy0 + 4, hy1 - 4, 0.5):
+        need = Point(x, y).buffer(CSK_D / 2 + MARGIN)
+        if solid.contains(need) and solid.contains(Point(-x, y).buffer(CSK_D / 2 + MARGIN)):
+            score = (x - hx0) + 0.35 * abs(y - (hy0 + hy1) / 2)   # outermost, then closest to mid-height
+            if best is None or score < best[0]:
+                best = (score, x, y)
+if best is None:
+    raise SystemExit('no room for mounting holes')
+_, hx, hy = best
+cutters = []
+for cx in (hx, -hx):
+    shaft = trimesh.creation.cylinder(radius=MOUNT_D / 2, height=(zhi - zlo) + 4, sections=48)
+    shaft.apply_translation([cx, hy, (zhi + zlo) / 2])
+    cone = trimesh.creation.cone(radius=CSK_D / 2 + 0.6, height=CSK_D / 2 + 0.6, sections=48)   # 90 degree countersink
+    cone.apply_transform(trimesh.transformations.rotation_matrix(np.pi, [1, 0, 0]))           # apex pointing down
+    cone.apply_translation([cx, hy, zhi + 0.6])
+    cutters.append(trimesh.boolean.union([shaft, cone], **BOOL))
+cut = trimesh.boolean.union(cutters, **BOOL)
+mk = {k: trimesh.boolean.difference([m, cut], **BOOL) for k, m in mk.items()}
+print('mount holes at x = +/-%.1f mm, y = %.1f mm' % (hx, hy))
+
 for k, m in mk.items():
     m.export(os.path.join(OUT, f'g80_wall_snakeeye_{k}.stl'))
 print('parts', {k: round(m.volume) for k, m in mk.items()}, 'watertight', {k: m.is_watertight for k, m in mk.items()},
