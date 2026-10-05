@@ -120,8 +120,8 @@ python site/tools/make_glb.py
 python site/tools/make_svgs.py
 cd site
 node tools/compress_glb.mjs
-node tools/make_images.mjs
 cd ..
+python site/tools/make_images_blender.py --samples=96   # Blender 5.x, about 3 min per product on an RTX 5070
 python site/tools/make_media.py
 python site/tools/make_brand.py
 python site/tools/make_hero_assets.py   # hero render, detail tour image and anchors, process visuals
@@ -134,7 +134,11 @@ python site/tools/make_csv.py
   a carbon-fibre `back` (tiled twill texture) with `lettering` (GRILLE TALK in white, mirrored to read from behind),
   plus a jump ring threaded through the keyring hole, a 4-link chain and a split ring as separate nodes.
 - `compress_glb.mjs` quantizes them to about 350-780 KB with no decoder needed.
-- `make_images.mjs` renders every car in every color (needs Chrome installed).
+- `make_images_blender.py` renders every product in every color with Blender Cycles (`blender_render.py` does the
+  studio: PLA with faint layer lines, black details, steel chain, carbon back with a clear coat, five area lights,
+  AgX view). Set `BLENDER` if Blender is not in `C:\Program Files\Blender Foundation\Blender 5.2`. Options:
+  `--samples=`, `--size=`, `--exposure=` (default 0.26), `--white-only`, or a comma list of ids. It also writes the
+  front-on-white images and the headlight masks. `make_images.mjs` (three.js in Chrome) is the old, faster fallback.
 - Reference photos in `kc/cars/*/ref/` are never used.
 
 ### Upload images and 3D models

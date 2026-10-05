@@ -121,7 +121,8 @@ The original 28:
 **Batch H:** `tesla_model3` (Highland) and `tesla_models_plaid`.
 - Args are in `kc/batchH_args.json`: pool 2, `max_rounds` 1, cloud mode.
 - Commit `602bb37` says "traced drafts (in progress)".
-- These cars are NOT approved and NOT in `cars_pkg.json`.
+- **Approved by the owner 2026-10-05** ("the teslas look good, approve them"): `spec_APPROVED_by_user.py` written for
+  both (copy of `spec_SHOWN_20261004_built.py`) and both added to `cars_pkg.json` (65 entries).
 
 ---
 
@@ -227,9 +228,9 @@ The flow: design in the cloud, push, then on the PC `git pull` and `python kc\fi
 Built from `WEBSITE_MASTER_PROMPT.md`. Run and setup instructions: `theme/README.md`.
 
 - **Branch:** `claude/tender-thompson-6c67sz` = `claude/exciting-pascal-4qpm9o` + `main` merged (finalize safety fix) + the storefront. No PR.
-- **Launch scope (owner decision):** 26 cars (the first 20; M340i, Civic 11th gen, Camry; Kia Stinger; Tesla Model 3 and Model S Plaid, added 2026-10-04/05), 6 body colors (White $6.99; Matte Red, Matte Yellow, Matte Gray, Matte Blue $7.99; Metallic Silver $8.99) and a Headlight color option (White included; Red, Yellow, Gray, Blue, Silver +$0.50), so 36 variants per product. Source of truth: `site/catalog/launch.json` (ids, colors, tier prices, make/model/generation/short_model naming table).
+- **Launch scope (owner decision):** 26 cars (the first 20; M340i, Civic 11th gen, Camry; Kia Stinger; Tesla Model S Plaid, added 2026-10-04/05; the Model 3 was dropped by the owner 2026-10-05), 6 body colors (White $6.99; Matte Red, Matte Yellow, Matte Gray, Matte Blue $7.99; Metallic Silver $8.99) and a Headlight color option (White included; Red, Yellow, Gray, Blue, Silver +$0.50), so 36 variants per product. Source of truth: `site/catalog/launch.json` (ids, colors, tier prices, make/model/generation/short_model naming table).
 - **Later, when the owner says so:** add the other 40 cars and the 7 remaining colors (Green, Purple, Gold, Metallic Red/Blue/Green/Purple). Steps in `theme/README.md` > "Adding the rest of the line". Keep the "40+ more cars coming soon" note until then.
-- **Pipeline (`site/tools/`, outputs in gitignored `site/build/`):** `build_geometry.py` (logo-free rebuild, never touches `kc/cars/*/out/`) > `make_glb.py` > `compress_glb.mjs` > `make_images.mjs` > `make_media.py`, plus `make_svgs.py`, `make_brand.py`, `make_hero_assets.py`, `make_csv.py`, `upload_media.py` (token from env/.env only).
+- **Pipeline (`site/tools/`, outputs in gitignored `site/build/`):** `build_geometry.py` (logo-free rebuild, never touches `kc/cars/*/out/`) > `make_glb.py` > `compress_glb.mjs` > `make_images_blender.py` (Blender Cycles; `make_images.mjs` is the old three.js fallback) > `make_media.py`, plus `make_svgs.py`, `make_brand.py`, `make_hero_assets.py`, `make_csv.py`, `upload_media.py` (token from env/.env only).
 - **Theme (`theme/`):** OS 2.0, `shopify theme check` clean. First-visit loader with the owner's artwork, cinematic hero (3D keychain on jump ring + chain physics), range viewer with arc, pinned detail tour and process chapters (ideas adapted from ciaoenergy.com and kryntixstudio.com, nothing copied), catalog with S&D filters, product page with model-viewer recolor, cart drawer, predictive search, request-a-car, about, contact, FAQ, 404.
 - **Preview:** `cd site` then `node preview/server.mjs` (liquidjs + mock data) at http://localhost:4100. `node tools/audit.mjs` runs 90 checks (uses the GPU; set GT_SOFTWARE_GL=1 without one); reports in `site/build/reports/`.
 - **Not done (needs the owner):** Shopify store, payments, domain, policies, metafield definitions, menus, CSV import, media upload. Full list in `theme/README.md`.
@@ -241,12 +242,14 @@ Built from `WEBSITE_MASTER_PROMPT.md`. Run and setup instructions: `theme/README
   owner's previous 3MF is backed up next to it. Not slice-verified in Creality Print here: slice once before printing.
 - On the site as its own product type and collection, same options as the keychains, base price $11.99.
 
-### Tesla Model 3 and Model S Plaid are on the site but NOT approved
+### Tesla Model S Plaid approved; Model 3 dropped (2026-10-05)
 
-The owner asked for them on the site (2026-10-05). They are the traced drafts from batch H (`spec.py`, no
-`spec_APPROVED_by_user.py`, not in `cars_pkg.json`). `site/catalog/launch.json` carries their spec path and
-`"approved": false`. Get an explicit approval of the renders before publishing those two products; then lock the
-specs and `add_cars_pkg` as usual. Products import as drafts, so nothing is live until published.
+The owner then dropped the Model 3 ("don't do the model 3"): not on the site, not printed, not approved (its
+`spec_APPROVED_by_user.py` was removed, it is out of `cars_pkg.json` and `launch.json`; the draft spec stays in `kc/cars/tesla_model3/`).
+
+The owner approved both from the renders. Specs are locked (`spec_APPROVED_by_user.py`), both are in `cars_pkg.json`,
+and `launch.json` no longer marks them unapproved. `finish_cars` built and sliced them, but `finalize.py` stopped
+because a window had `Downloads\CarKeychains` open (nothing was deleted): close it and run `python kcinalize.py`.
 
 ### Product changes the owner made (2026-10-04)
 
