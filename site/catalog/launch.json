@@ -1,5 +1,5 @@
 {
-  "_note": "Launch catalog: 33 of the 65 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
+  "_note": "Launch catalog: 34 of the 65 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
   "colors": [
     {
       "name": "White",
@@ -463,6 +463,19 @@
         "Tahoe",
         "Chevy",
         "SUV"
+      ]
+    },
+    {
+      "id": "escalade",
+      "make": "Cadillac",
+      "model": "Escalade",
+      "generation": "2021-2024",
+      "short_model": "Escalade",
+      "aliases": [
+        "Escalade",
+        "Cadillac",
+        "SUV",
+        "5th gen"
       ]
     }
   ],
