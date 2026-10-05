@@ -1,0 +1,9 @@
+front.jpg (traced) = crop (x 1200-2800, y 1100-2250) of hc_white_3.jpg, no rotation needed (level; mirror check about x 785
+  in mirror.png is clean).
+hc_white_3.jpg = Wikimedia Commons "File:Chevrolet Tahoe High Country GMTT1XX Avalon White Pearl (3).jpg"
+  page:   https://commons.wikimedia.org/wiki/File:Chevrolet_Tahoe_High_Country_GMTT1XX_Avalon_White_Pearl_(3).jpg
+  file:   https://upload.wikimedia.org/wikipedia/commons/c/cd/Chevrolet_Tahoe_High_Country_GMTT1XX_Avalon_White_Pearl_%283%29.jpg (original, 3963x2972, 2.6 MB)
+  author: Damian B Oh, photographed 2025-06-22.  Licence: CC BY-SA 4.0.
+  Vehicle: 5th-gen Chevrolet Tahoe (GMT T1UC) High Country, pre-facelift 2021-2024 front (slim top-corner headlamp,
+  "]"-shaped DRL light pipe below it, chrome-bar grille) - not the 2025 facelift (which has the vertical light blades).
+Not used: other Commons GMTT1UC photos are three-quarter views; GM Authority 2019 Z71 spy shots (editorial) have more yaw.

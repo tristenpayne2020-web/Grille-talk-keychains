@@ -170,6 +170,15 @@ def check_parts(meshes, slabs, workdir, thumb, tag):
     for col, mesh in meshes.items():
         if mesh is None:
             continue
+        sl = slabs[col]
+        # back label letters (bottom 0.4 mm) under a cap that starts higher: the part alone would float, which the
+        # single-part slicer refuses. Check the floating part on its own (the letters are checked with the full plate).
+        comps = mesh.split(only_watertight=False)
+        lo = [c for c in comps if c.bounds[1][2] <= 0.4 + 1e-3]
+        if lo and len(lo) < len(comps) and min(c.bounds[0][2] for c in comps if c not in lo) > 0.4 - 1e-3:
+            import trimesh
+            mesh = trimesh.util.concatenate([c for c in comps if c.bounds[1][2] > 0.4 + 1e-3])
+            sl = [(g, a, b) for g, a, b in sl if a >= 0.4 - 1e-3]
         text, st = slice_single_part(mesh, f'{tag}_{col}', workdir, thumb)
         if text is None:
             out[col] = {'status': st}
@@ -177,7 +186,7 @@ def check_parts(meshes, slabs, workdir, thumb, tag):
         layers, info = parse_gcode(text)
         bb = mesh.bounds
         cx, cy = (bb[0][0] + bb[1][0]) / 2, (bb[0][1] + bb[1][1]) / 2
-        rep = compare(slabs[col], layers, (BEDC[0] - cx, BEDC[1] - cy), zoff=float(bb[0][2]), name=col)
+        rep = compare(sl, layers, (BEDC[0] - cx, BEDC[1] - cy), zoff=float(bb[0][2]), name=col)
         covs = [c for _, c in rep['layers']]
         out[col] = {'status': 'ok', 'time_single_colour': info.get('time'), 'grams': info.get('grams'),
                     'n_layers': len(covs), 'min_layer_coverage': min(covs) if covs else None,
