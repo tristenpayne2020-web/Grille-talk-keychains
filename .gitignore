@@ -16,3 +16,6 @@ kc/rebuild_status.json
 .env.*
 node_modules/
 site/build/
+spinner/out/*_raw.stl
+spinner/out/job.json
+spinner/out/sheet.jpg
