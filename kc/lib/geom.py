@@ -307,7 +307,7 @@ def badge_geoms(b):
 
 
 # ----------------------------------------------------------------------------------------------- spec -> maps
-def build_maps(spec, verbose=False):
+def build_maps(spec, verbose=False, tab=True):
     """Paint the spec into disjoint 2D regions (mm):
        white, black (flush black on the face), relief (recessed black regions) with ribs, grooves (with the colour
        under them), outline, hole. Returns dict."""
@@ -379,8 +379,10 @@ def build_maps(spec, verbose=False):
                 white = unary_union([white, g]); black = black.difference(g); groove_any = groove_any.difference(g)
                 relief = [[r.difference(g), p] for r, p in relief]
     # keyring tab
-    tab = spec.get('tab', {})
-    outline2, hole, tabc = keyring_tab(outline, tab)
+    if tab:
+        outline2, hole, tabc = keyring_tab(outline, spec.get('tab', {}))
+    else:                                    # wall key holders: no keyring tab
+        outline2, hole, tabc = outline, Polygon(), None
     added = outline2.difference(outline)
     white = unary_union([white, added])
     outline = outline2
