@@ -46,6 +46,9 @@ for (const car of cars) {
     await save(`${car.id}__${slug(c.name)}__angle.png`, { ...base, chain: true, angle: -0.45, bg: null });
   }
   const w = launch.colors[0];
+  // headlight masks: the light signature alone, framed exactly like the front and angled renders
+  await save(`${car.id}__lights__front.png`, { url, size: 2000, color: w.hex, metal: 0, rough: 1, chain: false, angle: 0, bg: null, mask: true });
+  await save(`${car.id}__lights__angle.png`, { url, size: 2000, color: w.hex, metal: 0, rough: 1, chain: true, angle: -0.45, bg: null, mask: true });
   // back view: carbon-fibre finish and lettering (the black base, so one render covers every body color)
   await save(`${car.id}__white__back.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: Math.PI - 0.32, bg: null });
   if (car.id === 'g80_m3') {   // detail tour: the back seen straight on

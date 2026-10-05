@@ -31,6 +31,13 @@ if (root) {
     const s = slides[i];
     el('[data-range-title]').textContent = s.dataset.title;
     el('[data-range-short]').textContent = s.dataset.short;
+    const name = el('[data-range-name]');
+    if (name && s.dataset.name) {
+      name.classList.remove('is-in');
+      void name.offsetWidth;   // restart the name's entrance
+      name.textContent = s.dataset.name;
+      name.classList.add('is-in');
+    }
     el('[data-range-price]').textContent = s.dataset.price;
     const view = el('[data-range-view]');
     view.href = s.dataset.url;
@@ -45,7 +52,7 @@ if (root) {
       await (await import('when3d')).when3D();
       const mod = await import('keychain3d');
       if (!mod.webglAvailable()) return null;
-      return new mod.KeychainStage(canvasBox, { fit: 0.66, interactive: 'mouse' });
+      return new mod.KeychainStage(canvasBox, { fit: 0.6, interactive: 'mouse', float: true, spot: true });
     })().catch(() => null);
     return stagePromise;
   }

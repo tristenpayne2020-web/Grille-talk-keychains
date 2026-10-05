@@ -170,5 +170,11 @@
     "faq": "FAQ",
     "newsletter": "New cars",
     "step": "Step"
+  },
+  "loader": {
+    "engine": "Engine",
+    "start": "Start",
+    "stop": "Stop",
+    "quiet": "Enter without sound"
   }
 }

@@ -17,7 +17,8 @@ def main():
     env = dict(os.environ, KC_BADGE='0')
     failed = []
     for i in ids:
-        spec = pkg[i]['spec']                      # relative to kc/, e.g. cars/g80_m3/spec_from_step.pkl
+        # relative to kc/, e.g. cars/g80_m3/spec_from_step.pkl; cars not yet in cars_pkg.json carry their own spec path
+        spec = pkg[i]['spec'] if i in pkg else next(c['spec'] for c in launch['cars'] if c['id'] == i)
         out = os.path.join(OUT, i)
         cmd = [sys.executable, os.path.join('lib', 'export.py'), spec, out, '--no-slice', '--no-step', '--no-plate']
         r = subprocess.run(cmd, cwd=KC, env=env, capture_output=True, text=True)

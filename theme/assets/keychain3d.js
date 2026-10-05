@@ -63,6 +63,10 @@ export class KeychainStage {
     const rim = new DirectionalLight(0xffffff, 0.6); rim.position.set(0.8, 0.2, -0.6);
     const backKey = new DirectionalLight(0xffffff, 1.8); backKey.position.set(0.5, 0.9, -1.2);   // lights the carbon back
     this.scene.add(key, rim, backKey);
+    if (this.opts.spot) {   // floating display: a hard overhead light, like the ring light above it
+      const top = new DirectionalLight(0xffffff, 1.4); top.position.set(0, 1.6, 0.35);
+      this.scene.add(top);
+    }
     this.camera = new PerspectiveCamera(16, 1, 0.005, 5);
 
     this.visible = true;
@@ -255,6 +259,7 @@ export class KeychainStage {
       this.yaw += this.yawV * dt; this.pitch += this.pitchV * dt;
     }
     this.pivot.rotation.set(this.pitch, this.yaw, Math.sin(this.t * 0.9) * 0.012);
+    if (this.opts.float) this.root.position.y = Math.sin(this.t * 1.15) * 0.0012;   // floats about 1 mm up and down
     this.pivot.updateMatrixWorld(true);
     // pinned particle follows the tab
     this.kc.localToWorld(this.hole.set(0, 0, 0));
@@ -279,14 +284,15 @@ export class KeychainStage {
         }
         p[0].copy(this.hole);
         // the jump ring's centre stays in the plate's plane (it is threaded through the hole)
-        const l1 = this.kc.worldToLocal(this._tmp.copy(p[1]));
+        const l1 = this.kc.worldToLocal(this.root.localToWorld(this._tmp.copy(p[1])));   // particles live in root space
         l1.z = 0;
-        p[1].copy(this.kc.localToWorld(l1));
+        p[1].copy(this.root.worldToLocal(this.kc.localToWorld(l1)));
       }
     }
     const dir = new Vector3(), q = new Quaternion();
     this.kc.getWorldQuaternion(this.kcQ);
-    const a0 = this.kc.worldToLocal(this._tmp.copy(p[0])), a1 = this.kc.worldToLocal(this._tmp2.copy(p[1]));
+    const a0 = this.kc.worldToLocal(this.root.localToWorld(this._tmp.copy(p[0])));
+    const a1 = this.kc.worldToLocal(this.root.localToWorld(this._tmp2.copy(p[1])));
     dir.copy(a0).sub(a1).normalize();
     this.links[0].position.copy(p[1]);
     this.links[0].quaternion.copy(this.kcQ).multiply(q.setFromUnitVectors(UP, dir)).multiply(this.jumpRestQ);

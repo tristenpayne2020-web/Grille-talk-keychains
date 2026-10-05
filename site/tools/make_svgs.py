@@ -77,4 +77,4 @@ if __name__ == '__main__':
     pkg = {c['id']: c for c in json.load(open(os.path.join(KC, 'cars_pkg.json')))}
     ids = sys.argv[1].split(',') if len(sys.argv) > 1 else [c['id'] for c in launch['cars']]
     for i in ids:
-        build(i, pkg[i]['spec'])
+        build(i, pkg[i]['spec'] if i in pkg else next(c['spec'] for c in launch['cars'] if c['id'] == i))

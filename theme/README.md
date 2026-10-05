@@ -12,10 +12,13 @@ site/    tools that build the catalog, 3D models and images, plus a local previe
 ## What's on the home page
 
 1. **Loader** (first visit per session): your Grille Talk artwork fills with light from the bottom while a
-   counter tracks real loading, then lifts into the hero. Skippable; shorter with reduced motion; never without JS.
+   counter tracks real loading. At 100% an ENGINE START button plays a V8 cold start (synthesised in the browser,
+   `assets/coldstart.js`, no audio file) and the site opens as the engine catches. "Enter without sound" is
+   remembered; with no press it enters quietly after 7 s. Skippable; never without JS.
 2. **Hero**: the 3D G80 on a jump ring, chain and split ring that swing with physics (drag it), other designs
    drifting at depth behind, and a stat row.
-3. **Range**: one keychain at a time in 3D, neighbours on a curved arc, arrows, swipe, keys, rail.
+3. **Range**: a floating display. The 3D keychain hovers under an overhead ring light with a spotlight beam, above a
+   pedestal carrying the car's name; neighbours float on a curved arc. Arrows, swipe, keys, rail.
 4. **Detail tour** (pinned): the camera pushes into the G80 and a spotlight moves to the light signature, grille,
    intakes and tab, with a chapter rail. Spotlight positions come from the real design file.
    A fifth chapter turns it over to show the carbon-fibre back and the GRILLE TALK lettering.
@@ -77,7 +80,7 @@ Publish it from Online Store > Themes when you are ready. Nothing in this repo p
 9. **Search & Discovery.** Install Shopify's free Search & Discovery app, Filters > Add filter >
    Product metafield "Make". Optionally add synonyms: Vette = Corvette, GTR = GT-R, Lambo = Lamborghini.
 10. **Import products.** Build the CSV (below), then Products > Import > `site/build/shopify_products.csv`.
-    Products arrive as drafts with two options, Body color and Headlight color (36 variants each, 828 rows).
+    Products arrive as drafts with two options, Body color and Headlight color (36 variants each, 936 rows).
     Custom headlights cost $0.50 more; change `headlights.surcharge` in `site/catalog/launch.json` and rebuild the
     CSV to adjust. Inventory is not tracked (made to order).
 11. **Collection.** Products > Collections: the theme uses "all" by default. If you make a "Keychains"
@@ -176,7 +179,9 @@ Results land in `site/build/reports/`.
   settings > Body colors (tiers and swatches) so they group correctly.
 - The 7 colors still to add are Green, Purple, Gold, Metallic Red, Metallic Blue, Metallic Green and
   Metallic Purple. Their tier prices are $7.99 (custom) and $8.99 (metallic).
-- Then change "40+ more cars coming soon" in the Range viewer and Catalog sections.
+- Then update "39 more cars coming soon" in the Range viewer, Catalog and Newsletter sections and the hero stat.
+- Each car also gets two headlight masks in `theme/assets/lights-<handle>-front.webp` / `-angle.webp` (made by
+  `make_media.py`); they tint the light signature in the gallery photos to the chosen headlight color.
 
 ## Notes
 

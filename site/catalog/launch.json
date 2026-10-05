@@ -1,5 +1,5 @@
 {
-  "_note": "Launch catalog: 23 of the 63 cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
+  "_note": "Launch catalog: 26 (24 of the 63 approved cars plus the two Tesla drafts) cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
   "colors": [
     {
       "name": "White",
@@ -328,6 +328,46 @@
       "aliases": [
         "Camry",
         "XV80"
+      ]
+    },
+    {
+      "id": "tesla_model3",
+      "make": "Tesla",
+      "model": "Model 3",
+      "generation": "Highland",
+      "short_model": "Model 3",
+      "aliases": [
+        "Model 3",
+        "Highland",
+        "Tesla 3"
+      ],
+      "spec": "cars/tesla_model3/spec.py",
+      "approved": false
+    },
+    {
+      "id": "tesla_models_plaid",
+      "make": "Tesla",
+      "model": "Model S Plaid",
+      "generation": "2021+",
+      "short_model": "Model S",
+      "aliases": [
+        "Model S",
+        "Plaid",
+        "Tesla S"
+      ],
+      "spec": "cars/tesla_models_plaid/spec.py",
+      "approved": false
+    },
+    {
+      "id": "kia_stinger",
+      "make": "Kia",
+      "model": "Stinger GT",
+      "generation": "2022+",
+      "short_model": "Stinger",
+      "aliases": [
+        "Stinger",
+        "Stinger GT",
+        "GT"
       ]
     }
   ],

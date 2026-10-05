@@ -39,10 +39,17 @@ const reset = () => fetch(`${BASE}/cart.js`).then((r) => r.json()).then(async (c
   const c2 = Number(await p.textContent('[data-loader-count]').catch(() => '100'));
   check('loader shows the supplied artwork', await p.evaluate(() => /loader-art-/.test(document.querySelector('.loader__img--dim')?.getAttribute('src') || '')));
   check('loader counter climbs', c2 >= c1, `${c1} -> ${c2}`);
-  await p.waitForFunction(() => !document.getElementById('loader'), null, { timeout: 9000 }).catch(() => {});
+  // at 100% the push-to-start button appears; pressing it plays the procedural cold start and opens the site
+  await p.evaluate(() => { const AC = window.AudioContext; window.__audio = 0; window.AudioContext = class extends AC { constructor(...a) { super(...a); window.__audio += 1; } }; });
+  await p.waitForSelector('[data-loader-start]', { state: 'visible', timeout: 9000 });
   const took = Date.now() - t0;
-  // timing is not asserted here: headless Chrome renders WebGL in software, which stalls frames; checked by eye in a real browser
-  check('loader finishes and is removed within ~5 s', !(await p.$('#loader')) && took < 6000, `${took} ms`);
+  check('loader reaches 100% and offers the engine start button', true, `${took} ms`);
+  await shot(p, 'loader-ignition');
+  await p.click('[data-loader-start]');
+  await p.waitForTimeout(300);
+  check('engine start plays the cold-start sound (AudioContext running)', await p.evaluate(() => window.__audio > 0));
+  await p.waitForFunction(() => !document.getElementById('loader'), null, { timeout: 5000 }).catch(() => {});
+  check('loader lifts after the engine catches', !(await p.$('#loader')));
   await p.waitForTimeout(1500);
   await shot(p, 'hero-after-loader');
   check('hero shows 3D keychain after loader', await p.evaluate(() => document.querySelector('[data-hero]').classList.contains('is-3d')));
@@ -56,6 +63,12 @@ const reset = () => fetch(`${BASE}/cart.js`).then((r) => r.json()).then(async (c
   await sk.evaluate(() => document.querySelector('[data-loader-skip]').click());
   await sk.waitForFunction(() => !document.getElementById('loader'), null, { timeout: 10000 }).catch(() => {});
   check('loader skip works', !(await sk.$('#loader')), `${Date.now() - tSkip} ms`);
+  const qq = await newPage(1440, { fresh: true });
+  await qq.goto(BASE + '/', { waitUntil: 'commit' });
+  await qq.waitForSelector('[data-loader-quiet]', { state: 'visible', timeout: 9000 });
+  await qq.click('[data-loader-quiet]');
+  await qq.waitForFunction(() => !document.getElementById('loader'), null, { timeout: 5000 }).catch(() => {});
+  check('enter without sound works and is remembered', !(await qq.$('#loader')) && (await qq.evaluate(() => localStorage.getItem('gt-sound'))) === 'off');
   const nojs = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   const np = await nojs.newPage();
   await np.goto(BASE + '/');
@@ -154,6 +167,9 @@ const reset = () => fetch(`${BASE}/cart.js`).then((r) => r.json()).then(async (c
   check('swatch swaps the variant image and it loads', vimg);
   const aimg = await p.evaluate(() => { const i = document.querySelector('[data-variant-angle]'); return !!i && i.complete && i.naturalWidth > 0 && /matte-red-angle/.test(i.currentSrc); });
   check('swatch swaps the angled image to the same body color', aimg);
+  await p.click('label[for="opt-2-yellow"]');
+  await p.waitForTimeout(400);
+  check('custom headlight color tints the gallery photos', await p.evaluate(() => [...document.querySelectorAll('[data-lights-tint]')].every((e) => e.classList.contains('is-on') && /#f0b70f/i.test(e.style.getPropertyValue('--tint')))));
   await p.click('label[for="opt-2-blue"]');
   await p.waitForTimeout(500);
   const price2 = (await p.textContent('[data-price]')).trim();

@@ -18,7 +18,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;   // (mask renders are flat white either way)
 renderer.toneMappingExposure = 1.0;
 document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
@@ -30,7 +30,7 @@ const rim = new THREE.DirectionalLight(0xffffff, 0.6); rim.position.set(0.8, 0.2
 const backKey = new THREE.DirectionalLight(0xffffff, 1.8); backKey.position.set(0.5, 0.9, -1.2); scene.add(backKey);   // shows the carbon back when turned over
 const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
 
-window.renderCar = async ({ url, size, bg, color, metal, rough, chain, angle }) => {
+window.renderCar = async ({ url, size, bg, color, metal, rough, chain, angle, mask }) => {
   renderer.setPixelRatio(1);
   renderer.setSize(size, size, true);
   scene.background = bg ? new THREE.Color(bg) : null;
@@ -43,6 +43,12 @@ window.renderCar = async ({ url, size, bg, color, metal, rough, chain, angle }) 
       o.material.metalness = metal; o.material.roughness = rough;
     }
     if (!chain && (/^link_/.test(o.name) || o.name === 'ring')) o.visible = false;
+    // lights mask: only the light signature is drawn (white); everything else just occludes, so framing is identical
+    if (mask && o.isMesh) {
+      o.material = o.material.name === 'lights' || o.name === 'lights'
+        ? new THREE.MeshBasicMaterial({ color: 0xffffff })
+        : new THREE.MeshBasicMaterial({ colorWrite: false });
+    }
   });
   const kc = root.getObjectByName('keychain');
   kc.rotation.y = angle || 0;

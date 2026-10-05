@@ -55,6 +55,18 @@ if (root) {
     tint('lights', picked(1));
   }
 
+  // gallery photos: tint the light signature to the chosen headlight color (the first headlight value is the standard white)
+  function tintGallery() {
+    const g = groups[1];
+    const sw = g && g.querySelector('input:checked');
+    const base = g && g.querySelector('input');
+    const on = !!(sw && base && sw !== base && sw.dataset.hex);
+    root.querySelectorAll('[data-lights-tint]').forEach((el) => {
+      el.classList.toggle('is-on', on);
+      if (on) el.style.setProperty('--tint', sw.dataset.hex);
+    });
+  }
+
   function update() {
     const values = groups.map((g, i) => picked(i) && picked(i).value);
     const v = data.variants.find((x) => x.options.every((o, i) => values[i] == null || o === values[i]));
@@ -71,8 +83,10 @@ if (root) {
     url.searchParams.set('variant', v.id);
     window.history.replaceState({}, '', url);
     paint();
+    tintGallery();
   }
 
+  tintGallery();
   form.addEventListener('change', (e) => { if (e.target.closest('.swatch')) update(); });
   form.addEventListener('click', (e) => {
     const step = e.target.closest('[data-step]');

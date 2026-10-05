@@ -27,8 +27,8 @@
         "s4": {
           "type": "stat",
           "settings": {
-            "value": "23 cars",
-            "label": "40+ coming"
+            "value": "26 cars",
+            "label": "39 more coming"
           }
         }
       },
@@ -81,7 +81,7 @@
           "type": "question",
           "settings": {
             "question": "My car isn't here. Can you make it?",
-            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. 40+ more cars are already in the works.</p>"
+            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. 39 more cars are already in the works.</p>"
           }
         },
         "q6": {

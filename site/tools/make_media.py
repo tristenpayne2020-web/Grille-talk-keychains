@@ -7,11 +7,13 @@ The 2000 px file is what gets uploaded to Shopify; Shopify serves the other size
 Reference photos in kc/cars/*/ref/ are never read.
 usage: python site/tools/make_media.py
 """
-import json, os
+import json, os, sys
 from PIL import Image
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 BUILD = os.path.join(ROOT, 'site', 'build')
+THEME_ASSETS = os.path.join(ROOT, 'theme', 'assets')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 SIZES = (600, 1200, 2000)
 
 
@@ -23,10 +25,10 @@ def car_name(c):
     return f"{c['make']} {c['model']} ({c['generation']})" + (f", {c['variant']}" if c.get('variant') else '')
 
 
-def webp(src, dst_stem, trim=True):
+def webp(src, dst_stem, trim=True, box_from=None, sizes=SIZES):
     im = Image.open(src).convert('RGBA')
     if trim:
-        bb = im.getbbox()
+        bb = (Image.open(box_from).convert('RGBA') if box_from else im).getbbox()   # crop like the reference render
         if bb:   # square crop around the object with 6% margin, keeps every view framed alike
             x0, y0, x1, y1 = bb
             side = int(max(x1 - x0, y1 - y0) * 1.12)
@@ -35,7 +37,7 @@ def webp(src, dst_stem, trim=True):
             canvas.paste(im.crop((cx - side // 2, cy - side // 2, cx + side // 2, cy + side // 2)), (0, 0))
             im = canvas
     out = []
-    for w in SIZES:
+    for w in sizes:
         r = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
         p = f'{dst_stem}-{w}.webp'
         r.save(p, quality=84, method=4)
@@ -75,6 +77,15 @@ def car_media(c, colors):
         files = webp(src, os.path.join(od, f'{cid}-{cs}-front-on-white'), trim=False)
         items.append(dict(kind='variant_on_white', color=col['name'], files=files,
                           alt=f"Grille Talk keychain inspired by the {name}, {col['name'].lower()} body, front view on white"))
+    # headlight masks for the theme: same square crop as the white front / angle renders, alpha only
+    from make_csv import handle
+    for view in ('front', 'angle'):
+        ref = os.path.join(BUILD, 'renders_png', f'{cid}__white__{view}.png')
+        mask = os.path.join(BUILD, 'renders_png', f'{cid}__lights__{view}.png')
+        if os.path.exists(mask):
+            stem = os.path.join(THEME_ASSETS, f'lights-{handle(c)}-{view}')
+            webp(mask, stem, box_from=ref, sizes=(900,))
+            os.replace(stem + '-900.webp', stem + '.webp')
     src = os.path.join(BUILD, 'renders_png', f'{cid}__white__back.png')
     items.append(dict(kind='back', color=None, files=webp(src, os.path.join(od, f'{cid}-back')),
                       alt=f'Back of the Grille Talk keychain inspired by the {name}: carbon-fibre finish with GRILLE TALK lettering'))

@@ -13,6 +13,13 @@
   <div class="loader__bar"><span data-loader-bar></span></div>
   <p class="loader__count"><span data-loader-count>0</span>%</p>
 </div>
+<div class="loader__ignition" data-loader-ignition hidden>
+  <button type="button" class="ignition" data-loader-start>
+    <span class="ignition__ring" aria-hidden="true"></span>
+    <span class="ignition__label"><span>{{ 'loader.engine' | t }}</span><strong>{{ 'loader.start' | t }}</strong><span>{{ 'loader.stop' | t }}</span></span>
+  </button>
+  <button type="button" class="ignition__quiet" data-loader-quiet>{{ 'loader.quiet' | t }}</button>
+</div>
 <button type="button" class="loader__skip btn btn--ghost" data-loader-skip>{% render 'icon', name: 'skip', class: 'icon--sm' %}{{ 'general.skip_intro' | t }}</button>
 <p class="visually-hidden" role="status" data-loader-status>{{ 'general.loading' | t }}</p>
 </template>

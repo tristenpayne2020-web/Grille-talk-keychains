@@ -186,7 +186,10 @@ def shaded(m, material):
 
 def spec_path(car_id):
     pkg = {c['id']: c for c in json.load(open(os.path.join(KC, 'cars_pkg.json')))}
-    return os.path.join(KC, pkg[car_id]['spec'])
+    if car_id in pkg:
+        return os.path.join(KC, pkg[car_id]['spec'])
+    launch = json.load(open(os.path.join(ROOT, 'site', 'catalog', 'launch.json')))
+    return os.path.join(KC, next(c['spec'] for c in launch['cars'] if c['id'] == car_id))
 
 
 def build(car_id):

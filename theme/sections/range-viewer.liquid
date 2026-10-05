@@ -27,7 +27,16 @@
         aria-label="{{ section.settings.heading | escape }}"
         tabindex="0"
       >
-        <div class="range__viewport" data-range-viewport>
+        <div class="range__viewport display" data-range-viewport>
+          {%- comment -%} Floating display: overhead ring light, spotlight beam, pedestal with the car's name, floor glow. {%- endcomment -%}
+          <div class="display__floor" aria-hidden="true"></div>
+          <div class="display__fixture" aria-hidden="true"><span class="display__housing"></span><span class="display__ring"></span></div>
+          <div class="display__beam" aria-hidden="true"></div>
+          <div class="display__pedestal" aria-hidden="true">
+            <span class="display__top"></span>
+            <span class="display__side"></span>
+            <span class="display__name" data-range-name>{{ items.first.metafields.custom.short_model.value | default: items.first.metafields.custom.short_model | escape }}</span>
+          </div>
           <div class="range__track">
             {%- for product in items -%}
               {%- liquid
@@ -63,6 +72,7 @@
                 data-short="{% if short != blank %}{{ 'products.for_owners' | t: model: short | escape }}{% endif %}"
                 data-price="{{ 'products.from_price_html' | t: price: from_price | strip_html | escape }}"
                 data-model="{{ glb }}"
+                data-name="{{ short | escape }}"
               >
                 {%- if product.featured_image -%}
                   {%- liquid
@@ -140,7 +150,7 @@
     { "type": "text", "id": "view_label", "label": "View button", "default": "View" },
     { "type": "text", "id": "catalog_label", "label": "Catalog link", "default": "See every design" },
     { "type": "text", "id": "request_label", "label": "Request link", "default": "Don't see yours? Request it" },
-    { "type": "text", "id": "coming_soon", "label": "Coming soon note", "default": "40+ more cars coming soon" }
+    { "type": "text", "id": "coming_soon", "label": "Coming soon note", "default": "39 more cars coming soon" }
   ],
   "presets": [{ "name": "Range viewer" }]
 }
