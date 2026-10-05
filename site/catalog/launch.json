@@ -441,6 +441,144 @@
           114,
           31.5
         ]
+      },
+      {
+        "id": "charger_srt_wall",
+        "make": "Dodge",
+        "model": "Charger SRT Hellcat Widebody",
+        "generation": "LD",
+        "short_model": "Charger",
+        "aliases": [
+          "Charger",
+          "Hellcat",
+          "SRT",
+          "Widebody",
+          "wall",
+          "key holder",
+          "key rack"
+        ],
+        "source": "kc/wall/out/Dodge_Charger_SRT_Hellcat/Dodge_Charger_SRT_Hellcat_wall_key_holder_{part}.stl",
+        "parts": [
+          "black",
+          "white"
+        ],
+        "headlights": false,
+        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "size_mm": [
+          241,
+          106,
+          31.5
+        ]
+      },
+      {
+        "id": "mk5_supra_wall",
+        "make": "Toyota",
+        "model": "GR Supra",
+        "generation": "A90",
+        "short_model": "Supra",
+        "aliases": [
+          "Supra",
+          "MK5",
+          "MKV",
+          "A90",
+          "wall",
+          "key holder",
+          "key rack"
+        ],
+        "source": "kc/wall/out/Toyota_GR_Supra_MK5/Toyota_GR_Supra_MK5_wall_key_holder_{part}.stl",
+        "parts": [
+          "black",
+          "white"
+        ],
+        "headlights": false,
+        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "size_mm": [
+          241,
+          112,
+          31.5
+        ]
+      },
+      {
+        "id": "gt500_mustang_wall",
+        "make": "Ford",
+        "model": "Mustang Shelby GT500",
+        "generation": "S550",
+        "short_model": "GT500",
+        "aliases": [
+          "Mustang",
+          "Shelby",
+          "GT500",
+          "S550",
+          "wall",
+          "key holder",
+          "key rack"
+        ],
+        "source": "kc/wall/out/Mustang_Shelby_GT500/Mustang_Shelby_GT500_wall_key_holder_{part}.stl",
+        "parts": [
+          "black",
+          "white"
+        ],
+        "headlights": false,
+        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "size_mm": [
+          241,
+          106,
+          31.5
+        ]
+      },
+      {
+        "id": "camaro_zl1_wall",
+        "make": "Chevrolet",
+        "model": "Camaro ZL1",
+        "generation": "6th gen",
+        "short_model": "Camaro",
+        "aliases": [
+          "Camaro",
+          "ZL1",
+          "wall",
+          "key holder",
+          "key rack"
+        ],
+        "source": "kc/wall/out/Chevrolet_Camaro_ZL1/Chevrolet_Camaro_ZL1_wall_key_holder_{part}.stl",
+        "parts": [
+          "black",
+          "white"
+        ],
+        "headlights": false,
+        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "size_mm": [
+          241,
+          120,
+          31.5
+        ]
+      },
+      {
+        "id": "c8_corvette_wall",
+        "make": "Chevrolet",
+        "model": "Corvette",
+        "generation": "C8",
+        "short_model": "Corvette",
+        "aliases": [
+          "Corvette",
+          "Vette",
+          "C8",
+          "Stingray",
+          "wall",
+          "key holder",
+          "key rack"
+        ],
+        "source": "kc/wall/out/Corvette_C8/Corvette_C8_wall_key_holder_{part}.stl",
+        "parts": [
+          "black",
+          "white"
+        ],
+        "headlights": false,
+        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "size_mm": [
+          241,
+          87,
+          31.5
+        ]
       }
     ]
   }

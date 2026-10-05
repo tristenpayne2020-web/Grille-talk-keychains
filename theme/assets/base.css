@@ -678,6 +678,14 @@ body::after { content: ''; position: fixed; inset: -50%; z-index: 90; pointer-ev
 .wallhold__piece { position: absolute; left: 6%; right: 6%; top: 20%; height: 52%; filter: drop-shadow(0 26px 22px rgba(0, 0, 0, 0.55)) drop-shadow(0 6px 6px rgba(0, 0, 0, 0.45)); }
 .wallhold__piece img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transform: scale(1.18); }   /* the render is a padded square */
 .wallhold__shadow { position: absolute; left: 24%; right: 24%; top: 62%; height: 10%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.45), transparent); filter: blur(10px); }
+.wallhold__piece img { transition: opacity 260ms var(--ease-out), transform 360ms var(--ease-out); }
+.wallhold__piece.is-swapping img { opacity: 0; transform: scale(1.18) translateY(-6px); }
+.wallhold__pick { list-style: none; display: flex; gap: var(--s-2); overflow-x: auto; padding: var(--s-2) 2px; margin-top: var(--s-4); scrollbar-width: thin; grid-column: 1 / -1; }
+.wallhold__thumb { display: grid; justify-items: center; gap: 4px; width: 132px; min-height: 44px; padding: 8px 6px 10px; border: 1px solid var(--c-line); border-radius: var(--radius); background: rgba(255, 255, 255, 0.02); color: var(--c-mute); font-size: 12px; cursor: pointer; transition: border-color var(--dur-1), color var(--dur-1), background-color var(--dur-1); }
+.wallhold__thumb img { width: 100%; height: 64px; object-fit: contain; transform: scale(1.25); }
+.wallhold__thumb:hover { border-color: var(--c-line-strong); color: var(--c-fg); }
+.wallhold__thumb[aria-pressed='true'] { border-color: var(--c-fg); color: var(--c-fg); background: rgba(255, 255, 255, 0.05); }
+@media (prefers-reduced-motion: reduce) { .wallhold__piece img { transition: none; } }
 
 /* when the 3D display is running, the CSS fixture, beam and pedestal give way to the real ones */
 .display.is-3d-display .display__fixture, .display.is-3d-display .display__beam, .display.is-3d-display .display__pedestal > span:not(.display__name) { opacity: 0; transition: opacity 600ms var(--ease-out); }

@@ -40,13 +40,22 @@
       -%}
       <ul class="product__gallery" role="list" aria-label="{{ 'products.media_label' | t: title: product.title | escape }}">
         {%- comment -%} The tint layer recolours only the light signature (a per-car alpha mask) in the chosen headlight color. {%- endcomment -%}
+        {%- liquid
+          comment
+            products without a headlight option (two-part wall key holders) have no light masks
+          endcomment
+          assign has_hl = false
+          if product.options.size > 1
+            assign has_hl = true
+          endif
+        -%}
         {%- assign mask_front = 'lights-' | append: product.handle | append: '-front.webp' | asset_url -%}
         {%- assign mask_angle = 'lights-' | append: product.handle | append: '-angle.webp' | asset_url -%}
         {%- if current.featured_image -%}
-          <li class="tintable">{{ current.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 50vw', alt: current.featured_image.alt, data-variant-image: '' }}<span class="lights-tint" data-lights-tint style="--mask: url('{{ mask_front }}')" aria-hidden="true"></span></li>
+          <li class="tintable">{{ current.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 50vw', alt: current.featured_image.alt, data-variant-image: '' }}{% if has_hl %}<span class="lights-tint" data-lights-tint style="--mask: url('{{ mask_front }}')" aria-hidden="true"></span>{% endif %}</li>
         {%- endif -%}
         {%- if angle_img -%}
-          <li class="tintable">{{ angle_img | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 50vw', alt: angle_img.alt, data-variant-angle: '' }}<span class="lights-tint" data-lights-tint style="--mask: url('{{ mask_angle }}')" aria-hidden="true"></span></li>
+          <li class="tintable">{{ angle_img | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 990px) 28vw, 50vw', alt: angle_img.alt, data-variant-angle: '' }}{% if has_hl %}<span class="lights-tint" data-lights-tint style="--mask: url('{{ mask_angle }}')" aria-hidden="true"></span>{% endif %}</li>
         {%- endif -%}
         {%- if back_img -%}
           <li class="product__gallery-wide">{{ back_img | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1400', sizes: '(min-width: 990px) 56vw, 100vw', alt: back_img.alt }}</li>

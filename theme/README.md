@@ -1,7 +1,7 @@
 # Grille Talk Shopify theme
 
 Online Store 2.0 theme for grilletalk.shop. Black and white, the keychains are the hero.
-Launch catalog: 20 cars × 6 body colors. 43 more cars and 7 more colors are ready to add later
+Launch catalog: 27 keychains and 6 wall key holders × 6 body colors. More cars and 7 more colors are ready to add later
 (see "Adding the rest of the line" below).
 
 ```
@@ -189,7 +189,7 @@ Results land in `site/build/reports/`.
   settings > Body colors (tiers and swatches) so they group correctly.
 - The 7 colors still to add are Green, Purple, Gold, Metallic Red, Metallic Blue, Metallic Green and
   Metallic Purple. Their tier prices are $7.99 (custom) and $8.99 (metallic).
-- Then update "37 more cars coming soon" in the Range viewer, Catalog and Newsletter sections and the hero stat.
+- Then update the car count in the hero stat (the "coming soon" notes just say "More cars coming soon").
 - Each car also gets two headlight masks in `theme/assets/lights-<handle>-front.webp` / `-angle.webp` (made by
   `make_media.py`); they tint the light signature in the gallery photos to the chosen headlight color.
 

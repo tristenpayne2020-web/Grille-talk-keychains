@@ -52,20 +52,22 @@ export const products = [...launch.cars, ...walls].map((c, idx) => {
   });
   media.forEach((x, i) => { x.position = i + 1; });
   const hl = launch.headlights;
-  const variants = launch.colors.flatMap((col) => hl.values.map((h) => {
+  const hasHl = c.headlights !== false;   // two-part wall key holders: one colour for face and lights
+  const variants = launch.colors.flatMap((col) => (hasHl ? hl.values : [null]).map((h) => {
     const id = nextId++;
     const img = variantImg[col.name];
-    const price = cents((c.wall ? launch.wall.prices : launch.prices)[col.tier]) + (h.base ? 0 : cents(hl.surcharge));
+    const price = cents((c.wall ? launch.wall.prices : launch.prices)[col.tier]) + (!h || h.base ? 0 : cents(hl.surcharge));
     return {
-      id, title: `${col.name} / ${h.name}`, option1: col.name, option2: h.name, options: [col.name, h.name], price,
-      available: true, sku: `GT-${c.id}-${slug(col.name)}-hl-${slug(h.name)}`, url: `/products/${handle}?variant=${id}`,
+      id, title: h ? `${col.name} / ${h.name}` : col.name, option1: col.name, option2: h ? h.name : null, options: h ? [col.name, h.name] : [col.name], price,
+      available: true, sku: `GT-${c.id}-${slug(col.name)}${h ? `-hl-${slug(h.name)}` : ''}`, url: `/products/${handle}?variant=${id}`,
       featured_image: img, featured_media: media.find((x) => x.preview_image === img), inventory_management: null, product_id: 0,
     };
   }));
   const prices = variants.map((v) => v.price);
+  const care = '<p><strong>Care:</strong> we recommend not leaving it in direct sunlight or anywhere around 130&nbsp;&deg;F (about 55&nbsp;&deg;C), such as a dashboard in summer, for extended periods: the print can soften and warp.</p>';
   const description = c.wall
-    ? `<p>The ${c.make} ${c.model} (${c.generation}) front as a wall key holder, four key hooks.</p><p><strong>Mounting:</strong> we recommend strong double-sided mounting tape on the back: it sits flat and looks cleanest. There is also a countersunk hole on each side for a screw or nail.</p>`
-    : `<p>A straight-on keychain of the ${c.make} ${c.model} (${c.generation}) front. ${c.variant ? 'Snake-eye light bars' : 'The light signature'}, grille texture and intakes are printed in relief, in two colours.</p><ul><li>80.5 mm wide, 3 mm thick</li><li>Two-colour 3D print</li><li>Split ring and short chain included</li><li>Logo-free design</li></ul>`;
+    ? `<p>The ${c.make} ${c.model} (${c.generation}) front as a wall key holder, four key hooks.</p><p><strong>Mounting:</strong> we recommend strong double-sided mounting tape on the back: it sits flat and looks cleanest. There is also a countersunk hole on each side for a screw or nail.</p><p><strong>Keys only:</strong> the hooks are made for keys and light keyrings. We don't recommend hanging coats, bags or anything of the sort on them.</p>${care}`
+    : `<p>A straight-on keychain of the ${c.make} ${c.model} (${c.generation}) front. ${c.variant ? 'Snake-eye light bars' : 'The light signature'}, grille texture and intakes are printed in relief, in two colours.</p><ul><li>80.5 mm wide, 3 mm thick</li><li>Two-colour 3D print</li><li>Split ring and short chain included</li><li>Logo-free design</li></ul>${care}`;
   return {
     id: nextId++, index: idx, handle, title, url: `/products/${handle}`, vendor: 'Grille Talk', type: c.wall ? 'Wall key holder' : 'Keychain',
     tags: [`make:${c.make}`, `model:${c.model}`, `generation:${c.generation}`, ...c.aliases.map((a) => `alias:${a}`)],
@@ -73,7 +75,7 @@ export const products = [...launch.cars, ...walls].map((c, idx) => {
     featured_image: imgs[0], images: imgs, media, featured_media: media[0],
     variants, price: Math.min(...prices), price_min: Math.min(...prices), price_max: Math.max(...prices),
     price_varies: Math.min(...prices) !== Math.max(...prices), available: true, has_only_default_variant: false,
-    options: ['Body color', 'Headlight color'],
+    options: hasHl ? ['Body color', 'Headlight color'] : ['Body color'],
     metafields: { custom: { make: { value: c.make }, model: { value: c.model }, generation: { value: c.generation }, short_model: { value: c.short_model } } },
     _car: c,
   };
@@ -88,7 +90,7 @@ export function productView(p, variantId) {
     first_available_variant: p.variants[0],
     options_with_values: [
       { name: 'Body color', position: 1, values: [...new Set(p.variants.map((x) => x.option1))], selected_value: v.option1 },
-      { name: 'Headlight color', position: 2, values: [...new Set(p.variants.map((x) => x.option2))], selected_value: v.option2 },
+      ...(v.option2 ? [{ name: 'Headlight color', position: 2, values: [...new Set(p.variants.map((x) => x.option2))], selected_value: v.option2 }] : []),
     ],
   };
 }

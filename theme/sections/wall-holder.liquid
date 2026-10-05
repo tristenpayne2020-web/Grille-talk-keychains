@@ -1,6 +1,7 @@
 {%- comment -%}
   Wall-mounted key holder feature: the holder hung on a lit wall panel, its price from the variants, and the mounting
-  advice (double-sided tape recommended; countersunk holes for a screw or nail).
+  advice (double-sided tape recommended; countersunk holes for a screw or nail). With a collection set, a row of
+  thumbnails (each holder in a different body colour) swaps the one on the wall.
 {%- endcomment -%}
 {%- liquid
   assign wp = section.settings.product
@@ -31,8 +32,8 @@
       </ul>
       <div class="wallhold__buy">
         {%- assign from_price = wp.price_min | money -%}
-        <p class="wallhold__price">{{ 'products.from_price_html' | t: price: from_price }}</p>
-        <a class="btn" href="{{ wp.url }}" data-magnetic>{{ section.settings.button | escape }} {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+        <p class="wallhold__price" data-wall-price>{{ 'products.from_price_html' | t: price: from_price }}</p>
+        <a class="btn" href="{{ wp.url }}" data-wall-link data-magnetic>{{ section.settings.button | escape }}<span class="visually-hidden" data-wall-name>: {{ wp.title | escape }}</span> {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
         {%- if col != blank -%}<a class="link-arrow" href="{{ col.url }}">{{ section.settings.all_label | escape }}</a>{%- endif -%}
       </div>
     </div>
@@ -40,11 +41,53 @@
       <span class="wallhold__lamp"></span>
       <div class="wallhold__piece">
         {%- if hero_img -%}
-          {{ hero_img | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '600, 1000, 1600', sizes: '(min-width: 990px) 56vw, 100vw', alt: '' }}
+          {{ hero_img | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '600, 1000, 1600', sizes: '(min-width: 990px) 56vw, 100vw', alt: '', data-wall-img: '' }}
         {%- endif -%}
       </div>
       <span class="wallhold__shadow"></span>
     </div>
+    {%- if col != blank and col.products_count > 1 -%}
+      {%- liquid
+        assign swatch_lines = settings.color_swatches | newline_to_br | split: '<br />'
+        assign ncol = swatch_lines.size
+      -%}
+      <ul class="wallhold__pick" role="list" aria-label="{{ section.settings.pick_label | escape }}">
+        {%- for p in col.products -%}
+          {%- liquid
+            assign ci = forloop.index0 | modulo: ncol
+            assign sp = swatch_lines[ci] | split: ':'
+            assign want = sp[0] | strip | downcase | append: ' body, front view'
+            assign pimg = p.featured_image
+            for image in p.images
+              assign alt_lc = image.alt | downcase
+              if alt_lc contains want
+                unless alt_lc contains 'on white'
+                  assign pimg = image
+                  break
+                endunless
+              endif
+            endfor
+            if p.id == wp.id
+              assign pimg = hero_img
+            endif
+            assign p_price = p.price_min | money
+            assign p_short = p.metafields.custom.short_model.value | default: p.metafields.custom.short_model | default: p.title
+          -%}
+          <li>
+            <button type="button" class="wallhold__thumb" data-wall-pick
+              data-url="{{ p.url }}" data-title="{{ p.title | escape }}"
+              data-price="{{ 'products.from_price_html' | t: price: p_price | strip_html | escape }}"
+              data-src="{{ pimg | image_url: width: 1000 }}"
+              data-srcset="{{ pimg | image_url: width: 600 }} 600w, {{ pimg | image_url: width: 1000 }} 1000w, {{ pimg | image_url: width: 1600 }} 1600w"
+              aria-pressed="{% if p.id == wp.id %}true{% else %}false{% endif %}">
+              {{ pimg | image_url: width: 300 | image_tag: loading: 'lazy', widths: '150, 300', sizes: '140px', alt: '' }}
+              <span>{{ p_short | escape }}</span>
+            </button>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <script src="{{ 'wall.js' | asset_url }}" type="module"></script>
+    {%- endif -%}
   </div>
 </section>
 {%- endif -%}
@@ -57,9 +100,10 @@
     { "type": "collection", "id": "collection", "label": "Wall key holder collection", "info": "An automated collection where Product type is Wall key holder." },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Wall-mounted key holder" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Your car, by the front door." },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "The same front, scaled up for the wall, with four hooks for your keys. Same body colors, same headlight options." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "The same front, scaled up for the wall, with four hooks for your keys. Same body colors." },
     { "type": "text", "id": "button", "label": "Button", "default": "View the key holder" },
-    { "type": "text", "id": "all_label", "label": "Collection link", "default": "All wall key holders" }
+    { "type": "text", "id": "all_label", "label": "Collection link", "default": "All wall key holders" },
+    { "type": "text", "id": "pick_label", "label": "Picker label (screen readers)", "default": "Choose a wall key holder" }
   ],
   "blocks": [
     { "type": "fact", "name": "Fact", "settings": [ { "type": "text", "id": "label", "label": "Label" }, { "type": "text", "id": "value", "label": "Value" } ] }

@@ -41,7 +41,7 @@
           "type": "question",
           "settings": {
             "question": "My car isn't here. Can you make it?",
-            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. 37 more cars are already in the works.</p>"
+            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. More cars are already in the works.</p>"
           }
         },
         "q6": {

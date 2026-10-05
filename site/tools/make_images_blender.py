@@ -48,9 +48,10 @@ def main():
         views = [
             dict(angle=0.0, chain=False, colors=colors, out=o('{slug}__front')),
             dict(angle=-0.45, chain=True, colors=colors, out=o('{slug}__angle')),
-            dict(angle=0.0, chain=False, mask=True, out=o('lights__front')),
-            dict(angle=-0.45, chain=True, mask=True, out=o('lights__angle')),
         ]
+        if it.get('headlights', True):     # headlight masks only where the lights are a separate colour
+            views += [dict(angle=0.0, chain=False, mask=True, out=o('lights__front')),
+                      dict(angle=-0.45, chain=True, mask=True, out=o('lights__angle'))]
         if not it.get('wall'):
             views.append(dict(angle=3.14159265 - 0.32, chain=True, colors=colors[:1], out=o('white__back')))
         if cid == 'g80_m3':

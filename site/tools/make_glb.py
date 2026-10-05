@@ -273,10 +273,14 @@ def build(car_id):
 
 
 def build_wall(item):
-    """Wall key holder from its three print parts (kc/wall/out): black plate and trim -> details, body colour -> body,
-    white snake-eye bars -> lights. Centred, face toward +Z. No chain, no carbon back (the back sits on the wall)."""
+    """Wall key holder from its print parts (kc/wall/out). Three-part builds (the G80): black plate and trim -> details,
+    body colour -> body, white light bars -> lights. Two-part 1-swap builds: black base -> details, the face with its
+    lights and hooks -> body (one colour, so no headlight option). Centred, face toward +Z. No chain, no carbon back."""
     src = os.path.join(ROOT, item['source'])
-    parts = {k: trimesh.load(src.format(part=k)) for k in ('black', 'body', 'white')}
+    names = item.get('parts', ['black', 'body', 'white'])
+    parts = {k: trimesh.load(src.format(part=k)) for k in names}
+    if 'body' not in parts:
+        parts = {'black': parts['black'], 'body': parts['white']}
     allm = trimesh.util.concatenate(list(parts.values()))
     c = allm.bounds.mean(0)
     for m in parts.values():
@@ -286,7 +290,8 @@ def build_wall(item):
     scene.graph.update(frame_to='keychain', frame_from='world', matrix=np.eye(4))
     scene.add_geometry(shaded(parts['body'], mat('body', (0.95, 0.95, 0.94), 0.0, 0.55)), node_name='body', geom_name='body', parent_node_name='keychain')
     scene.add_geometry(shaded(parts['black'], mat('details', (0.012, 0.012, 0.014), 0.0, 0.72)), node_name='details', geom_name='details', parent_node_name='keychain')
-    scene.add_geometry(shaded(parts['white'], mat('lights', (0.97, 0.97, 0.96), 0.0, 0.5)), node_name='lights', geom_name='lights', parent_node_name='keychain')
+    if 'white' in parts:
+        scene.add_geometry(shaded(parts['white'], mat('lights', (0.97, 0.97, 0.96), 0.0, 0.5)), node_name='lights', geom_name='lights', parent_node_name='keychain')
     os.makedirs(OUT, exist_ok=True)
     path = os.path.join(OUT, f"{item['id']}.glb")
     scene.export(path)

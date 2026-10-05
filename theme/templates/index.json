@@ -28,7 +28,7 @@
           "type": "stat",
           "settings": {
             "value": "27 cars",
-            "label": "37 more coming"
+            "label": "More coming"
           }
         }
       },
@@ -83,7 +83,7 @@
           "type": "question",
           "settings": {
             "question": "My car isn't here. Can you make it?",
-            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. 37 more cars are already in the works.</p>"
+            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. More cars are already in the works.</p>"
           }
         },
         "q6": {
@@ -265,7 +265,7 @@
           "type": "fact",
           "settings": {
             "label": "Size",
-            "value": "About 241 x 114 mm"
+            "value": "About 241 mm wide"
           }
         },
         "w2": {
@@ -286,7 +286,7 @@
           "type": "fact",
           "settings": {
             "label": "Colors",
-            "value": "Every body and headlight color"
+            "value": "Every body color"
           }
         }
       },
