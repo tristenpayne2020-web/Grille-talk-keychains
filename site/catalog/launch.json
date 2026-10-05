@@ -1,5 +1,5 @@
 {
-  "_note": "Launch catalog: 25 of the 64 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
+  "_note": "Launch catalog: 27 of the 64 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
   "colors": [
     {
       "name": "White",
@@ -136,6 +136,19 @@
         "Vette",
         "C8",
         "Stingray"
+      ]
+    },
+    {
+      "id": "c7_z06",
+      "make": "Chevrolet",
+      "model": "Corvette Z06",
+      "generation": "C7",
+      "short_model": "Corvette Z06",
+      "aliases": [
+        "Corvette",
+        "Z06",
+        "C7",
+        "Vette"
       ]
     },
     {
@@ -306,6 +319,19 @@
         "340i",
         "3 Series",
         "G20"
+      ]
+    },
+    {
+      "id": "g20_330i",
+      "make": "BMW",
+      "model": "330i",
+      "generation": "G20",
+      "short_model": "330i",
+      "aliases": [
+        "330i",
+        "3 Series",
+        "G20",
+        "M Sport"
       ]
     },
     {

@@ -15,9 +15,12 @@ site/    tools that build the catalog, 3D models and images, plus a local previe
    counter tracks real loading, then it opens onto the hero. No sound. Skippable; never without JS.
 2. **Hero**: the 3D G80 on a jump ring, chain and split ring that swing with physics (drag it), other designs
    drifting at depth behind, and a stat row.
-3. **Range**: a floating display, built in 3D (`assets/display3d.js`): metal pedestal with chrome rims and a light
-   strip, ring-light fixture, a real spotlight with shadows and a soft beam (CSS version as the fallback). The 3D keychain hovers under an overhead ring light with a spotlight beam, above a
-   pedestal carrying the car's name; neighbours float on a curved arc. Arrows, swipe, keys, rail.
+3. **Range**: a floating display, built in 3D (`assets/display3d.js`): metal pedestal with chrome rims, ring-light
+   fixture, an overhead downlight that pools on the pedestal and casts shadows, a face light that falls off from top
+   to bottom, and a faint beam (CSS version as the fallback). Each keychain wears a different body colour (cycling
+   through Theme settings > Swatches) and the car's name stands large behind it. Drag with the mouse or a finger and
+   the keychain follows; let go to move to the next one, which slides in while the old one slides out (the chain
+   sways with the move). Arrows, keys and the rail do the same; neighbours float on a curved arc.
    Below it, the **wall-mounted key holder** section (the holder on a lit wall panel).
 4. **Detail tour** (pinned): the camera pushes into the G80 and a spotlight moves to the light signature, grille,
    intakes and tab, with a chapter rail. Spotlight positions come from the real design file.
@@ -186,7 +189,7 @@ Results land in `site/build/reports/`.
   settings > Body colors (tiers and swatches) so they group correctly.
 - The 7 colors still to add are Green, Purple, Gold, Metallic Red, Metallic Blue, Metallic Green and
   Metallic Purple. Their tier prices are $7.99 (custom) and $8.99 (metallic).
-- Then update "39 more cars coming soon" in the Range viewer, Catalog and Newsletter sections and the hero stat.
+- Then update "37 more cars coming soon" in the Range viewer, Catalog and Newsletter sections and the hero stat.
 - Each car also gets two headlight masks in `theme/assets/lights-<handle>-front.webp` / `-angle.webp` (made by
   `make_media.py`); they tint the light signature in the gallery photos to the chosen headlight color.
 

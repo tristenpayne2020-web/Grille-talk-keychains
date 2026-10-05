@@ -58,11 +58,13 @@ export class KeychainStage {
     this.scene = new Scene();
     const pmrem = new PMREMGenerator(this.renderer);
     this.scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    this.scene.environmentIntensity = 0.55;
-    const key = new DirectionalLight(0xffffff, 1.6); key.position.set(-0.4, 0.8, 1.2);
-    const rim = new DirectionalLight(0xffffff, 0.6); rim.position.set(0.8, 0.2, -0.6);
+    const disp = !!this.opts.display;
+    // on the floating display the fixture's spotlight does most of the work; the studio lights only fill
+    this.scene.environmentIntensity = disp ? 0.16 : 0.55;
+    const key = new DirectionalLight(0xffffff, disp ? 0.22 : 1.6); key.position.set(-0.4, 0.8, 1.2);
+    const rim = new DirectionalLight(0xffffff, disp ? 0.25 : 0.6); rim.position.set(0.8, 0.2, -0.6);
     // lights the carbon back; on the floating display it is dimmed, or it glares off the pedestal top
-    const backKey = new DirectionalLight(0xffffff, this.opts.display ? 0.35 : 1.8); backKey.position.set(0.5, 0.9, -1.2);
+    const backKey = new DirectionalLight(0xffffff, this.opts.display ? 0.2 : 1.8); backKey.position.set(0.5, 0.9, -1.2);
     this.scene.add(key, rim, backKey);
     this.camera = new PerspectiveCamera(16, 1, 0.005, 5);
 
@@ -70,7 +72,7 @@ export class KeychainStage {
     this.active = opts.active !== false;   // an inactive stage loads but does not render frames
     this.running = false;
     this.yaw = 0; this.yawV = 0; this.pitch = 0; this.pitchV = 0; this.t = 0;
-    this.offsetX = 0; this.offsetV = 0;
+    this.slideX = 0; this.slideV = 0; this.sliding = false; this.slideHeld = false; this.leaving = []; this.ppm = 1;
     this._last = 0;
     this._tick = this._tick.bind(this);
     this._tmp = new Vector3(); this._tmp2 = new Vector3();
@@ -86,11 +88,13 @@ export class KeychainStage {
     if (window.__PREVIEW__) (window.__gtStages = window.__gtStages || []).push(this);   // local preview debugging only
   }
 
-  async load(url, color) {
+  async load(url, color, { dir = 0 } = {}) {
     const root = await loadGLB(url);
     if (this.disposed) return;
-    if (this.root) this.scene.remove(this.root);
+    if (this.root && dir && this.opts.display) this.leave(dir);   // not left yet (called without leave()): go now
+    else if (this.root) this.scene.remove(this.root);
     this.root = root;
+    root.traverse((o) => { if (o.isMesh && o.material && o.material.name !== 'body') o.material = o.material.clone(); });
     const kc = root.getObjectByName('keychain');
     // pivot the keychain about its body centre, so turning it moves the tab and the chain follows
     kc.updateMatrixWorld(true);
@@ -112,6 +116,8 @@ export class KeychainStage {
       }
     });
     if (color) this.setColor(color);
+    this.allMats = [];
+    root.traverse((o) => { if (o.isMesh && o.material) this.allMats.push(o.material); });
     this.yaw = 0; this.yawV = 0; this.pitch = 0; this.pitchV = 0;   // a new keychain starts at rest, no inherited swing
     this._initChain(root);
     this.scene.add(root);
@@ -119,14 +125,48 @@ export class KeychainStage {
       if (!this.display) { const { Display } = await import('display3d'); this.display = new Display(this); }
       root.updateMatrixWorld(true);
       const all = new Box3().setFromObject(root);
-      this.display.fit(this.bodyBox, all.min.y);
+      this.display.fit(this.bodyBox, all.min.y, !this._shown);
     }
+    // a new keychain slides in from the side it was asked for, fading up, and settles on a spring
+    this.slideX = this._shown && dir ? dir * this.slideDist() : 0;
+    this.slideV = 0;
+    this.sliding = !!this.slideX;
+    root.position.x = this.slideX;
+    this._fade(this.allMats, this.sliding ? 0 : 1);
+    this._shown = true;
     this.resize();
     this.render();
     this._maybeRun();
     if (this.opts.onReady) this.opts.onReady(this);
     return this;
   }
+
+  slideDist() { return 0.19; }   // metres: far enough to leave the frame
+
+  _fade(mats, a) {
+    for (const m of mats) {
+      const t = a < 0.999;
+      if (m.transparent !== t) { m.transparent = t; m.needsUpdate = true; }
+      m.opacity = a;
+    }
+  }
+
+  // the current keychain slides out toward -dir and fades; the next one comes in from +dir (load)
+  leave(dir) {
+    if (!this.root || this.static) { if (this.root) this.scene.remove(this.root); this.root = null; return; }
+    this.leaving.push({ root: this.root, mats: this.allMats || [], x: this.root.position.x, v: this.slideV, to: -dir * this.slideDist() });
+    this.root = null;
+    this._maybeRun();
+  }
+
+  // carousel drag: the keychain follows the pointer sideways (px from where the drag began); release springs it home
+  dragSlide(px) {
+    if (!this.root || this.static) return;
+    this.slideHeld = true; this.sliding = true;
+    this.slideX = px / this.ppm;
+    this._maybeRun();
+  }
+  releaseSlide() { this.slideHeld = false; this._maybeRun(); }
 
   setActive(on) {
     this.active = on;
@@ -210,6 +250,7 @@ export class KeychainStage {
   }
 
   resize() {
+    this._laidOut = false;
     const w = this.container.clientWidth, h = this.container.clientHeight;
     if (!w || !h || !this.root) return;
     this.renderer.setSize(w, h, false);
@@ -222,14 +263,17 @@ export class KeychainStage {
       // the lamp and down onto the pedestal top
       const B = this.display.bounds, span = B.top - B.bottom;
       ppm = Math.min((h * 0.97) / span, (w * 0.96) / (0.068 * 2 * 1.3));
+      this.ppm = ppm;
       const midY = (B.top + B.bottom) / 2;
       const dist = h / (2 * tan * ppm);
       this.camera.position.set(B.cx, midY + span * 0.06, dist);
       this.camera.lookAt(B.cx, midY, 0);
       this.camera.near = dist / 20; this.camera.far = dist * 4;
       this.camera.updateProjectionMatrix();
-      if (this.opts.onLayout) {
-        const v = B.name.clone().project(this.camera);
+      if (this.opts.onLayout && !this._laidOut) {
+        // the car's name sits behind the keychain, centred on it
+        this._laidOut = true;
+        const v = new Vector3(B.cx, (B.top + B.bottom) / 2 + span * 0.08, -0.05).project(this.camera);
         this.opts.onLayout({ nameX: ((v.x + 1) / 2) * w, nameY: ((1 - v.y) / 2) * h, ppm });
       }
       this.render();
@@ -255,7 +299,7 @@ export class KeychainStage {
   }
 
   _maybeRun() {
-    const should = this.active && this.visible && !document.hidden && this.root && !this.static && !this.disposed;
+    const should = this.active && this.visible && !document.hidden && (this.root || this.leaving.length) && !this.static && !this.disposed;
     if (should && !this.running) { this.running = true; this._last = performance.now(); requestAnimationFrame(this._tick); }
     if (!should) this.running = false;
   }
@@ -271,6 +315,33 @@ export class KeychainStage {
 
   step(dt) {
     this.t += dt;
+    // outgoing keychains: ease out to the side and fade, then go
+    for (const L of this.leaving) {
+      L.v += ((L.to - L.x) * 60 - L.v * 11) * dt;
+      L.x += L.v * dt;
+      L.root.position.x = L.x;
+      L.root.position.y = Math.sin(this.t * 1.15) * 0.0012;
+      this._fade(L.mats, Math.max(0, 1 - Math.abs(L.x) / (Math.abs(L.to) * 0.75)));
+      L.done = Math.abs(L.x) > Math.abs(L.to) * 0.75;
+    }
+    this.leaving = this.leaving.filter((L) => { if (L.done) this.scene.remove(L.root); return !L.done; });
+    if (this.display && this.display.update(dt)) this.resize();
+    if (!this.root) return;
+    // incoming / dragged keychain: a critically damped spring back to the centre
+    if (this.sliding) {
+      const before = this.root.position.x;
+      if (!this.slideHeld) {
+        const w = 7.5;
+        this.slideV += (-this.slideX * w * w - this.slideV * 2 * w) * dt;
+        this.slideX += this.slideV * dt;
+        if (Math.abs(this.slideX) < 1e-5 && Math.abs(this.slideV) < 1e-4) { this.slideX = 0; this.slideV = 0; this.sliding = false; }
+      }
+      this.root.position.x = this.slideX;
+      this._fade(this.allMats, Math.max(0, Math.min(1, 1 - (Math.abs(this.slideX) / this.slideDist() - 0.25) / 0.6)));
+      // the chain lags the move a little (inertia), so it sways rather than moving rigidly
+      const d = (this.root.position.x - before) * 0.22;
+      if (this.p) for (let i = 2; i < this.p.length; i++) { this.p[i].x -= d * (i / this.p.length); this.prev[i].x -= d * (i / this.p.length); }
+    }
     const dragging = this._dragging && this._dragging();
     if (!dragging) {
       // spring back toward a slow idle sway
@@ -327,7 +398,7 @@ export class KeychainStage {
   }
 
   render() {
-    if (this.root) this.renderer.render(this.scene, this.camera);
+    if (this.root || this.leaving.length) this.renderer.render(this.scene, this.camera);
   }
 
   dispose() {

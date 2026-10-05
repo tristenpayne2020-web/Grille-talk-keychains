@@ -32,7 +32,7 @@ function pedestal() {
     .map(([x, y]) => new Vector2(x, y));
   const body = new Mesh(new LatheGeometry(prof, 128), metalDark());
   body.receiveShadow = true;
-  const top = new Mesh(new CircleGeometry(0.0639, 96), new MeshPhysicalMaterial({ color: new Color('#0c0c0e'), metalness: 0.2, roughness: 0.5, clearcoat: 0.35, clearcoatRoughness: 0.3, envMapIntensity: 0.18 }));
+  const top = new Mesh(new CircleGeometry(0.0639, 96), new MeshPhysicalMaterial({ color: new Color('#3a3a3f'), metalness: 0, roughness: 0.62, clearcoat: 0.25, clearcoatRoughness: 0.35, envMapIntensity: 0.12 }));
   top.rotation.x = -Math.PI / 2;
   top.position.y = 0.0221;
   top.receiveShadow = true;
@@ -40,7 +40,7 @@ function pedestal() {
   rimA.rotation.x = Math.PI / 2; rimA.position.y = 0.0125;
   const rimB = new Mesh(new TorusGeometry(0.0641, 0.0005, 12, 160), chrome());
   rimB.rotation.x = Math.PI / 2; rimB.position.y = 0.0221;
-  const strip = new Mesh(new TorusGeometry(0.0662, 0.00045, 8, 160), glow());
+  const strip = new Mesh(new TorusGeometry(0.0662, 0.00045, 8, 160), glow(0.35));
   strip.rotation.x = Math.PI / 2; strip.position.y = 0.0168;
   g.add(body, top, rimA, rimB, strip);
   g.userData.topY = 0.0222;
@@ -55,23 +55,23 @@ function fixture() {
   lens.rotation.x = Math.PI / 2; lens.position.y = -0.0002;
   const reflector = new Mesh(new RingGeometry(0.018, 0.036, 96), new MeshStandardMaterial({ color: '#d9d9dc', metalness: 1, roughness: 0.18, side: DoubleSide }));
   reflector.rotation.x = Math.PI / 2; reflector.position.y = -0.0001;
-  const halo = new Mesh(new RingGeometry(0.0375, 0.0392, 128), glow(0.95));
+  const halo = new Mesh(new RingGeometry(0.0375, 0.0392, 128), glow(0.55));
   halo.rotation.x = Math.PI / 2; halo.position.y = -0.0003;
   const rim = new Mesh(new TorusGeometry(0.0505, 0.0006, 12, 160), chrome());
   rim.rotation.x = Math.PI / 2; rim.position.y = 0.0005;
   // soft bloom under the lens (no post-processing): an additive radial sprite
-  const bloomTex = radialTexture([[0, 'rgba(255,255,255,0.9)'], [0.18, 'rgba(255,255,255,0.35)'], [0.5, 'rgba(255,255,255,0.08)'], [1, 'rgba(255,255,255,0)']]);
-  const bloom = new Mesh(new PlaneGeometry(0.16, 0.16), new MeshBasicMaterial({ map: bloomTex, transparent: true, blending: AdditiveBlending, depthWrite: false }));
+  const bloomTex = radialTexture([[0, 'rgba(255,255,255,0.55)'], [0.16, 'rgba(255,255,255,0.18)'], [0.45, 'rgba(255,255,255,0.04)'], [1, 'rgba(255,255,255,0)']]);
+  const bloom = new Mesh(new PlaneGeometry(0.12, 0.12), new MeshBasicMaterial({ map: bloomTex, transparent: true, blending: AdditiveBlending, depthWrite: false }));
   bloom.rotation.x = Math.PI / 2; bloom.position.y = -0.0015;
   g.add(housing, reflector, lens, halo, rim, bloom);
   return g;
 }
 
-function beam(height) {
-  const geo = new CylinderGeometry(0.016, PED_R * 0.92, height, 96, 1, true);
+function beam() {
+  const geo = new CylinderGeometry(0.016, PED_R * 0.92, 1, 96, 1, true);   // unit height, scaled to the gap
   const mat = new ShaderMaterial({
     transparent: true, depthWrite: false, blending: AdditiveBlending, side: DoubleSide,
-    uniforms: { uStrength: { value: 0.22 } },
+    uniforms: { uStrength: { value: 0.06 } },
     vertexShader: `
       varying vec2 vUv; varying vec3 vN; varying vec3 vV;
       void main() {
@@ -102,7 +102,9 @@ export class Display {
     this.ped = pedestal();
     this.fix = fixture();
     this.group.add(this.ped, this.fix);
-    this.spot = new SpotLight(0xffffff, 5, 0, 0.5, 0.6, 0);
+    // the fixture's lamp, straight down: it catches the top edges of the raised details, pools on the pedestal top and
+    // throws the keychain's and chain's shadows there
+    this.spot = new SpotLight(0xfff8ee, 14, 0, 0.5, 1, 0);
     this.spot.castShadow = true;
     this.spot.shadow.mapSize.set(1024, 1024);
     this.spot.shadow.bias = -0.0003;
@@ -110,27 +112,51 @@ export class Display {
     this.spot.shadow.camera.near = 0.01;
     this.spot.shadow.camera.far = 0.6;
     this.group.add(this.spot, this.spot.target);
-    stage.scene.add(this.group);
-    this.beam = null;
-  }
-
-  // place the pedestal under the keychain (and its chain) and the fixture above it
-  fit(bodyBox, lowestY) {
-    const cx = (bodyBox.min.x + bodyBox.max.x) / 2;
-    const pedTop = lowestY - 0.012;
-    const fixBottom = bodyBox.max.y + 0.03;
-    this.ped.position.set(cx, pedTop - this.ped.userData.topY, 0);
-    this.fix.position.set(cx, fixBottom, 0);
-    const h = fixBottom - pedTop;
-    if (this.beam) { this.group.remove(this.beam); this.beam.geometry.dispose(); }
-    this.beam = beam(h);
-    this.beam.position.set(cx, pedTop + h / 2, 0);
+    // the same lamp as seen by the keychain's face: a soft cone from above and in front, aimed high, so the face is
+    // brightest at the top and falls off toward the bottom, as under a real overhead light
+    this.face = new SpotLight(0xfff8ee, 3.2, 0, 0.3, 1, 0);
+    this.group.add(this.face, this.face.target);
+    this.beam = beam();
     this.beam.renderOrder = 2;
     this.group.add(this.beam);
-    this.spot.position.set(cx, fixBottom - 0.002, 0.006);
-    this.spot.target.position.set(cx, pedTop, 0);
-    this.spot.angle = Math.atan((PED_R * 0.95) / h);
-    this.bounds = { cx, top: fixBottom + 0.018, bottom: pedTop - 0.024, name: new Vector3(cx, pedTop - 0.0105, 0.0745) };
+    stage.scene.add(this.group);
+    this.cur = null;
+  }
+
+  // place the pedestal under the keychain (and its chain) and the fixture above it. Between keychains the display eases
+  // to the new size (update() each frame) instead of jumping.
+  fit(bodyBox, lowestY, snap = false) {
+    this.target = { cx: (bodyBox.min.x + bodyBox.max.x) / 2, pedTop: lowestY - 0.012, fixBottom: bodyBox.max.y + 0.03 };
+    if (!this.cur || snap) this.cur = { ...this.target };
+    this._apply();
     this.stage.root.traverse((o) => { if (o.isMesh) o.castShadow = true; });
+  }
+
+  update(dt) {
+    if (!this.cur) return false;
+    const k = 1 - Math.exp(-dt * 5);
+    let moving = false;
+    for (const key of ['cx', 'pedTop', 'fixBottom']) {
+      const d = this.target[key] - this.cur[key];
+      if (Math.abs(d) > 1e-5) { this.cur[key] += d * k; moving = true; } else this.cur[key] = this.target[key];
+    }
+    if (moving) this._apply();
+    return moving;
+  }
+
+  _apply() {
+    const { cx, pedTop, fixBottom } = this.cur;
+    const h = fixBottom - pedTop;
+    this.ped.position.set(cx, pedTop - this.ped.userData.topY, 0);
+    this.fix.position.set(cx, fixBottom, 0);
+    this.beam.scale.y = h;
+    this.beam.position.set(cx, pedTop + h / 2, 0);
+    this.spot.position.set(cx, fixBottom - 0.002, 0.004);
+    this.spot.target.position.set(cx, pedTop, 0);
+    this.spot.angle = Math.atan((PED_R * 0.8) / h);
+    this.face.position.set(cx, fixBottom + 0.01, 0.09);
+    this.face.target.position.set(cx, fixBottom - 0.035, 0);
+    this.face.angle = 0.42;
+    this.bounds = { cx, top: fixBottom + 0.018, bottom: pedTop - 0.024 };
   }
 }

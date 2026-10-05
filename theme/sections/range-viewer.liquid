@@ -7,6 +7,8 @@
   assign col = section.settings.collection | default: collections.all
   assign items = col.products
   assign total = items.size
+  assign swatch_lines = settings.color_swatches | newline_to_br | split: '<br />'
+  assign ncol = swatch_lines.size
 -%}
 <section data-chapter="{{ 'chapters.range' | t }}" class="section range" id="range" aria-labelledby="range-title">
   <div class="page-width">
@@ -59,6 +61,26 @@
                 endfor
                 assign short = product.metafields.custom.short_model.value | default: product.metafields.custom.short_model
                 assign from_price = product.price_min | money
+                comment
+                  each keychain on the display wears a different body colour (cycling through the swatch list)
+                endcomment
+                assign ci = idx | plus: 1 | modulo: ncol
+                assign sp = swatch_lines[ci] | split: ':'
+                assign cname = sp[0] | strip
+                assign chex = sp[1] | strip
+                assign cmetal = sp[2] | strip | default: '0'
+                assign crough = sp[3] | strip | default: '0.6'
+                assign cimg = product.featured_image
+                assign want = cname | downcase | append: ' body, front view'
+                for image in product.images
+                  assign alt_lc = image.alt | downcase
+                  if alt_lc contains want
+                    unless alt_lc contains 'on white'
+                      assign cimg = image
+                      break
+                    endunless
+                  endif
+                endfor
               -%}
               <div
                 class="range__slide"
@@ -73,19 +95,22 @@
                 data-price="{{ 'products.from_price_html' | t: price: from_price | strip_html | escape }}"
                 data-model="{{ glb }}"
                 data-name="{{ short | escape }}"
+                data-color="{{ chex }}"
+                data-metal="{{ cmetal }}"
+                data-rough="{{ crough }}"
               >
-                {%- if product.featured_image -%}
+                {%- if cimg -%}
                   {%- liquid
                     assign loading = 'lazy'
                     if idx < 2
                       assign loading = 'eager'
                     endif
                   -%}
-                  {{ product.featured_image | image_url: width: 1400 | image_tag:
+                  {{ cimg | image_url: width: 1400 | image_tag:
                     loading: loading,
                     widths: '500, 800, 1100, 1400',
                     sizes: '(min-width: 990px) 760px, 92vw',
-                    alt: product.featured_image.alt | default: product.title
+                    alt: cimg.alt | default: product.title
                   }}
                 {%- endif -%}
               </div>
@@ -150,7 +175,7 @@
     { "type": "text", "id": "view_label", "label": "View button", "default": "View" },
     { "type": "text", "id": "catalog_label", "label": "Catalog link", "default": "See every design" },
     { "type": "text", "id": "request_label", "label": "Request link", "default": "Don't see yours? Request it" },
-    { "type": "text", "id": "coming_soon", "label": "Coming soon note", "default": "39 more cars coming soon" }
+    { "type": "text", "id": "coming_soon", "label": "Coming soon note", "default": "37 more cars coming soon" }
   ],
   "presets": [{ "name": "Range viewer" }]
 }

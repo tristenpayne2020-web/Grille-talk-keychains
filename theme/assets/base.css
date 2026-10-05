@@ -682,8 +682,17 @@ body::after { content: ''; position: fixed; inset: -50%; z-index: 90; pointer-ev
 /* when the 3D display is running, the CSS fixture, beam and pedestal give way to the real ones */
 .display.is-3d-display .display__fixture, .display.is-3d-display .display__beam, .display.is-3d-display .display__pedestal > span:not(.display__name) { opacity: 0; transition: opacity 600ms var(--ease-out); }
 .display.is-3d-display .range__canvas { top: 0; height: 100%; z-index: 1; }
-.display.is-3d-display .display__pedestal { inset: 0; width: auto; aspect-ratio: auto; transform: none; z-index: 3; }
-.display.is-3d-display .display__name { top: 0; left: 0; transform: translate(-50%, -50%); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.15), 0 -1px 0 rgba(0, 0, 0, 0.8); color: #e9e9e7; letter-spacing: 0.04em; }
+.display.is-3d-display .display__beam { animation: none; visibility: hidden; }   /* its looping opacity animation would override the fade */
+.display.is-3d-display .display__pedestal { inset: 0; width: auto; aspect-ratio: auto; transform: none; z-index: 0; }
+/* the car's name stands large behind the display, like a poster on the back wall */
+.display.is-3d-display .display__name { top: 0; left: 0; transform: translate(-50%, -50%); line-height: 0.9; letter-spacing: -0.01em; text-shadow: none;
+  color: rgba(242, 241, 238, 0.045); -webkit-text-stroke: 1px rgba(242, 241, 238, 0.16);
+  -webkit-mask-image: linear-gradient(180deg, #000 30%, rgba(0, 0, 0, 0.25) 100%); mask-image: linear-gradient(180deg, #000 30%, rgba(0, 0, 0, 0.25) 100%); }
+.display.is-3d-display .display__name.is-in { animation: nameBack 900ms var(--ease-out); }
+@keyframes nameBack { from { opacity: 0; transform: translate(-50%, -46%); letter-spacing: 0.04em; } to { opacity: 1; transform: translate(-50%, -50%); letter-spacing: -0.01em; } }
+.display.is-3d-display { cursor: grab; user-select: none; -webkit-user-select: none; }
+.display.is-3d-display.is-dragging { cursor: grabbing; }
+.display.is-3d-display .range__canvas canvas { cursor: inherit; }
 .display.is-3d-display .range__slide[data-pos='0'] img { opacity: 0; }
 
 .range__carousel .range__viewport.display ~ .range__info { margin-top: var(--s-4); }
