@@ -37,7 +37,7 @@ def settings_ok(cid):
     return bad
 
 
-cars = [c['id'] for c in json.load(open('cars_pkg.json'))] + NEW
+cars = list(dict.fromkeys([c['id'] for c in json.load(open('cars_pkg.json'))] + NEW))   # no duplicates
 for a in sys.argv:
     if a.startswith('--only='):
         NEW = a.split('=', 1)[1].split(','); cars = NEW

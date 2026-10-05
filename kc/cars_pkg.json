@@ -565,5 +565,23 @@
   "out": "cars/g87_m2_snakeeye/out",
   "ref_url": "G87 reference + your snake-eye photo",
   "ref_license": "-"
+ },
+ {
+  "id": "tesla_model3",
+  "folder": "Tesla_Model_3",
+  "name": "Tesla Model 3 (Highland, 2024+)",
+  "spec": "C:\\Users\\trist\\grille-talk-keychains\\kc\\cars\\tesla_model3\\spec.py",
+  "out": "cars/tesla_model3/out",
+  "ref_url": "n/a",
+  "ref_license": "n/a"
+ },
+ {
+  "id": "tesla_models_plaid",
+  "folder": "Tesla_Model_S_Plaid",
+  "name": "Tesla Model S Plaid (2021+)",
+  "spec": "C:\\Users\\trist\\grille-talk-keychains\\kc\\cars\\tesla_models_plaid\\spec.py",
+  "out": "cars/tesla_models_plaid/out",
+  "ref_url": "n/a",
+  "ref_license": "n/a"
  }
 ]

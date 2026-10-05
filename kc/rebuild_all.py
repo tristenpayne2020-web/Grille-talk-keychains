@@ -37,7 +37,7 @@ def settings_ok(cid):
     return bad
 
 
-cars = [c['id'] for c in json.load(open('cars_pkg.json'))] + NEW
+cars = list(dict.fromkeys([c['id'] for c in json.load(open('cars_pkg.json'))] + NEW))   # no duplicates
 for cid in cars:
     if status.get(cid) == 'ok':
         continue

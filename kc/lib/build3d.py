@@ -14,6 +14,7 @@ import manifold3d as m3d
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
 from geom import polys, clean, T
+import backtext
 
 HB = 1.6          # production: top of the black base
 HF = 0.6          # production: floor of relief pockets
@@ -70,7 +71,17 @@ def to_trimesh(m):
     return tm
 
 
+def parts_from(slabs):
+    return {k: union([slab(g, a, b) for g, a, b in sl]) for k, sl in slabs.items()}
+
+
 def build_production(M, hb=HB, hf=HF, t=T):
+    _, sl = _production(M, hb, hf, t)
+    sl = backtext.apply(sl, M)
+    return parts_from(sl), sl
+
+
+def _production(M, hb=HB, hf=HF, t=T):
     O, W, R, P = M['outline'], M['white'], M['relief_region'], M['relief_ribs']
     O = O.difference(M['hole'])
     base = union([slab(O.difference(R), 0, hb), slab(R, 0, hf), slab(P, hf, hb)])
@@ -81,6 +92,12 @@ def build_production(M, hb=HB, hf=HF, t=T):
 
 
 def build_classic(M, t=T, floor=CL_FLOOR, gd=CL_GROOVE, ch=CL_CHAMFER):
+    _, sl = _classic(M, t, floor, gd, ch)
+    sl = backtext.apply(sl, M)
+    return parts_from(sl), sl
+
+
+def _classic(M, t=T, floor=CL_FLOOR, gd=CL_GROOVE, ch=CL_CHAMFER):
     O, W, B, R, P = M['outline'], M['white'], M['black'], M['relief_region'], M['relief_ribs']
     Gw, Gb = M['grooves_white'], M['grooves_black']
     hole = M['hole']
@@ -200,25 +217,23 @@ CL_LIGHT = 1.2    # classic custom-colour: white lights only in the top 1.2 mm, 
 def build_production3(M, hb=HB, hf=HF, t=T):
     """Custom body colour, 1-swap style: black base, body-colour cap, white light islands (full cap height, so
     they stay opaque white). Every cap layer carries body + white -> about 8 changes per plate."""
-    base, sl = build_production(M, hb, hf, t)
+    _, sl = _production(M, hb, hf, t)
     body = M['white_body'].difference(M['grooves_white'])
     light = M['white_light'].difference(M['grooves_white'])
-    parts = {'black': base['black'], 'body': slab(body, hb, t), 'light': slab(light, hb, t)}
     slabs = {'black': sl['black'], 'body': [(body, hb, t)], 'light': [(light, hb, t)]}
-    return parts, slabs
+    slabs = backtext.apply(slabs, M, white_key='light')       # letters in the white (lights) filament
+    return parts_from(slabs), slabs
 
 
 def build_classic3(M, t=T, floor=CL_FLOOR, gd=CL_GROOVE, ch=CL_CHAMFER, lh=CL_LIGHT):
     """Custom body colour, classic style: body-colour body with full-depth black inlays; the white lights are the top
     1.2 mm of their inlay (black below)."""
-    parts2, sl2 = build_classic(M, t, floor, gd, ch)
+    parts2, sl2 = _classic(M, t, floor, gd, ch)
     hole = M['hole']
     Wb, Wl = M['white_body'].difference(hole), M['white_light'].difference(hole)
     Gw = M['grooves_white']
     body_sl = [(Wb.difference(Gw), 0, t), (Wb.intersection(Gw), 0, t - gd)]
     light_sl = [(Wl.difference(Gw), t - lh, t), (Wl.intersection(Gw), t - lh, t - gd)]
     black_sl = list(sl2['black']) + [(Wl, 0, t - lh)]
-    parts = {'black': union([slab(g, a, b) for g, a, b in black_sl]),
-             'body': union([slab(g, a, b) for g, a, b in body_sl]),
-             'light': union([slab(g, a, b) for g, a, b in light_sl])}
-    return parts, {'black': black_sl, 'body': body_sl, 'light': light_sl}
+    slabs = backtext.apply({'black': black_sl, 'body': body_sl, 'light': light_sl}, M, white_key='light')
+    return parts_from(slabs), slabs
