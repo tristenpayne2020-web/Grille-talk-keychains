@@ -1,7 +1,7 @@
 """Render every product in Blender (Cycles, GPU) with the photoreal studio look: replaces make_images.mjs.
 Writes the same files to site/build/renders_png/ (front and angled per body color, back, headlight masks, and the
 G80's hero / detail-tour views), so make_media.py and everything after it is unchanged.
-usage: python site/tools/make_images_blender.py [id,id,...] [--samples=160] [--exposure=0.26] [--white-only]
+usage: python site/tools/make_images_blender.py [id,id,...] [--samples=160] [--exposure=0.26] [--white-only] [--colors=matte-black,...]
 """
 import json, os, subprocess, sys, tempfile, time
 
@@ -39,6 +39,9 @@ def main():
     colors = [dict(c, slug=slug(c['name'])) for c in L['colors']]
     if '--white-only' in args:
         colors = colors[:1]
+    pick = next((a.split('=', 1)[1].split(',') for a in args if a.startswith('--colors=')), None)
+    if pick:                       # only these body colours (front, angle, on-white); no masks, backs or extras
+        colors = [c for c in colors if c['slug'] in pick or c['name'] in pick]
     os.makedirs(OUT, exist_ok=True)
     for it in items:
         cid = it['id']
@@ -49,12 +52,14 @@ def main():
             dict(angle=0.0, chain=False, colors=colors, out=o('{slug}__front')),
             dict(angle=-0.45, chain=True, colors=colors, out=o('{slug}__angle')),
         ]
-        if it.get('headlights', True):     # headlight masks only where the lights are a separate colour
+        if pick:
+            pass
+        elif it.get('headlights', True):     # headlight masks only where the lights are a separate colour
             views += [dict(angle=0.0, chain=False, mask=True, out=o('lights__front')),
                       dict(angle=-0.45, chain=True, mask=True, out=o('lights__angle'))]
-        if not it.get('wall'):
+        if not it.get('wall') and not pick:
             views.append(dict(angle=3.14159265 - 0.32, chain=True, colors=colors[:1], out=o('white__back')))
-        if cid == 'g80_m3':
+        if cid == 'g80_m3' and not pick:
             views += [dict(angle=0.0, chain=True, colors=colors[:1], out=o('white__front-chain')),
                       dict(angle=3.14159265, chain=True, colors=colors[:1], out=o('white__back-straight'))]
         job = dict(id=cid, glb=os.path.join(ROOT, 'site', 'build', 'glb_raw', f'{cid}.glb'), views=views, samples=samples, size=size, exposure=exposure)

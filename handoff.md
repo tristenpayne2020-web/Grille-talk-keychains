@@ -107,13 +107,16 @@ The original 28:
   - Scroll wheels stay black.
   - Outputs single and 12-up plate 3MFs to `Downloads\GrilleTalk_Extras`.
 - **G80 wall key holder, snake-eye, custom colour:** `kc/wall/build_wall_snakeeye.py`.
-- **Five more wall key holders (1-swap):** Charger SRT Hellcat, GR Supra MK5, Mustang Shelby GT500, Camaro ZL1,
-  Corvette C8 (`kc/wall/build_wall.py`, files in `Downloads\GrilleTalk_Extras\Wall_Key_Holders`). On the site
-  (2026-10-05) as `*_wall` items in `launch.json`: body colour only (face, lights and hooks print in one colour, so
-  no headlight option), same wall prices as the G80 holder ($11.99 / $12.99 / $13.99). Weights are estimates (150 g):
-  weigh one. Descriptions say keys only (no coats or bags) and the heat/sunlight care note (all products).
   - 3 filaments: black back plate, hood in the body colour (user request), white lights.
   - Roundel removed and filled flush.
+- **Five more wall key holders (1-swap and custom colour):** Charger SRT Hellcat, GR Supra MK5, Mustang Shelby GT500, Camaro ZL1,
+  Corvette C8 (`kc/wall/build_wall.py`, files in `Downloads\GrilleTalk_Extras\Wall_Key_Holders`). On the site
+  (2026-10-05) as `*_wall` items in `launch.json`. The site's 3D models and renders come from the custom-colour
+  print (`*_custom_colour_black/body/light.stl`: black plate and details, body colour face and hooks, white lights),
+  so they offer every body colour and the headlight option, like the G80 holder; prices $11.99 / $12.99 / $13.99.
+  White orders can print the 1-swap file (1 filament change, 3h45m-4h35m) instead of the custom-colour one
+  (22 changes, 4h50m-5h42m). Weights are estimates (150 g): weigh one.
+  Descriptions say keys only (no coats or bags) and the heat/sunlight care note (all products).
 
 ### Other deliverables
 

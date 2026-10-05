@@ -44,7 +44,7 @@ def wall_body(c):
             f"<ul><li>About {w} x {h} mm, {d} mm deep at the hooks</li><li>Four key hooks</li>"
             + ("<li>Printed in your body color, with black details and white lights (or a custom headlight color)</li>"
                if c.get('headlights', True) else "<li>Printed in your body color (face, lights and hooks), with black details</li>") +
-            "<li>Logo-free design</li></ul>"
+            "<li>Printed in high-quality PLA filament</li><li>Logo-free design</li></ul>"
             "<p><strong>Mounting:</strong> we recommend strong double-sided mounting tape on the back. It sits flat, "
             "looks cleanest and leaves no screws on show. If you would rather screw or nail it up, there is a countersunk "
             "hole on each side.</p>"
@@ -61,6 +61,7 @@ def body(c):
             f"{lights}grille texture and intakes are printed in relief, in two colours.</p>"
             "<ul><li>80.5 mm wide, 3 mm thick</li><li>Two-colour 3D print</li>"
             "<li>Carbon-fibre back with GRILLE TALK lettering</li><li>Custom headlight color available</li>"
+            "<li>Printed in high-quality PLA filament</li>"
             "<li>Split ring and short chain included</li><li>Logo-free design</li></ul>"
             + CARE +
             "<p>Grille Talk is an independent maker. Not affiliated with, endorsed by or sponsored by any vehicle "

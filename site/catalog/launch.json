@@ -37,6 +37,13 @@
       "rough": 0.8
     },
     {
+      "name": "Matte Black",
+      "tier": "Custom color",
+      "hex": "#1c1c1f",
+      "metal": 0.0,
+      "rough": 0.78
+    },
+    {
       "name": "Metallic Silver",
       "tier": "Metallic",
       "hex": "#c4c7cc",
@@ -457,13 +464,13 @@
           "key holder",
           "key rack"
         ],
-        "source": "kc/wall/out/Dodge_Charger_SRT_Hellcat/Dodge_Charger_SRT_Hellcat_wall_key_holder_{part}.stl",
+        "source": "kc/wall/out/Dodge_Charger_SRT_Hellcat/Dodge_Charger_SRT_Hellcat_wall_key_holder_custom_colour_{part}.stl",
         "parts": [
           "black",
-          "white"
+          "body",
+          "light"
         ],
-        "headlights": false,
-        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "_note": "3D model and renders from the custom-colour print (black / body / light); White orders can print the 1-swap file",
         "size_mm": [
           241,
           106,
@@ -485,13 +492,13 @@
           "key holder",
           "key rack"
         ],
-        "source": "kc/wall/out/Toyota_GR_Supra_MK5/Toyota_GR_Supra_MK5_wall_key_holder_{part}.stl",
+        "source": "kc/wall/out/Toyota_GR_Supra_MK5/Toyota_GR_Supra_MK5_wall_key_holder_custom_colour_{part}.stl",
         "parts": [
           "black",
-          "white"
+          "body",
+          "light"
         ],
-        "headlights": false,
-        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "_note": "3D model and renders from the custom-colour print (black / body / light); White orders can print the 1-swap file",
         "size_mm": [
           241,
           112,
@@ -513,13 +520,13 @@
           "key holder",
           "key rack"
         ],
-        "source": "kc/wall/out/Mustang_Shelby_GT500/Mustang_Shelby_GT500_wall_key_holder_{part}.stl",
+        "source": "kc/wall/out/Mustang_Shelby_GT500/Mustang_Shelby_GT500_wall_key_holder_custom_colour_{part}.stl",
         "parts": [
           "black",
-          "white"
+          "body",
+          "light"
         ],
-        "headlights": false,
-        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "_note": "3D model and renders from the custom-colour print (black / body / light); White orders can print the 1-swap file",
         "size_mm": [
           241,
           106,
@@ -539,13 +546,13 @@
           "key holder",
           "key rack"
         ],
-        "source": "kc/wall/out/Chevrolet_Camaro_ZL1/Chevrolet_Camaro_ZL1_wall_key_holder_{part}.stl",
+        "source": "kc/wall/out/Chevrolet_Camaro_ZL1/Chevrolet_Camaro_ZL1_wall_key_holder_custom_colour_{part}.stl",
         "parts": [
           "black",
-          "white"
+          "body",
+          "light"
         ],
-        "headlights": false,
-        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "_note": "3D model and renders from the custom-colour print (black / body / light); White orders can print the 1-swap file",
         "size_mm": [
           241,
           120,
@@ -567,13 +574,13 @@
           "key holder",
           "key rack"
         ],
-        "source": "kc/wall/out/Corvette_C8/Corvette_C8_wall_key_holder_{part}.stl",
+        "source": "kc/wall/out/Corvette_C8/Corvette_C8_wall_key_holder_custom_colour_{part}.stl",
         "parts": [
           "black",
-          "white"
+          "body",
+          "light"
         ],
-        "headlights": false,
-        "_note": "1-swap print: face, lights and hooks are one colour, so no headlight option",
+        "_note": "3D model and renders from the custom-colour print (black / body / light); White orders can print the 1-swap file",
         "size_mm": [
           241,
           87,

@@ -279,8 +279,11 @@ def build_wall(item):
     src = os.path.join(ROOT, item['source'])
     names = item.get('parts', ['black', 'body', 'white'])
     parts = {k: trimesh.load(src.format(part=k)) for k in names}
-    if 'body' not in parts:
+    if 'body' not in parts:                      # 1-swap: the white cap is the face (and its lights and hooks)
         parts = {'black': parts['black'], 'body': parts['white']}
+    for k in ('light', 'lights'):                # custom-colour builds name the light islands 'light'
+        if k in parts:
+            parts['white'] = parts.pop(k)
     allm = trimesh.util.concatenate(list(parts.values()))
     c = allm.bounds.mean(0)
     for m in parts.values():
