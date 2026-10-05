@@ -1,0 +1,64 @@
+{%- comment -%}
+  From photo to keychain: step panels scroll past a pinned visual that changes with each step, using the G80's real
+  design layers (traced outline, flat two-colour design, render, render on its chain). Without JS every visual is in
+  its step.
+{%- endcomment -%}
+<section class="section process" id="process" data-process data-chapter="{{ 'chapters.process' | t }}" aria-labelledby="process-title">
+  <div class="page-width">
+    <div class="process__head">
+      <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 class="h-2" id="process-title">{{ section.settings.heading | escape }}</h2>
+    </div>
+    <div class="process__grid">
+      <div class="process__visual" aria-hidden="true">
+        <div class="process__frame">
+          <img class="process__img is-active" data-process-img="0" src="{{ 'process-trace.svg' | asset_url }}" alt="" width="900" height="400" loading="lazy">
+          <img class="process__img" data-process-img="1" src="{{ 'process-flat.svg' | asset_url }}" alt="" width="900" height="400" loading="lazy">
+          <img class="process__img process__img--render" data-process-img="2" src="{{ 'process-render.webp' | asset_url }}" alt="" width="1400" height="603" loading="lazy">
+          <img class="process__img process__img--render" data-process-img="3" src="{{ 'hero-g80.webp' | asset_url }}" alt="" width="1600" height="1135" loading="lazy">
+          <span class="process__scan" aria-hidden="true"></span>
+        </div>
+        <p class="process__caption t-mono" data-process-caption>{{ section.blocks.first.settings.tag | escape }}</p>
+      </div>
+      <ol class="process__steps" role="list">
+        {%- for block in section.blocks -%}
+          <li class="process__step" data-process-step="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <p class="process__label t-mono">{{ 'chapters.step' | t }} {{ forloop.index | prepend: '0' | slice: -2, 2 }} <span aria-hidden="true">/</span> {{ block.settings.tag | escape }}</p>
+            <h3 class="process__title">{{ block.settings.title | escape }}</h3>
+            <p class="process__text">{{ block.settings.text | escape }}</p>
+            {%- if block.settings.chips != blank -%}
+              <ul class="process__chips" role="list">
+                {%- assign chips = block.settings.chips | split: ',' -%}
+                {%- for c in chips -%}<li class="chip-mono t-mono">{{ c | strip | escape }}</li>{%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Process",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it's made" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From a photo of the car to the keychain in your hand." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "chips", "label": "Chips (comma separated)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Process" }]
+}
+{% endschema %}

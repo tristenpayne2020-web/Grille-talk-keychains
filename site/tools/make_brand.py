@@ -5,6 +5,7 @@ theme/assets/logo-flat.svg                flat trace of the full logo (header, f
 theme/assets/logo-mark.svg                flat trace of the speech-bubble grille mark
 theme/assets/favicon.svg, favicon-32.png, apple-touch-icon.png
 theme/assets/og-image.jpg                 1200x630 share image: metal logo + a logo-free G80 render
+theme/assets/loader-art-{1200,2000}.webp  the supplied hero concept artwork for the first-visit loader
 The flat traces threshold the logo's alpha, which isolates the letter and mark shapes from the glow, then follow
 the contours with OpenCV. They are traces of the supplied artwork, not a new identity.
 usage: python site/tools/make_brand.py   (after make_images.mjs, for the OG image)
@@ -98,6 +99,12 @@ def main():
     lg.thumbnail((620, 140), Image.LANCZOS)
     og.paste(lg, ((1200 - lg.width) // 2, 50), lg)
     og.save(os.path.join(ASSETS, 'og-image.jpg'), quality=86)
+
+    # first-visit loader: the owner's concept artwork, exactly as supplied, at two sizes
+    art = Image.open(os.path.join(ROOT, 'brand', 'concept', 'hero_halftone_g80.webp')).convert('RGB')
+    for w, q in ((1000, 70), (1200, 80), (2000, 80)):
+        art.resize((w, round(art.height * w / art.width)), Image.LANCZOS).save(
+            os.path.join(ASSETS, f'loader-art-{w}.webp'), quality=q, method=6)
     print('brand assets written to', ASSETS)
 
 

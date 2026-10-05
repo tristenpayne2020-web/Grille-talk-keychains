@@ -1,7 +1,7 @@
 {%- comment -%}
   FAQ. A question only shows once its answer is filled in, so empty blocks can wait in the editor for the owner.
 {%- endcomment -%}
-<section class="section faq{% if section.settings.heading == blank %} section--tight{% endif %}" id="faq"{% if section.settings.heading != blank %} aria-labelledby="faq-title-{{ section.id }}"{% else %} aria-label="{{ 'general.faq' | t }}"{% endif %}>
+<section data-chapter="{{ 'chapters.faq' | t }}" class="section faq{% if section.settings.heading == blank %} section--tight{% endif %}" id="faq"{% if section.settings.heading != blank %} aria-labelledby="faq-title-{{ section.id }}"{% else %} aria-label="{{ 'general.faq' | t }}"{% endif %}>
   <div class="page-width{% if section.settings.heading != blank %} faq__grid{% endif %}">
     {%- if section.settings.heading != blank -%}
     <div data-reveal>

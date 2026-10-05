@@ -41,7 +41,10 @@ liquid.registerFilter('image_url', (img, ...args) => {
   if (!img) return '';
   const o = Object.fromEntries(args.filter(Array.isArray));
   const u = img.url ? img.url(o.width) : String(img);
-  return { __img: img, url: u, toString: () => u, width: o.width };
+  // a real string (so | json and string filters behave like Shopify's) that still remembers its image for image_tag
+  const s = new String(u);
+  s.__img = img;
+  return s;
 });
 liquid.registerFilter('image_tag', (u, ...args) => {
   const o = Object.fromEntries(args.filter(Array.isArray));

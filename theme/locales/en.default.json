@@ -8,7 +8,8 @@
     "policies": "Policies",
     "page": "Page {{ page }}",
     "skip_intro": "Skip",
-    "faq": "Frequently asked questions"
+    "faq": "Frequently asked questions",
+    "loading": "Loading Grille Talk"
   },
   "search": {
     "title": "Search",
@@ -153,5 +154,14 @@
   },
   "blogs": {
     "read": "Read"
+  },
+  "chapters": {
+    "hero": "Grille Talk",
+    "range": "The range",
+    "details": "The details",
+    "process": "How it's made",
+    "faq": "FAQ",
+    "newsletter": "New cars",
+    "step": "Step"
   }
 }

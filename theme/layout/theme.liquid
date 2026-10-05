@@ -17,14 +17,31 @@
 
     {% render 'meta-tags' %}
 
-    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+    {%- capture srcset_loader -%}{{ 'loader-art-1000.webp' | asset_url }} 1000w, {{ 'loader-art-1200.webp' | asset_url }} 1200w, {{ 'loader-art-2000.webp' | asset_url }} 2000w{%- endcapture -%}
+    <script>
+      document.documentElement.classList.replace('no-js', 'js');
+      {%- if template.name == 'index' %}
+      try {
+        if (!sessionStorage.getItem('gt-intro')) {
+          sessionStorage.setItem('gt-intro', '1');
+          document.documentElement.classList.add('gt-loading');
+          var pl = document.createElement('link');
+          pl.rel = 'preload'; pl.as = 'image'; pl.fetchPriority = 'high';
+          pl.imageSrcset = {{ srcset_loader | json }};
+          pl.imageSizes = '(max-aspect-ratio: 1/1) 135vw, 100vw';
+          document.head.append(pl);
+        }
+      } catch (e) {}
+      {%- endif %}
+    </script>
     <script type="importmap">
       {
         "imports": {
           "vendor-three": "{{ 'vendor-three.js' | asset_url }}",
           "vendor-gsap": "{{ 'vendor-gsap.js' | asset_url }}",
           "keychain3d": "{{ 'keychain3d.js' | asset_url }}",
-          "when3d": "{{ 'when3d.js' | asset_url }}"
+          "when3d": "{{ 'when3d.js' | asset_url }}",
+          "chapters": "{{ 'chapters.js' | asset_url }}"
         }
       }
     </script>
@@ -50,12 +67,20 @@
     </script>
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'global.js' | asset_url }}" type="module"></script>
+    <script src="{{ 'chapters.js' | asset_url }}" type="module"></script>
 
     {{ content_for_header }}
   </head>
 
   <body class="template-{{ template.name }}">
     <a class="skip-link" href="#main">{{ 'general.skip_to_content' | t }}</a>
+    {%- if template.name == 'index' -%}{% render 'loader' %}{%- endif -%}
+    <div class="hud" aria-hidden="true">
+      <span class="hud__corner hud__corner--tl"></span><span class="hud__corner hud__corner--tr"></span>
+      <span class="hud__corner hud__corner--bl"></span><span class="hud__corner hud__corner--br"></span>
+      <span class="hud__progress" data-hud-progress></span>
+      <span class="hud__chapter t-mono" data-hud-chapter></span>
+    </div>
     {% sections 'header-group' %}
 
     <main id="main" tabindex="-1">

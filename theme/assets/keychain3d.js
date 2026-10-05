@@ -71,6 +71,7 @@ export class KeychainStage {
     this.offsetX = 0; this.offsetV = 0;
     this._last = 0;
     this._tick = this._tick.bind(this);
+    this._tmp = new Vector3(); this._tmp2 = new Vector3();
 
     this.ro = new ResizeObserver(() => this.resize());
     this.ro.observe(container);
@@ -150,6 +151,14 @@ export class KeychainStage {
       const q = new Quaternion().setFromUnitVectors(UP, dir).invert();
       return q.multiply(n.quaternion.clone());
     });
+    // link_0 is the jump ring threaded through the hole: it can only swing about the hole axis, so it is solved in
+    // the keychain's own frame and keeps its plane on that axis however the keychain turns
+    this.kcQ = new Quaternion();
+    this.kc.getWorldQuaternion(this.kcQ);
+    const j0 = this.kc.worldToLocal(pts[0].clone()), j1 = this.kc.worldToLocal(pts[1].clone());
+    const dirL = j0.sub(j1).normalize();
+    this.jumpRestQ = new Quaternion().setFromUnitVectors(UP, dirL).invert()
+      .multiply(this.kcQ.clone().invert().multiply(nodes[0].quaternion.clone()));
   }
 
   nudge(vx = 0, vy = 0) {
@@ -265,12 +274,19 @@ export class KeychainStage {
           else { a.x += dx * diff * 0.5; a.y += dy * diff * 0.5; a.z += dz * diff * 0.5; b.x -= dx * diff * 0.5; b.y -= dy * diff * 0.5; b.z -= dz * diff * 0.5; }
         }
         p[0].copy(this.hole);
-        // keep the chain from passing through the plate's front face
-        for (let i = 1; i < n; i++) if (p[i].z < -0.004) p[i].z = -0.004;
+        // the jump ring's centre stays in the plate's plane (it is threaded through the hole)
+        const l1 = this.kc.worldToLocal(this._tmp.copy(p[1]));
+        l1.z = 0;
+        p[1].copy(this.kc.localToWorld(l1));
       }
     }
     const dir = new Vector3(), q = new Quaternion();
-    for (let i = 0; i < this.links.length; i++) {
+    this.kc.getWorldQuaternion(this.kcQ);
+    const a0 = this.kc.worldToLocal(this._tmp.copy(p[0])), a1 = this.kc.worldToLocal(this._tmp2.copy(p[1]));
+    dir.copy(a0).sub(a1).normalize();
+    this.links[0].position.copy(p[1]);
+    this.links[0].quaternion.copy(this.kcQ).multiply(q.setFromUnitVectors(UP, dir)).multiply(this.jumpRestQ);
+    for (let i = 1; i < this.links.length; i++) {
       const node = this.links[i];
       node.position.copy(p[i + 1]);
       dir.copy(p[i]).sub(p[i + 1]).normalize();

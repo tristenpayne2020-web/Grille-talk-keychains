@@ -1,0 +1,30 @@
+{%- comment -%}
+  First-visit loader (home page, once per session). Shows the owner's Grille Talk artwork: it starts dark and fills
+  with light from the bottom up as the page's real assets load, with a percentage counter, then dissolves into the hero.
+  The markup sits in a <template> and is stamped out only when the inline script in theme.liquid has set
+  html.gt-loading, so repeat visits and visitors without JS never download the artwork.
+{%- endcomment -%}
+<template id="loader-tpl">
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__art">
+    <img class="loader__img loader__img--dim" src="{{ 'loader-art-1000.webp' | asset_url }}" srcset="{{ 'loader-art-1000.webp' | asset_url }} 1000w, {{ 'loader-art-1200.webp' | asset_url }} 1200w, {{ 'loader-art-2000.webp' | asset_url }} 2000w" sizes="(max-aspect-ratio: 1/1) 135vw, 100vw" width="2000" height="1125" alt="" fetchpriority="high">
+    <img class="loader__img loader__img--lit" src="{{ 'loader-art-1000.webp' | asset_url }}" srcset="{{ 'loader-art-1000.webp' | asset_url }} 1000w, {{ 'loader-art-1200.webp' | asset_url }} 1200w, {{ 'loader-art-2000.webp' | asset_url }} 2000w" sizes="(max-aspect-ratio: 1/1) 135vw, 100vw" width="2000" height="1125" alt="">
+  </div>
+  <div class="loader__bar"><span data-loader-bar></span></div>
+  <p class="loader__count"><span data-loader-count>0</span>%</p>
+</div>
+<button type="button" class="loader__skip btn btn--ghost" data-loader-skip>{% render 'icon', name: 'skip', class: 'icon--sm' %}{{ 'general.skip_intro' | t }}</button>
+<p class="visually-hidden" role="status" data-loader-status>{{ 'general.loading' | t }}</p>
+</template>
+<script>
+  (function () {
+    if (!document.documentElement.classList.contains('gt-loading')) return;
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';   // the visit starts at the top, behind the loader
+    window.scrollTo(0, 0);
+    document.body.prepend(document.getElementById('loader-tpl').content.cloneNode(true));
+    var s = document.createElement('script');
+    s.type = 'module';
+    s.src = {{ 'loader.js' | asset_url | json }};
+    document.head.append(s);
+  })();
+</script>

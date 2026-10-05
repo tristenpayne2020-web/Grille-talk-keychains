@@ -1,0 +1,74 @@
+{%- comment -%}
+  Pinned detail tour: the camera pushes into one keychain and a spotlight moves between the details owners notice,
+  with a chapter rail. Spotlight anchors come from the real G80 design map (snippets/detail-anchors.liquid).
+  Without JS or with reduced motion it is a plain list next to the full image.
+{%- endcomment -%}
+{%- capture anchors_json -%}{% render 'detail-anchors' %}{%- endcapture -%}
+<section class="tour" id="details" data-tour data-chapter="{{ 'chapters.details' | t }}" aria-labelledby="tour-title">
+  <div class="tour__sticky">
+    <div class="tour__head page-width">
+      <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 class="h-2" id="tour-title">{{ section.settings.heading | escape }}</h2>
+    </div>
+    <div class="tour__stage" data-tour-stage>
+      <div class="tour__frame" data-tour-frame>
+        <img src="{{ 'detail-g80.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1934" height="1277" loading="lazy" decoding="async">
+      </div>
+      <div class="tour__spot" data-tour-spot aria-hidden="true"></div>
+      <span class="tour__reticle" data-tour-reticle aria-hidden="true"></span>
+    </div>
+    <ol class="tour__list page-width" role="list">
+      {%- for block in section.blocks -%}
+        <li class="tour__item{% if forloop.first %} is-active{% endif %}" data-tour-item data-anchor="{{ block.settings.anchor }}" data-zoom="{{ block.settings.zoom }}" {{ block.shopify_attributes }}>
+          <p class="tour__num t-mono">{{ forloop.index | prepend: '0' | slice: -2, 2 }} / {{ section.blocks.size | prepend: '0' | slice: -2, 2 }}</p>
+          <h3 class="tour__title">{{ block.settings.title | escape }}</h3>
+          <p class="tour__text">{{ block.settings.text | escape }}</p>
+        </li>
+      {%- endfor -%}
+    </ol>
+    <nav class="tour__rail" aria-label="{{ section.settings.heading | escape }}">
+      {%- for block in section.blocks -%}
+        <a href="#details" class="tour__rail-btn{% if forloop.first %} is-active{% endif %}" data-tour-go="{{ forloop.index0 }}" aria-label="{{ block.settings.title | escape }}">
+          {%- render 'tour-icon', name: block.settings.anchor -%}
+        </a>
+      {%- endfor -%}
+    </nav>
+  </div>
+  <script type="application/json" data-tour-anchors>{{ anchors_json | strip }}</script>
+</section>
+
+{% schema %}
+{
+  "name": "Detail tour",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Read it from the front" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The details you'd point out." },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Grille Talk keychain inspired by the BMW M3 (G80), white body, with its jump ring, chain and split ring" }
+  ],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "Detail",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "anchor",
+          "label": "Spotlight on",
+          "options": [
+            { "value": "lights", "label": "Light signature" },
+            { "value": "grille", "label": "Grille" },
+            { "value": "intakes", "label": "Intakes" },
+            { "value": "tab", "label": "Tab and chain" }
+          ],
+          "default": "lights"
+        },
+        { "type": "range", "id": "zoom", "label": "Zoom", "min": 10, "max": 30, "step": 1, "default": 18, "info": "x0.1" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Detail tour" }]
+}
+{% endschema %}

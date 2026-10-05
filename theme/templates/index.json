@@ -1,36 +1,238 @@
 {
   "sections": {
-    "hero": { "type": "hero-intro", "settings": { "product": "bmw-m3-g80-keychain" } },
-    "range": { "type": "range-viewer", "settings": {} },
-    "benefits": {
-      "type": "benefits",
+    "hero": {
+      "type": "hero-intro",
       "blocks": {
-        "b1": { "type": "benefit", "settings": { "title": "The details you'd point out", "text": "Light signature, grille texture, intakes and body lines. The parts you notice in a parking lot are the parts we keep." } },
-        "b2": { "type": "benefit", "settings": { "title": "Two colours in one print", "text": "White body over black details, printed together. Pick a matte or metallic body color and the lights stay bright white." } },
-        "b3": { "type": "benefit", "settings": { "title": "Ready for your keys", "text": "A keyring tab on the left, plus a split ring and a short chain in the box." } },
-        "b4": { "type": "benefit", "settings": { "title": "No badges, on purpose", "text": "Every design is logo-free. You know what it is. Everyone else will too." } },
-        "b5": { "type": "benefit", "settings": { "title": "Started with one M3", "text": "The line began as a keychain of our own G80, traced from a photo. Every car since follows the same rules." } }
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "80.5 mm",
+            "label": "Wide"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "3 mm",
+            "label": "Thick"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "2 colours",
+            "label": "One print"
+          }
+        },
+        "s4": {
+          "type": "stat",
+          "settings": {
+            "value": "23 cars",
+            "label": "40+ coming"
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3", "b4", "b5"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "product": "bmw-m3-g80-keychain"
+      }
+    },
+    "range": {
+      "type": "range-viewer",
       "settings": {}
     },
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "question": "How big is it?", "answer": "<p>80.5 mm wide and 3 mm thick, just under the width of a credit card. The height depends on the car.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "What comes with it?", "answer": "<p>The keychain, a split ring and a short chain.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "Why is there no badge on the front?", "answer": "<p>Logos and emblems belong to the car makers, so every Grille Talk design is logo-free. The shape, the lights and the grille do the talking.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "Which body colors can I pick?", "answer": "<p>White, matte red, matte yellow, matte gray, matte blue and metallic silver. The lights stay white and the details stay black whichever you pick.</p>" } },
-        "q5": { "type": "question", "settings": { "question": "My car isn't here. Can you make it?", "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. 40+ more cars are already in the works.</p>" } },
-        "q6": { "type": "question", "settings": { "question": "How long does it take to make?", "answer": "" } },
-        "q7": { "type": "question", "settings": { "question": "How much is shipping, and how fast?", "answer": "" } },
-        "q8": { "type": "question", "settings": { "question": "Can I return it?", "answer": "" } },
-        "q9": { "type": "question", "settings": { "question": "Do you do orders for car clubs?", "answer": "" } }
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How big is it?",
+            "answer": "<p>80.5 mm wide and 3 mm thick, just under the width of a credit card. The height depends on the car.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What comes with it?",
+            "answer": "<p>The keychain, a split ring and a short chain.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Why is there no badge on the front?",
+            "answer": "<p>Logos and emblems belong to the car makers, so every Grille Talk design is logo-free. The shape, the lights and the grille do the talking.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Which body colors can I pick?",
+            "answer": "<p>White, matte red, matte yellow, matte gray, matte blue and metallic silver. The lights stay white and the details stay black whichever you pick.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "My car isn't here. Can you make it?",
+            "answer": "<p>Send it through the <a href=\"/pages/request-a-car\">request form</a>. 40+ more cars are already in the works.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "How long does it take to make?",
+            "answer": ""
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "How much is shipping, and how fast?",
+            "answer": ""
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return it?",
+            "answer": ""
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "Do you do orders for car clubs?",
+            "answer": ""
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
       "settings": {}
     },
-    "newsletter": { "type": "newsletter", "settings": {} }
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    },
+    "details": {
+      "type": "details-tour",
+      "blocks": {
+        "d1": {
+          "type": "detail",
+          "settings": {
+            "anchor": "lights",
+            "zoom": 19,
+            "title": "The light signature",
+            "text": "Traced from the real car and printed in white, so the DRLs read like they are switched on."
+          }
+        },
+        "d2": {
+          "type": "detail",
+          "settings": {
+            "anchor": "grille",
+            "zoom": 14,
+            "title": "Grille texture",
+            "text": "Slats and mesh are raised in relief, not printed flat. Catch it in the light and the grille has depth."
+          }
+        },
+        "d3": {
+          "type": "detail",
+          "settings": {
+            "anchor": "intakes",
+            "zoom": 16,
+            "title": "Intakes and body lines",
+            "text": "Engraved grooves around half a millimetre deep pick out the intakes and the lines across the bumper."
+          }
+        },
+        "d4": {
+          "type": "detail",
+          "settings": {
+            "anchor": "tab",
+            "zoom": 17,
+            "title": "Tab, ring and chain",
+            "text": "A keyring tab on the left with a 4.5 mm hole. A jump ring goes through it, then a short chain and a split ring."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "settings": {}
+    },
+    "process": {
+      "type": "process",
+      "blocks": {
+        "p1": {
+          "type": "step",
+          "settings": {
+            "tag": "Trace",
+            "title": "Start from the real car",
+            "text": "Every design begins as a straight-on photo of the car's front, cropped at the windshield and traced line by line.",
+            "chips": "Straight-on, Mirror-symmetric"
+          }
+        },
+        "p2": {
+          "type": "step",
+          "settings": {
+            "tag": "Simplify",
+            "title": "Keep what owners notice",
+            "text": "Light signature, grille, intakes, body lines. Everything else goes, badges included. The shape does the talking.",
+            "chips": "0.5 mm minimum detail, Logo-free"
+          }
+        },
+        "p3": {
+          "type": "step",
+          "settings": {
+            "tag": "Print",
+            "title": "Two colours, one print",
+            "text": "A black base under a white or colored cap, printed together. The lights stay white whatever body color you pick.",
+            "chips": "80.5 mm wide, 3 mm thick"
+          }
+        },
+        "p4": {
+          "type": "step",
+          "settings": {
+            "tag": "Ring",
+            "title": "Ready for your keys",
+            "text": "A jump ring through the tab, a short chain and a split ring. Clip it on and it is yours.",
+            "chips": "Split ring, Short chain"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "settings": {}
+    }
   },
-  "order": ["hero", "range", "benefits", "faq", "newsletter"]
+  "order": [
+    "hero",
+    "range",
+    "details",
+    "process",
+    "faq",
+    "newsletter"
+  ]
 }

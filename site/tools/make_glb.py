@@ -4,7 +4,8 @@ Scene (glTF units are metres, +Y up, face toward +Z):
   keychain            node, origin at the keyring hole centre (the pivot the chain hangs from)
     body              white cap mesh, material "body" (recoloured per variant on the site)
     details           black base mesh, material "details"
-  link_0 .. link_4    short chain hanging down from the hole, separate nodes so the site can drive them
+  link_0              jump ring threaded through the keyring hole (plane holds the hole axis)
+  link_1 .. link_4    short chain hanging from the jump ring, separate nodes so the site can drive them
   ring                split ring at the end of the chain
     lights            white light signatures (material "lights"), never recoloured
 
@@ -33,7 +34,9 @@ WIRE = 0.55          # link wire radius
 LINK_R = 1.55        # radius of the link's end arcs (centre line)
 LINK_S = 3.2         # straight part of the link (centre line)
 PITCH = 2 * LINK_R + LINK_S - 2 * WIRE - 0.35   # centre-to-centre distance of interlocked links
-N_LINKS = 5
+JUMP_R = 3.4         # jump ring centre-line radius: threads the 4.5 mm hole and wraps the 2 mm wall under it
+JUMP_WIRE = 0.6
+N_LINKS = 4          # chain links below the jump ring (link_1..link_4; link_0 is the jump ring)
 RING_R = 8.0         # split ring centre-line radius (16 mm ring keeps the hanging length close to the body height)
 RING_WIRE = 0.65
 
@@ -75,6 +78,13 @@ def sweep(P, wire, n_tube):
     m = trimesh.Trimesh(np.array(V), np.array(F), process=True)
     m.fix_normals()
     return m
+
+
+def jump_ring():
+    """Closed round ring, plane XY. Rotated into the YZ plane it passes through the keyring hole."""
+    a = np.linspace(0, 2 * np.pi, 96, endpoint=False)
+    P = np.stack([JUMP_R * np.cos(a), JUMP_R * np.sin(a), np.zeros_like(a)], 1)
+    return sweep(P, JUMP_WIRE, 12)
 
 
 def split_ring():
@@ -142,27 +152,38 @@ def build(car_id):
         lights = shaded(trimesh.util.concatenate(light_parts), mat('lights', (0.97, 0.97, 0.96), 0.0, 0.5))
         scene.add_geometry(lights, node_name='lights', geom_name='lights', parent_node_name='keychain')
 
+    rot_y = trimesh.transformations.rotation_matrix(np.pi / 2, [0, 1, 0])[:3, :3]   # XY plane -> YZ plane
+    # link_0: jump ring through the hole. Its plane holds the hole axis (Z), its top wire runs through the hole and
+    # the ring wraps the tab wall below it, so it reads as looped through, not floating in front of the plate.
+    jr = jump_ring(); jr.apply_scale(MM)
+    T = np.eye(4); T[:3, :3] = rot_y; T[:3, 3] = (0, -JUMP_R * MM, 0)
+    scene.add_geometry(shaded(jr, metal), node_name='link_0', geom_name='link_0', transform=T)
+    # chain links hang from the bottom of the jump ring, each turned 90 degrees to the one above
     link = stadium_tube(LINK_R, LINK_S, WIRE)
     link.apply_scale(MM)
-    link_len = (2 * LINK_R + LINK_S) * MM
-    # link_0 threads the hole: its top arc passes through the hole, then the chain falls straight down
-    y = -(link_len / 2 - (LINK_R - 0.2) * MM)
-    for i in range(N_LINKS):
+    half = (LINK_R + LINK_S / 2) * MM                     # centre to top of the link centre line
+    hook_top = (-2 * JUMP_R + JUMP_WIRE + WIRE + 0.15) * MM   # first link's top centre line sits just above the ring's bottom wire
+    y = hook_top - half
+    for i in range(1, N_LINKS + 1):
         T = np.eye(4)
-        if i % 2 == 1:   # every other link turned 90 degrees about Y
-            T[:3, :3] = trimesh.transformations.rotation_matrix(np.pi / 2, [0, 1, 0])[:3, :3]
+        if i % 2 == 0:
+            T[:3, :3] = rot_y
         T[:3, 3] = (0, y, 0)
         scene.add_geometry(shaded(link, metal), node_name=f'link_{i}', geom_name=f'link_{i}', transform=T)
         y -= PITCH * MM
+    last_y = y + PITCH * MM
     ring = split_ring(); ring.apply_scale(MM)
     T = np.eye(4)
-    T[:3, :3] = trimesh.transformations.rotation_matrix(np.pi / 2, [0, 1, 0])[:3, :3]   # ring plane at 90deg to last link
-    last_bottom = y + PITCH * MM - link_len / 2 + LINK_R * MM
-    T[:3, 3] = (0, last_bottom - (RING_R - 0.4) * MM, 0)
+    if N_LINKS % 2 == 0:                                   # split ring perpendicular to the last link
+        pass
+    else:
+        T[:3, :3] = rot_y
+    last_bottom = last_y - half
+    T[:3, 3] = (0, last_bottom + (WIRE + RING_WIRE + 0.15) * MM - RING_R * MM, 0)
     scene.add_geometry(shaded(ring, metal), node_name='ring', geom_name='ring', transform=T)
 
     os.makedirs(OUT, exist_ok=True)
-    extras = {'tab_center_mm': [tx, ty], 'body_width_mm': 80.5, 'pitch_m': PITCH * MM, 'links': N_LINKS}
+    extras = {'tab_center_mm': [tx, ty], 'body_width_mm': 80.5, 'pitch_m': PITCH * MM, 'links': N_LINKS + 1, 'jump_ring_mm': JUMP_R}
     scene.metadata['grille_talk'] = extras
     path = os.path.join(OUT, f'{car_id}.glb')
     scene.export(path)

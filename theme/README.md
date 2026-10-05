@@ -9,6 +9,20 @@ theme/   the Shopify theme (upload this folder)
 site/    tools that build the catalog, 3D models and images, plus a local preview (not uploaded)
 ```
 
+## What's on the home page
+
+1. **Loader** (first visit per session): your Grille Talk artwork fills with light from the bottom while a
+   counter tracks real loading, then lifts into the hero. Skippable; shorter with reduced motion; never without JS.
+2. **Hero**: the 3D G80 on a jump ring, chain and split ring that swing with physics (drag it), other designs
+   drifting at depth behind, and a stat row.
+3. **Range**: one keychain at a time in 3D, neighbours on a curved arc, arrows, swipe, keys, rail.
+4. **Detail tour** (pinned): the camera pushes into the G80 and a spotlight moves to the light signature, grille,
+   intakes and tab, with a chapter rail. Spotlight positions come from the real design file.
+5. **How it's made** (pinned): trace, simplify, print, ring, shown with the G80's real design layers.
+6. FAQ and newsletter. A HUD (corner ticks, scroll progress, chapter readout) frames the page on desktop.
+
+All copy is editable in the theme editor (section settings and blocks).
+
 ## Preview it on your PC (no store needed)
 
 From the repo root, once:
@@ -97,15 +111,15 @@ node tools/make_images.mjs
 cd ..
 python site/tools/make_media.py
 python site/tools/make_brand.py
-python site/tools/make_hero_assets.py
+python site/tools/make_hero_assets.py   # hero render, detail tour image and anchors, process visuals
 python site/tools/make_csv.py
 ```
 
 - `build_geometry.py` rebuilds each car with `KC_BADGE=0` (logo-free) into `site/build/geom/`.
   It never touches `kc/cars/*/out/` or any spec.
 - `make_glb.py` makes one GLB per car: materials `body`, `lights` (always white) and `details` (black),
-  plus a split ring and 5-link chain at the keyring hole as separate nodes.
-- `compress_glb.mjs` quantizes them to 340-740 KB with no decoder needed.
+  plus a jump ring threaded through the keyring hole, a 4-link chain and a split ring as separate nodes.
+- `compress_glb.mjs` quantizes them to about 350-780 KB with no decoder needed.
 - `make_images.mjs` renders every car in every color (needs Chrome installed).
 - Reference photos in `kc/cars/*/ref/` are never used.
 
