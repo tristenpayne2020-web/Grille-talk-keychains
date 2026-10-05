@@ -1,9 +1,12 @@
-{%- comment -%} One body color radio. Used by swatches.liquid. {%- endcomment -%}
+{%- comment -%}
+  One option value as a radio chip. Colour, metalness and roughness come from a theme setting line
+  "Name: #hex: metal: rough" (lines). usage: {% render 'swatch', oi: 1, cname: 'Matte Red', checked: selected, lines: swatch_lines %}
+{%- endcomment -%}
 {%- liquid
-  assign hex = '#888888'
+  assign hex = ''
   assign metal = '0'
   assign rough = '0.6'
-  for sl in swatch_lines
+  for sl in lines
     assign sp = sl | split: ':'
     assign sname = sp[0] | strip
     if sname == cname
@@ -13,19 +16,18 @@
     endif
   endfor
   assign metal_f = metal | times: 1.0
+  assign vid = cname | handleize
 -%}
-<span class="swatch{% if metal_f > 0.3 %} swatch--metal{% endif %}">
+<span class="swatch{% if metal_f > 0.3 %} swatch--metal{% endif %}{% if hex == blank %} swatch--plain{% endif %}">
   <input
     type="radio"
-    name="color-{{ v.product_id | default: 'p' }}"
-    id="swatch-{{ v.id }}"
+    name="option-{{ oi }}"
+    id="opt-{{ oi }}-{{ vid }}"
     value="{{ cname | escape }}"
-    data-variant="{{ v.id }}"
     data-hex="{{ hex }}"
     data-metal="{{ metal }}"
     data-rough="{{ rough }}"
-    {% if v.id == current.id %}checked{% endif %}
-    {% unless v.available %}disabled{% endunless %}
+    {% if cname == checked %}checked{% endif %}
   >
-  <label for="swatch-{{ v.id }}" style="--swatch: {{ hex }}"><span class="swatch__chip" aria-hidden="true"></span>{{ cname | escape }}</label>
+  <label for="opt-{{ oi }}-{{ vid }}"{% if hex != blank %} style="--swatch: {{ hex }}"{% endif %}>{% if hex != blank %}<span class="swatch__chip" aria-hidden="true"></span>{% endif %}{{ cname | escape }}</label>
 </span>

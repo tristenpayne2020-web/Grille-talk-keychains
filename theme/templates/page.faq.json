@@ -71,6 +71,20 @@
             "question": "Do you do orders for car clubs?",
             "answer": ""
           }
+        },
+        "q10": {
+          "type": "question",
+          "settings": {
+            "question": "What's on the back?",
+            "answer": "<p>A woven carbon-fibre finish from the textured build plate, with GRILLE TALK across it in white lettering.</p>"
+          }
+        },
+        "q11": {
+          "type": "question",
+          "settings": {
+            "question": "Can I change the headlight color?",
+            "answer": "<p>Yes. White is standard; red, yellow, gray, blue or silver headlights are a small extra, shown on each product page.</p>"
+          }
         }
       },
       "block_order": [
@@ -79,6 +93,8 @@
         "q3",
         "q4",
         "q5",
+        "q10",
+        "q11",
         "q6",
         "q7",
         "q8",

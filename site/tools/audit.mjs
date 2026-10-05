@@ -113,6 +113,12 @@ const reset = () => fetch(`${BASE}/cart.js`).then((r) => r.json()).then(async (c
   await p.waitForTimeout(1500);
   await shot(p, 'range');
   check('range 3D canvas on', await p.evaluate(() => document.querySelector('[data-range-canvas]').classList.contains('is-on')));
+  // the chain must sway, not spin: largest angle of the jump ring from hanging straight down while switching cars
+  await p.evaluate(() => { window.__maxSwing = 0; const st = (window.__gtStages || []).find((x) => x.container.matches('[data-range-canvas]')); window.__rangeStage = st; const tick = () => { if (st && st.p) { const a = st.p[0], b = st.p[1], c = st.p[st.p.length - 1]; const ang = Math.atan2(Math.abs(c.x - a.x), a.y - c.y) * 180 / Math.PI; window.__maxSwing = Math.max(window.__maxSwing, ang); } requestAnimationFrame(tick); }; tick(); });
+  for (let k = 0; k < 3; k++) { await p.click('[data-range-next]'); await p.waitForTimeout(700); }
+  await p.waitForTimeout(1200);
+  const swing = await p.evaluate(() => window.__maxSwing);
+  check('range chain sways gently on next (under 35 degrees)', swing < 35, `${swing.toFixed(1)} deg`);
   const m = await newPage(390);
   await m.goto(BASE + '/');
   await m.evaluate(() => document.querySelector('#range').scrollIntoView());
@@ -146,6 +152,17 @@ const reset = () => fetch(`${BASE}/cart.js`).then((r) => r.json()).then(async (c
   await p.waitForTimeout(800);
   const vimg = await p.evaluate(() => { const i = document.querySelector('[data-variant-image]'); return i && i.complete && i.naturalWidth > 0 && /matte-red/.test(i.currentSrc); });
   check('swatch swaps the variant image and it loads', vimg);
+  const aimg = await p.evaluate(() => { const i = document.querySelector('[data-variant-angle]'); return !!i && i.complete && i.naturalWidth > 0 && /matte-red-angle/.test(i.currentSrc); });
+  check('swatch swaps the angled image to the same body color', aimg);
+  await p.click('label[for="opt-2-blue"]');
+  await p.waitForTimeout(500);
+  const price2 = (await p.textContent('[data-price]')).trim();
+  check('custom headlight color adds the surcharge', price2 === '$8.49', price2);
+  const lights = await p.evaluate(() => { const mv = document.querySelector('model-viewer'); const m = mv?.model?.materials.find((x) => x.name === 'lights'); return m ? m.pbrMetallicRoughness.baseColorFactor[2] > m.pbrMetallicRoughness.baseColorFactor[0] : null; });
+  check('custom headlight color recolours the 3D lights', lights === true);
+  check('carbon-fibre back image in the gallery', await p.evaluate(() => [...document.querySelectorAll('.product__gallery img')].some((i) => /carbon-fibre/i.test(i.alt) && i.naturalWidth > 0)));
+  await p.click('label[for="opt-2-white"]');
+  await p.waitForTimeout(300);
   const color = await p.evaluate(() => {
     const mv = document.querySelector('model-viewer');
     const m = mv && mv.model && mv.model.materials.find((x) => x.name === 'body');

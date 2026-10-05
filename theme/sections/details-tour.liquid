@@ -12,7 +12,8 @@
     </div>
     <div class="tour__stage" data-tour-stage>
       <div class="tour__frame" data-tour-frame>
-        <img src="{{ 'detail-g80.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1934" height="1277" loading="lazy" decoding="async">
+        <img class="tour__img" src="{{ 'detail-g80.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1934" height="1277" loading="lazy" decoding="async">
+        <img class="tour__img tour__img--back" src="{{ 'detail-g80-back.webp' | asset_url }}" alt="{{ section.settings.back_alt | escape }}" width="1934" height="1277" loading="lazy" decoding="async">
       </div>
       <div class="tour__spot" data-tour-spot aria-hidden="true"></div>
       <span class="tour__reticle" data-tour-reticle aria-hidden="true"></span>
@@ -43,7 +44,8 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Read it from the front" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "The details you'd point out." },
-    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Grille Talk keychain inspired by the BMW M3 (G80), white body, with its jump ring, chain and split ring" }
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Grille Talk keychain inspired by the BMW M3 (G80), white body, with its jump ring, chain and split ring" },
+    { "type": "text", "id": "back_alt", "label": "Back image alt text", "default": "The back of the keychain: carbon-fibre finish with GRILLE TALK in white lettering" }
   ],
   "blocks": [
     {
@@ -59,7 +61,8 @@
             { "value": "lights", "label": "Light signature" },
             { "value": "grille", "label": "Grille" },
             { "value": "intakes", "label": "Intakes" },
-            { "value": "tab", "label": "Tab and chain" }
+            { "value": "tab", "label": "Tab and chain" },
+            { "value": "back", "label": "Carbon-fibre back" }
           ],
           "default": "lights"
         },

@@ -37,7 +37,7 @@ export const products = launch.cars.map((c, idx) => {
   const imgs = [];
   const variantImg = {};
   for (const it of m.media) {
-    if (!['variant', 'angle'].includes(it.kind)) continue;   // the flat design drawing stays out of the storefront
+    if (!['variant', 'angle', 'back'].includes(it.kind)) continue;   // the flat design drawing stays out of the storefront
     const f = it.files.find((x) => x.endsWith('-2000.webp')).replace('-2000.webp', '-{w}.webp');
     const img = new Img(`/media/${c.id}/${f}`, it.alt);
     img.id = nextId++;
@@ -50,15 +50,17 @@ export const products = launch.cars.map((c, idx) => {
     preview_image: imgs[0], sources: [{ format: 'glb', mime_type: 'model/gltf-binary', url: `/glb/${c.id}.glb` }],
   });
   media.forEach((x, i) => { x.position = i + 1; });
-  const variants = launch.colors.map((col) => {
+  const hl = launch.headlights;
+  const variants = launch.colors.flatMap((col) => hl.values.map((h) => {
     const id = nextId++;
     const img = variantImg[col.name];
+    const price = cents(launch.prices[col.tier]) + (h.base ? 0 : cents(hl.surcharge));
     return {
-      id, title: col.name, option1: col.name, options: [col.name], price: cents(launch.prices[col.tier]),
-      available: true, sku: `GT-${c.id}-${slug(col.name)}`, url: `/products/${handle}?variant=${id}`,
-      featured_image: img, featured_media: media.find((x) => x.preview_image === img), inventory_management: null,
+      id, title: `${col.name} / ${h.name}`, option1: col.name, option2: h.name, options: [col.name, h.name], price,
+      available: true, sku: `GT-${c.id}-${slug(col.name)}-hl-${slug(h.name)}`, url: `/products/${handle}?variant=${id}`,
+      featured_image: img, featured_media: media.find((x) => x.preview_image === img), inventory_management: null, product_id: 0,
     };
-  });
+  }));
   const prices = variants.map((v) => v.price);
   const description = `<p>A straight-on keychain of the ${c.make} ${c.model} (${c.generation}) front. ${c.variant ? 'Snake-eye light bars' : 'The light signature'}, grille texture and intakes are printed in relief, in two colours.</p><ul><li>80.5 mm wide, 3 mm thick</li><li>Two-colour 3D print</li><li>Split ring and short chain included</li><li>Logo-free design</li></ul>`;
   return {
@@ -68,7 +70,7 @@ export const products = launch.cars.map((c, idx) => {
     featured_image: imgs[0], images: imgs, media, featured_media: media[0],
     variants, price: Math.min(...prices), price_min: Math.min(...prices), price_max: Math.max(...prices),
     price_varies: Math.min(...prices) !== Math.max(...prices), available: true, has_only_default_variant: false,
-    options: ['Body color'],
+    options: ['Body color', 'Headlight color'],
     metafields: { custom: { make: { value: c.make }, model: { value: c.model }, generation: { value: c.generation }, short_model: { value: c.short_model } } },
     _car: c,
   };
@@ -81,7 +83,10 @@ export function productView(p, variantId) {
     selected_variant: variantId ? v : null,
     selected_or_first_available_variant: v,
     first_available_variant: p.variants[0],
-    options_with_values: [{ name: 'Body color', position: 1, values: p.variants.map((x) => x.title), selected_value: v.title }],
+    options_with_values: [
+      { name: 'Body color', position: 1, values: [...new Set(p.variants.map((x) => x.option1))], selected_value: v.option1 },
+      { name: 'Headlight color', position: 2, values: [...new Set(p.variants.map((x) => x.option2))], selected_value: v.option2 },
+    ],
   };
 }
 

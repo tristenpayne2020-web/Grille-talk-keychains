@@ -61,7 +61,7 @@ if (root) {
     try {
       await stage.load(url);
       if (my !== token) return;
-      stage.nudge(dir * -1.2);
+      stage.nudge(dir * -0.6);
       canvasBox.classList.add('is-on');
       s.classList.add('has-3d');
     } catch (e) {

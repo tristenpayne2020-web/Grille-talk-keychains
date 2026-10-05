@@ -57,10 +57,17 @@ if (tour) {
     rail.forEach((el, j) => { el.classList.toggle('is-active', j === i); if (j === i) el.setAttribute('aria-current', 'step'); else el.removeAttribute('aria-current'); });
   };
 
+  const head = tour.querySelector('.tour__head');
+  // the opening frame fits the keychain between the headline and the caption, clear of the rail
   const fit = () => {
     const W = stage.clientWidth, H = stage.clientHeight;
-    const k = Math.min(W / data.w, H / data.h) * 0.92;
-    return { W, H, fw: data.w * k, fh: data.h * k };
+    const top = head ? head.getBoundingClientRect().bottom - stage.getBoundingClientRect().top + 16 : 0;
+    const act = items[Math.max(0, active)];
+    const bottom = H - (act ? act.offsetHeight : 0) - (W >= 990 ? 90 : 150);
+    const right = W >= 750 ? 96 : 16;
+    const boxW = W - right - 16, boxH = Math.max(120, bottom - top);
+    const k = Math.min(boxW / data.w, boxH / data.h);
+    return { W, H, fw: data.w * k, fh: data.h * k, ox: 16 + (boxW - data.w * k) / 2, oy: top + (boxH - data.h * k) / 2 };
   };
 
   const progress = () => {
@@ -71,22 +78,24 @@ if (tour) {
 
   const update = () => {
     const p = progress();
-    const { W, H, fw, fh } = fit();
+    const { W, H, fw, fh, ox, oy } = fit();
     const wide = W >= 990;
     const intro = 0.1;                                  // first slice of the scroll shows the whole keychain
     const t = clamp((p - intro) / (1 - intro), 0, 0.9999);
     const i = p < intro ? 0 : Math.floor(t * n);
     setActive(i);
-    let target = { s: 1, x: (W - fw) / 2, y: (H - fh) / 2, sx: 50, sy: 50, sr: Math.hypot(W, H) };   // iris fully open
+    let target = { s: 1, x: ox, y: oy, sx: 50, sy: 50, sr: Math.hypot(W, H) };   // iris fully open
+    tour.classList.toggle('is-zoomed', p >= intro * 0.6);
+    tour.classList.toggle('is-back', items[i] && items[i].dataset.anchor === 'back' && p >= intro * 0.6);
     if (p >= intro * 0.6) {
       const it = items[i];
       const a = data.anchors[it.dataset.anchor] || [50, 50];
       const s = reduce ? 1 : Number(it.dataset.zoom || 18) / 10;
       const ax = (a[0] / 100) * fw, ay = (a[1] / 100) * fh;
-      const cx = wide ? W * 0.62 : W * 0.5, cy = wide ? H * 0.5 : H * 0.42;
-      const x = reduce ? (W - fw) / 2 : cx - ax * s;
-      const y = reduce ? (H - fh) / 2 : cy - ay * s;
-      target = { s, x, y, sx: ((x + ax * s) / W) * 100, sy: ((y + ay * s) / H) * 100, sr: Math.min(W, H) * (wide ? 0.2 : 0.26) };
+      const cx = wide ? W * 0.6 : W * 0.5, cy = wide ? H * 0.44 : H * 0.36;
+      const x = reduce ? ox : cx - ax * s;
+      const y = reduce ? oy : cy - ay * s;
+      target = { s, x, y, sx: ((x + ax * s) / W) * 100, sy: ((y + ay * s) / H) * 100, sr: Math.min(W, H) * (wide ? 0.2 : 0.26) * (it.dataset.anchor === 'back' ? 1.7 : 1) };
     }
     const k = reduce ? 1 : 0.12;
     for (const key of Object.keys(cur)) cur[key] = lerp(cur[key], target[key], k);

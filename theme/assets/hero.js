@@ -24,7 +24,7 @@ if (hero) {
     window.__gtHero3d = true;
     window.dispatchEvent(new Event('gt:hero3d'));
     if (!stage) return;
-    const show = () => { stage.setActive(true); hero.classList.add('is-3d'); stage.nudge(0.8); };
+    const show = () => { stage.setActive(true); hero.classList.add('is-3d'); stage.nudge(0.4); };
     // if the first-visit loader is up, wait for it so the keychain swings into view as it lifts
     if (document.documentElement.classList.contains('gt-loading') && !window.__gtLoaded) window.addEventListener('gt:loaded', show, { once: true });
     else show();

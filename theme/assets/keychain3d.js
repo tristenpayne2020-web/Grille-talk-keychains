@@ -61,7 +61,8 @@ export class KeychainStage {
     this.scene.environmentIntensity = 0.55;
     const key = new DirectionalLight(0xffffff, 1.6); key.position.set(-0.4, 0.8, 1.2);
     const rim = new DirectionalLight(0xffffff, 0.6); rim.position.set(0.8, 0.2, -0.6);
-    this.scene.add(key, rim);
+    const backKey = new DirectionalLight(0xffffff, 1.8); backKey.position.set(0.5, 0.9, -1.2);   // lights the carbon back
+    this.scene.add(key, rim, backKey);
     this.camera = new PerspectiveCamera(16, 1, 0.005, 5);
 
     this.visible = true;
@@ -110,6 +111,7 @@ export class KeychainStage {
       }
     });
     if (color) this.setColor(color);
+    this.yaw = 0; this.yawV = 0; this.pitch = 0; this.pitchV = 0;   // a new keychain starts at rest, no inherited swing
     this._initChain(root);
     this.scene.add(root);
     this.resize();
@@ -161,11 +163,13 @@ export class KeychainStage {
       .multiply(this.kcQ.clone().invert().multiply(nodes[0].quaternion.clone()));
   }
 
-  nudge(vx = 0, vy = 0) {
-    // carousel moves and swipes: kick the chain sideways (shift previous positions = add velocity)
+  nudge(vx = 0) {
+    // carousel moves: a gentle sideways sway, never a spin. Small velocity on the chain, a small turn of the body.
     if (!this.prev || this.static) return;
-    for (let i = 1; i < this.prev.length; i++) { this.prev[i].x -= vx * 0.004 * i; this.prev[i].y -= vy * 0.002; }
-    this.yawV += vx * 1.6;
+    const k = Math.max(-1, Math.min(1, vx));
+    const n = this.prev.length;
+    for (let i = 2; i < n; i++) this.prev[i].x -= k * 0.00035 * (i / n);   // metres per step: about 0.3 mm
+    this.yawV += k * 0.35;
     this._maybeRun();
   }
 
@@ -185,7 +189,7 @@ export class KeychainStage {
       }
       if (e.pointerType !== 'mouse' && decided && !horizontal) return;   // let vertical swipes scroll the page
       const now = performance.now(), dt = Math.max(8, now - lt);
-      this.yaw = MathUtils.clamp(this.yaw + dx * 0.012, -1.3, 1.3);
+      this.yaw = MathUtils.clamp(this.yaw + dx * 0.012, -Math.PI, Math.PI);   // turn it right round to see the carbon back
       this.pitch = MathUtils.clamp(this.pitch + dy * 0.006, -0.5, 0.5);
       this.yawV = (dx * 0.012) / (dt / 1000);
       this.pitchV = (dy * 0.006) / (dt / 1000);

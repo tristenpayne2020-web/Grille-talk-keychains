@@ -336,6 +336,14 @@ body::after { content: ''; position: fixed; inset: -50%; z-index: 90; pointer-ev
 .tour__frame { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
 .tour:not(.is-pinned) .tour__frame { position: relative; margin: auto; width: min(100%, 900px); }
 .tour__frame img { width: 100%; height: 100%; object-fit: contain; }
+.tour.is-pinned .tour__img { position: absolute; inset: 0; transition: opacity 600ms var(--ease-out); }
+.tour.is-pinned .tour__img--back { opacity: 0; }
+.tour.is-back .tour__img--back { opacity: 1; }
+.tour.is-back .tour__img:not(.tour__img--back) { opacity: 0; }
+.tour:not(.is-pinned) .tour__img--back { margin-top: var(--s-5); }
+.tour.is-pinned .tour__head { transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out); }
+.tour.is-zoomed .tour__head { opacity: 0; transform: translateY(-12px); }
+.tour.is-pinned .tour__sticky::after { content: ''; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 42%; pointer-events: none; background: linear-gradient(to top, rgba(7, 7, 8, 0.92), rgba(7, 7, 8, 0.6) 45%, transparent); }
 .tour__spot { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle var(--sr, 0px) at var(--sx, 50%) var(--sy, 50%), transparent 0, transparent 70%, rgba(7, 7, 8, 0.86) 100%); }
 .tour:not(.is-pinned) .tour__spot, .tour:not(.is-pinned) .tour__reticle { display: none; }
 .tour__reticle { position: absolute; left: 0; top: 0; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(242, 241, 238, 0.35); opacity: 0; transition: opacity 300ms; pointer-events: none; }
@@ -525,6 +533,9 @@ body::after { content: ''; position: fixed; inset: -50%; z-index: 90; pointer-ev
 .product__thumbs img { width: 100%; height: 100%; object-fit: contain; }
 .product__gallery { list-style: none; display: grid; gap: var(--s-3); margin-top: var(--s-3); grid-template-columns: 1fr 1fr; }
 .product__gallery li { background: var(--c-panel); border: 1px solid var(--c-line); border-radius: var(--radius); }
+.product__gallery .product__gallery-wide { grid-column: 1 / -1; }
+.product__gallery-wide img { aspect-ratio: 2 / 1; }
+.swatch--plain label { padding-left: var(--s-4); }
 .product__gallery img { width: 100%; aspect-ratio: 1; object-fit: contain; }
 .product__info { display: grid; gap: var(--s-5); }
 .product__title { font-size: var(--t-xl); }

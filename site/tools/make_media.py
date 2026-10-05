@@ -68,13 +68,16 @@ def car_media(c, colors):
         files = webp(src, os.path.join(od, f'{cid}-{cs}-front'))
         items.append(dict(kind='variant', color=col['name'], files=files,
                           alt=f"Grille Talk keychain inspired by the {name}, {col['name'].lower()} body, front view"))
+        src = os.path.join(BUILD, 'renders_png', f'{cid}__{cs}__angle.png')
+        items.append(dict(kind='angle', color=col['name'], files=webp(src, os.path.join(od, f'{cid}-{cs}-angle')),
+                          alt=f"Grille Talk keychain inspired by the {name}, {col['name'].lower()} body, angled view with jump ring, chain and split ring"))
         src = os.path.join(BUILD, 'renders_png', f'{cid}__{cs}__front-white.png')
         files = webp(src, os.path.join(od, f'{cid}-{cs}-front-on-white'), trim=False)
         items.append(dict(kind='variant_on_white', color=col['name'], files=files,
                           alt=f"Grille Talk keychain inspired by the {name}, {col['name'].lower()} body, front view on white"))
-    src = os.path.join(BUILD, 'renders_png', f'{cid}__white__angle.png')
-    items.append(dict(kind='angle', color='White', files=webp(src, os.path.join(od, f'{cid}-white-angle')),
-                      alt=f'Grille Talk keychain inspired by the {name}, white body, angled view with split ring and chain'))
+    src = os.path.join(BUILD, 'renders_png', f'{cid}__white__back.png')
+    items.append(dict(kind='back', color=None, files=webp(src, os.path.join(od, f'{cid}-back')),
+                      alt=f'Back of the Grille Talk keychain inspired by the {name}: carbon-fibre finish with GRILLE TALK lettering'))
     face = os.path.join(BUILD, 'geom', cid, 'face.png')
     if os.path.exists(face):
         items.append(dict(kind='face', color=None, files=webp(face, os.path.join(od, f'{cid}-design')),

@@ -20,8 +20,8 @@
         "s3": {
           "type": "stat",
           "settings": {
-            "value": "2 colours",
-            "label": "One print"
+            "value": "Carbon",
+            "label": "Woven back"
           }
         },
         "s4": {
@@ -111,6 +111,20 @@
             "question": "Do you do orders for car clubs?",
             "answer": ""
           }
+        },
+        "q10": {
+          "type": "question",
+          "settings": {
+            "question": "What's on the back?",
+            "answer": "<p>A woven carbon-fibre finish from the textured build plate, with GRILLE TALK across it in white lettering.</p>"
+          }
+        },
+        "q11": {
+          "type": "question",
+          "settings": {
+            "question": "Can I change the headlight color?",
+            "answer": "<p>Yes. White is standard; red, yellow, gray, blue or silver headlights are a small extra, shown on each product page.</p>"
+          }
         }
       },
       "block_order": [
@@ -119,6 +133,8 @@
         "q3",
         "q4",
         "q5",
+        "q10",
+        "q11",
         "q6",
         "q7",
         "q8",
@@ -168,13 +184,23 @@
             "title": "Tab, ring and chain",
             "text": "A keyring tab on the left with a 4.5 mm hole. A jump ring goes through it, then a short chain and a split ring."
           }
+        },
+        "d5": {
+          "type": "detail",
+          "settings": {
+            "anchor": "back",
+            "zoom": 13,
+            "title": "Carbon-fibre back",
+            "text": "Printed face-down on a carbon-fibre build plate, so the back picks up a woven carbon finish, with GRILLE TALK across it in white."
+          }
         }
       },
       "block_order": [
         "d1",
         "d2",
         "d3",
-        "d4"
+        "d4",
+        "d5"
       ],
       "settings": {}
     },
@@ -204,8 +230,8 @@
           "settings": {
             "tag": "Print",
             "title": "Two colours, one print",
-            "text": "A black base under a white or colored cap, printed together. The lights stay white whatever body color you pick.",
-            "chips": "80.5 mm wide, 3 mm thick"
+            "text": "A black base under a white or colored cap, printed together on a carbon-fibre plate. The lights stay white, or pick a custom headlight color.",
+            "chips": "80.5 mm wide, 3 mm thick, Carbon-fibre back"
           }
         },
         "p4": {

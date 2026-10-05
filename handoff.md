@@ -227,12 +227,19 @@ The flow: design in the cloud, push, then on the PC `git pull` and `python kc\fi
 Built from `WEBSITE_MASTER_PROMPT.md`. Run and setup instructions: `theme/README.md`.
 
 - **Branch:** `claude/tender-thompson-6c67sz` = `claude/exciting-pascal-4qpm9o` + `main` merged (finalize safety fix) + the storefront. No PR.
-- **Launch scope (owner decision):** 23 cars (the first 20 plus M340i, Civic 11th gen, Camry, added 2026-10-04), 6 body colors (White $6.99; Matte Red, Matte Yellow, Matte Gray, Matte Blue $7.99; Metallic Silver $8.99). Source of truth: `site/catalog/launch.json` (ids, colors, tier prices, make/model/generation/short_model naming table).
+- **Launch scope (owner decision):** 23 cars (the first 20 plus M340i, Civic 11th gen, Camry, added 2026-10-04), 6 body colors (White $6.99; Matte Red, Matte Yellow, Matte Gray, Matte Blue $7.99; Metallic Silver $8.99) and a Headlight color option (White included; Red, Yellow, Gray, Blue, Silver +$0.50), so 36 variants per product. Source of truth: `site/catalog/launch.json` (ids, colors, tier prices, make/model/generation/short_model naming table).
 - **Later, when the owner says so:** add the other 40 cars and the 7 remaining colors (Green, Purple, Gold, Metallic Red/Blue/Green/Purple). Steps in `theme/README.md` > "Adding the rest of the line". Keep the "40+ more cars coming soon" note until then.
 - **Pipeline (`site/tools/`, outputs in gitignored `site/build/`):** `build_geometry.py` (logo-free rebuild, never touches `kc/cars/*/out/`) > `make_glb.py` > `compress_glb.mjs` > `make_images.mjs` > `make_media.py`, plus `make_svgs.py`, `make_brand.py`, `make_hero_assets.py`, `make_csv.py`, `upload_media.py` (token from env/.env only).
 - **Theme (`theme/`):** OS 2.0, `shopify theme check` clean. First-visit loader with the owner's artwork, cinematic hero (3D keychain on jump ring + chain physics), range viewer with arc, pinned detail tour and process chapters (ideas adapted from ciaoenergy.com and kryntixstudio.com, nothing copied), catalog with S&D filters, product page with model-viewer recolor, cart drawer, predictive search, request-a-car, about, contact, FAQ, 404.
 - **Preview:** `cd site` then `node preview/server.mjs` (liquidjs + mock data) at http://localhost:4100. `node tools/audit.mjs` runs 90 checks (uses the GPU; set GT_SOFTWARE_GL=1 without one); reports in `site/build/reports/`.
 - **Not done (needs the owner):** Shopify store, payments, domain, policies, metafield definitions, menus, CSV import, media upload. Full list in `theme/README.md`.
+
+### Product changes the owner made (2026-10-04)
+
+- Printed face-down on a carbon-fibre build plate, so the back has a woven carbon finish, with GRILLE TALK in white
+  sans lettering across the back. The website models and copy show this (`site/tools/make_glb.py`: `back` and
+  `lettering` nodes). The print files in `kc/` were not changed here; the owner made that change on their side.
+- Custom headlight color option, +$0.50.
 
 ### Found while building the site: the PC's print package still has badges
 

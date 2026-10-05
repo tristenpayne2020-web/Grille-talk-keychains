@@ -7,6 +7,8 @@ Scene (glTF units are metres, +Y up, face toward +Z):
   link_0              jump ring threaded through the keyring hole (plane holds the hole axis)
   link_1 .. link_4    short chain hanging from the jump ring, separate nodes so the site can drive them
   ring                split ring at the end of the chain
+    back              carbon-fibre back face (material "back", tiled twill texture): the textured build plate finish
+    lettering         'GRILLE TALK' in white sans across the back, mirrored to read from behind
     lights            white light signatures (material "lights"), never recoloured
 
 The chain and ring are modelled once here with trimesh (no Blender needed). Output: site/build/glb_raw/<id>.glb.
@@ -98,6 +100,77 @@ def split_ring():
     return trimesh.util.concatenate(parts)
 
 
+def carbon_texture(px=256, cells=6):
+    """2x2 twill carbon-fibre weave, as the textured build plate leaves it on the black base. Tileable."""
+    from PIL import Image, ImageFilter
+    c = px // cells
+    y, x = np.mgrid[0:px, 0:px].astype(float)
+    i, j = (x // c).astype(int), (y // c).astype(int)
+    u, v = (x % c) / c, (y % c) / c
+    horizontal = ((i + j) // 2) % 2 == 0                 # 2x2 twill: tows switch direction every two cells, stepped
+    across = np.where(horizontal, v, u)                  # position across the tow
+    along = np.where(horizontal, u, v)
+    tow = 0.55 + 0.45 * np.sin(np.pi * across) ** 0.8    # rounded tow profile catches the light in the middle
+    fibres = 0.92 + 0.08 * np.sin(2 * np.pi * across * 9 + along * 0.6)
+    edge = np.clip(np.minimum(across, 1 - across) * 9, 0.35, 1)
+    shade = np.where(horizontal, 1.0, 0.78)              # the two tow directions reflect differently
+    g = 12 + 62 * tow * fibres * edge * shade
+    img = Image.fromarray(np.clip(np.stack([g, g, g * 1.04], -1), 0, 255).astype(np.uint8))
+    return img.filter(ImageFilter.GaussianBlur(0.5))
+
+
+def face_away(m):
+    """Flip a flat mesh so every face points to -Z (seen from behind), whatever the triangulator's winding."""
+    flip = m.face_normals[:, 2] > 0
+    if flip.any():
+        f = m.faces.copy()
+        f[flip] = f[flip][:, ::-1]
+        m = trimesh.Trimesh(m.vertices, f, process=False)
+    return m
+
+
+def back_and_lettering(M, tab_center):
+    """Carbon-fibre back face (UV-mapped, z just behind the black base) and 'GRILLE TALK' in white sans across the
+    back, mirrored so it reads correctly from behind. Coordinates in map mm, before the pivot shift."""
+    from shapely.geometry import Polygon as P, Point as Pt
+    from shapely import affinity as aff
+    from shapely.ops import unary_union
+    from matplotlib.textpath import TextPath
+    from matplotlib.font_manager import FontProperties
+    face = M['outline'].difference(M['hole']).buffer(-0.05)
+    v2, f = trimesh.creation.triangulate_polygon(face, engine='earcut')
+    V = np.column_stack([v2, np.full(len(v2), -0.08)])   # clear of the base after quantization
+    back = face_away(trimesh.Trimesh(V, f, process=False))        # faces point to -Z (away from the front)
+    uv = v2 / 10.0                                                # one texture tile per 10 mm, about 1.7 mm tows
+    tex = carbon_texture()
+    back.visual = trimesh.visual.TextureVisuals(uv=uv, material=PBRMaterial(
+        name='back', baseColorTexture=tex, baseColorFactor=[1.0, 1.0, 1.0, 1.0], metallicFactor=0.0, roughnessFactor=0.32))
+    # lettering
+    tp = TextPath((0, 0), 'GRILLE TALK', size=1.0, prop=FontProperties(family='DejaVu Sans', weight='bold'))
+    rings = [P(r) for r in tp.to_polygons() if len(r) > 2]
+    text = None
+    for r in rings:
+        r = r.buffer(0)
+        text = r if text is None else text.symmetric_difference(r)
+    body = M['outline'].difference(Pt(tab_center).buffer(9))     # centre on the body, not the keyring tab
+    bx0, by0, bx1, by1 = body.bounds
+    tx0, ty0, tx1, ty1 = text.bounds
+    k = min(0.6 * (bx1 - bx0) / (tx1 - tx0), 0.16 * (by1 - by0) / (ty1 - ty0))
+    text = aff.scale(text, -k, k, origin=(0, 0))                 # mirrored: read from behind
+    tx0, ty0, tx1, ty1 = text.bounds
+    text = aff.translate(text, (bx0 + bx1) / 2 - (tx0 + tx1) / 2, (by0 + by1) / 2 - (ty0 + ty1) / 2)
+    text = text.intersection(M['outline'].buffer(-1.0))
+    parts = []
+    for poly in (text.geoms if hasattr(text, 'geoms') else [text]):
+        if poly.is_empty or poly.area < 0.01:
+            continue
+        lv, lf = trimesh.creation.triangulate_polygon(poly, engine='earcut')
+        parts.append(face_away(trimesh.Trimesh(np.column_stack([lv, np.full(len(lv), -0.12)]), lf, process=False)))
+    letters = trimesh.util.concatenate(parts)
+    letters.visual = trimesh.visual.TextureVisuals(material=mat('lettering', (0.96, 0.96, 0.95), 0.0, 0.5))
+    return back, letters
+
+
 def mat(name, rgb, metal, rough):
     return PBRMaterial(name=name, baseColorFactor=list(rgb) + [1.0], metallicFactor=metal, roughnessFactor=rough,
                        doubleSided=False)
@@ -135,7 +208,8 @@ def build(car_id):
     white_body = trimesh.util.concatenate(body_parts)
     # pivot at the hole centre, mid thickness
     shift = np.array([-tx, -ty, -1.5])
-    meshes = [white_body, black] + light_parts
+    back, letters = back_and_lettering(M, (tx, ty))
+    meshes = [white_body, black, back, letters] + light_parts
     for m in meshes:
         m.apply_translation(shift)
         m.apply_scale(MM)
@@ -148,6 +222,8 @@ def build(car_id):
     scene.graph.update(frame_to='keychain', frame_from='world', matrix=np.eye(4))
     scene.add_geometry(body, node_name='body', geom_name='body', parent_node_name='keychain')
     scene.add_geometry(details, node_name='details', geom_name='details', parent_node_name='keychain')
+    scene.add_geometry(back, node_name='back', geom_name='back', parent_node_name='keychain')
+    scene.add_geometry(letters, node_name='lettering', geom_name='lettering', parent_node_name='keychain')
     if light_parts:
         lights = shaded(trimesh.util.concatenate(light_parts), mat('lights', (0.97, 0.97, 0.96), 0.0, 0.5))
         scene.add_geometry(lights, node_name='lights', geom_name='lights', parent_node_name='keychain')

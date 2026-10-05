@@ -1,8 +1,8 @@
 """Attach renders and 3D models to the imported products through the Shopify Admin GraphQL API.
 
 Run after importing site/build/shopify_products.csv. Matches products by handle (same rule as make_csv.py).
-Per product it uploads: the front render in every body colour (each linked to its variant), the angled render with
-chain, and the GLB as a 3D model. Media already present with the same alt text is skipped,
+Per product it uploads: the front render in every body colour (linked to every variant with that body colour), the
+angled render in every body colour, the carbon-fibre back, and the GLB as a 3D model. Media already present with the same alt text is skipped,
 so the script can be re-run safely.
 
 Credentials come from the environment only, never from files in the repo:
@@ -53,7 +53,7 @@ class Admin:
 
 
 PRODUCT_Q = '''query($h: String!) { productByHandle(handle: $h) { id title
-  variants(first: 50) { nodes { id selectedOptions { name value } } }
+  variants(first: 100) { nodes { id selectedOptions { name value } } }
   media(first: 50) { nodes { id alt mediaContentType status } } } }'''
 STAGE_M = '''mutation($input: [StagedUploadInput!]!) { stagedUploadsCreate(input: $input) {
   stagedTargets { url resourceUrl parameters { name value } } userErrors { field message } } }'''
@@ -110,7 +110,7 @@ def main():
         m = manifest[car['id']]
         plan = []   # (path, resource, alt, colour or None)
         for item in m['media']:
-            if item['kind'] in ('variant', 'angle'):   # the flat design drawing (face) has a label and grey ground: not for the store
+            if item['kind'] in ('variant', 'angle', 'back'):   # the flat design drawing (face) has a label and grey ground: not for the store
                 f = next(x for x in item['files'] if x.endswith('-2000.webp'))
                 plan.append((os.path.join(BUILD, 'media', car['id'], f), 'IMAGE', item['alt'],
                              item['color'] if item['kind'] == 'variant' else None))
@@ -125,8 +125,10 @@ def main():
         if not prod:
             print(f'skip {h}: product not found (import the CSV first)'); continue
         have = {n['alt'] for n in prod['media']['nodes']}
-        variant_of = {next(o['value'] for o in v['selectedOptions'] if o['name'] == 'Body color'): v['id']
-                      for v in prod['variants']['nodes']}
+        variants_of = {}   # body color -> every variant with that body color (any headlight color)
+        for v in prod['variants']['nodes']:
+            body = next(o['value'] for o in v['selectedOptions'] if o['name'] == 'Body color')
+            variants_of.setdefault(body, []).append(v['id'])
         created = []
         for p, res, alt, col in plan:
             if alt in have:
@@ -138,7 +140,7 @@ def main():
             created.append((d['media'][0]['id'], col))
             print(f'  + {os.path.basename(p)}')
         # link each colour's render to its variant once processing is done
-        links = [(mid, variant_of[col]) for mid, col in created if col and col in variant_of]
+        links = [(mid, vid) for mid, col in created if col and col in variants_of for vid in variants_of[col]]
         if links and wait_ready(api, [mid for mid, _ in links]):
             d = api.q(APPEND_M, pid=prod['id'], vm=[{'variantId': vid, 'mediaIds': [mid]} for mid, vid in links])
             errs = d['productVariantAppendMedia']['userErrors']

@@ -18,6 +18,7 @@ site/    tools that build the catalog, 3D models and images, plus a local previe
 3. **Range**: one keychain at a time in 3D, neighbours on a curved arc, arrows, swipe, keys, rail.
 4. **Detail tour** (pinned): the camera pushes into the G80 and a spotlight moves to the light signature, grille,
    intakes and tab, with a chapter rail. Spotlight positions come from the real design file.
+   A fifth chapter turns it over to show the carbon-fibre back and the GRILLE TALK lettering.
 5. **How it's made** (pinned): trace, simplify, print, ring, shown with the G80's real design layers.
 6. FAQ and newsletter. A HUD (corner ticks, scroll progress, chapter readout) frames the page on desktop.
 
@@ -76,7 +77,9 @@ Publish it from Online Store > Themes when you are ready. Nothing in this repo p
 9. **Search & Discovery.** Install Shopify's free Search & Discovery app, Filters > Add filter >
    Product metafield "Make". Optionally add synonyms: Vette = Corvette, GTR = GT-R, Lambo = Lamborghini.
 10. **Import products.** Build the CSV (below), then Products > Import > `site/build/shopify_products.csv`.
-    Products arrive as drafts. Inventory is not tracked (made to order).
+    Products arrive as drafts with two options, Body color and Headlight color (36 variants each, 828 rows).
+    Custom headlights cost $0.50 more; change `headlights.surcharge` in `site/catalog/launch.json` and rebuild the
+    CSV to adjust. Inventory is not tracked (made to order).
 11. **Collection.** Products > Collections: the theme uses "all" by default. If you make a "Keychains"
     collection, pick it in the Range viewer section.
 12. **Images and 3D models.** Run the upload script (below).
@@ -117,7 +120,8 @@ python site/tools/make_csv.py
 
 - `build_geometry.py` rebuilds each car with `KC_BADGE=0` (logo-free) into `site/build/geom/`.
   It never touches `kc/cars/*/out/` or any spec.
-- `make_glb.py` makes one GLB per car: materials `body`, `lights` (always white) and `details` (black),
+- `make_glb.py` makes one GLB per car: materials `body`, `lights` (headlight color) and `details` (black),
+  a carbon-fibre `back` (tiled twill texture) with `lettering` (GRILLE TALK in white, mirrored to read from behind),
   plus a jump ring threaded through the keyring hole, a 4-link chain and a split ring as separate nodes.
 - `compress_glb.mjs` quantizes them to about 350-780 KB with no decoder needed.
 - `make_images.mjs` renders every car in every color (needs Chrome installed).
@@ -144,7 +148,8 @@ Shopify can't import 3D models from a CSV, so this script uploads them through t
    python site/tools/upload_media.py
    ```
 
-It is safe to run again: media already on a product is skipped. Each color's render is linked to its variant.
+It is safe to run again: media already on a product is skipped. Each body color's front render is linked to every
+variant with that body color; the angled render in each color and the carbon-fibre back render are uploaded too.
 
 ## Checks
 

@@ -6,7 +6,6 @@ if (root) {
   const form = root.querySelector('form[data-product-form]');
   const idInput = form.querySelector('[data-variant-id]');
   const price = root.querySelector('[data-price]');
-  const nameOut = root.querySelector('[data-color-name]');
   const addBtn = form.querySelector('[type="submit"]');
   const varImg = root.querySelector('[data-variant-image]');
   const viewerBox = root.querySelector('[data-viewer]');
@@ -36,32 +35,38 @@ if (root) {
     setTimeout(() => viewerBox.classList.add('no-skeleton'), 8000);   // never leave a skeleton forever
   }
 
-  const current = () => form.querySelector('.swatch input:checked');
+  const groups = [...form.querySelectorAll('fieldset[data-option-index]')];
+  const picked = (i) => groups[i] && groups[i].querySelector('input:checked');
+  const varAngle = root.querySelector('[data-variant-angle]');
+  const swap = (img, src, alt) => { if (img && src) { img.removeAttribute('srcset'); img.src = src; if (alt != null) img.alt = alt; } };
 
+  // body (option 1) and headlights (option 2) on the 3D model, through the model-viewer material API
   function paint() {
-    const sw = current();
-    if (!mv || !sw || !mv.model) return;
-    const body = mv.model.materials.find((m) => m.name === 'body');
-    if (!body) return;
-    const pbr = body.pbrMetallicRoughness;
-    pbr.setBaseColorFactor(sw.dataset.hex);
-    pbr.setMetallicFactor(Number(sw.dataset.metal) || 0);
-    pbr.setRoughnessFactor(Number(sw.dataset.rough) || 0.6);
+    if (!mv || !mv.model) return;
+    const tint = (name, sw) => {
+      const m = sw && sw.dataset.hex && mv.model.materials.find((x) => x.name === name);
+      if (!m) return;
+      const pbr = m.pbrMetallicRoughness;
+      pbr.setBaseColorFactor(sw.dataset.hex);
+      pbr.setMetallicFactor(Number(sw.dataset.metal) || 0);
+      pbr.setRoughnessFactor(Number(sw.dataset.rough) || 0.6);
+    };
+    tint('body', picked(0));
+    tint('lights', picked(1));
   }
 
   function update() {
-    const sw = current();
-    if (!sw) return;
-    const v = data.variants.find((x) => String(x.id) === sw.dataset.variant);
+    const values = groups.map((g, i) => picked(i) && picked(i).value);
+    const v = data.variants.find((x) => x.options.every((o, i) => values[i] == null || o === values[i]));
+    groups.forEach((g, i) => { const out = g.querySelector('[data-option-name]'); if (out && values[i]) out.textContent = values[i]; });
     if (!v) return;
     idInput.value = v.id;
     price.textContent = v.price;
-    if (nameOut) nameOut.textContent = v.option1;
     addBtn.disabled = !v.available;
     addBtn.querySelector('.btn__label').textContent = v.available ? data.strings.addToCart : data.strings.soldOut;
-    if (varImg && v.image) { varImg.removeAttribute('srcset'); varImg.src = v.image; varImg.alt = v.imageAlt || ''; }
-    const poster = root.querySelector('[data-poster]');
-    if (poster && v.image) { poster.removeAttribute('srcset'); poster.src = v.image; }
+    swap(varImg, v.image, v.imageAlt || '');
+    swap(varAngle, v.angle, v.angleAlt || '');
+    swap(root.querySelector('[data-poster]'), v.image, null);
     const url = new URL(window.location.href);
     url.searchParams.set('variant', v.id);
     window.history.replaceState({}, '', url);

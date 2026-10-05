@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
 }).listen(0);
 const port = server.address().port;
 
-const browser = await launchBrowser({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+const browser = await launchBrowser();
 const page = await browser.newPage();
 page.on('pageerror', (e) => console.error('page error', e.message));
 await page.goto(`http://localhost:${port}/tools/render.html`);
@@ -42,12 +42,18 @@ for (const car of cars) {
     const base = { url, size: 2000, color: c.hex, metal: c.metal, rough: c.rough, chain: false, angle: 0 };
     await save(`${car.id}__${slug(c.name)}__front.png`, { ...base, bg: null });
     await save(`${car.id}__${slug(c.name)}__front-white.png`, { ...base, bg: '#ffffff' });
+    // angled view with ring and chain, in every body color, so the gallery follows the swatch
+    await save(`${car.id}__${slug(c.name)}__angle.png`, { ...base, chain: true, angle: -0.45, bg: null });
   }
   const w = launch.colors[0];
+  // back view: carbon-fibre finish and lettering (the black base, so one render covers every body color)
+  await save(`${car.id}__white__back.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: Math.PI - 0.32, bg: null });
+  if (car.id === 'g80_m3') {   // detail tour: the back seen straight on
+    await save(`${car.id}__white__back-straight.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: Math.PI, bg: null });
+  }
   if (car.id === 'g80_m3') {   // hero static end state: front view hanging from its chain
     await save(`${car.id}__white__front-chain.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: 0, bg: null });
   }
-  await save(`${car.id}__white__angle.png`, { url, size: 2000, color: w.hex, metal: w.metal, rough: w.rough, chain: true, angle: -0.45, bg: null });
   console.log('rendered', car.id);
 }
 await browser.close();

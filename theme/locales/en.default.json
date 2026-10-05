@@ -69,7 +69,14 @@
     "fact_design_value": "Logo-free",
     "fact_production": "Made",
     "fact_shipping": "Shipping",
-    "variant_unavailable": "That combination is not available."
+    "variant_unavailable": "That combination is not available.",
+    "headlight_base": "Standard",
+    "included": "Included",
+    "headlight_custom": "Custom headlights",
+    "fact_back": "Back",
+    "fact_back_value": "Carbon-fibre finish, GRILLE TALK lettering",
+    "fact_lights": "Headlights",
+    "fact_lights_value": "White, or a custom color"
   },
   "range": {
     "carousel": "carousel",

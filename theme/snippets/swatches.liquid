@@ -1,47 +1,86 @@
 {%- comment -%}
-  Body color swatches grouped by tier (theme setting "Body colors"). Each tier shows its price, read from the first
-  matching variant. Any variant value not listed in a tier falls into a final group so nothing is ever hidden.
+  Option pickers for the product form. Body color: grouped by tier (theme setting "Body colors"), each tier showing
+  its price from the variants. Headlight color: the base color as "Included", the rest with their surcharge, worked
+  out from variant prices (never hardcoded). Any other option falls back to plain chips.
   usage: {% render 'swatches', product: product, current: variant %}
 {%- endcomment -%}
 {%- liquid
-  assign opt = product.options_with_values | first
   assign tier_lines = settings.color_tiers | newline_to_br | split: '<br />'
   assign swatch_lines = settings.color_swatches | newline_to_br | split: '<br />'
-  assign listed = ''
+  assign light_lines = settings.headlight_swatches | newline_to_br | split: '<br />'
 -%}
-<fieldset class="swatches">
-  <legend>{{ opt.name | escape }}: <strong data-color-name>{{ current.option1 | escape }}</strong></legend>
-  {%- for line in tier_lines -%}
-    {%- assign parts = line | split: ':' -%}
-    {%- assign tier = parts[0] | strip -%}
-    {%- assign names = parts[1] | split: ',' -%}
-    {%- capture row -%}
-      {%- assign tier_price = '' -%}
-      {%- for raw in names -%}
-        {%- assign cname = raw | strip -%}
-        {%- for v in product.variants -%}
-          {%- if v.option1 == cname -%}
-            {%- if tier_price == '' -%}{%- assign tier_price = v.price | money -%}{%- endif -%}
-            {%- render 'swatch', v: v, cname: cname, current: current, swatch_lines: swatch_lines -%}
-          {%- endif -%}
-        {%- endfor -%}
-        {%- assign listed = listed | append: '|' | append: cname | append: '|' -%}
+{%- for opt in product.options_with_values -%}
+  {%- assign oi = forloop.index -%}
+  {%- assign selected = current.options[forloop.index0] -%}
+  <fieldset class="swatches" data-option-index="{{ forloop.index0 }}">
+    <legend>{{ opt.name | escape }}: <strong data-option-name>{{ selected | escape }}</strong></legend>
+    {%- if oi == 1 -%}
+      {%- assign listed = '' -%}
+      {%- for line in tier_lines -%}
+        {%- assign parts = line | split: ':' -%}
+        {%- assign tier = parts[0] | strip -%}
+        {%- assign names = parts[1] | split: ',' -%}
+        {%- assign tier_price = '' -%}
+        {%- capture row -%}
+          {%- for raw in names -%}
+            {%- assign cname = raw | strip -%}
+            {%- if opt.values contains cname -%}
+              {%- for v in product.variants -%}
+                {%- if v.option1 == cname -%}{%- if tier_price == '' -%}{%- assign tier_price = v.price | money -%}{%- endif -%}{%- break -%}{%- endif -%}
+              {%- endfor -%}
+              {%- render 'swatch', oi: oi, cname: cname, checked: selected, lines: swatch_lines -%}
+            {%- endif -%}
+            {%- assign listed = listed | append: '|' | append: cname | append: '|' -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if row != blank -%}
+          <div class="swatches__tier">
+            <p class="swatches__tier-head"><span>{{ tier | escape }}</span><span>{{ tier_price }}</span></p>
+            <div class="swatches__row">{{ row }}</div>
+          </div>
+        {%- endif -%}
       {%- endfor -%}
-    {%- endcapture -%}
-    {%- if row != blank -%}
+      {%- capture rest -%}
+        {%- for value in opt.values -%}
+          {%- assign key = '|' | append: value | append: '|' -%}
+          {%- unless listed contains key -%}{%- render 'swatch', oi: oi, cname: value, checked: selected, lines: swatch_lines -%}{%- endunless -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if rest != blank -%}<div class="swatches__tier"><div class="swatches__row">{{ rest }}</div></div>{%- endif -%}
+    {%- elsif oi == 2 -%}
+      {%- liquid
+        assign base = opt.values | first
+        assign base_price = 0
+        assign extra_price = 0
+        for v in product.variants
+          if v.option1 == current.option1 and v.option2 == base
+            assign base_price = v.price
+          endif
+        endfor
+        for v in product.variants
+          if v.option1 == current.option1 and v.option2 != base
+            assign extra_price = v.price
+            break
+          endif
+        endfor
+        assign surcharge = extra_price | minus: base_price
+      -%}
       <div class="swatches__tier">
-        <p class="swatches__tier-head"><span>{{ tier | escape }}</span><span>{{ tier_price }}</span></p>
-        <div class="swatches__row">{{ row }}</div>
+        <p class="swatches__tier-head"><span>{{ 'products.headlight_base' | t }}</span><span>{{ 'products.included' | t }}</span></p>
+        <div class="swatches__row">{%- render 'swatch', oi: oi, cname: base, checked: selected, lines: light_lines -%}</div>
+      </div>
+      {%- if opt.values.size > 1 -%}
+        <div class="swatches__tier">
+          <p class="swatches__tier-head"><span>{{ 'products.headlight_custom' | t }}</span><span data-surcharge>+{{ surcharge | money }}</span></p>
+          <div class="swatches__row">
+            {%- for value in opt.values offset: 1 -%}{%- render 'swatch', oi: oi, cname: value, checked: selected, lines: light_lines -%}{%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="swatches__row">
+        {%- for value in opt.values -%}{%- render 'swatch', oi: oi, cname: value, checked: selected, lines: swatch_lines -%}{%- endfor -%}
       </div>
     {%- endif -%}
-  {%- endfor -%}
-  {%- capture rest -%}
-    {%- for v in product.variants -%}
-      {%- assign key = '|' | append: v.option1 | append: '|' -%}
-      {%- unless listed contains key -%}{%- render 'swatch', v: v, cname: v.option1, current: current, swatch_lines: swatch_lines -%}{%- endunless -%}
-    {%- endfor -%}
-  {%- endcapture -%}
-  {%- if rest != blank -%}
-    <div class="swatches__tier"><div class="swatches__row">{{ rest }}</div></div>
-  {%- endif -%}
-</fieldset>
+  </fieldset>
+{%- endfor -%}

@@ -330,5 +330,36 @@
         "XV80"
       ]
     }
-  ]
+  ],
+  "headlights": {
+    "option": "Headlight color",
+    "surcharge": "0.50",
+    "values": [
+      {
+        "name": "White",
+        "hex": "#f7f7f4",
+        "base": true
+      },
+      {
+        "name": "Red",
+        "hex": "#c62a20"
+      },
+      {
+        "name": "Yellow",
+        "hex": "#f0b70f"
+      },
+      {
+        "name": "Gray",
+        "hex": "#7a7d82"
+      },
+      {
+        "name": "Blue",
+        "hex": "#2457b8"
+      },
+      {
+        "name": "Silver",
+        "hex": "#cfd2d6"
+      }
+    ]
+  }
 }

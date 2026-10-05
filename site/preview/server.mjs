@@ -241,7 +241,7 @@ function cartView() {
     return {
       key: `${v.id}:k`, id: v.id, variant_id: v.id, quantity: it.quantity, title: `${p.title} - ${v.title}`, product: data.productView(p),
       variant: v, url: v.url, image: v.featured_image, price: v.price, final_price: v.price, final_line_price: v.price * it.quantity,
-      line_price: v.price * it.quantity, options_with_values: [{ name: 'Body color', value: v.title }], url_to_remove: `/cart/change?line=${i + 1}&quantity=0`,
+      line_price: v.price * it.quantity, options_with_values: [{ name: 'Body color', value: v.option1 }, { name: 'Headlight color', value: v.option2 }], url_to_remove: `/cart/change?line=${i + 1}&quantity=0`,
     };
   });
   const total = items.reduce((a, b) => a + b.final_line_price, 0);
