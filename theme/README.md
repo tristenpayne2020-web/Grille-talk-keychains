@@ -12,11 +12,7 @@ site/    tools that build the catalog, 3D models and images, plus a local previe
 ## What's on the home page
 
 1. **Loader** (first visit per session): your Grille Talk artwork fills with light from the bottom while a
-   counter tracks real loading. At 100% an ENGINE START button plays a cold start of a modified straight-six
-   (S58-style, synthesised by `site/tools/make_coldstart.py`, no recording used, shipped as `assets/coldstart-audio.js`)
-   and the site opens as the engine catches. To use your own recording instead, upload an MP3 in Content > Files and
-   paste its link in Theme settings > Business > Loader engine sound. "Enter without sound" is
-   remembered; with no press it enters quietly after 7 s. Skippable; never without JS.
+   counter tracks real loading, then it opens onto the hero. No sound. Skippable; never without JS.
 2. **Hero**: the 3D G80 on a jump ring, chain and split ring that swing with physics (drag it), other designs
    drifting at depth behind, and a stat row.
 3. **Range**: a floating display, built in 3D (`assets/display3d.js`): metal pedestal with chrome rims and a light

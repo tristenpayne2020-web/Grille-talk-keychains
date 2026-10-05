@@ -658,29 +658,6 @@ body::after { content: ''; position: fixed; inset: -50%; z-index: 90; pointer-ev
 }
 @media (prefers-reduced-motion: reduce) { .display .range__slide img, .display__beam, .display__name.is-in { animation: none; } }
 
-/* loader push-to-start: appears at 100%, plays the cold start (sound needs a gesture) */
-.loader__ignition { display: none; }
-.gt-loading .loader__ignition:not([hidden]) { display: grid; justify-items: center; gap: var(--s-4); position: fixed; z-index: 102; left: 50%; bottom: clamp(56px, 11vh, 120px); transform: translate(-50%, 12px); opacity: 0; transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out); }
-.gt-loading .loader__ignition.is-in { opacity: 1; transform: translate(-50%, 0); }
-.loader.is-ready .loader__count { opacity: 0; transition: opacity 300ms; }
-.ignition { position: relative; display: grid; place-items: center; width: 116px; height: 116px; padding: 0; border: 0; border-radius: 50%; color: var(--c-fg); cursor: pointer;
-  background: radial-gradient(circle at 50% 35%, #2b2c30, #0b0b0d 62%), #0b0b0d;
-  box-shadow: 0 0 0 6px #1a1b1e, 0 0 0 7px rgba(255, 255, 255, 0.18), 0 0 0 13px #0c0c0e, 0 0 0 14px rgba(255, 255, 255, 0.1), 0 18px 40px rgba(0, 0, 0, 0.8);
-  transition: transform 160ms var(--ease-out); }
-.ignition:hover { transform: scale(1.03); }
-.ignition:active { transform: scale(0.96); }
-.ignition:focus-visible { outline: 2px solid var(--c-fg); outline-offset: 18px; }
-.ignition[disabled] { cursor: default; }
-.ignition__ring { position: absolute; inset: 9px; border-radius: 50%; border: 2px solid rgba(242, 241, 238, 0.75); box-shadow: 0 0 14px rgba(242, 241, 238, 0.55), inset 0 0 10px rgba(242, 241, 238, 0.35); animation: breathe 1.8s var(--ease-in-out) infinite alternate; }
-@keyframes breathe { from { opacity: 0.45; } to { opacity: 1; } }
-.loader.is-starting ~ .loader__ignition .ignition__ring, .ignition[disabled] .ignition__ring { animation: none; opacity: 1; box-shadow: 0 0 26px rgba(255, 255, 255, 0.9), inset 0 0 16px rgba(255, 255, 255, 0.6); }
-.ignition__label { position: relative; display: grid; justify-items: center; gap: 3px; font: 400 9px/1 var(--f-display); letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-mute); }
-.ignition__label strong { font-weight: 400; font-size: 13px; letter-spacing: 0.16em; color: var(--c-fg); }
-.ignition__quiet { background: none; border: 0; padding: var(--s-2) var(--s-3); min-height: 44px; font: 400 var(--t-xs)/1 var(--f-body); color: var(--c-mute); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
-.ignition__quiet:hover { color: var(--c-fg); }
-.loader.is-caught .loader__img--lit { filter: brightness(1.6) contrast(1.05); transition: filter 120ms; }
-@media (prefers-reduced-motion: reduce) { .ignition__ring { animation: none; opacity: 1; } .gt-loading .loader__ignition:not([hidden]) { transition: none; } }
-
 /* wall key holder feature: a lit wall panel the holder hangs on */
 .wallhold__grid { display: grid; gap: var(--s-7); align-items: center; }
 @media (min-width: 990px) { .wallhold__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); } }

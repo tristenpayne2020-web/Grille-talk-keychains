@@ -42,8 +42,6 @@
           "keychain3d": "{{ 'keychain3d.js' | asset_url }}",
           "when3d": "{{ 'when3d.js' | asset_url }}",
           "chapters": "{{ 'chapters.js' | asset_url }}",
-          "coldstart": "{{ 'coldstart.js' | asset_url }}",
-          "coldstart-audio": "{{ 'coldstart-audio.js' | asset_url }}",
           "display3d": "{{ 'display3d.js' | asset_url }}"
         }
       }
@@ -65,7 +63,6 @@
           searchLoading: {{ 'search.loading' | t | json }},
           added: {{ 'cart.added' | t | json }}
         },
-        coldstartUrl: {{ settings.coldstart_url | default: '' | json }},
         meshopt: true
       };
     </script>

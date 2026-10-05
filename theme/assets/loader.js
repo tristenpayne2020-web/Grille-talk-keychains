@@ -39,56 +39,11 @@ if (el && root.classList.contains('gt-loading')) {
   let shown = 0;
   let finished = false;
   let ready = false;
-  const ignition = document.querySelector('[data-loader-ignition]');
-  const quietPref = () => { try { return localStorage.getItem('gt-sound') === 'off'; } catch (e) { return false; } };
-  const setPref = (v) => { try { localStorage.setItem('gt-sound', v); } catch (e) { /* storage blocked */ } };
-  let autoEnter = null;
-
-  // at 100%: offer the push-to-start button (browsers only allow sound after a gesture)
-  const onReady = () => {
-    if (ready) return;
-    ready = true;
-    if (!ignition || quietPref()) { finish(); return; }
-    ignition.hidden = false;
-    el.classList.add('is-ready');
-    requestAnimationFrame(() => ignition.classList.add('is-in'));
-    ignition.querySelector('[data-loader-start]').focus({ preventScroll: true });
-    autoEnter = setTimeout(finish, 7000);   // never hold the visitor: enter quietly after 7 s
-  };
-  ignition?.querySelector('[data-loader-quiet]').addEventListener('click', () => { setPref('off'); finish(); });
-  ignition?.querySelector('[data-loader-start]').addEventListener('click', async (e) => {
-    const btn = e.currentTarget;
-    if (btn.disabled) return;
-    btn.disabled = true;
-    clearTimeout(autoEnter);
-    setPref('on');
-    el.classList.add('is-starting');
-    let catchAt = 620;   // ms: when the bundled straight-six catches
-    try {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      const ctx = new AC();
-      await ctx.resume();
-      const play = (buffer) => { const src = ctx.createBufferSource(); src.buffer = buffer; const g = ctx.createGain(); g.gain.value = 0.85; src.connect(g).connect(ctx.destination); src.start(); setTimeout(() => ctx.close(), (buffer.duration + 0.3) * 1000); };
-      const decode = async (url) => ctx.decodeAudioData(await (await fetch(url)).arrayBuffer());
-      const own = window.GT && window.GT.coldstartUrl;   // the owner's own recording (theme setting), if set
-      try {
-        if (own) { play(await decode(own)); catchAt = 800; }
-        else { const { COLDSTART_MP3 } = await import('coldstart-audio'); play(await decode(COLDSTART_MP3)); }
-      } catch (e2) {
-        const { playColdStart } = await import('coldstart');   // last resort: synthesise live
-        playColdStart(ctx, { volume: 0.5 });
-        catchAt = 860;
-      }
-    } catch (err) { /* no audio at all: carry on silently */ }
-    setTimeout(() => el.classList.add('is-caught'), catchAt);   // the engine catches: lights flare
-    setTimeout(finish, catchAt + 450);
-  });
+  const onReady = () => { if (ready) return; ready = true; finish(); };
 
   const finish = () => {
     if (finished) return;
     finished = true;
-    clearTimeout(autoEnter);
-    ignition?.classList.remove('is-in');
     el.style.setProperty('--fill', '1');
     count.textContent = '100';
     root.classList.add('gt-loaded');
@@ -99,7 +54,6 @@ if (el && root.classList.contains('gt-loading')) {
       root.classList.remove('gt-loading', 'gt-loaded');
       el.remove();
       skip?.remove();
-      ignition?.remove();
     }, reduce ? 300 : 1100);
   };
   skip?.addEventListener('click', () => finish());

@@ -171,11 +171,5 @@
     "newsletter": "New cars",
     "step": "Step",
     "wall": "Wall key holder"
-  },
-  "loader": {
-    "engine": "Engine",
-    "start": "Start",
-    "stop": "Stop",
-    "quiet": "Enter without sound"
   }
 }
