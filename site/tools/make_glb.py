@@ -138,6 +138,8 @@ def back_and_lettering(M, tab_center):
     from matplotlib.textpath import TextPath
     from matplotlib.font_manager import FontProperties
     face = M['outline'].difference(M['hole']).buffer(-0.05)
+    if face.geom_type == 'MultiPolygon':                          # a hairline sliver can split off: keep the body
+        face = max(face.geoms, key=lambda g: g.area)
     v2, f = trimesh.creation.triangulate_polygon(face, engine='earcut')
     V = np.column_stack([v2, np.full(len(v2), -0.08)])   # clear of the base after quantization
     back = face_away(trimesh.Trimesh(V, f, process=False))        # faces point to -Z (away from the front)

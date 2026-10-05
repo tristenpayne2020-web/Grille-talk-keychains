@@ -1,5 +1,5 @@
 {
-  "_note": "Launch catalog: 28 of the 64 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
+  "_note": "Launch catalog: 32 of the 64 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
   "colors": [
     {
       "name": "White",
@@ -398,6 +398,59 @@
         "Stinger",
         "Stinger GT",
         "GT"
+      ]
+    },
+    {
+      "id": "lexus_is350",
+      "make": "Lexus",
+      "model": "IS 350 F Sport",
+      "generation": "XE30",
+      "short_model": "IS 350",
+      "aliases": [
+        "IS 350",
+        "IS350",
+        "IS",
+        "F Sport",
+        "XE30"
+      ]
+    },
+    {
+      "id": "ct5v_blackwing",
+      "make": "Cadillac",
+      "model": "CT5-V Blackwing",
+      "generation": "2022-2024",
+      "short_model": "CT5-V",
+      "aliases": [
+        "CT5-V",
+        "CT5V",
+        "Blackwing",
+        "CT5"
+      ]
+    },
+    {
+      "id": "elantra_n",
+      "make": "Hyundai",
+      "model": "Elantra N",
+      "generation": "CN7",
+      "short_model": "Elantra N",
+      "aliases": [
+        "Elantra",
+        "Elantra N",
+        "CN7"
+      ]
+    },
+    {
+      "id": "amg_gt",
+      "make": "Mercedes-AMG",
+      "model": "GT",
+      "generation": "C190",
+      "short_model": "AMG GT",
+      "aliases": [
+        "AMG GT",
+        "GT R",
+        "GT",
+        "C190",
+        "Mercedes"
       ]
     }
   ],
