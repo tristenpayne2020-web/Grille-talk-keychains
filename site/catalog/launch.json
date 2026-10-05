@@ -1,5 +1,5 @@
 {
-  "_note": "Launch catalog: 27 of the 64 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
+  "_note": "Launch catalog: 28 of the 64 approved cars in kc/cars_pkg.json. Make/model/generation are hand-mapped from each car's name (nominative use only). Add cars by appending rows; the tools read this file.",
   "colors": [
     {
       "name": "White",
@@ -117,6 +117,19 @@
       "aliases": [
         "M4",
         "F82"
+      ]
+    },
+    {
+      "id": "f90_m5",
+      "make": "BMW",
+      "model": "M5",
+      "generation": "F90 LCI",
+      "short_model": "M5",
+      "aliases": [
+        "M5",
+        "F90",
+        "M5 Competition",
+        "5 Series"
       ]
     },
     {
