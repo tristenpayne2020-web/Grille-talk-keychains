@@ -2,6 +2,7 @@
 import json, os, sys
 SP = os.path.dirname(os.path.abspath(__file__))
 NAMES = {
+    'chevy_tahoe': ('Chevrolet_Tahoe', 'Chevrolet Tahoe (2021-2024)'),
     'r35_gtr': ('Nissan_GTR_R35', 'Nissan GT-R (R35, 2017+)'),
     'g20_m340i_lci': ('BMW_M340i_G20_LCI', 'BMW M340i (G20 LCI, 2023+)'),
     'camaro_zl1': ('Chevrolet_Camaro_ZL1', 'Chevrolet Camaro ZL1 (6th gen)'),

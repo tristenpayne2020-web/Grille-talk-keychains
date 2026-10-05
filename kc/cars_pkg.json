@@ -574,5 +574,14 @@
   "out": "cars/tesla_models_plaid/out",
   "ref_url": "n/a",
   "ref_license": "n/a"
+ },
+ {
+  "id": "chevy_tahoe",
+  "folder": "Chevrolet_Tahoe",
+  "name": "Chevrolet Tahoe (2021-2024)",
+  "spec": "C:\\Users\\trist\\grille-talk-keychains\\kc\\cars\\chevy_tahoe\\spec.py",
+  "out": "cars/chevy_tahoe/out",
+  "ref_url": "https://commons.wikimedia.org/wiki/File:Chevrolet_Tahoe_High_Country_GMTT1XX_Avalon_White_Pearl_(3).jpg",
+  "ref_license": "see ref/SOURCE.txt"
  }
 ]
