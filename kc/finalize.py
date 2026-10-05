@@ -1,4 +1,5 @@
 import json, os, sys, shutil, subprocess, glob
+os.chdir(os.path.dirname(os.path.abspath(__file__)))   # paths below are relative to kc/: works from any folder
 sys.path.insert(0, 'lib')
 import package
 DEST = r'C:\Users\trist\Downloads\CarKeychains'
