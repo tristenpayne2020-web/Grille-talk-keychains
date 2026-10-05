@@ -27,7 +27,7 @@
         "s4": {
           "type": "stat",
           "settings": {
-            "value": "32 cars",
+            "value": "33 cars",
             "label": "In the range"
           }
         }

@@ -1,7 +1,7 @@
 # Grille Talk Shopify theme
 
 Online Store 2.0 theme for grilletalk.shop. Black and white, the keychains are the hero.
-Launch catalog: 32 keychains and 6 wall key holders × 7 body colors. More cars and 7 more colors are ready to add later
+Launch catalog: 33 keychains and 6 wall key holders × 7 body colors. More cars and 7 more colors are ready to add later
 (see "Adding the rest of the line" below).
 
 ```
