@@ -22,7 +22,7 @@ from shapely import affinity
 
 HERE = os.path.dirname(os.path.abspath(__file__)); KC = os.path.join(HERE, '..')
 sys.path.insert(0, os.path.join(KC, 'lib'))
-import geom, build3d, export, k2config, write3mf, render
+import geom, build3d, export, export3, k2config, write3mf, render
 from geom import polys, clean
 
 S = 3.0                                        # scale of the user's holder vs the keychain
@@ -65,8 +65,9 @@ def user_hooks():
 
 # ---------------------------------------------------------------- per car
 def scaled_maps(spec):
-    M = geom.build_maps(spec, tab=False); geom.repair_min_width(M)
-    keys = ('outline', 'white', 'black', 'relief_region', 'relief_ribs', 'grooves_white', 'grooves_black')
+    M = geom.build_maps(spec, tab=False); geom.repair_min_width(M); geom.split_white(M)
+    keys = ('outline', 'white', 'black', 'relief_region', 'relief_ribs', 'grooves_white', 'grooves_black',
+            'white_body', 'white_light')
     return {k: affinity.scale(M[k], S, S, origin=(0, 0)) for k in keys} | {'hole': Polygon()}
 
 
@@ -79,6 +80,30 @@ def stepped_countersink(cx, cy):
         out.append((Point(cx, cy).buffer(r_top - (T - z0), 64), z0, z))
         z = z0
     return out
+
+
+def write_all(stem, sl, cols, cfg, title):
+    """STLs, coloured STEP (flat part, without the hooks), render and the Creality 3MF."""
+    parts = build3d.parts_from(sl)
+    meshes = {k: build3d.to_trimesh(parts[k]) for k, _, _ in cols}
+    for k, m in meshes.items():
+        m.export(f'{stem}_{k}.stl')
+    try:
+        # the hooks' 113 layers make the OCC fuse take hours: the STEP is the flat part only (hooks are in the STL/3MF)
+        flat = {k: [(g, a, b) for g, a, b in v if b <= T + 1e-6] for k, v in sl.items()}
+        export3.export_step3(flat, stem + '.step', title, {k: rgb for k, _, rgb in cols})
+    except Exception as e:
+        print('STEP skipped:', e)
+    r3d = stem + '_render.png'
+    try:
+        render.render3d([(meshes[k], rgb) for k, _, rgb in reversed(cols)], r3d, elev=60, azim=-10, zoom=1.3)
+    except Exception as e:
+        print('render skipped:', e); r3d = None
+    prt = [dict(name=label, mesh=meshes[k], extruder=i + 1) for i, (k, label, _) in enumerate(cols)]
+    write3mf.write_3mf(stem + '.3mf', prt, cfg, object_name=title, app_version=k2config.VERSION,
+                       thumbnail_png=r3d, positions=[(126.0, 110.0)])
+    print(title, np.round(trimesh.util.concatenate(list(meshes.values())).extents, 1), 'mm',
+          {k: round(m.volume / 1000, 1) for k, m in meshes.items()}, 'cm3')
 
 
 def build(cid, hooks, ucx, uroot, ufoot):
@@ -135,27 +160,24 @@ def build(cid, hooks, ucx, uroot, ufoot):
         return res
     sl = {k: cut_slabs(v) for k, v in sl.items()}
     sl['white'] += hook_sl
-    parts = build3d.parts_from(sl)
-    black, white = build3d.to_trimesh(parts['black']), build3d.to_trimesh(parts['white'])
     d = os.path.join(OUT, folder); os.makedirs(d, exist_ok=True)
+    # ---- 1-swap (black + white)
     stem = os.path.join(d, f'{folder}_wall_key_holder')
-    black.export(stem + '_black.stl'); white.export(stem + '_white.stl')
-    try:
-        build3d.export_step({'black': sl['black'], 'white': sl['white']}, stem + '_body.step', name=f'{name} wall key holder')
-    except Exception as e:
-        print(cid, 'STEP skipped:', e)
-    r3d = stem + '_render.png'
-    try:
-        render.render3d([(white, (0.93, 0.92, 0.88)), (black, (0.10, 0.10, 0.11))], r3d, elev=60, azim=-10, zoom=1.3)
-    except Exception as e:
-        print('render skipped:', e); r3d = None
-    cfg = k2config.build({'wipe_tower_x': ['216'], 'wipe_tower_y': ['222']})
-    prt = [dict(name='Back plate + details (black)', mesh=black, extruder=1), dict(name='Face + hooks (white)', mesh=white, extruder=2)]
-    write3mf.write_3mf(stem + '.3mf', prt, cfg, object_name=f'{name} wall key holder', app_version=k2config.VERSION,
-                       thumbnail_png=r3d, positions=[(126.0, 110.0)])
-    ext = np.round(trimesh.util.concatenate([black, white]).extents, 1)
-    print(f'{cid}: {ext} mm, black {black.volume/1000:.1f} cm3, white {white.volume/1000:.1f} cm3, watertight',
-          black.is_watertight, white.is_watertight, f'holes at x={hx:.1f}/{2*cx-hx:.1f} y={hy:.1f}')
+    write_all(stem, sl, [('black', 'Back plate + details (black)', (0.10, 0.10, 0.11)), ('white', 'Face + hooks (white)', (0.93, 0.92, 0.88))],
+              k2config.build({'wipe_tower_x': ['216'], 'wipe_tower_y': ['222']}), f'{name} wall key holder')
+    # ---- custom body colour (3 filaments like the custom-colour keychains): 1 black, 2 body colour (face + hooks),
+    # 3 white lights (the light islands of the face, full cap height so they stay opaque)
+    L = M['white_light'].difference(M['grooves_white']).difference(pads)
+    sl3 = {'black': sl['black'],
+           'body': [(g.difference(L) if b <= T + 1e-6 else g, a, b) for g, a, b in sl['white']],
+           'light': [(g.intersection(L), a, b) for g, a, b in sl['white'] if b <= T + 1e-6]}
+    sl3['light'] = [(g, a, b) for g, a, b in sl3['light'] if not g.is_empty]
+    write_all(stem + '_custom_colour', sl3, [('black', 'Back plate + details (black)', (0.10, 0.10, 0.11)),
+                                              ('body', 'Body + hooks (custom colour)', (0.78, 0.06, 0.18)),
+                                              ('light', 'Lights (white)', (0.95, 0.95, 0.93))],
+              k2config.build_n(3, export3.COLOURS, export3.FLUSH3, {'wipe_tower_x': ['216'], 'wipe_tower_y': ['222']}),
+              f'{name} wall key holder (custom colour)')
+    print(f'{cid}: holes at x={hx:.1f}/{2*cx-hx:.1f} y={hy:.1f}')
     if os.name == 'nt':                                   # deliver next to the other extras
         import shutil
         dl = os.path.join(os.path.expanduser('~'), 'Downloads', 'GrilleTalk_Extras', 'Wall_Key_Holders', folder)
