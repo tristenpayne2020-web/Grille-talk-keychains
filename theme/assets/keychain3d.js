@@ -173,6 +173,12 @@ export class KeychainStage {
     if (on) { this.resize(); this._maybeRun(); }
   }
 
+  // custom headlight colour (the GLB's 'lights' material; cloned per keychain on load)
+  setLights(hex) {
+    this.root?.traverse((o) => { if (o.isMesh && o.material && o.material.name === 'lights') o.material.color.set(hex); });
+    this.render();
+  }
+
   setColor({ hex, metal = 0, rough = 0.55 }) {
     for (const m of this.materials || []) { m.color.set(hex); m.metalness = metal; m.roughness = rough; }
     this.render();

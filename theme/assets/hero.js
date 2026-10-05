@@ -11,7 +11,10 @@ async function start3D() {
   if (!webglAvailable()) return null;
   const stage = new KeychainStage(hero.querySelector('[data-hero-3d]'), { align: hero.querySelector('[data-hero-art]'), active: false });
   try {
-    await stage.load(url);
+    const body = hero.dataset.body;
+    const metal = Number(hero.dataset.bodyMetal) || 0;
+    await stage.load(url, body ? { hex: body, metal, rough: metal > 0.3 ? 0.32 : 0.8 } : undefined);
+    if (hero.dataset.lights) stage.setLights(hero.dataset.lights);
     return stage;
   } catch (e) {
     stage.dispose();

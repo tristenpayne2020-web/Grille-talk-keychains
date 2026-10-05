@@ -28,7 +28,7 @@
           "type": "stat",
           "settings": {
             "value": "27 cars",
-            "label": "More coming"
+            "label": "In the range"
           }
         }
       },
@@ -39,7 +39,7 @@
         "s4"
       ],
       "settings": {
-        "product": "bmw-m3-g80-keychain"
+        "product": "bmw-m3-g80-snake-eye-keychain"
       }
     },
     "range": {

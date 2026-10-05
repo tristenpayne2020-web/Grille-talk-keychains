@@ -12,13 +12,19 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 SVG = os.path.join(ROOT, 'site', 'build', 'svg', 'g80_m3')
 THEME = os.path.join(ROOT, 'theme')
 EXT = dict(left=0.02, right=0.02, top=0.04, bottom=0.62)
+# the hero shows the G80/G82 snake-eye front in Matte Gray with yellow headlights (owner's pick); same frame as the G80.
+# Render it first: see make_hero_render() below (Blender).
+HERO_SVG = os.path.join(ROOT, 'site', 'build', 'svg', 'g80_m3_snakeeye')
+HERO_PNG = os.path.join(ROOT, 'site', 'build', 'renders_png', 'g80_m3_snakeeye__gray-yellow__front-chain.png')
 
 
 def main():
-    drl = open(os.path.join(SVG, 'drl.svg')).read()
+    drl = open(os.path.join(HERO_SVG, 'drl.svg')).read()
     vb = re.search(r'viewBox="([^"]+)"', drl).group(1)   # the G80 frame the hero box is built on
     x0, y0, w_mm, h_mm = map(float, vb.split())        # viewBox already includes the 1 mm margin
-    im = Image.open(os.path.join(ROOT, 'site', 'build', 'renders_png', 'g80_m3__white__front-chain.png')).convert('RGBA')
+    if not os.path.exists(HERO_PNG):
+        make_hero_render()
+    im = Image.open(HERO_PNG).convert('RGBA')
     a = np.array(im)[..., 3] > 16
     rows = np.where(a.any(1))[0]
     cols = np.where(a.any(0))[0]
@@ -39,6 +45,22 @@ def main():
     canvas = canvas.resize((w, round(canvas.height * w / canvas.width)), Image.LANCZOS)
     canvas.save(os.path.join(THEME, 'assets', 'hero-g80.webp'), quality=86, method=6)
     print('hero-g80.webp', canvas.size)
+
+
+def make_hero_render():
+    """Blender: the snake-eye front with its chain, Matte Gray body, Yellow headlights (colours from launch.json)."""
+    import json, subprocess, tempfile
+    L = json.load(open(os.path.join(ROOT, 'site', 'catalog', 'launch.json')))
+    gray = next(c for c in L['colors'] if c['name'] == 'Matte Gray')
+    yellow = next(h for h in L['headlights']['values'] if h['name'] == 'Yellow')
+    col = dict(gray, slug='gray-yellow', lights=yellow['hex'])
+    job = dict(id='hero', glb=os.path.join(ROOT, 'site', 'build', 'glb_raw', 'g80_m3_snakeeye.glb'), samples=160, size=2000,
+               exposure=0.26, views=[dict(angle=0.0, chain=True, colors=[col], out=HERO_PNG.replace('gray-yellow', '{slug}'))])
+    with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f:
+        json.dump(job, f)
+    blender = os.environ.get('BLENDER', r'C:\Program Files\Blender Foundation\Blender 5.2lender.exe')
+    subprocess.run([blender, '--background', '--factory-startup', '--python',
+                    os.path.join(ROOT, 'site', 'tools', 'blender_render.py'), '--', f.name], check=True, capture_output=True)
 
 
 def detail_assets():

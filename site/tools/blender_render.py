@@ -249,5 +249,7 @@ for v in job['views']:
         if c and body_obj:
             body_obj.data.materials.clear(); body_obj.data.materials.append(body_material(c))
             saved[body_obj.name] = list(body_obj.data.materials)
+        lb = lights.node_tree.nodes['Principled BSDF'].inputs['Base Color']   # optional custom headlight colour
+        lb.default_value = hex_lin(c['lights']) if c and c.get('lights') else (0.9, 0.9, 0.88, 1)
         render(v['out'].format(slug=c['slug']) if c else v['out'])
 print('BLENDER_DONE', job['id'])
