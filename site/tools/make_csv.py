@@ -93,7 +93,7 @@ def main():
             price = float(prices[col['tier']]) + (0 if (h is None or h.get('base')) else float(hl['surcharge']))
             r.update({'Handle': h_, 'Option1 Value': col['name'], 'Option2 Value': h['name'] if h else '',
                       'Variant SKU': f"GT-{c['id']}-{col['name'].lower().replace(' ', '-')}" + (f"-hl-{h['name'].lower()}" if h else ''),
-                      'Variant Grams': '150' if c.get('wall') else '10',   # wall: estimate, owner to weigh 'Variant Weight Unit': 'g', 'Variant Inventory Tracker': '',
+                      'Variant Grams': str(c.get('grams', 150)) if c.get('wall') else '10',   # wall: estimate, owner to weigh 'Variant Weight Unit': 'g', 'Variant Inventory Tracker': '',
                       'Variant Inventory Policy': 'continue', 'Variant Fulfillment Service': 'manual',
                       'Variant Price': f'{price:.2f}', 'Variant Requires Shipping': 'TRUE',
                       'Variant Taxable': 'TRUE'})

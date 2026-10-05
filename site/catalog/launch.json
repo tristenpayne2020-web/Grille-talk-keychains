@@ -599,6 +599,35 @@
           87,
           31.5
         ]
+      },
+      {
+        "id": "f90_m5_wall",
+        "make": "BMW",
+        "model": "M5",
+        "generation": "F90 LCI",
+        "short_model": "M5",
+        "aliases": [
+          "M5",
+          "F90",
+          "M5 Competition",
+          "5 Series",
+          "wall",
+          "key holder",
+          "key rack"
+        ],
+        "source": "kc/wall/out/BMW_M5_F90/BMW_M5_F90_wall_key_holder_custom_colour_{part}.stl",
+        "parts": [
+          "black",
+          "body",
+          "light"
+        ],
+        "_note": "3D model and renders from the custom-colour print; White orders can print the 1-swap file",
+        "size_mm": [
+          241,
+          108,
+          31.5
+        ],
+        "grams": 102
       }
     ]
   }
