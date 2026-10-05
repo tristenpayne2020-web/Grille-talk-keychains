@@ -512,7 +512,8 @@ def split_white(M):
         b = q.bounds
         w, h = b[2] - b[0], b[3] - b[1]
         circ = 4 * math.pi * q.area / (q.length ** 2) if q.length else 0
-        solid_disc = (len(q.interiors) == 0 and circ > 0.90 and max(w, h) / max(min(w, h), 1e-6) < 1.2 and q.area < 4.0)
+        solid_disc = (len(q.interiors) == 0 and circ > 0.93 and   # 0.93: rounded-square LED cubes (Supra) stay white
+                       max(w, h) / max(min(w, h), 1e-6) < 1.2 and q.area < 4.0)
         (body if solid_disc else light).append(q)
     M['white_body'] = clean(unary_union(body)) if body else Polygon()
     M['white_light'] = clean(unary_union(light)) if light else Polygon()
