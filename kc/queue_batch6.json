@@ -1,5 +1,5 @@
 {
- "note": "QUEUED - do not start until the current batch (9 cars) is finished and packaged; run with pool 3-4 to spread usage. | zonda_cinque REMOVED by the user 2026-09-29. All badge-free (user decision 2026-09-30).",
+ "note": "QUEUED - do not start until the current batch (9 cars) is finished and packaged; run with pool 3-4 to spread usage. | zonda_cinque REMOVED by the user 2026-09-29. All badge-free (user decision 2026-09-30). | tesla_model3 REMOVED by the user 2026-10-05.",
  "cars": [
   {
    "id": "bugatti_chiron",
@@ -42,12 +42,6 @@
    "folder": "Ferrari_SF90_Stradale",
    "name": "Ferrari SF90 Stradale (2019+)",
    "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Ferrari SF90 Stradale. Signature: the slim C-shaped LED headlight signature at the upper outer corners (white strokes), the full-width black lower 'mouth' with the central splitter blade and side intakes, the smooth sculpted hood with the central channel, the Ferrari shield on the nose (badge type 'shield'). Very low and wide."
-  },
-  {
-   "id": "tesla_model3",
-   "folder": "Tesla_Model_3",
-   "name": "Tesla Model 3 (Highland, 2024+)",
-   "brief": "NO LOGOS (user decision, overrides anything below): draw no badge, emblem, crest or brand lettering; leave that spot plain body or plain grille, badge=None and no SHOW_BADGE prims. Refreshed Tesla Model 3 'Highland' (2024+). Signature: no grille - a smooth nose; very slim angular headlights with the thin LED DRL line (white strokes), the slim lower intake slot and small side intakes, the T badge on the nose (simplified T behind SHOW_BADGE), the smooth rounded hood. Clean and minimal - a mostly white face is correct for this car."
   },
   {
    "id": "tesla_models_plaid",
