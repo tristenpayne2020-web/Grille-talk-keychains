@@ -211,4 +211,5 @@ Results land in `site/build/reports/`.
   side (screw or nail). The previous 3MF was kept as `g80_wall_snakeeye_BACKUP_2026-10-02_before_mount_holes.3mf`.
 - Site: listed under `wall` in `site/catalog/launch.json` (type "Wall key holder", prices 14.99 / 15.99 / 16.99,
   headlight color +0.50). The listed weight (150 g) is an estimate: weigh one and update it in Shopify.
-- The description recommends double-sided mounting tape; the holes are there for screws or nails.
+- The description recommends double-sided mounting tape; the holes are there for screws or nails. Tape, screws and nails
+  are not included (owner, 2026-10-06).

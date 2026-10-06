@@ -216,6 +216,7 @@ const reset = () => fetch(`${BASE}/cart.js`).then((r) => r.json()).then(async (c
   const top = await pr();
   check('wall key holder prices: 14.99 base, +0.50 headlights, metallic tier', base === '$14.99' && hl === '$15.49' && top === '$17.49', `${base} ${hl} ${top}`);
   check('wall key holder description recommends double-sided tape', /double-sided/i.test(await p.textContent('.product__info')));
+  check('wall key holder description says tape and screws are not included', /not included/i.test(await p.textContent('.product__info')));
   await p.goto(BASE + '/collections/wall-key-holders');
   const nWall = JSON.parse(fs.readFileSync('catalog/launch.json', 'utf8')).wall.items.length;
   check('wall key holder collection lists every holder', (await p.$$('.card')).length === nWall, `${(await p.$$('.card')).length} of ${nWall}`);

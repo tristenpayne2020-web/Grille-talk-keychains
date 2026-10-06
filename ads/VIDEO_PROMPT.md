@@ -80,7 +80,8 @@ Do not invent reviews, ratings, sales numbers, "best", shipping times, materials
   PLA; "Don't see your car? Request it."
 - **Wall key holders:** "Your car, by the front door"; 7 cars (G80 M3 snake-eye, M5 F90, Supra, Charger Hellcat,
   Mustang GT500, Camaro ZL1, Corvette C8); four hooks; every body colour, plus custom headlights; from $14.99;
-  double-sided tape recommended, countersunk screw holes on each side; for keys only (not coats or bags).
+  double-sided tape recommended, countersunk screw holes on each side (tape, screws and nails are not included);
+  for keys only (not coats or bags).
 - **Talon spinner:** $12.99; "printed in highly durable carbon fiber material, made for rigidity and built to last";
   6804 ball bearing; 20 mm finger hole; topology-optimised lattice ("solid where it works, light everywhere else");
   about 74 × 42 mm.
@@ -142,7 +143,7 @@ letter-spacing settle, holds long enough to read (about 0.25 s per word, at leas
 **12 s wall ad:**
 1. Keys drop onto a hook: "Your car, by the front door."
 2. Colour cycle on the wall: "Every body colour."
-3. Mounting callouts: "Double-sided tape or two countersunk screws"
+3. Mounting callouts: "Double-sided tape or two countersunk screws" (small: "Tape and screws not included")
 4. Lineup of the 7 holders: "From $14.99 · Shop wall key holders"
 
 ## 7. 3D and look-development spec
