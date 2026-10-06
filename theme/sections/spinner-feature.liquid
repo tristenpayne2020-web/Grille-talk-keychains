@@ -1,0 +1,46 @@
+{%- comment -%}
+  Talon keychain spinner feature: the product film (snippet 'film') next to what it is, its facts and its price.
+{%- endcomment -%}
+{%- assign sp = section.settings.product -%}
+{%- if sp != blank -%}
+<section class="section spinfeat" id="talon" data-chapter="{{ 'chapters.spinner' | t }}" aria-labelledby="talon-title">
+  <div class="page-width spinfeat__grid">
+    <div class="spinfeat__film">
+      {%- render 'film', video: section.settings.film, fallback: 'film-spinner.mp4', poster: 'film-spinner-poster.webp', label: section.settings.film_label -%}
+    </div>
+    <div class="spinfeat__copy">
+      <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 class="h-2" id="talon-title">{{ section.settings.heading | escape }}</h2>
+      <p class="lede">{{ section.settings.text | escape }}</p>
+      <ul class="wallhold__facts" role="list">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}><span class="t-mono">{{ block.settings.label | escape }}</span><span>{{ block.settings.value | escape }}</span></li>
+        {%- endfor -%}
+      </ul>
+      <div class="wallhold__buy">
+        <p class="wallhold__price">{{ sp.price | money }}</p>
+        <a class="btn" href="{{ sp.url }}" data-magnetic>{{ section.settings.button | escape }}<span class="visually-hidden">: {{ sp.title | escape }}</span> {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Talon keychain spinner",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Spinner" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Talon keychain spinner" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Spin it. Keep your keys on it." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "A finger spinner that lives on your keychain. The Talon frame is a topology-optimised lattice: solid where the bearing works, light everywhere else." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Get the Talon" },
+    { "type": "video", "id": "film", "label": "Film (9:16)", "info": "Upload grilletalk_spinner_9x16.mp4 in Content > Files and pick it here. Without it the theme's own copy plays." },
+    { "type": "text", "id": "film_label", "label": "Film description (screen readers)", "default": "Film: a macro across the Talon's carbon fiber lattice, the spinner spinning up on its bearing, its specs, and the price." }
+  ],
+  "blocks": [
+    { "type": "fact", "name": "Fact", "settings": [ { "type": "text", "id": "label", "label": "Label" }, { "type": "text", "id": "value", "label": "Value" } ] }
+  ],
+  "presets": [{ "name": "Talon keychain spinner" }]
+}
+{% endschema %}

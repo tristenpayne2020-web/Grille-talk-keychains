@@ -1,5 +1,5 @@
 {%- comment -%}
-  Wall-mounted key holder feature: the holder hung on a lit wall panel, its price from the variants, and the mounting
+  Wall-mounted key holder feature: the holder hung on a lit wall panel, a portrait film of it (snippet 'film'), its price from the variants, and the mounting
   advice (double-sided tape recommended; countersunk holes for a screw or nail). With a collection set, a row of
   thumbnails (each holder in a different body colour) swaps the one on the wall.
 {%- endcomment -%}
@@ -45,6 +45,9 @@
         {%- endif -%}
       </div>
       <span class="wallhold__shadow"></span>
+    </div>
+    <div class="wallhold__film">
+      {%- render 'film', video: section.settings.film, fallback: 'film-wall.mp4', poster: 'film-wall-poster.webp', label: section.settings.film_label -%}
     </div>
     {%- if col != blank and col.products_count > 1 -%}
       {%- liquid
@@ -103,7 +106,9 @@
     { "type": "textarea", "id": "text", "label": "Text", "default": "The same front, scaled up for the wall, with four hooks for your keys. Same body colors." },
     { "type": "text", "id": "button", "label": "Button", "default": "View the key holder" },
     { "type": "text", "id": "all_label", "label": "Collection link", "default": "All wall key holders" },
-    { "type": "text", "id": "pick_label", "label": "Picker label (screen readers)", "default": "Choose a wall key holder" }
+    { "type": "text", "id": "pick_label", "label": "Picker label (screen readers)", "default": "Choose a wall key holder" },
+    { "type": "video", "id": "film", "label": "Film (9:16)", "info": "Upload grilletalk_wall_9x16.mp4 in Content > Files and pick it here. Without it the theme's own copy plays." },
+    { "type": "text", "id": "film_label", "label": "Film description (screen readers)", "default": "Film: a set of keys swings onto a hook of a white Supra wall key holder, the holder cycles through the body colors, then the full range on the wall." }
   ],
   "blocks": [
     { "type": "fact", "name": "Fact", "settings": [ { "type": "text", "id": "label", "label": "Label" }, { "type": "text", "id": "value", "label": "Value" } ] }

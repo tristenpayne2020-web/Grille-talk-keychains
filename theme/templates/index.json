@@ -296,12 +296,55 @@
         "w3",
         "w4"
       ]
+    },
+    "talon": {
+      "type": "spinner-feature",
+      "settings": {
+        "product": "talon-finger-spinner"
+      },
+      "blocks": {
+        "t1": {
+          "type": "fact",
+          "settings": {
+            "label": "Frame",
+            "value": "Carbon fiber, topology-optimised"
+          }
+        },
+        "t2": {
+          "type": "fact",
+          "settings": {
+            "label": "Bearing",
+            "value": "6804 ball bearing"
+          }
+        },
+        "t3": {
+          "type": "fact",
+          "settings": {
+            "label": "Finger hole",
+            "value": "20 mm"
+          }
+        },
+        "t4": {
+          "type": "fact",
+          "settings": {
+            "label": "Size",
+            "value": "About 74 x 42 mm"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
     }
   },
   "order": [
     "hero",
     "range",
     "wall",
+    "talon",
     "details",
     "process",
     "faq",

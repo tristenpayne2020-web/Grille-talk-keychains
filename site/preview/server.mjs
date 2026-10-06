@@ -304,10 +304,19 @@ async function page(req, res, name, extra, suffix, status = 200) {
   res.end(html.replace('</head>', '<script>window.__PREVIEW__=true</script></head>'));
 }
 
-const types = { '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.glb': 'model/gltf-binary', '.json': 'application/json' };
+const types = { '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.glb': 'model/gltf-binary', '.json': 'application/json', '.mp4': 'video/mp4' };
 function serveFile(res, file) {
   if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); return res.end('not found'); }
-  res.writeHead(200, { 'content-type': types[path.extname(file)] || 'application/octet-stream', 'cache-control': 'public, max-age=300' });
+  const type = types[path.extname(file)] || 'application/octet-stream';
+  const size = fs.statSync(file).size;
+  const range = res.req && res.req.headers.range && /bytes=(\d*)-(\d*)/.exec(res.req.headers.range);
+  if (range) {   // video seeking / progressive playback
+    const start = range[1] ? Number(range[1]) : 0;
+    const end = range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+    res.writeHead(206, { 'content-type': type, 'content-range': `bytes ${start}-${end}/${size}`, 'accept-ranges': 'bytes', 'content-length': end - start + 1, 'cache-control': 'public, max-age=300' });
+    return fs.createReadStream(file, { start, end }).pipe(res);
+  }
+  res.writeHead(200, { 'content-type': type, 'content-length': size, 'accept-ranges': 'bytes', 'cache-control': 'public, max-age=300' });
   fs.createReadStream(file).pipe(res);
 }
 const body = (req) => new Promise((ok) => { let b = ''; req.on('data', (c) => { b += c; }); req.on('end', () => ok(b)); });

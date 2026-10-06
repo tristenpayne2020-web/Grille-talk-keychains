@@ -687,6 +687,32 @@ body::after { content: ''; position: fixed; inset: -50%; z-index: 90; pointer-ev
 .wallhold__thumb:hover { border-color: var(--c-line-strong); color: var(--c-fg); }
 .wallhold__thumb[aria-pressed='true'] { border-color: var(--c-fg); color: var(--c-fg); background: rgba(255, 255, 255, 0.05); }
 @media (prefers-reduced-motion: reduce) { .wallhold__piece img { transition: none; } }
+/* product films (snippet film.liquid): portrait 9:16 card, plays while on screen */
+.film { position: relative; margin: 0; aspect-ratio: 9 / 16; width: 100%; border-radius: var(--radius); overflow: hidden; background: #070708; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--c-line); }
+.film__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.film__sound { position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; background: rgba(7, 7, 8, 0.55); color: var(--c-fg); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; backdrop-filter: blur(6px); transition: background-color var(--dur-1), border-color var(--dur-1); }
+.film__sound:hover { background: rgba(7, 7, 8, 0.8); border-color: rgba(255, 255, 255, 0.4); }
+.film__sound[aria-pressed='true'] { background: var(--c-fg); color: #070708; border-color: var(--c-fg); }
+.film__play { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); background: rgba(7, 7, 8, 0.5); color: var(--c-fg); cursor: pointer; display: grid; place-items: center; }
+.film__play[hidden] { display: none; }
+.wallhold__film { width: min(100%, 360px); justify-self: center; }
+/* 990-1279: the film sits under the copy; 1280+: its own column beside the lit wall */
+@media (min-width: 990px) {
+  .wallhold__copy { grid-row: 1 / span 2; }
+  .wallhold__film { grid-column: 2; width: min(100%, 300px); justify-self: end; margin-top: calc(-1 * var(--s-6)); }
+}
+@media (min-width: 1280px) {
+  .wallhold__grid { grid-template-columns: minmax(0, 4fr) minmax(0, 6fr) minmax(0, 2.6fr); }
+  .wallhold__copy { grid-row: auto; }
+  .wallhold__film { grid-column: auto; width: 100%; margin-top: 0; }
+}
+.spinfeat__grid { display: grid; gap: var(--s-7); align-items: center; }
+.spinfeat__film { width: min(100%, 380px); justify-self: center; }
+.spinfeat__copy { display: grid; gap: var(--s-4); align-content: start; }
+@media (min-width: 990px) {
+  .spinfeat__grid { grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: var(--s-8); }
+  .spinfeat__film { width: min(100%, 420px); }
+}
 
 /* when the 3D display is running, the CSS fixture, beam and pedestal give way to the real ones */
 .display.is-3d-display .display__fixture, .display.is-3d-display .display__beam, .display.is-3d-display .display__pedestal > span:not(.display__name) { opacity: 0; transition: opacity 600ms var(--ease-out); }

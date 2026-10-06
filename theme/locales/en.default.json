@@ -9,7 +9,10 @@
     "page": "Page {{ page }}",
     "skip_intro": "Skip",
     "faq": "Frequently asked questions",
-    "loading": "Loading Grille Talk"
+    "loading": "Loading Grille Talk",
+    "sound_on": "Sound on",
+    "sound_off": "Sound off",
+    "play_film": "Play the film"
   },
   "search": {
     "title": "Search",
@@ -170,6 +173,7 @@
     "faq": "FAQ",
     "newsletter": "New cars",
     "step": "Step",
-    "wall": "Wall key holder"
+    "wall": "Wall key holder",
+    "spinner": "Talon keychain spinner"
   }
 }

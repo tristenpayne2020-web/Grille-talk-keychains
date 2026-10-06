@@ -1,0 +1,39 @@
+{%- comment -%}
+  A portrait product film (9:16): muted, looping, plays only while on screen (film.js), with a sound toggle.
+  Accepts:
+  - video: a Shopify-hosted video (section setting of type "video"); its MP4 source is used
+  - fallback: a theme asset file name, used when no video is picked (local preview)
+  - poster: a theme asset image shown before playback and under reduced motion
+  - label: what the film shows (for screen readers)
+{%- endcomment -%}
+{%- liquid
+  assign film_src = fallback | asset_url
+  assign film_poster = poster | asset_url
+  if video.sources
+    for s in video.sources
+      if s.mime_type == 'video/mp4'
+        assign film_src = s.url
+        if s.height >= 1280
+          break
+        endif
+      endif
+    endfor
+    if video.preview_image
+      assign film_poster = video.preview_image | image_url: width: 720
+    endif
+  endif
+-%}
+{%- if film_src != blank -%}
+<figure class="film" data-film>
+  <video class="film__video" muted loop playsinline preload="none" poster="{{ film_poster }}" aria-label="{{ label | escape }}" data-film-video>
+    <source src="{{ film_src }}" type="video/mp4">
+  </video>
+  <button type="button" class="film__sound" aria-pressed="false" data-film-sound data-off-label="{{ 'general.sound_off' | t }}">
+    {% render 'icon', name: 'sound', class: 'icon--sm' %}<span class="film__sound-label" data-film-sound-label>{{ 'general.sound_on' | t }}</span>
+  </button>
+  <button type="button" class="film__play" hidden data-film-play aria-label="{{ 'general.play_film' | t }}">
+    {% render 'icon', name: 'play', class: 'icon--lg' %}
+  </button>
+</figure>
+<script src="{{ 'film.js' | asset_url }}" type="module"></script>
+{%- endif -%}
