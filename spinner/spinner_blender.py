@@ -155,6 +155,9 @@ for d in job['designs']:
         o.location.z += z
     built.append((d, f, group))
 
+if os.environ.get('SPINNER_NORENDER'):   # print files only
+    print('SPINNERS_DONE'); sys.exit(0)
+
 for d, f, group in built:   # one at a time: black PETG-CF hero, then its colour
     others = [o for _, _, g in built if g is not group for o in g]
     for o in others: o.hide_render = True
@@ -163,11 +166,4 @@ for d, f, group in built:   # one at a time: black PETG-CF hero, then its colour
         shoot(group, os.path.join(OUT, f"{d['name']}_{label.replace(' ', '_')}.png"))
     for o in others: o.hide_render = False
 
-# lineup: all three side by side, in their colours
-for i, (d, f, group) in enumerate(built):
-    f.data.materials.clear(); f.data.materials.append(mat('petg_cf', COLORS[d['name']][1], 0.62, bump=0.35))
-    for o in group:
-        o.location.x += (i - 1) * 0.085
-scene.render.resolution_x = 2400; scene.render.resolution_y = 1200
-shoot([o for _, _, g in built for o in g], os.path.join(OUT, 'lineup.png'), elev=55, azim=0, fill=0.75)
 print('SPINNERS_DONE')

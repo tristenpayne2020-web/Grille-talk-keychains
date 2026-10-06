@@ -65,34 +65,15 @@ def web(envelope, keep, seed, spacing=11.0, w=(0.95, 1.55)):
     return envelope.difference(unary_union(voids))
 
 
-def design_truss():
-    """'Truss': a teardrop frame from the bearing to the lug, with side wings like drone arm roots."""
-    L = (52.0, 0.0)
-    env = unary_union([unary_union([Point(0, 0).buffer(RING_R), Point(L).buffer(7)]).convex_hull,
-                       arc_strut([(-10, 14), (-22, 21), (-30, 19)], 5, 2), arc_strut([(-10, -14), (-22, -21), (-30, -19)], 5, 2)])
-    return L, env, 3
-
-
 def design_talon():
-    """'Talon': keyrambit outline, a hooked spine over a lattice web."""
+    """'Talon': a teardrop lattice web from the bearing to the keyring (owner: no hook, only the optimised web)."""
     L = (47.0, -7.0)
-    env = unary_union([unary_union([Point(0, 0).buffer(RING_R), Point(L).buffer(7), Point(24, 16).buffer(6),
-                                    Point(42, 8).buffer(5)]).convex_hull,
-                       arc_strut([(-4, 19), (-14, 25), (-25, 27), (-33, 23)], 4.5, 1.2)])
+    env = unary_union([Point(0, 0).buffer(RING_R), Point(L).buffer(7), Point(24, 16).buffer(6),
+                       Point(42, 8).buffer(5)]).convex_hull
     return L, env, 11
 
 
-def design_halo():
-    """'Halo': three lobes like a tri-copter frame; the bottom lobe carries the keyring."""
-    L = (0.0, -44.0)
-    lobes = [Point(30 * math.cos(math.radians(a)), 30 * math.sin(math.radians(a))).buffer(6.5) for a in (30, 150)]
-    env = unary_union([unary_union([Point(0, 0).buffer(RING_R), lb]).convex_hull for lb in lobes]
-                      + [unary_union([Point(0, 0).buffer(RING_R * 0.8), Point(L).buffer(7)]).convex_hull])
-    env = env.buffer(4, 32).buffer(-4, 32)
-    return L, env, 7
-
-
-DESIGNS = {'truss': design_truss, 'talon': design_talon, 'halo': design_halo}
+DESIGNS = {'talon': design_talon}
 
 
 def build(name):
