@@ -73,7 +73,24 @@ def design_talon():
     return L, env, 11
 
 
-DESIGNS = {'talon': design_talon}
+def design_karambit():
+    """'Karambit': a hooked blade curving up and over from the bearing, the blade itself filled with the lattice."""
+    L = (-2.0, -30.0)
+    spine = [(14, 9, 13), (26, 22, 12.5), (40, 31, 11), (54, 32, 9), (65, 26, 6.5), (71, 16, 4), (73, 6, 2.6)]
+    blade = unary_union([strut(a[:2], b[:2], a[2], b[2]) for a, b in zip(spine, spine[1:])])
+    blade = blade.difference(Point(54, 6).buffer(15, 64))          # the hook's inner curve
+    env = unary_union([Point(0, 0).buffer(RING_R), blade, unary_union([Point(0, -8).buffer(12), Point(L).buffer(7)]).convex_hull])
+    return L, env.buffer(2.5, 32).buffer(-2.5, 32), 23
+
+
+def design_shield():
+    """'Shield': an oval frame, bearing at the top, keyring at the bottom, a lattice web between (owner's reference)."""
+    L = (0.0, -47.0)
+    env = unary_union([Point(0, 0).buffer(RING_R + 1.5), Point(0, -36).buffer(15), Point(L).buffer(7)]).convex_hull
+    return L, env, 5
+
+
+DESIGNS = {'talon': design_talon, 'karambit': design_karambit, 'shield': design_shield}
 
 
 def build(name):

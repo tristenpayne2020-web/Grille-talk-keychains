@@ -161,8 +161,11 @@ SITE = os.path.join(os.path.dirname(OUT), '..', 'site', 'build')
 scene.render.film_transparent = True
 floor.is_shadow_catcher = True
 cf = mat('petg_cf', (0.03, 0.03, 0.032), 0.62, bump=0.35)
+for _, f_, _ in built:
+    f_.data.materials.clear(); f_.data.materials.append(cf)
 for d, f, group in built:
-    f.data.materials.clear(); f.data.materials.append(cf)
+    for _, _, g in built:                      # one spinner in shot at a time
+        for o in g: o.hide_render = g is not group; o.hide_set(g is not group)
     sid = f"{d['name']}_spinner"
     if not os.environ.get('SPINNER_GLB_ONLY'):
         shoot(group, os.path.join(SITE, 'renders_png', f'{sid}__black-cf__angle.png'))
