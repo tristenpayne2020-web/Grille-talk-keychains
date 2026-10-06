@@ -47,7 +47,7 @@ def wall_body(c):
             "<li>Printed in high-quality PLA filament</li><li>Logo-free design</li></ul>"
             "<p><strong>Mounting:</strong> we recommend strong double-sided mounting tape on the back. It sits flat, "
             "looks cleanest and leaves no screws on show. If you would rather screw or nail it up, there is a countersunk "
-            "hole on each side.</p>"
+            "hole on each side. Tape, screws and nails are not included.</p>"
             "<p><strong>Keys only:</strong> the hooks are made for keys and light keyrings. We don't recommend hanging "
             "coats, bags or anything of the sort on them.</p>"
             + CARE +
