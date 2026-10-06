@@ -76,18 +76,19 @@ def design_talon():
 def design_karambit():
     """'Karambit': bearing at the top, a broad claw sweeping down and curling to a point, the keyring through the tip,
     the lattice filling the claw (owner's reference: a Zenodo-style keyrambit)."""
-    L = (-17.0, -79.0)                                             # keyring hole in the point
-    spine = [(6, -10, 17), (11, -26, 15.5), (11, -42, 13), (6, -56, 10.5), (-3, -68, 8.5), (L[0], L[1], 6.8)]
+    k = 0.84                                                       # claw length (owner: a bit shorter)
+    L = (-15.0, -79.0 * k)                                         # keyring hole in the point
+    spine = [(6, -10 * k, 17), (11, -26 * k, 15.5), (11, -42 * k, 13), (6, -56 * k, 10.5), (-3, -68 * k, 8.5), (L[0], L[1], 6.8)]
     claw = unary_union([strut(a[:2], b[:2], a[2], b[2]) for a, b in zip(spine, spine[1:])])
-    claw = claw.difference(Point(-30, -42).buffer(19, 64))        # the concave inner edge of the claw
+    claw = claw.difference(Point(-30, -42 * k).buffer(19, 64))        # the concave inner edge of the claw
     # the point: past the keyring hole the blade tapers and curls inward to a ~1 mm tip
-    tip = unary_union([strut(L, (-25, -84.5), 6.0, 3.2), strut((-25, -84.5), (-33, -86), 3.2, 1.0)])
+    tip = unary_union([strut(L, (-22, -84.5 * k), 6.0, 3.6), strut((-22, -84.5 * k), (-29, -86.5 * k), 3.6, 2.0)])   # ~2 mm blunted point
     env = unary_union([Point(0, 0).buffer(RING_R), claw, Point(L).buffer(6.8)]).buffer(3, 32).buffer(-3, 32)
     env = unary_union([env, tip])
     # jimping: V-notches along the outer spine below the bearing, like a knife's thumb grip
     from shapely import affinity
     from shapely.geometry import LineString, box
-    for y in (-16, -20.5, -25, -29.5, -34):
+    for y in (-15, -19, -23, -27, -31):
         x = max(c[0] for c in LineString([(-60, y), (60, y)]).intersection(env).coords)
         env = env.difference(affinity.rotate(box(x - 1.3, y - 1.3, x + 1.3, y + 1.3), 45))
     return L, env, 29
