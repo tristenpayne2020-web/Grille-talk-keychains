@@ -1,0 +1,14 @@
+node_modules
+dist
+build
+.DS_Store
+.env
+
+# renders (large) and the GLB copies from ../site/build (not in git either)
+out
+public/glb
+
+# rendered frames (regenerate with python render_all.py) and the licensed song
+public/shots
+public/music
+renders
