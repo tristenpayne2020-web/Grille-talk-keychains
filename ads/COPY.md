@@ -14,6 +14,8 @@ back. Character counts are in brackets. Meta limits: primary text 125 visible, h
 | 06_wall_4x5 | 1080x1350, feed | Gift / home |
 | 07_pov_9x16 | 1080x1920, TikTok / Reels | Relatable hook |
 | 08_poster_4x5 | 1080x1350, feed | Craft |
+| 09_spinner_4x5 | 1080x1350, feed | New product: Talon spinner |
+| 10_spinner_9x16 | 1080x1920, Stories / Reels / TikTok | Talon spinner, engineering |
 
 ## Meta (Facebook / Instagram)
 
@@ -57,6 +59,15 @@ back. Character counts are in brackets. Meta limits: primary text 125 visible, h
 - Headline: Built from the real car. (24)
 - Description: 34 cars. 7 colors. (18)
 
+**09 Talon spinner**
+- Primary: New: the Talon finger spinner. Printed in highly durable carbon fiber, made for rigidity and built to last. (107)
+- Headline: Spin it. Clip it. Keep it. (25)
+- Description: $12.99 (6)
+
+**10 Talon spinner (story)**
+- Primary: A topology-optimised spinner for your keys: solid where it works, light everywhere else. (89)
+- Headline: Topology optimised. (19)
+- Description: Carbon fiber, $12.99 (20)
 
 ## TikTok ad text (100 max)
 
@@ -64,6 +75,7 @@ back. Character counts are in brackets. Meta limits: primary text 125 visible, h
 2. Snake eyes, but make it a keychain. Pick the body color AND the headlight color. (80)
 3. Your car, 80 mm wide, on your keys. Don't see yours? Request it. (64)
 4. Flip it over: carbon-fibre textured back on every one. (55)
+5. Fidget, but engineered. The Talon spinner in carbon fiber, $12.99. (68)
 
 ## Hooks for video (first 2 seconds, on-screen text)
 
@@ -76,4 +88,3 @@ back. Character counts are in brackets. Meta limits: primary text 125 visible, h
 
 - Every ad carries the line "independent maker, not affiliated with any vehicle manufacturer". Keep it.
 - Car names are used only to say which car a design is inspired by (nominative use); no badges or logos appear.
-- The finger spinners are not in the ads: they aren't for sale yet.

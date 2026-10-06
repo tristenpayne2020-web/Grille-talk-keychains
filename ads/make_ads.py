@@ -129,6 +129,31 @@ ADS['08_poster_4x5'] = (1080, 1350, f"""
 <p class="legal">{LEGAL}</p>""")
 
 
+# 9 - Talon spinner, feed: a cold, technical look (owner's carbon-fibre line)
+SP = next(x for x in L.get('extras', {}).get('items', []) if x['id'] == 'talon_spinner')
+ADS['09_spinner_4x5'] = (1080, 1350, f"""
+<div class="spot" style="background:radial-gradient(55% 40% at 50% 46%, rgba(180,200,230,.16), transparent 70%)"></div>
+<div style="position:absolute;inset:0;opacity:.07;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:54px 54px"></div>
+{LOGO}
+<div style="position:absolute;top:150px;left:64px;right:64px"><p class="eye">New &middot; Talon finger spinner</p>
+<h1 class="d" style="font-size:78px;margin-top:22px">Spin it.<br>Clip it.<br>Keep it.</h1></div>
+<img src="{SRC}/t_spinner_angle.png" style="position:absolute;left:50%;top:470px;width:740px;transform:translateX(-44%) rotate(-6deg);filter:drop-shadow(0 50px 40px rgba(0,0,0,.75))">
+<div style="position:absolute;left:64px;right:64px;bottom:120px">
+<p style="font-size:24px;color:#c9c8c4;margin-bottom:30px;max-width:780px;line-height:1.45">Printed in highly durable carbon fiber, made for rigidity and built to last. 6804 bearing, 20 mm finger hole.</p>
+<div style="display:flex;justify-content:space-between;align-items:center"><span class="cta">Get the Talon &rarr;</span><span style="font-size:30px">${SP['price']}</span></div></div>""")
+
+# 10 - Talon spinner, story: top view with callouts
+ADS['10_spinner_9x16'] = (1080, 1920, f"""
+<div class="spot" style="background:radial-gradient(70% 35% at 50% 50%, rgba(180,200,230,.14), transparent 70%)"></div>{LOGO}
+<h1 class="d" style="position:absolute;top:240px;left:64px;right:64px;font-size:86px">Topology<br>optimised.</h1>
+<p style="position:absolute;top:500px;left:64px;font-size:28px;color:#c9c8c4">Solid where it works. Light everywhere else.</p>
+<img src="{SRC}/t_spinner_front.png" style="position:absolute;left:50%;top:640px;width:900px;transform:translateX(-50%) rotate(-90deg)">
+<div style="position:absolute;left:64px;right:64px;top:1470px;display:flex;gap:14px;flex-wrap:wrap">
+<span class="chip">Carbon fiber PETG</span><span class="chip">6804 bearing</span><span class="chip">20 mm finger hole</span><span class="chip">74 x 42 mm</span></div>
+<div style="position:absolute;left:64px;right:64px;bottom:170px;display:flex;justify-content:space-between;align-items:center">
+<span class="cta">Spin yours &rarr;</span><span style="font-size:34px">${SP['price']}</span></div>""")
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     jobs = []
