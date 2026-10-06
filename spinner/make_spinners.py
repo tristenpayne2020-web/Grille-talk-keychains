@@ -74,14 +74,14 @@ def design_talon():
 
 
 def design_karambit():
-    """'Karambit': a gently curved, tapering blade off the bearing, lattice inside, the keyring through the tip
-    (owner's references: Keyrambit-style, less curve, no hole under the bearing)."""
-    L = (72.0, -14.0)                                              # keyring hole in the point
-    spine = [(12, 5, 14), (26, 7, 12.5), (40, 5, 11), (52, 0, 9.5), (63, -7, 8), (L[0], L[1], 6.8)]
-    blade = unary_union([strut(a[:2], b[:2], a[2], b[2]) for a, b in zip(spine, spine[1:])])
-    blade = blade.difference(Point(38, -27).buffer(15, 64))       # shallow hook on the underside
-    env = unary_union([Point(0, 0).buffer(RING_R), blade, Point(L).buffer(6.8)])
-    return L, env.buffer(2.5, 32).buffer(-2.5, 32), 23
+    """'Karambit': bearing at the top, a broad claw sweeping down and curling to a point, the keyring through the tip,
+    the lattice filling the claw (owner's reference: a Zenodo-style keyrambit)."""
+    L = (-17.0, -79.0)                                             # keyring hole in the point
+    spine = [(6, -10, 17), (11, -26, 15.5), (11, -42, 13), (6, -56, 10.5), (-3, -68, 8.5), (L[0], L[1], 6.8)]
+    claw = unary_union([strut(a[:2], b[:2], a[2], b[2]) for a, b in zip(spine, spine[1:])])
+    claw = claw.difference(Point(-30, -42).buffer(19, 64))        # the concave inner edge of the claw
+    env = unary_union([Point(0, 0).buffer(RING_R), claw, Point(L).buffer(6.8)])
+    return L, env.buffer(3, 32).buffer(-3, 32), 29
 
 
 def design_shield():
