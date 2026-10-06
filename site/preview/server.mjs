@@ -207,7 +207,8 @@ function allCollection(query = {}, handle = 'all') {
   const def = COLLECTIONS[handle] || COLLECTIONS.all;
   let items = data.products.filter(def.filter).map((p) => data.productView(p));
   const make = [].concat(query['filter.p.m.custom.make'] || []);
-  const makes = [...new Set(data.products.map((p) => p.metafields.custom.make?.value).filter(Boolean))].sort();
+  const inCol = data.products.filter(def.filter);   // like Shopify: filter values come from this collection's products
+  const makes = [...new Set(inCol.map((p) => p.metafields.custom.make?.value).filter(Boolean))].sort();
   const base = `/collections/${handle}`;
   const qs = (params) => { const u = new URLSearchParams(); for (const [k, v] of params) u.append(k, v); const s = u.toString(); return s ? `${base}?${s}` : base; };
   const current = [...make.map((m) => ['filter.p.m.custom.make', m])];
@@ -216,7 +217,7 @@ function allCollection(query = {}, handle = 'all') {
     const active = make.includes(m);
     return {
       label: m, value: m, param_name: 'filter.p.m.custom.make', active,
-      count: data.products.filter((p) => p.metafields.custom.make?.value === m).length,
+      count: inCol.filter((p) => p.metafields.custom.make?.value === m).length,
       url_to_add: qs([...current, ['filter.p.m.custom.make', m]]),
       url_to_remove: qs(current.filter(([k, v]) => !(k === 'filter.p.m.custom.make' && v === m))),
     };

@@ -727,6 +727,38 @@
         ],
         "description": "<p>A topology-optimised finger spinner for your keys. The Talon frame is a lattice of curved struts: solid where the bearing works, light everywhere else.</p><ul><li>Printed in highly durable carbon fiber material (PETG-CF), made for rigidity and built to last</li><li>6804 ball bearing: a 20 mm finger hole that sits flush in the frame</li><li>About 74 x 42 mm, 7.4 mm thick</li><li>Black carbon fiber finish</li></ul>",
         "seo": "Topology-optimised finger spinner keychain in carbon fiber PETG with a 6804 bearing. Rigid, light, built to last."
+      },
+      {
+        "type": "Spinner",
+        "price": "12.99",
+        "color": "Black carbon fiber",
+        "grams": 28,
+        "id": "karambit_spinner",
+        "title": "Karambit finger spinner",
+        "handle": "karambit-finger-spinner",
+        "size_mm": [
+          57,
+          95,
+          7.4
+        ],
+        "description": "<p>A karambit-style finger spinner for your keys. The bearing sits at the top; a curved claw sweeps down to a point, with jimping on the spine and the keyring through the tip. The claw is a topology-optimised lattice: solid where it works, light everywhere else.</p><ul><li>Printed in highly durable carbon fiber material (PETG-CF), made for rigidity and built to last</li><li>6804 ball bearing: a 20 mm finger hole that sits flush in the frame</li><li>About 57 x 95 mm, 7.4 mm thick</li><li>Black carbon fiber finish</li></ul>",
+        "seo": "Karambit-style finger spinner keychain in carbon fiber PETG with a 6804 bearing. Topology-optimised claw, built to last."
+      },
+      {
+        "type": "Spinner",
+        "price": "12.99",
+        "color": "Black carbon fiber",
+        "grams": 28,
+        "id": "shield_spinner",
+        "title": "Shield finger spinner",
+        "handle": "shield-finger-spinner",
+        "size_mm": [
+          43,
+          76,
+          7.4
+        ],
+        "description": "<p>A compact finger spinner for your keys: an oval frame with the bearing at the top and the keyring at the bottom, joined by a topology-optimised lattice web.</p><ul><li>Printed in highly durable carbon fiber material (PETG-CF), made for rigidity and built to last</li><li>6804 ball bearing: a 20 mm finger hole that sits flush in the frame</li><li>About 43 x 76 mm, 7.4 mm thick</li><li>Black carbon fiber finish</li></ul>",
+        "seo": "Compact shield finger spinner keychain in carbon fiber PETG with a 6804 bearing. Topology-optimised lattice, built to last."
       }
     ]
   }

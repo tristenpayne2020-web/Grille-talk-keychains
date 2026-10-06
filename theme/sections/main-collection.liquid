@@ -13,7 +13,7 @@
 
     <form class="facets" id="facets" action="{{ collection.url }}" method="get" data-facets>
       {%- for filter in collection.filters -%}
-        {%- if filter.type == 'list' -%}
+        {%- if filter.type == 'list' and filter.values.size > 0 -%}
           <details class="facets__group">
             <summary>{{ filter.label | escape }}{% if filter.active_values.size > 0 %} ({{ filter.active_values.size }}){% endif %}{% render 'icon', name: 'chevron-down', class: 'icon--sm' %}</summary>
             <fieldset class="facets__panel" style="border: 1px solid var(--c-line-strong)">
@@ -86,12 +86,26 @@
       </div>
     {%- endif -%}
 
+    {%- liquid
+      comment
+        the coming-soon and request-a-car notes only make sense next to cars (not on e.g. the spinners)
+      endcomment
+      assign has_cars = false
+      for p in collection.products limit: 12
+        if p.metafields.custom.make != blank
+          assign has_cars = true
+          break
+        endif
+      endfor
+    -%}
+    {%- if has_cars -%}
     <div class="collection__foot">
       {%- if section.settings.coming_soon != blank -%}
         <p class="soon"><span class="soon__dot" aria-hidden="true"></span>{{ section.settings.coming_soon | escape }}</p>
       {%- endif -%}
       <a class="link-arrow" href="{{ settings.request_page.url | default: '/pages/request-a-car' }}">{{ section.settings.request_label | escape }} {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
     </div>
+    {%- endif -%}
   </div>
 </section>
 {%- endpaginate -%}
