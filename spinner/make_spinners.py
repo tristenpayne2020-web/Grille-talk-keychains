@@ -74,12 +74,13 @@ def design_talon():
 
 
 def design_karambit():
-    """'Karambit': a hooked blade curving up and over from the bearing, the blade itself filled with the lattice."""
-    L = (-2.0, -30.0)
-    spine = [(14, 9, 13), (26, 22, 12.5), (40, 31, 11), (54, 32, 9), (65, 26, 6.5), (71, 16, 4), (73, 6, 2.6)]
+    """'Karambit': a gently curved, tapering blade off the bearing, lattice inside, the keyring through the tip
+    (owner's references: Keyrambit-style, less curve, no hole under the bearing)."""
+    L = (72.0, -14.0)                                              # keyring hole in the point
+    spine = [(12, 5, 14), (26, 7, 12.5), (40, 5, 11), (52, 0, 9.5), (63, -7, 8), (L[0], L[1], 6.8)]
     blade = unary_union([strut(a[:2], b[:2], a[2], b[2]) for a, b in zip(spine, spine[1:])])
-    blade = blade.difference(Point(54, 6).buffer(15, 64))          # the hook's inner curve
-    env = unary_union([Point(0, 0).buffer(RING_R), blade, unary_union([Point(0, -8).buffer(12), Point(L).buffer(7)]).convex_hull])
+    blade = blade.difference(Point(38, -27).buffer(15, 64))       # shallow hook on the underside
+    env = unary_union([Point(0, 0).buffer(RING_R), blade, Point(L).buffer(6.8)])
     return L, env.buffer(2.5, 32).buffer(-2.5, 32), 23
 
 
