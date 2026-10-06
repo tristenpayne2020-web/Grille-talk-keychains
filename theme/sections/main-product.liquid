@@ -92,19 +92,23 @@
         {%- if section.settings.show_dynamic_checkout -%}{{ form | payment_button }}{%- endif -%}
       {%- endform -%}
 
+      {%- if product.type == 'Keychain' or settings.production_time != blank or settings.shipping_note != blank -%}
       <div>
         <h2 class="t-eyebrow" style="margin-bottom: var(--s-3)">{{ 'products.facts_title' | t }}</h2>
         <ul class="facts" role="list">
+          {%- if product.type == 'Keychain' -%}{%- comment -%} the keychain facts; other products describe themselves {%- endcomment -%}
           <li><span>{{ 'products.fact_size' | t }}</span><span>{{ 'products.fact_size_value' | t }}</span></li>
           <li><span>{{ 'products.fact_print' | t }}</span><span>{{ 'products.fact_print_value' | t }}</span></li>
           <li><span>{{ 'products.fact_included' | t }}</span><span>{{ 'products.fact_included_value' | t }}</span></li>
           <li><span>{{ 'products.fact_design' | t }}</span><span>{{ 'products.fact_design_value' | t }}</span></li>
           <li><span>{{ 'products.fact_back' | t }}</span><span>{{ 'products.fact_back_value' | t }}</span></li>
           <li><span>{{ 'products.fact_lights' | t }}</span><span>{{ 'products.fact_lights_value' | t }}</span></li>
+          {%- endif -%}
           {%- if settings.production_time != blank -%}<li><span>{{ 'products.fact_production' | t }}</span><span>{{ settings.production_time | escape }}</span></li>{%- endif -%}
           {%- if settings.shipping_note != blank -%}<li><span>{{ 'products.fact_shipping' | t }}</span><span>{{ settings.shipping_note | escape }}</span></li>{%- endif -%}
         </ul>
       </div>
+      {%- endif -%}
       {%- if product.description != blank -%}<div class="rte t-mute">{{ product.description }}</div>{%- endif -%}
       <p class="notice">{{ settings.legal_notice | escape }}</p>
     </div>
@@ -126,7 +130,7 @@
             endfor
           -%}
           { "id": {{ v.id }}, "options": {{ v.options | json }}, "price": {{ v.price | money | json }}, "available": {{ v.available | json }},
-            "angle": {% if vangle %}{{ vangle | image_url: width: 900 | json }}{% else %}null{% endif %}, "angleAlt": {{ vangle.alt | json }},
+            "angle": {% if vangle %}{{ vangle | image_url: width: 900 | json }}{% else %}null{% endif %}, "angleAlt": {% if vangle %}{{ vangle.alt | json }}{% else %}""{% endif %},
             "image": {% if v.featured_image %}{{ v.featured_image | image_url: width: 900 | json }}{% else %}null{% endif %},
             "imageAlt": {{ v.featured_image.alt | json }} }{% unless forloop.last %},{% endunless %}
         {%- endfor -%}

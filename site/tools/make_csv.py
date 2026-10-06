@@ -108,6 +108,15 @@ def main():
                           'Short model (product.metafields.custom.short_model)': c['short_model'],
                           'Status': 'draft'})
             rows.append(r)
+    for x in L.get('extras', {}).get('items', []):   # non-car products: one default variant
+        r = dict.fromkeys(FIELDS, '')
+        r.update({'Handle': x['handle'], 'Title': x['title'], 'Body (HTML)': x['description'], 'Vendor': 'Grille Talk',
+                  'Type': x['type'], 'Tags': x['type'].lower(), 'Published': 'FALSE', 'Option1 Name': 'Title',
+                  'Option1 Value': 'Default Title', 'Variant SKU': f"GT-{x['id']}", 'Variant Grams': str(x['grams']),
+                  'Variant Inventory Policy': 'continue', 'Variant Fulfillment Service': 'manual', 'Variant Price': x['price'],
+                  'Variant Requires Shipping': 'TRUE', 'Variant Taxable': 'TRUE', 'Gift Card': 'FALSE',
+                  'SEO Title': f"{x['title']} | Grille Talk", 'SEO Description': x['seo'], 'Status': 'draft'})
+        rows.append(r)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, FIELDS)

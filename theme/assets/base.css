@@ -183,7 +183,8 @@ textarea.input { min-height: 120px; resize: vertical; }
 .cart-btn { position: relative; }
 .cart-count { position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--c-fg); color: var(--c-bg); font: 600 11px/18px var(--f-body); text-align: center; }
 .cart-count:empty, .cart-count[data-count='0'] { display: none; }
-@media (min-width: 1200px) { .site-nav { display: block; } .menu-btn { display: none; } }
+@media (min-width: 1320px) { .site-nav { display: block; } .menu-btn { display: none; } .site-header__logo { flex-shrink: 0; } }
+@media (min-width: 1320px) and (max-width: 1499px) { .site-nav ul { gap: 0; } .site-nav a { padding-inline: var(--s-2); letter-spacing: 0.1em; } }   /* eight links fit */
 .site-nav a { white-space: nowrap; }
 
 /* dialogs: menu, search, cart drawer */

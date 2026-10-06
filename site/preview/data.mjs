@@ -81,6 +81,22 @@ export const products = [...launch.cars, ...walls].map((c, idx) => {
   };
 });
 
+// non-car products (launch.extras): one default variant, no options
+for (const x of (launch.extras && launch.extras.items) || []) {
+  const m = manifest[x.id];
+  const imgs = m.media.map((it) => { const img = new Img(`/media/${x.id}/${it.files.find((f) => f.endsWith('-2000.webp')).replace('-2000.webp', '-{w}.webp')}`, it.alt); img.id = nextId++; return img; });
+  const media = imgs.map((img, i) => ({ id: img.id, media_type: 'image', alt: img.alt, preview_image: img, position: i + 1 }));
+  media.push({ id: nextId++, media_type: 'model', alt: `3D model of the ${x.title}`, preview_image: imgs[0], position: media.length + 1,
+    sources: [{ format: 'glb', mime_type: 'model/gltf-binary', url: `/glb/${x.id}.glb` }] });
+  const id = nextId++, price = cents(x.price);
+  const v = { id, title: 'Default Title', option1: 'Default Title', options: ['Default Title'], price, available: true, sku: `GT-${x.id}`,
+    url: `/products/${x.handle}?variant=${id}`, featured_image: imgs[0], inventory_management: null, product_id: 0 };
+  products.push({ id: nextId++, index: products.length, handle: x.handle, title: x.title, url: `/products/${x.handle}`, vendor: 'Grille Talk',
+    type: x.type, tags: [x.type.toLowerCase()], description: x.description, content: x.description, featured_image: imgs[0], images: imgs,
+    media, featured_media: media[0], variants: [v], price, price_min: price, price_max: price, price_varies: false, available: true,
+    has_only_default_variant: true, options: ['Title'], metafields: { custom: {} }, _car: x });
+}
+
 export function productView(p, variantId) {
   const v = p.variants.find((x) => String(x.id) === String(variantId)) || p.variants[0];
   return {
@@ -88,7 +104,7 @@ export function productView(p, variantId) {
     selected_variant: variantId ? v : null,
     selected_or_first_available_variant: v,
     first_available_variant: p.variants[0],
-    options_with_values: [
+    options_with_values: p.has_only_default_variant ? [] : [
       { name: 'Body color', position: 1, values: [...new Set(p.variants.map((x) => x.option1))], selected_value: v.option1 },
       ...(v.option2 ? [{ name: 'Headlight color', position: 2, values: [...new Set(p.variants.map((x) => x.option2))], selected_value: v.option2 }] : []),
     ],
@@ -107,7 +123,7 @@ Object.values(pages).forEach((p) => { p.url = `/pages/${p.handle}`; p.id = nextI
 
 const link = (title, url) => ({ title, url, links: [] });
 export const linklists = {
-  'main-menu': { title: 'Main menu', handle: 'main-menu', links: [link('Shop', '/#range'), link('Catalog', '/collections/all'), link('Wall holders', '/collections/wall-key-holders'), link('Request a car', '/pages/request-a-car'), link('About', '/pages/about'), link('FAQ', '/pages/faq'), link('Contact', '/pages/contact')] },
+  'main-menu': { title: 'Main menu', handle: 'main-menu', links: [link('Shop', '/#range'), link('Catalog', '/collections/all'), link('Wall holders', '/collections/wall-key-holders'), link('Spinners', '/collections/spinners'), link('Request a car', '/pages/request-a-car'), link('About', '/pages/about'), link('FAQ', '/pages/faq'), link('Contact', '/pages/contact')] },
   footer: { title: 'Shop', handle: 'footer', links: [link('Keychains', '/collections/keychains'), link('Wall key holders', '/collections/wall-key-holders'), link('Request a car', '/pages/request-a-car'), link('About', '/pages/about'), link('FAQ', '/pages/faq'), link('Contact', '/pages/contact'), link('Search', '/search')] },
 };
 

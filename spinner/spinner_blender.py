@@ -144,8 +144,6 @@ def shoot(objs, path, elev=38, azim=-35, fill=1.25):
     bpy.ops.render.render(write_still=True)
 
 
-COLORS = {'truss': ('carbon black', (0.03, 0.03, 0.032)), 'talon': ('carbon blue', (0.03, 0.09, 0.30)),
-          'halo': ('carbon red', (0.32, 0.03, 0.025))}
 built = []
 for d in job['designs']:
     f = build_frame(d)
@@ -158,12 +156,25 @@ for d in job['designs']:
 if os.environ.get('SPINNER_NORENDER'):   # print files only
     print('SPINNERS_DONE'); sys.exit(0)
 
-for d, f, group in built:   # one at a time: black PETG-CF hero, then its colour
-    others = [o for _, _, g in built if g is not group for o in g]
-    for o in others: o.hide_render = True
-    for label, rgb in (('carbon black', (0.03, 0.03, 0.032)), COLORS[d['name']]):
-        f.data.materials.clear(); f.data.materials.append(mat('petg_cf', rgb, 0.62, bump=0.35))
-        shoot(group, os.path.join(OUT, f"{d['name']}_{label.replace(' ', '_')}.png"))
-    for o in others: o.hide_render = False
-
+# store renders: black PETG-CF only (owner), transparent background with a contact shadow, plus a GLB for the 3D viewer
+SITE = os.path.join(os.path.dirname(OUT), '..', 'site', 'build')
+scene.render.film_transparent = True
+floor.is_shadow_catcher = True
+cf = mat('petg_cf', (0.03, 0.03, 0.032), 0.62, bump=0.35)
+for d, f, group in built:
+    f.data.materials.clear(); f.data.materials.append(cf)
+    sid = f"{d['name']}_spinner"
+    if not os.environ.get('SPINNER_GLB_ONLY'):
+        shoot(group, os.path.join(SITE, 'renders_png', f'{sid}__black-cf__angle.png'))
+        shoot(group, os.path.join(SITE, 'renders_png', f'{sid}__black-cf__front.png'), elev=89, azim=0, fill=1.1)
+    floor.hide_set(True)
+    # web model: a clean decimate (the print STL keeps full detail), stood up so its face looks at the viewer (glTF +Z)
+    dec = f.modifiers.new('web', 'DECIMATE'); dec.ratio = 0.15
+    pivot = bpy.data.objects.new('pivot', None); bpy.context.collection.objects.link(pivot)
+    for o in group: o.parent = pivot
+    pivot.rotation_euler = (math.radians(90), 0, 0)
+    bpy.ops.object.select_all(action='DESELECT')
+    for o in group + [pivot]: o.select_set(True)
+    bpy.ops.export_scene.gltf(filepath=os.path.join(SITE, 'glb_raw', f'{sid}.glb'), use_selection=True, export_format='GLB', export_apply=True)
+    floor.hide_set(False)
 print('SPINNERS_DONE')

@@ -60,6 +60,12 @@ def main():
     with Pool(max(2, os.cpu_count() - 2)) as pool:
         items = launch['cars'] + [dict(w, wall=True) for w in launch.get('wall', {}).get('items', [])]
         manifest = dict(pool.map(one, [(c, launch['colors']) for c in items]))
+    for x in launch.get('extras', {}).get('items', []):   # non-car products: angle + top view
+        od = os.path.join(BUILD, 'media', x['id']); os.makedirs(od, exist_ok=True)
+        src = lambda v: os.path.join(BUILD, 'renders_png', f"{x['id']}__black-cf__{v}.png")
+        manifest[x['id']] = dict(name=x['title'], glb=f"glb/{x['id']}.glb", media=[
+            dict(kind='angle', color=None, files=webp(src('angle'), os.path.join(od, f"{x['id']}-angle")), alt=f"{x['title']}, {x['color'].lower()}, angled view with bearing"),
+            dict(kind='back', color=None, files=webp(src('front'), os.path.join(od, f"{x['id']}-top")), alt=f"{x['title']} from above, showing the lattice frame")])
     json.dump(manifest, open(os.path.join(BUILD, 'media', 'manifest.json'), 'w'), indent=1)
     print(len(manifest), 'cars')
 

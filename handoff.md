@@ -296,3 +296,12 @@ The website is not affected: it uses its own logo-free rebuild in `site/build/ge
   Specs snapshotted as `spec_SHOWN_20261004_built.py`; not yet locked as approved (`previews/teslas_built.png`). Line = 65 cars.
 - `rebuild_all.py` / `finish_cars.py` no longer build the 5 old NEW cars twice (dedupe).
 - Full rebuild of all 65 with the label started on the PC (`python kc/rebuild_all.py --skip-done`).
+
+## 9. 2026-10-05: Talon finger spinner on the site
+
+- Product `talon-finger-spinner` ($12.99, one variant, black PETG-CF), from `launch.json` → `extras` (non-car products:
+  title, price, grams, description live there). Renders, media and CSV rows come from the same tools as the cars.
+- Weight 28 g is an estimate (frame ~9 g + bearing + ring): weigh one.
+- In Shopify admin: create an automated collection "Spinners" (handle `spinners`, Product type = Spinner) and add a
+  "Spinners" link to the main menu; the preview already shows both.
+- Print files: `spinner/` (`make_spinners.py`, `export_print.py`), copies in `Downloads\GrilleTalk_Extras\Spinners`.

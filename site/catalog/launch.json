@@ -708,5 +708,26 @@
         "grams": 102
       }
     ]
+  },
+  "extras": {
+    "_note": "Non-car products. One variant each; price from here only.",
+    "items": [
+      {
+        "id": "talon_spinner",
+        "title": "Talon finger spinner",
+        "type": "Spinner",
+        "handle": "talon-finger-spinner",
+        "price": "12.99",
+        "color": "Black carbon fiber",
+        "grams": 28,
+        "size_mm": [
+          74,
+          42,
+          7.4
+        ],
+        "description": "<p>A topology-optimised finger spinner for your keys. The Talon frame is a lattice of curved struts: solid where the bearing works, light everywhere else.</p><ul><li>Printed in highly durable carbon fiber material (PETG-CF), made for rigidity and built to last</li><li>6804 ball bearing: a 20 mm finger hole that sits flush in the frame</li><li>About 74 x 42 mm, 7.4 mm thick</li><li>Black carbon fiber finish</li></ul>",
+        "seo": "Topology-optimised finger spinner keychain in carbon fiber PETG with a 6804 bearing. Rigid, light, built to last."
+      }
+    ]
   }
 }

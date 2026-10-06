@@ -202,12 +202,12 @@ liquid.registerTag('sections', {
 
 /* ---------------- store state ---------------- */
 // mock collections: 'all', plus the automated ones the owner creates in Shopify (product type = Keychain / Wall key holder)
-const COLLECTIONS = { all: { title: 'All products', filter: () => true }, keychains: { title: 'Keychains', filter: (p) => p.type === 'Keychain' }, 'wall-key-holders': { title: 'Wall key holders', filter: (p) => p.type === 'Wall key holder' } };
+const COLLECTIONS = { all: { title: 'All products', filter: () => true }, keychains: { title: 'Keychains', filter: (p) => p.type === 'Keychain' }, 'wall-key-holders': { title: 'Wall key holders', filter: (p) => p.type === 'Wall key holder' }, spinners: { title: 'Spinners', filter: (p) => p.type === 'Spinner' } };
 function allCollection(query = {}, handle = 'all') {
   const def = COLLECTIONS[handle] || COLLECTIONS.all;
   let items = data.products.filter(def.filter).map((p) => data.productView(p));
   const make = [].concat(query['filter.p.m.custom.make'] || []);
-  const makes = [...new Set(data.products.map((p) => p.metafields.custom.make.value))].sort();
+  const makes = [...new Set(data.products.map((p) => p.metafields.custom.make?.value).filter(Boolean))].sort();
   const base = `/collections/${handle}`;
   const qs = (params) => { const u = new URLSearchParams(); for (const [k, v] of params) u.append(k, v); const s = u.toString(); return s ? `${base}?${s}` : base; };
   const current = [...make.map((m) => ['filter.p.m.custom.make', m])];
@@ -216,12 +216,12 @@ function allCollection(query = {}, handle = 'all') {
     const active = make.includes(m);
     return {
       label: m, value: m, param_name: 'filter.p.m.custom.make', active,
-      count: data.products.filter((p) => p.metafields.custom.make.value === m).length,
+      count: data.products.filter((p) => p.metafields.custom.make?.value === m).length,
       url_to_add: qs([...current, ['filter.p.m.custom.make', m]]),
       url_to_remove: qs(current.filter(([k, v]) => !(k === 'filter.p.m.custom.make' && v === m))),
     };
   });
-  if (make.length) items = items.filter((p) => make.includes(p.metafields.custom.make.value));
+  if (make.length) items = items.filter((p) => make.includes(p.metafields.custom.make?.value));
   const sort = query.sort_by || 'manual';
   const by = {
     'title-ascending': (a, b) => a.title.localeCompare(b.title), 'title-descending': (a, b) => b.title.localeCompare(a.title),
@@ -274,7 +274,7 @@ function baseContext(req, extra = {}) {
     canonical_url: `http://localhost:${PORT}${url.pathname}`,
     content_for_header: '<!-- content_for_header (Shopify injects scripts here on the live store) -->',
     cart: cartView(),
-    collections: { all: allCollection(), keychains: allCollection({}, 'keychains'), 'wall-key-holders': allCollection({}, 'wall-key-holders') },
+    collections: { all: allCollection(), keychains: allCollection({}, 'keychains'), 'wall-key-holders': allCollection({}, 'wall-key-holders'), spinners: allCollection({}, 'spinners') },
     linklists: data.linklists,
     pages: data.pages,
     current_page: 1,
