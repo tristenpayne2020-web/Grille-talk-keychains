@@ -61,7 +61,7 @@ export const Title: React.FC<{
       <div style={{ position: "absolute", left: -S.side, right: align === "center" ? -S.side : "25%", top: -size, bottom: -size, zIndex: -1,
         background: `radial-gradient(65% 70% at ${align === "center" ? 50 : 26}% 50%, rgba(7,7,8,${scrim}), transparent 78%)` }} />
       {eyebrow && (
-        <div style={{ fontFamily: DISPLAY, fontSize: Math.max(20, size * 0.28), letterSpacing: "0.32em", color: C.muted, textTransform: "uppercase",
+        <div style={{ fontFamily: DISPLAY, fontSize: Math.max(20, size * 0.28), letterSpacing: "0.32em", color: "#cfcdc8", textTransform: "uppercase", textShadow: "0 0 12px rgba(0,0,0,0.9)",
           marginBottom: size * 0.38, opacity: ease(frame, inAt, inAt + 12) }}>{eyebrow}</div>
       )}
       {lines.map((l, li) => (

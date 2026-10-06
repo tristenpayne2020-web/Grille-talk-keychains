@@ -1,25 +1,50 @@
 {%- comment -%}
-  Talon keychain spinner feature: the product film (snippet 'film') next to what it is, its facts and its price.
+  Keychain spinners feature: the product film (snippet 'film') next to what they are, the shared facts, and one card
+  per spinner (Talon, Karambit, Shield) from the spinners collection, each with its image, name and price.
 {%- endcomment -%}
-{%- assign sp = section.settings.product -%}
+{%- liquid
+  assign col = section.settings.collection
+  assign sp = section.settings.product
+  if sp == blank and col != blank
+    assign sp = col.products | first
+  endif
+-%}
 {%- if sp != blank -%}
-<section class="section spinfeat" id="talon" data-chapter="{{ 'chapters.spinner' | t }}" aria-labelledby="talon-title">
+<section class="section spinfeat" id="spinners" data-chapter="{{ 'chapters.spinner' | t }}" aria-labelledby="spinners-title">
   <div class="page-width spinfeat__grid">
     <div class="spinfeat__film">
       {%- render 'film', video: section.settings.film, fallback: 'film-spinner.mp4', poster: 'film-spinner-poster.webp', label: section.settings.film_label -%}
     </div>
     <div class="spinfeat__copy">
       <p class="t-eyebrow">{{ section.settings.eyebrow | escape }}</p>
-      <h2 class="h-2" id="talon-title">{{ section.settings.heading | escape }}</h2>
+      <h2 class="h-2" id="spinners-title">{{ section.settings.heading | escape }}</h2>
       <p class="lede">{{ section.settings.text | escape }}</p>
       <ul class="wallhold__facts" role="list">
         {%- for block in section.blocks -%}
           <li {{ block.shopify_attributes }}><span class="t-mono">{{ block.settings.label | escape }}</span><span>{{ block.settings.value | escape }}</span></li>
         {%- endfor -%}
       </ul>
+      {%- if col != blank and col.products_count > 0 -%}
+        <ul class="spinfeat__cards" role="list">
+          {%- for p in col.products limit: 6 -%}
+            {%- assign short = p.title | remove: ' finger spinner' | remove: ' keychain spinner' -%}
+            <li>
+              <a class="spinfeat__card" href="{{ p.url }}">
+                {%- if p.featured_image -%}{{ p.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200, 400', sizes: '160px', alt: '' }}{%- endif -%}
+                <span class="spinfeat__name">{{ short | escape }}</span>
+                <span class="spinfeat__price t-mono">{{ p.price | money }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
       <div class="wallhold__buy">
-        <p class="wallhold__price">{{ sp.price | money }}</p>
-        <a class="btn" href="{{ sp.url }}" data-magnetic>{{ section.settings.button | escape }}<span class="visually-hidden">: {{ sp.title | escape }}</span> {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+        {%- if col != blank -%}
+          <a class="btn" href="{{ col.url }}" data-magnetic>{{ section.settings.button | escape }} {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+        {%- else -%}
+          <p class="wallhold__price">{{ sp.price | money }}</p>
+          <a class="btn" href="{{ sp.url }}" data-magnetic>{{ section.settings.button | escape }}<span class="visually-hidden">: {{ sp.title | escape }}</span> {% render 'icon', name: 'arrow-right', class: 'icon--sm' %}</a>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -28,19 +53,20 @@
 
 {% schema %}
 {
-  "name": "Talon keychain spinner",
+  "name": "Keychain spinners",
   "settings": [
-    { "type": "product", "id": "product", "label": "Spinner" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Talon keychain spinner" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Spin it. Keep your keys on it." },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "A finger spinner that lives on your keychain. The Talon frame is a topology-optimised lattice: solid where the bearing works, light everywhere else." },
-    { "type": "text", "id": "button", "label": "Button", "default": "Get the Talon" },
+    { "type": "collection", "id": "collection", "label": "Spinners collection", "info": "An automated collection where Product type is Spinner. Each product gets a card." },
+    { "type": "product", "id": "product", "label": "Spinner (if no collection)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Keychain spinners" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Three spinners. One bearing." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Finger spinners that live on your keychain: the Talon, the Karambit and the Shield. Every frame is a topology-optimised lattice around the same 6804 bearing: solid where it works, light everywhere else." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Shop the spinners" },
     { "type": "video", "id": "film", "label": "Film (9:16)", "info": "Upload grilletalk_spinner_9x16.mp4 in Content > Files and pick it here. Without it the theme's own copy plays." },
-    { "type": "text", "id": "film_label", "label": "Film description (screen readers)", "default": "Film: a macro across the Talon's carbon fiber lattice, the spinner spinning up on its bearing, its specs, and the price." }
+    { "type": "text", "id": "film_label", "label": "Film description (screen readers)", "default": "Film: a macro across the Talon's carbon fiber lattice, the Karambit spinning up on its bearing, the Shield's specs, and all three spinners with the price." }
   ],
   "blocks": [
     { "type": "fact", "name": "Fact", "settings": [ { "type": "text", "id": "label", "label": "Label" }, { "type": "text", "id": "value", "label": "Value" } ] }
   ],
-  "presets": [{ "name": "Talon keychain spinner" }]
+  "presets": [{ "name": "Keychain spinners" }]
 }
 {% endschema %}

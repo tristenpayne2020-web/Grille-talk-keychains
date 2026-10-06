@@ -3,7 +3,7 @@ import { LightLeak } from "@remotion/light-leaks";
 import React from "react";
 import { AbsoluteFill, Img, interpolate, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { C, DISPLAY } from "./brand";
-import { FROM, HEADLIGHT_SURCHARGE, N_CARS, N_COLOURS, TALON_PRICE, TALON_SIZE, WALL_FROM } from "./data";
+import { FROM, HEADLIGHT_SURCHARGE, N_CARS, N_COLOURS, SHIELD, TALON_PRICE, WALL_FROM } from "./data";
 import { EndCard } from "./EndCard";
 import { Cta, ease, Logo, Post, Title, useLayout } from "./fx";
 import T from "./timeline.json";
@@ -59,9 +59,9 @@ const COPY: Record<string, (portrait: boolean) => Copy> = {
   flip: () => ({ lines: ["Flip it."], sub: "Carbon-fibre textured back", size: 1.1 }),
   garage: () => ({ lines: [`${N_CARS} cars`, "and counting."] }),
   wall: (p) => ({ lines: p ? ["Your car,", "by the", "front door."] : ["Your car,", "by the front door."], sub: `Wall key holders from ${WALL_FROM}` }),
-  spinner: (p) => ({ lines: p ? ["Talon", "keychain", "spinner."] : ["Talon keychain", "spinner."], sub: `Carbon fiber · ${TALON_PRICE}` }),
+  spinner: (p) => ({ lines: p ? ["Three", "keychain", "spinners."] : ["Three keychain", "spinners."], sub: `${TALON_PRICE} each`, eyebrow: "Talon · Karambit · Shield" }),
   macro: () => ({ lines: ["Topology", "optimised."], eyebrow: "Talon keychain spinner" }),
-  spin: () => ({ lines: ["Carbon fiber.", "Built to last."] }),
+  spin: () => ({ lines: ["Carbon fiber.", "Built to last."], eyebrow: "Karambit keychain spinner" }),
   keys: (p) => ({ lines: p ? ["Your car,", "by the", "front door."] : ["Your car,", "by the front door."] }),
   wcolours: (p) => ({ lines: p ? ["Every body", "color."] : ["Every body color."] }),
 };
@@ -171,13 +171,17 @@ export const Cutdown: React.FC = () => (
 
 const SpecsExtra: React.FC = () => {
   const m = meta("spinner_ad_9x16/specs", "specs");
+  const { head, portrait } = useLayout();
   if (!m.hole) return null;
   return (
+    <>
     <Callouts items={[
-      { at: m.bearing_edge, text: "6804 bearing", to: [m.bearing_edge[0], m.bearing_edge[1] - 0.12], t0: 8 },
-      { at: m.hole, text: "20 mm finger hole", to: [Math.min(0.8, m.hole[0] + 0.28), m.hole[1] - 0.2], t0: 20 },
-      { at: [(m.left[0] + m.right[0]) / 2, m.left[1] + 0.035], text: TALON_SIZE, to: [(m.left[0] + m.right[0]) / 2, m.left[1] + 0.075], t0: 34 },
+      { at: m.bearing_edge, text: "6804 bearing", to: [0.1, m.bearing_edge[1] - 0.05], t0: 8 },
+      { at: m.hole, text: "20 mm finger hole", to: [0.9, m.hole[1] + 0.12], t0: 20 },
+      { at: [m.bottom[0], m.bottom[1] + 0.02], text: SHIELD.size, to: [m.bottom[0], m.bottom[1] + 0.07], t0: 34 },
     ]} />
+    <Title lines={["Shield"]} eyebrow="Keychain spinner" inAt={4} outAt={500} size={head} y={portrait ? 240 : 80} />
+    </>
   );
 };
 
@@ -188,8 +192,8 @@ const PriceExtra: React.FC<{ dur: number }> = () => {
       <div style={{ position: "absolute", top: portrait ? 240 : 80, left: 0, right: 0, textAlign: "center", width: W }}>
         <Logo width={portrait ? 400 : 300} style={{ margin: "0 auto" }} />
       </div>
-      <Title lines={[TALON_PRICE]} eyebrow="Talon keychain spinner" inAt={4} outAt={500} size={head * 1.3} align="center" y={portrait ? H - 740 : H - 360} />
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: portrait ? 410 : 100, textAlign: "center" }}><Cta label="Get the Talon" at={14} size={portrait ? 28 : 22} /></div>
+      <Title lines={[`${TALON_PRICE} each`]} eyebrow="Talon · Karambit · Shield" inAt={4} outAt={500} size={head * 1.15} align="center" y={portrait ? H - 740 : H - 360} />
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: portrait ? 410 : 100, textAlign: "center" }}><Cta label="Shop the spinners" at={14} size={portrait ? 28 : 22} /></div>
     </>
   );
 };

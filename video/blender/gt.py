@@ -781,26 +781,45 @@ class KeyBunch:
 
 # ================================================================ Talon spinner
 class Spinner:
-    def __init__(self):
-        objs, new = import_glb(os.path.join(GLB_WEB, 'talon_spinner.glb'))
+    """A keychain finger spinner (talon, karambit, shield). Parts are found by material, not by name (node names
+    collide between the GLBs): frame = petg_cf, races = steel (the inner one is the smaller), bearing shield =
+    shield, split ring = splitring. The frame, outer race, shield and ring turn together; the inner race stays put."""
+
+    def __init__(self, kind='talon'):
+        path = os.path.join(GLB_RAW, f'{kind}_spinner.glb')
+        if not os.path.exists(path):
+            path = os.path.join(GLB_WEB, f'{kind}_spinner.glb')
+        objs, new = import_glb(path)
         M = shared_mats()
-        self.pivot = objs['pivot']
+        self.pivot = next(o for o in new if o.name.split('.')[0] == 'pivot')
+        role = {}
+        steel = []
+        for o in new:
+            if o.type != 'MESH' or not o.data.materials:
+                continue
+            mn = o.data.materials[0].name.split('.')[0]
+            if mn == 'petg_cf': role['frame'] = o
+            elif mn == 'splitring': role['ring'] = o
+            elif mn == 'shield': role['shield'] = o
+            elif mn == 'steel': steel.append(o)
+        steel.sort(key=lambda o: max(o.dimensions))
+        role['inner'], role['outer'] = steel[0], steel[-1]
         cf = principled('petg_cf', (0.014, 0.014, 0.016, 1), 0.66, coat=0.0, spec=0.22)
         nt = cf.node_tree
         noise = nt.nodes.new('ShaderNodeTexNoise'); noise.inputs['Scale'].default_value = 4000
         bump = nt.nodes.new('ShaderNodeBump'); bump.inputs['Strength'].default_value = 0.12; bump.inputs['Distance'].default_value = 0.00002
         nt.links.new(noise.outputs['Fac'], bump.inputs['Height'])
         nt.links.new(bump.outputs['Normal'], nt.nodes['Principled BSDF'].inputs['Normal'])
-        for n, o in objs.items():
-            if n == 'talon': assign(o, cf)
-            elif n in ('outer', 'inner'): assign(o, principled('race', (0.8, 0.81, 0.83, 1), 0.12, metal=1.0))
-            elif n == 'shield': assign(o, principled('shield', (0.55, 0.56, 0.58, 1), 0.3, metal=1.0))
-            elif n == 'Torus': assign(o, M['steel'])
+        assign(role['frame'], cf)
+        race = principled('race', (0.8, 0.81, 0.83, 1), 0.12, metal=1.0)
+        assign(role['inner'], race); assign(role['outer'], race)
+        assign(role['shield'], principled('bshield', (0.55, 0.56, 0.58, 1), 0.3, metal=1.0))
+        assign(role['ring'], M['steel'])
         smooth(new)
-        # everything that turns with the frame goes under one empty at the bearing centre; the bearing axis is the
-        # inner race's thinnest local dimension (glTF Y -> Blender local Z after import)
         bpy.context.view_layer.update()
-        self.talon, self.torus, inner = objs['talon'], objs['Torus'], objs['inner']
+        self.talon, self.torus, inner = role['frame'], role['ring'], role['inner']
+        self.frame = role['frame']
+        self.inner = role['inner']
         dims = inner.dimensions
         self.axis = min(range(3), key=lambda i: dims[i])
         self.spin = bpy.data.objects.new('spin', None)
@@ -808,8 +827,8 @@ class Spinner:
         self.spin.parent = self.pivot
         self.spin.location = inner.location.copy()
         bpy.context.view_layer.update()
-        for n in ('talon', 'outer', 'shield', 'Torus'):
-            o = objs[n]
+        for k in ('frame', 'outer', 'shield', 'ring'):
+            o = role[k]
             mw = o.matrix_world.copy()
             o.parent = self.spin
             o.matrix_world = mw
@@ -817,7 +836,7 @@ class Spinner:
         self.q0 = self.pivot.rotation_quaternion.copy()
         ax = Vector((0, 0, 0)); ax[self.axis] = 1
         world_axis = (self.pivot.matrix_world.to_3x3() @ ax).normalized()
-        self.q_fix = world_axis.rotation_difference(Vector((0, -1, 0)))    # face the camera (bearing axis along -Y)
+        self.q_fix = world_axis.rotation_difference(Vector((0, -1, 0)))
         self.objects = new
         self.set(0.0)
 

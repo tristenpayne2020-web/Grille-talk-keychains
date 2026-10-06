@@ -21,8 +21,8 @@ BEAT = 2.5265 / 4 * FPS   # frames per beat (18.95)
 scene = gt.new_scene(W, H, ENGINE, SAMPLES)
 WALLISH = SHOT in ('wall', 'w_keys', 'w_colours', 'w_mount', 'w_lineup')
 # the dark-stage shots are lit hot for the beam: -2.3 EV brings the PLA colours back to their catalog values
-SPINNERISH = SHOT in ('spinner', 'sp_spin', 'sp_macro', 'sp_specs', 'sp_price')
-scene.view_settings.exposure = float(A.get('ev', 0.0 if WALLISH else (-1.1 if SPINNERISH else -2.3)))
+SPINNERISH = SHOT in ('spinner', 'sp_spin', 'sp_macro', 'sp_specs', 'sp_price', 'trio', 'trio_rest', 'karambit_spin', 'shield_specs')
+scene.view_settings.exposure = float(A.get('ev', 0.0 if WALLISH else (-0.6 if SHOT.startswith('trio') else (-1.1 if SPINNERISH else -2.3))))
 gt.EMIT_GAIN = 1.0 if WALLISH else 5.0     # headlights keep their glow after the exposure cut
 T = gt.Track()
 
@@ -554,6 +554,135 @@ def shot_w_lineup():
     return update
 
 
+# ---------------------------------------------------------------- three spinners (Talon, Karambit, Shield)
+def sweep_radius(sp):
+    """distance from the bearing centre to the farthest frame / ring point (the circle the spinner sweeps)"""
+    bpy.context.view_layer.update()
+    c = sp.inner.matrix_world.translation
+    r = 0.0
+    for o in (sp.frame, sp.torus):
+        mw = o.matrix_world
+        for v in list(o.data.vertices)[::7]:
+            r = max(r, ((mw @ v.co) - c).length)
+    return r
+
+
+def rest_bbox(sp, angle):
+    sp.set(angle, loc=tuple(sp.pivot.location))
+    bpy.context.view_layer.update()
+    return gt.bbox([sp.frame, sp.torus])
+
+
+def shot_spinner_kind(kind, start=0.08, hold=0.5, stop=0.92, orbit=(0.3, -0.2), tight=0.8):
+    spinner_stage()
+    sp = gt.Spinner(kind)
+    T.obj(sp.spin)
+    cam = kc_stage_cam(85)
+    rd = ring_down_angle(sp)
+    ang = spinner_profile(FR, start, hold, stop, ring_down=rd)
+    R = sweep_radius(sp) * tight
+    d = gt.fit_distance(cam, 2 * R, 2 * R, *((0.95, 0.55) if PORTRAIT else ((0.42, 0.7) if LAND else (0.85, 0.85))))
+    fw = gt.frame_width(cam, d)
+    side = -0.2 * fw if LAND else 0.0
+    zoff = -0.12 * fw * H / W if PORTRAIT else 0.0
+    c = sp.inner.matrix_world.translation.copy()
+
+    def update(f):
+        sp.set(ang[f])
+        o = orbit[0] + (orbit[1] - orbit[0]) * smooth(f / FR)
+        tgt = Vector((c.x + side, 0, c.z + zoff))
+        gt.place_cam(cam, (tgt.x + math.sin(o) * d, -math.cos(o) * d, tgt.z + 0.02), tgt)
+        gt.dof(cam, d, 4.0)
+    return update
+
+
+TRIO = ['talon', 'karambit', 'shield']
+
+
+def shot_trio(spin=True):
+    """the three spinners side by side, each under its own beam; the beams snap on one per beat (Talon, Karambit,
+    Shield) and each spinner gives a short flick on its bearing as its light hits, settling with the ring down"""
+    spinner_stage(beam=0.0)
+    for o in BEAMS:
+        o.data.energy = 0
+    sps = [gt.Spinner(k) for k in TRIO]
+    rds = [ring_down_angle(sp) for sp in sps]
+    boxes = []
+    for sp, rd in zip(sps, rds):
+        lo, hi = rest_bbox(sp, rd)
+        c = sp.inner.matrix_world.translation
+        boxes.append((lo.x - c.x, hi.x - c.x, lo.z - c.z, hi.z - c.z))
+    gap = 0.022
+    xs, cur = [], 0.0
+    for i, (l, r, b, t) in enumerate(boxes):
+        if i == 0:
+            xs.append(0.0); cur = r
+        else:
+            x = cur + gap - l
+            xs.append(x); cur = x + r
+    total_l, total_r = boxes[0][0], cur
+    mid = (total_l + total_r) / 2
+    top = max(t for (l, r, b, t) in boxes)
+    locs, beams = [], []
+    for sp, x, (l, r, b, t) in zip(sps, xs, boxes):
+        c = sp.inner.matrix_world.translation.copy()
+        sp.pivot.location = sp.pivot.location + Vector((x - mid - c.x, 0, (top - t) * 0.6 - c.z))
+        locs.append(tuple(sp.pivot.location))
+        bx = x - mid + (l + r) / 2
+        bm = gt.spot(f'beam_{sp.frame.name}', (bx, 0.004, 0.2), (bx, 0.004, -0.1), 0, angle_deg=26, blend=0.35, radius=0.004, volume=1.0)
+        keyed_light(bm)
+        beams.append(bm)
+        T.obj(sp.spin)
+    width = total_r - total_l
+    height = max(t - b for (l, r, b, t) in boxes)
+    cam = kc_stage_cam(85)
+    d = gt.fit_distance(cam, width * 1.06, height * 1.15, *((0.96, 0.5) if PORTRAIT else ((0.55, 0.7) if LAND else (0.92, 0.7))))
+    fw = gt.frame_width(cam, d)
+    side = -0.17 * fw if LAND else 0.0
+    zoff = -0.12 * fw * H / W if PORTRAIT else 0.0
+    ons = [int(round(i * BEAT)) for i in range(3)]
+
+    def update(f):
+        for i, (sp, rd, loc, bm) in enumerate(zip(sps, rds, locs, beams)):
+            t = (f - ons[i]) / FPS
+            lvl = 0.0 if t < 0 else {0: 0.6, 1: 0.15}.get(f - ons[i], 1.0)
+            bm.data.energy = 55 * lvl
+            flick = 0.0 if t < 0 else 0.9 * math.exp(-t * 2.6) * math.sin(t * 9.0) if spin else 0.0
+            sp.set(rd + flick, loc=loc)
+        p = smooth(f / FR)
+        dd = d * (1.04 - 0.05 * p)
+        tgt = Vector((side, 0, zoff))
+        gt.place_cam(cam, (tgt.x, -dd, tgt.z + 0.015), tgt)
+        gt.dof(cam, dd, 5.6)
+    return update
+
+
+def shot_specs_kind(kind):
+    spinner_stage()
+    sp = gt.Spinner(kind)
+    cam = kc_stage_cam(85)
+    rd = ring_down_angle(sp)
+    lo, hi = rest_bbox(sp, rd)
+    cx, cz = (lo.x + hi.x) / 2, (lo.z + hi.z) / 2
+    w, h = hi.x - lo.x, hi.z - lo.z
+    d = gt.fit_distance(cam, w * 1.1, h * 1.1, *((0.62, 0.42) if PORTRAIT else (0.34, 0.5)))
+    zoff = 0.0
+
+    def update(f):
+        sp.set(rd)
+        gt.place_cam(cam, (cx, -d * (1.03 - 0.03 * smooth(f / FR)), cz + zoff), (cx, 0, cz + zoff))
+        gt.dof(cam, d, 8.0)
+    update(FR // 2)
+    bpy.context.view_layer.update()
+    ilo, ihi = gt.bbox([sp.inner])
+    ic = (ilo + ihi) / 2
+    rr = (ihi.x - ilo.x) / 2
+    pts = {'bearing_edge': ic + Vector((-rr * 1.3, 0, rr * 0.75)), 'hole': ic,
+           'left': Vector((lo.x, 0, lo.z)), 'right': Vector((hi.x, 0, lo.z)), 'top': Vector((cx, 0, hi.z)), 'bottom': Vector((cx, 0, lo.z))}
+    write_meta('specs', pts)
+    return update
+
+
 SHOTS = {
     'hook': shot_hook, 'detail': shot_detail, 'headlights': shot_headlights, 'colours': shot_colours, 'flip': shot_flip,
     'garage': shot_garage, 'wall': lambda: shot_wall(pan=True), 'spinner': lambda: shot_spinner(),
@@ -561,6 +690,8 @@ SHOTS = {
     'sp_price': shot_sp_price,
     'w_keys': lambda: shot_wall(pan=False, land=int(BEAT * 4)), 'w_colours': shot_w_colours, 'w_mount': shot_w_mount,
     'w_lineup': shot_w_lineup,
+    'trio': lambda: shot_trio(True), 'trio_rest': lambda: shot_trio(False),
+    'karambit_spin': lambda: shot_spinner_kind('karambit'), 'shield_specs': lambda: shot_specs_kind('shield'),
 }
 
 os.makedirs(OUT, exist_ok=True)
@@ -578,4 +709,4 @@ if 'test' in A:
         bpy.ops.render.render(write_still=True)
         print('TEST', scene.render.filepath, flush=True)
 else:
-    gt.bake_render(update, FR, OUT, T, motion_blur=0.5, mb_steps=4 if SHOT.startswith(('sp_', 'spinner')) else 1)
+    gt.bake_render(update, FR, OUT, T, motion_blur=0.5, mb_steps=4 if SHOT.startswith(('sp_', 'spinner', 'trio', 'karambit', 'shield')) else 1)

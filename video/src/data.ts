@@ -31,6 +31,13 @@ export const headlight = (name: string) => {
   if (!h) throw new Error(`headlight ${name} not in launch.json`);
   return h.hex;
 };
+const spinner = (id: string) => {
+  const x = L.extras.items.find((i) => i.id === `${id}_spinner`);
+  if (!x) throw new Error(`${id}_spinner missing from launch.json`);
+  return { price: `$${x.price}`, size: `About ${Math.round(x.size_mm[0])} × ${Math.round(x.size_mm[1])} mm` };
+};
+export const KARAMBIT = spinner("karambit");
+export const SHIELD = spinner("shield");
 const talon = L.extras.items.find((x) => x.id === "talon_spinner");
 if (!talon) throw new Error("talon_spinner missing from launch.json");
 export const TALON_PRICE = `$${talon.price}`;

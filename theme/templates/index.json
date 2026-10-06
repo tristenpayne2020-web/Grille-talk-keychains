@@ -300,13 +300,13 @@
     "talon": {
       "type": "spinner-feature",
       "settings": {
-        "product": "talon-finger-spinner"
+        "collection": "spinners"
       },
       "blocks": {
         "t1": {
           "type": "fact",
           "settings": {
-            "label": "Frame",
+            "label": "Frames",
             "value": "Carbon fiber, topology-optimised"
           }
         },
@@ -327,8 +327,8 @@
         "t4": {
           "type": "fact",
           "settings": {
-            "label": "Size",
-            "value": "About 74 x 42 mm"
+            "label": "Shapes",
+            "value": "Talon, Karambit, Shield"
           }
         }
       },

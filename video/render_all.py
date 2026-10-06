@@ -8,8 +8,8 @@ A = dict(a.split('=', 1) for a in sys.argv[1:] if '=' in a)
 T = json.load(open(os.path.join(HERE, 'src', 'timeline.json')))
 MAP = {
     'launch': {'hook': 'hook', 'detail': 'detail', 'headlights': 'headlights', 'colours': 'colours', 'flip': 'flip',
-               'garage': 'garage', 'wall': 'wall', 'spinner': 'spinner'},
-    'spinner_ad': {'macro': 'sp_macro', 'spin': 'sp_spin', 'specs': 'sp_specs', 'price': 'sp_price'},
+               'garage': 'garage', 'wall': 'wall', 'spinner': 'trio'},
+    'spinner_ad': {'macro': 'sp_macro', 'spin': 'karambit_spin', 'specs': 'shield_specs', 'price': 'trio_rest'},
     'wall_ad': {'keys': 'w_keys', 'colours': 'w_colours', 'mount': 'w_mount', 'lineup': 'w_lineup'},
 }
 JOBS = []
