@@ -80,8 +80,17 @@ def design_karambit():
     spine = [(6, -10, 17), (11, -26, 15.5), (11, -42, 13), (6, -56, 10.5), (-3, -68, 8.5), (L[0], L[1], 6.8)]
     claw = unary_union([strut(a[:2], b[:2], a[2], b[2]) for a, b in zip(spine, spine[1:])])
     claw = claw.difference(Point(-30, -42).buffer(19, 64))        # the concave inner edge of the claw
-    env = unary_union([Point(0, 0).buffer(RING_R), claw, Point(L).buffer(6.8)])
-    return L, env.buffer(3, 32).buffer(-3, 32), 29
+    # the point: past the keyring hole the blade tapers and curls inward to a ~1 mm tip
+    tip = unary_union([strut(L, (-25, -84.5), 6.0, 3.2), strut((-25, -84.5), (-33, -86), 3.2, 1.0)])
+    env = unary_union([Point(0, 0).buffer(RING_R), claw, Point(L).buffer(6.8)]).buffer(3, 32).buffer(-3, 32)
+    env = unary_union([env, tip])
+    # jimping: V-notches along the outer spine below the bearing, like a knife's thumb grip
+    from shapely import affinity
+    from shapely.geometry import LineString, box
+    for y in (-16, -20.5, -25, -29.5, -34):
+        x = max(c[0] for c in LineString([(-60, y), (60, y)]).intersection(env).coords)
+        env = env.difference(affinity.rotate(box(x - 1.3, y - 1.3, x + 1.3, y + 1.3), 45))
+    return L, env, 29
 
 
 def design_shield():
