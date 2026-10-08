@@ -717,7 +717,7 @@
         "title": "Talon finger spinner",
         "type": "Spinner",
         "handle": "talon-finger-spinner",
-        "price": "12.99",
+        "price": "9.99",
         "color": "Black carbon fiber",
         "grams": 28,
         "size_mm": [
@@ -730,7 +730,7 @@
       },
       {
         "type": "Spinner",
-        "price": "12.99",
+        "price": "9.99",
         "color": "Black carbon fiber",
         "grams": 28,
         "id": "karambit_spinner",
@@ -746,7 +746,7 @@
       },
       {
         "type": "Spinner",
-        "price": "12.99",
+        "price": "9.99",
         "color": "Black carbon fiber",
         "grams": 28,
         "id": "shield_spinner",

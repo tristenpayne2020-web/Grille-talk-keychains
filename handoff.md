@@ -299,7 +299,7 @@ The website is not affected: it uses its own logo-free rebuild in `site/build/ge
 
 ## 9. 2026-10-05: Talon finger spinner on the site
 
-- Product `talon-finger-spinner` ($12.99, one variant, black PETG-CF), from `launch.json` → `extras` (non-car products:
+- Product `talon-finger-spinner` ($9.99, one variant, black PETG-CF), from `launch.json` → `extras` (non-car products:
   title, price, grams, description live there). Renders, media and CSV rows come from the same tools as the cars.
 - Weight 28 g is an estimate (frame ~9 g + bearing + ring): weigh one.
 - In Shopify admin: create an automated collection "Spinners" (handle `spinners`, Product type = Spinner) and add a

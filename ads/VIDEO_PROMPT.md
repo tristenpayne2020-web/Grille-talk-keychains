@@ -82,7 +82,7 @@ Do not invent reviews, ratings, sales numbers, "best", shipping times, materials
   Mustang GT500, Camaro ZL1, Corvette C8); four hooks; every body colour, plus custom headlights; from $14.99;
   double-sided tape recommended, countersunk screw holes on each side (tape, screws and nails are not included);
   for keys only (not coats or bags).
-- **Talon spinner:** $12.99; "printed in highly durable carbon fiber material, made for rigidity and built to last";
+- **Talon spinner:** $9.99; "printed in highly durable carbon fiber material, made for rigidity and built to last";
   6804 ball bearing; 20 mm finger hole; topology-optimised lattice ("solid where it works, light everywhere else");
   about 74 × 42 mm.
 - **Site:** grilletalk.shop
@@ -128,7 +128,7 @@ letter-spacing settle, holds long enough to read (about 0.25 s per word, at leas
 | 12.0-14.5 | **Flip.** The keychain turns 180° on its chain to show the carbon-fibre back and GRILLE TALK lettering, with a light sweep across the weave. | Y rotation with a spring overshoot; the chain reacts. | FLIP IT. |
 | 14.5-18.5 | **The garage.** A fast rhythmic run of different cars: either a 3D carousel orbiting a dark pedestal, or hard cuts in time with the SFX. Use 8-10 cars across makes (M5, Supra, C8, GT-R, 911 GT3 RS, Aventador, Hellcat, TRX, Escalade, Model S), each in a different colour. | Carousel rotation, or per-car push-ins of 4-6 frames. | 34 CARS AND COUNTING. |
 | 18.5-23.0 | **Wall key holders.** Cut to a warm, softly lit wall (subtle plaster texture, a lamp glow from above, a skirting line). A Supra holder is on the wall; a set of keys (simple procedural key + ring geometry) swings onto a hook and settles. Rack focus, then a quick lateral pan past two more holders (F90 M5 in blue, G80 snake-eye in black). | Keys on a pendulum; camera pan; holders cast soft contact shadows on the wall. | YOUR CAR, BY THE FRONT DOOR. · WALL KEY HOLDERS FROM $14.99 |
-| 23.0-27.0 | **Talon spinner.** Back to black. The Talon spins up on its bearing: the frame rotates fast around the steel races, with motion blur on the lattice. The camera orbits to show the topology-optimised web, then it decelerates and stops with the keyring hanging. | Bearing spin with angular-velocity ease-out (`spring`), frame-blur trails; orbit. | THE TALON. · CARBON FIBER. BUILT TO LAST. · $12.99 |
+| 23.0-27.0 | **Talon spinner.** Back to black. The Talon spins up on its bearing: the frame rotates fast around the steel races, with motion blur on the lattice. The camera orbits to show the topology-optimised web, then it decelerates and stops with the keyring hanging. | Bearing spin with angular-velocity ease-out (`spring`), frame-blur trails; orbit. | THE TALON. · CARBON FIBER. BUILT TO LAST. · $9.99 |
 | 27.0-30.0 | **End card.** The halftone G80 artwork fades up behind; the metallic logo reveals with a light sweep. Then CTA. | Logo mask reveal and light sweep; slow drift on the artwork. | FIND YOUR CAR · grilletalk.shop · legal line (small) |
 
 **15 s 1:1 cut-down:** Hook (2 s), Headlights (2.5 s), Garage (3 s), Wall holder (2.5 s), Spinner (2.5 s), End card
@@ -138,7 +138,7 @@ letter-spacing settle, holds long enough to read (about 0.25 s per word, at leas
 1. Macro on the lattice: "Topology optimised."
 2. Spin-up with bearing whirr: "Carbon fiber. Built to last."
 3. Specs as clean callout lines pointing at the parts: "6804 bearing · 20 mm finger hole · 74 × 42 mm"
-4. Price + CTA: "$12.99 · Get the Talon"
+4. Price + CTA: "$9.99 · Get the Talon"
 
 **12 s wall ad:**
 1. Keys drop onto a hook: "Your car, by the front door."
