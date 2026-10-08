@@ -40,14 +40,22 @@ if (root) {
   const varAngle = root.querySelector('[data-variant-angle]');
   const swap = (img, src, alt) => { if (img && src) { img.removeAttribute('srcset'); img.src = src; if (alt != null) img.alt = alt; } };
 
-  // body (option 1) and headlights (option 2) on the 3D model, through the model-viewer material API
+  // body (option 1) and headlights (option 2) on the 3D model, through the model-viewer material API.
+  // Shopify serves model-viewer 1.x, which only takes a linear RGBA array (hex strings are ignored there).
+  const linear = (hex) => {
+    const n = parseInt(hex.slice(1), 16);
+    return [n >> 16, (n >> 8) & 255, n & 255].map((v) => {
+      const c = v / 255;
+      return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    }).concat(1);
+  };
   function paint() {
     if (!mv || !mv.model) return;
     const tint = (name, sw) => {
       const m = sw && sw.dataset.hex && mv.model.materials.find((x) => x.name === name);
       if (!m) return;
       const pbr = m.pbrMetallicRoughness;
-      pbr.setBaseColorFactor(sw.dataset.hex);
+      pbr.setBaseColorFactor(linear(sw.dataset.hex));
       pbr.setMetallicFactor(Number(sw.dataset.metal) || 0);
       pbr.setRoughnessFactor(Number(sw.dataset.rough) || 0.6);
     };
