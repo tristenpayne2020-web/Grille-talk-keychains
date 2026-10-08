@@ -12,8 +12,18 @@ US only, LAUNCH15 (15% off, one use, ends Oct 20), Buy 3 keychains get 1 free, w
 3. Meta Events Manager > your Pixel > Test events: open grilletalk.shop, view a product, add to cart. All three events
    should show up. Do not place a real order just to test.
 4. Ads Manager: ad account in USD, payment method added (by the account owner, 18+).
-5. Work out your break-even cost per purchase: average order value minus print cost, mailer, label and Shopify fees.
-   This is the most an ad can cost per sale before you lose money. Write it down; every decision below uses it.
+5. Break-even cost per purchase (from `kc/pricing_inputs.json` and the slicer data, Oct 2026):
+
+   | One $6.99 keychain, standard shipping | |
+   |---|---|
+   | Customer pays | $6.99 + $5.50 shipping = $12.49 |
+   | PLA 7 g (+5% failures) / ring + chain / printer wear + power | -$0.15 / -$0.07 / -$0.07 |
+   | Bag + card + mailer / USPS Ground Advantage label | -$0.39 / -$6.00 |
+   | Shopify Payments 2.9% + 30c | -$0.66 |
+   | Profit before your time / after ~6 min at $20/h | ~$5.15 / ~$3.18 |
+
+   With LAUNCH15: ~$4.10 / ~$2.10. A buy-3-get-1 order (4 keychains, $20.97 + shipping): ~$17.
+   **Target: average cost per purchase under $4.** Spinners are not included (bearing cost not recorded).
 
 ## Campaign 1: Sales (start here)
 
