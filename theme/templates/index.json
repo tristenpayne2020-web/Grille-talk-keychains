@@ -97,7 +97,7 @@
           "type": "question",
           "settings": {
             "question": "How much is shipping, and how fast?",
-            "answer": ""
+            "answer": "<p>Every order is printed for you, which takes 3–5 business days. Standard shipping is $5.50 and arrives 3–5 business days after your order ships, and it is free on orders of $35 or more. Express is $11.50 and arrives 2–3 business days after it ships. We ship within the US only.</p>"
           }
         },
         "q8": {
