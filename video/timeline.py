@@ -60,8 +60,21 @@ if __name__ == '__main__':
         # 15 s: one bar before the drop
         'cutdown': build(-1, 15.0, [('hook', 1), ('headlights', 1), ('garage', 1), ('wall', 1), ('spinner', 1), ('end', None)]),
         'spinner_ad': build(-1, 12.0, [('macro', 1), ('spin', 1.5), ('specs', 1.25), ('price', None)]),
+        # the one-take ad: the drop lands as the keychains burst out of the G80
+        'oner': dict(**build(-1, 16.75 * BAR, [('intro', 1), ('burst', 2.5), ('home', 0.75), ('flip', 0.75), ('back', 2), ('dive', 0.5),
+                                              ('w_details', 2.25), ('w_out', 0.5), ('w_burst', 1.5), ('w_home', 0.75), ('w_flip', 0.75),
+                                              ('w_dive', 0.5), ('spin', 1.5), ('end', None)]), bar_frames=BAR * FPS),
         'wall_ad': build(-1, 12.0, [('keys', 1.5), ('colours', 1.25), ('mount', 1), ('lineup', None)]),
     }
+    # the one-take ad plays to "Fresh and Frisky" by The North (Artlist): 99.01 BPM, the drop (after a half-second
+    # of silence) at 10.382 s. The Blender acts were timed to Ritual's bar, so the edit plays them faster by
+    # SCALE = Ritual bar / Fresh bar; every cut then lands on Fresh and Frisky's bars, the burst on its drop.
+    FF_BEAT, FF_DROP = 0.606, 10.382
+    scale = BAR / (FF_BEAT * 4)
+    o = T['oner']
+    T['oner_edit'] = dict(song='music/fresh_and_frisky.mp3', scale=round(scale, 5),
+                          song_start=round(FF_DROP - o['drop'] / scale / FPS, 3),
+                          frames=int(round(o['frames'] / scale)), drop=int(round(o['drop'] / scale)))
     out = os.path.join(HERE, 'src', 'timeline.json')
     json.dump(T, open(out, 'w'), indent=1)
     for k in ('launch', 'cutdown', 'spinner_ad', 'wall_ad'):

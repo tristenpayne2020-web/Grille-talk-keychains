@@ -567,13 +567,19 @@ class Keychain:
                     p[1] = pos + qq @ (l1 - self.c)
                 prev[0] = hole.copy()
 
-        for _ in range(WARMUP):
-            step(P0, P0, 0.0)
-        Pa = P0
-        for f in range(1, frame + 1):
+        # incremental: frames rendered in order continue from the cached state (same result, O(1) per frame)
+        cache = getattr(self, '_sim', None)
+        if cache and cache['fn'] is pose_fn and cache['frame'] < frame:
+            p[:] = cache['p']; prev[:] = cache['prev']; Pa = cache['Pa']; f0 = cache['frame']
+        else:
+            for _ in range(WARMUP):
+                step(P0, P0, 0.0)
+            Pa = P0; f0 = 0
+        for f in range(f0 + 1, frame + 1):
             Pb = pose_fn(f / fps)
             step(Pa, Pb, f / fps)
             Pa = Pb
+        self._sim = dict(fn=pose_fn, frame=frame, p=[v.copy() for v in p], prev=[v.copy() for v in prev], Pa=Pa)
         return p
 
     def apply(self, pose_fn, frame, fps=30, kick=None):
@@ -621,7 +627,25 @@ class WallHolder:
         self.size = self.hi - self.lo
         self.objects = new
         self.body = objs['body']
+        self.lights = objs.get('lights')
+        self.details = objs.get('details')
         self.hooks = self._hooks()
+        # a pivot at the face centre: move / turn the whole holder (used off the wall)
+        self.pivot = bpy.data.objects.new(f'pivot_{wid}', None)
+        link(self.pivot)
+        self.pivot.location = Vector(((self.lo.x + self.hi.x) / 2, (self.lo.y + self.hi.y) / 2, (self.lo.z + self.hi.z) / 2))
+        bpy.context.view_layer.update()
+        mw = kc.matrix_world.copy()
+        kc.parent = self.pivot
+        kc.matrix_world = mw
+        self.pivot.rotation_mode = 'QUATERNION'
+        self.home = self.pivot.location.copy()
+
+    def set(self, pos, yaw=0.0, pitch=0.0, roll=0.0, visible=True):
+        self.pivot.location = Vector(pos)
+        self.pivot.rotation_quaternion = Euler((pitch, roll, yaw), 'XYZ').to_quaternion()
+        for o in self.objects:
+            o.hide_render = not visible
 
     def _hooks(self):
         """hook arms: body vertices standing more than 12 mm off the wall, clustered by x. For each: x centre,
